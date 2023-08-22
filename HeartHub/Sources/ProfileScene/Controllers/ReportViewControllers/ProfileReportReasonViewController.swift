@@ -32,8 +32,8 @@ final class ProfileReportReasonViewController: UIViewController {
         return label
     }()
     
-    var profileReasonCancelButton = AlertButton(buttonColor: .white, borderColor: #colorLiteral(red: 0.9803773761, green: 0.1853338182, blue: 0.7394250631, alpha: 1), title: "취소", titleColor: .black)
-    var profileReasonBlockButton = AlertButton(buttonColor:  #colorLiteral(red: 1, green: 0, blue: 0.008081941865, alpha: 1), borderColor: #colorLiteral(red: 1, green: 0, blue: 0.008081941865, alpha: 1), title: "차단", titleColor: .white)
+    private var profileReasonCancelButton = AlertButton(buttonColor: .white, borderColor: #colorLiteral(red: 0.9803773761, green: 0.1853338182, blue: 0.7394250631, alpha: 1), title: "취소", titleColor: .black)
+    private var profileReasonBlockButton = AlertButton(buttonColor:  #colorLiteral(red: 1, green: 0, blue: 0.008081941865, alpha: 1), borderColor: #colorLiteral(red: 1, green: 0, blue: 0.008081941865, alpha: 1), title: "신고", titleColor: .white)
     
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [profileReasonCancelButton, profileReasonBlockButton])
@@ -44,7 +44,7 @@ final class ProfileReportReasonViewController: UIViewController {
         return stackView
     }()
     
-    lazy var containerView: UIView = {
+    private var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.clipsToBounds = true
