@@ -44,7 +44,7 @@ final class SignUpEnterNickNameEmailView: UIView {
         return button
     }()
     
-    // MARK: 이메일 입력 + dropDown 버튼
+    // MARK: 이메일 입력
     // 이메일 입력 텍스트 필드
     var emailTextField = SignUpUserInfoTextField(
         placeholder: "이메일을 입력해주세요",
@@ -77,9 +77,28 @@ final class SignUpEnterNickNameEmailView: UIView {
         return label
     }()
     
+    var emailDoVerifyTextField = SignUpUserInfoTextField(
+        placeholder: "인증번호를 입력해주세요.",
+        keyboardType: .default,
+        isSecureTextEntry: false)
+    
+    var emailDoVerifyButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = #colorLiteral(red: 0.8588235378, green: 0.8588235378, blue: 0.8588235378, alpha: 1)
+        button.setTitle("인증 하기", for: .normal)
+        button.setTitleColor(UIColor(red: 0.46, green: 0.46, blue: 0.46, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 14)
+        button.titleLabel?.contentMode = .scaleAspectFill
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 18
+        button.contentMode = .center
+        button.tintColor = .black
+        return button
+    }()
+    
     // 닉네임, 이메일 입력 스택뷰
     private lazy var enterStackView: UIStackView = {
-        let stView = UIStackView(arrangedSubviews: [nickNameTextField, emailTextField])
+        let stView = UIStackView(arrangedSubviews: [nickNameTextField, emailTextField, emailDoVerifyTextField])
         stView.spacing = 36
         stView.axis = .vertical
         stView.distribution = .fillEqually
@@ -128,7 +147,7 @@ extension SignUpEnterNickNameEmailView {
     }
     
     private func configureAddTarget() {
-        [nickNameTextField, emailTextField].forEach {
+        [nickNameTextField, emailTextField, emailDoVerifyTextField].forEach {
             $0.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
         }
     }
@@ -139,6 +158,7 @@ extension SignUpEnterNickNameEmailView {
     func configureSubViews() {
         nickNameTextField.addSubview(nickNameCheckButton)
         emailTextField.addSubview(emailVerifyButton)
+        emailDoVerifyTextField.addSubview(emailDoVerifyButton)
         
         [signUpBackgroundView,
          enterStackView,
@@ -153,6 +173,7 @@ extension SignUpEnterNickNameEmailView {
          emailTextField,
          nickNameCheckButton,
          emailVerifyButton,
+         emailDoVerifyButton,
          signUpLoverPreviousPageButton,
          signUpLoverNextPageButton
         ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
@@ -198,6 +219,11 @@ extension SignUpEnterNickNameEmailView {
             emailVerifyButton.bottomAnchor.constraint(equalTo: emailTextField.bottomAnchor),
             emailVerifyButton.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             
+            emailDoVerifyButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.19),
+            emailDoVerifyButton.topAnchor.constraint(equalTo: emailDoVerifyTextField.topAnchor),
+            emailDoVerifyButton.bottomAnchor.constraint(equalTo: emailDoVerifyTextField.bottomAnchor),
+            emailDoVerifyButton.trailingAnchor.constraint(equalTo: emailDoVerifyTextField.trailingAnchor),
+            
             // MARK: changePageButton Constraints
             signUpLoverPreviousPageButton.heightAnchor.constraint(equalTo: signUpLoverPreviousPageButton.widthAnchor),
             signUpLoverNextPageButton.heightAnchor.constraint(equalTo: signUpLoverNextPageButton.widthAnchor),
@@ -218,9 +244,23 @@ extension SignUpEnterNickNameEmailView: UITextFieldDelegate {
                 return
             }
         }
+        
+        let emailPattern = #"^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"#
+        let isVaildPattern = (emailTextField.text!.range(of: emailPattern, options: .regularExpression) != nil)
+        if emailTextField.text!.isEmpty {
+            emailFormatDescriptionLabel.isHidden = true
+        } else if isVaildPattern {
+            emailFormatDescriptionLabel.isHidden = true
+            emailVerifyButton.isEnabled = true
+        } else {
+            emailFormatDescriptionLabel.isHidden = false
+            emailVerifyButton.isEnabled = false
+        }
+        
         guard
             let nickName = nickNameTextField.text, !nickName.isEmpty,
-            let email = emailTextField.text, !email.isEmpty
+            let email = emailTextField.text, !email.isEmpty,
+            let emailVerify = emailDoVerifyTextField.text, !emailVerify.isEmpty
         else {
             signUpLoverNextPageButton.isEnabled = false
             return
@@ -231,14 +271,14 @@ extension SignUpEnterNickNameEmailView: UITextFieldDelegate {
     // 키보드 엔터키가 눌렸을때 (다음 동작을 허락할 것인지)
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // 두개의 텍스트필드를 모두 종료 (키보드 내려가기)
-        if emailTextField.text != "", nickNameTextField.text != "", nickNameTextField.text != "" {
+        if nickNameTextField.text != "", emailTextField.text != "", emailDoVerifyTextField.text != "" {
             nickNameTextField.resignFirstResponder()
             return true
-        } else if emailTextField.text != "", nickNameTextField.text != "" {
-            nickNameTextField.becomeFirstResponder()
+        } else if nickNameTextField.text != "", emailTextField.text != "" {
+            emailDoVerifyTextField.becomeFirstResponder()
             return true
-        } else if emailTextField.text != "" {
-            nickNameTextField.becomeFirstResponder()
+        } else if nickNameTextField.text != "" {
+            emailTextField.becomeFirstResponder()
             return true
         }
             return false
@@ -248,22 +288,8 @@ extension SignUpEnterNickNameEmailView: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailTextField.resignFirstResponder()
         nickNameTextField.resignFirstResponder()
-        nickNameTextField.resignFirstResponder()
+        emailDoVerifyTextField.resignFirstResponder()
     }
-    
-    // 이메일 텍스트필드 형식 제약조건
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        let idPattern = #"^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"#
-        let isVaildPattern = (emailTextField.text!.range(of: idPattern, options: .regularExpression) != nil)
-        if emailTextField.text!.isEmpty {
-            emailFormatDescriptionLabel.isHidden = true
-        } else if isVaildPattern {
-            emailFormatDescriptionLabel.isHidden = true
-        } else {
-            emailFormatDescriptionLabel.isHidden = false
-        }
-    }
-    
     
     // 텍스트필드 별 글자수 제한
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
