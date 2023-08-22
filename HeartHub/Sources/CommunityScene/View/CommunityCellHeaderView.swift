@@ -13,7 +13,7 @@ final class CommunityCellHeaderView: UIView {
     private let profileView = CommunityProfileView()
     private let postOptionButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.setImage(UIImage(named: "CommunityElipsis"), for: .normal)
         return button
     }()
     

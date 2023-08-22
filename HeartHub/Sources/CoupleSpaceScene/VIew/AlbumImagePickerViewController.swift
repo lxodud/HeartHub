@@ -24,6 +24,7 @@ class AlbumImagePickerViewController: UIViewController  {
         super.viewDidLoad()
         
         configureInitialSetting()
+        configureNavigationBar()
     }
 }
 
@@ -141,3 +142,4 @@ extension AlbumImagePickerViewController {
         // 게시물 등록
     }
 }
+

@@ -43,6 +43,7 @@ final class CoupleSpaceAlbumViewController: UIViewController {
         configureSubview()
         configureLayout()
         configureNavigationBar()
+        configureAddTarget()
     }
 }
 
@@ -178,5 +179,23 @@ extension CoupleSpaceAlbumViewController {
     
     @objc private func didTapBackButton() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: Configure AddTarget
+extension CoupleSpaceAlbumViewController {
+    private func configureAddTarget() {
+        editFloatingButton.writeArticleButton.addTarget(self, action: #selector(didTapWriteArticleButton), for: .touchUpInside)
+        editFloatingButton.calendarButton.addTarget(self, action: #selector(didTapCalendarButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapWriteArticleButton() {
+        let writeAlbum = AlbumImagePickerViewController()
+        navigationController?.pushViewController(writeAlbum, animated: true)
+    }
+    
+    @objc private func didTapCalendarButton() {
+        let calendar = CalendarViewController()
+        navigationController?.pushViewController(calendar, animated: true)
     }
 }

@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let tokenRepository = TokenRepository()
-//        tokenRepository.deleteToken()
+        tokenRepository.deleteToken()
         
         if let _ = tokenRepository.fetchAccessToken() {
             let heartHubTabBarController = HeartHubTabBarController()

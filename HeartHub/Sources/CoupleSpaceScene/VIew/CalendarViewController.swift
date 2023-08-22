@@ -71,6 +71,7 @@ class CalendarViewController: UIViewController {
         configureUI()
         configureCalendar()
         configureIsExistAlbumLabelHidden()
+        configureNavigationBar()
     }
 }
 
@@ -228,5 +229,28 @@ extension CalendarViewController {
         } else {
             isExistAlbumLabel.isHidden = true
         }
+    }
+}
+
+// MARK: Configure NaviBar
+extension CalendarViewController {
+    private func configureNavigationBar() {
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
+        let doneButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(didTapDoneButton))
+        
+        backButton.tintColor = .black
+        
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem = doneButton
+        navigationItem.title = "날짜 선택"
+    }
+    
+    @objc private func didTapBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func didTapDoneButton() {
+        // pop
+        // 게시물 등록
     }
 }

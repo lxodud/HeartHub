@@ -10,19 +10,19 @@ import UIKit
 final class CommunityFloatingButton: UIView {
     private let menuButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "variant"), for: .normal)
+        button.setImage(UIImage(named: "ReportButton"), for: .normal)
         return button
     }()
     
-    private let postButton: UIButton = {
+    let writeArticleButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "pencil"), for: .normal)
+        button.setImage(UIImage(named: "WriteArticleButton"), for: .normal)
         return button
     }()
     
-    private let rankButton: UIButton = {
+    let calendarButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "crown"), for: .normal)
+        button.setImage(UIImage(named: "CalendarButton"), for: .normal)
         return button
     }()
     
@@ -75,7 +75,7 @@ extension CommunityFloatingButton {
 // MARK: Configure UI
 extension CommunityFloatingButton {
     private func configureSubview() {
-        [rankButton, postButton].forEach {
+        [calendarButton, writeArticleButton].forEach {
             floatButtonStackView.addArrangedSubview($0)
             $0.isHidden = true
         }
