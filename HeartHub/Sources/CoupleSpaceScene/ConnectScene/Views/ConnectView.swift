@@ -42,6 +42,8 @@ final class ConnectView: UIView {
         super.init(frame: .zero)
         configureSubviews()
         configureLayout()
+        connectAccountButton.isEnabled = false
+        connectTextField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .allEditingEvents)
     }
     
     required init?(coder: NSCoder) {
@@ -130,5 +132,21 @@ extension ConnectView: UITextFieldDelegate  {
         } else {
             return false
         }
+    }
+    
+    @objc private func textFieldEditingChanged(_ textField: UITextField) {
+        if textField.text?.count == 1 {
+            if textField.text?.first == " " {
+                textField.text = ""
+                return
+            }
+        }
+        guard
+            let id = connectTextField.text, id != ""
+        else {
+            connectAccountButton.isEnabled = false
+            return
+        }
+        connectAccountButton.isEnabled = true
     }
 }

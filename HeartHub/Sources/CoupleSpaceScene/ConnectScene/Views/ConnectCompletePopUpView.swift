@@ -23,7 +23,7 @@ final class ConnectCompletePopUpView: UIView {
     private let connectCheckImage: UIImageView = {
         var imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
-        imgView.image = UIImage(named: "TestImage")
+        imgView.image = UIImage(named: "ReportCheck")
         imgView.clipsToBounds = true
         return imgView
     }()
