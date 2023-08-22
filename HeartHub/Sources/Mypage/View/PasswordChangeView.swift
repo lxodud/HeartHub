@@ -11,7 +11,7 @@ final class PasswordChangeView: UIView {
     private var pwdChangeLabel: UILabel = {
         let label = UILabel()
         label.text = "비밀번호 변경하기"
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont(name: "Pretendard-SemiBold", size: 20)
         label.textColor = .black
         return label
     }()
@@ -54,7 +54,7 @@ final class PasswordChangeView: UIView {
     private var beforeViewUnderLabel: UILabel = {
         let label = UILabel()
         label.text = "영문/숫자/특수문자 구성"
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont(name: "Pretendard-Regular", size: 12)
         label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         return label
     }()
@@ -94,7 +94,7 @@ final class PasswordChangeView: UIView {
     private var newViewUnderLabel: UILabel = {
         let label = UILabel()
         label.text = "영문/숫자/특수문자 구성"
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont(name: "Pretendard-Regular", size: 12)
         label.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         return label
     }()
@@ -125,7 +125,7 @@ final class PasswordChangeView: UIView {
         button.layer.borderColor = #colorLiteral(red: 0.9819073081, green: 0.4734940529, blue: 0.8320614696, alpha: 1)
         button.setTitle("비밀번호 변경하기", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 16)!
         button.addTarget(self, action: #selector(changePassword(sender:)), for: .touchUpInside)
         return button
     }()

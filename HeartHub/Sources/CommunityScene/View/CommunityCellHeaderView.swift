@@ -21,6 +21,7 @@ final class CommunityCellHeaderView: UIView {
         super.init(frame: .zero)
         configureSubview()
         configureLayout()
+        profileView.delegate = self
     }
     
     required init?(coder: NSCoder) {

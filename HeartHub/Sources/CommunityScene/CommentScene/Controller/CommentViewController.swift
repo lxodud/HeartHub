@@ -20,9 +20,10 @@ final class CommentViewController: UIViewController {
     private let commentTextView: UITextView = {
         let textView = UITextView()
         textView.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 40)
-        textView.font = .systemFont(ofSize: 16)
+        textView.font = UIFont(name: "Pretendard-Regular", size: 16)
         textView.isScrollEnabled = false
-        textView.backgroundColor = .green
+        textView.backgroundColor = .white
+        textView.layer.borderColor = UIColor.clear.cgColor
         textView.layer.cornerRadius = 10
         textView.layer.borderWidth = 1
         return textView
@@ -169,6 +170,7 @@ extension CommentViewController: UITableViewDataSource {
             )
         )
         
+        cell.selectionStyle = .none
         cell.commentCellDataSource = dataSource
         cell.commentLabel.text = comments[indexPath.row].content
         return cell

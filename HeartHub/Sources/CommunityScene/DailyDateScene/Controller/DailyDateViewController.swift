@@ -132,7 +132,8 @@ extension DailyDateViewController: UICollectionViewDataSource {
 // MARK: Community Cell Delegate Implementation
 extension DailyDateViewController: CommunityCellTransitionDelegate {
     func didTapUserProfile() {
-        
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
     
     func didTapPostOption() {
