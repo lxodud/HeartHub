@@ -67,6 +67,32 @@ extension CommunityViewController {
         searchBar.placeholder = "Search your interest!"
         navigationItem.titleView = searchBar
         navigationController?.navigationBar.backgroundColor = .systemBackground
+        
+        searchBar.barTintColor = #colorLiteral(red: 0.9903513789, green: 0.9556847215, blue: 0.9778354764, alpha: 1)
+        
+        searchBar.placeholder = "Search your interest!"
+        
+        //오른쪽 x버튼 이미지 세팅하기
+        searchBar.setImage(UIImage(named: "SearchBarImage"), for: UISearchBar.Icon.search, state: .normal)
+        
+        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+            //서치바 백그라운드 컬러
+            textfield.backgroundColor = #colorLiteral(red: 0.9903513789, green: 0.9556847215, blue: 0.9778354764, alpha: 1)
+            //플레이스홀더 글씨 색
+            textfield.attributedPlaceholder = NSAttributedString(string: textfield.placeholder ?? "", attributes: [
+                NSAttributedString.Key.foregroundColor : UIColor.lightGray,
+                NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 14)!]
+            )
+            //서치바 텍스트입력시 색 정하기
+            textfield.textColor = UIColor.black
+            //오른쪽 x버튼 이미지넣기
+            if let rightView = textfield.rightView as? UIImageView {
+                rightView.image = rightView.image?.withRenderingMode(.alwaysTemplate)
+                //이미지 틴트 정하기
+                rightView.tintColor = UIColor.lightGray
+            }
+ 
+        }
     }
 }
 
