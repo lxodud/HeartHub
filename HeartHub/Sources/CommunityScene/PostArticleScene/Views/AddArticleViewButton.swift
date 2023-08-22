@@ -1,5 +1,5 @@
 //
-//  AddPostButtonView.swift
+//  AddArticleButtonView.swift
 //  HeartHub
 //
 //  Created by 제민우 on 2023/08/17.
@@ -7,9 +7,11 @@
 
 import UIKit
 
-class AddPostButton: UIButton {
+class PostArticleButton: UIButton {
+    let theme: ArticleTheme
 
-    init(text: String, backgroundColor: UIColor) {
+    init(text: String, backgroundColor: UIColor, theme: ArticleTheme) {
+        self.theme = theme
         super.init(frame: .zero)
         
         self.setTitle(text, for: .normal)
@@ -30,7 +32,7 @@ class AddPostButton: UIButton {
 }
 
 // MARK: Configure InitialSetting
-extension AddPostButton {
+extension PostArticleButton {
     private func configureInitialSetting() {
         self.setTitleColor(.black, for: .normal)
         self.setTitleColor(.white, for: .selected)
@@ -42,8 +44,7 @@ extension AddPostButton {
 }
 
 // MARK: Configure Layout
-extension AddPostButton {
-    
+extension PostArticleButton {
     private func configureLayout() {
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([

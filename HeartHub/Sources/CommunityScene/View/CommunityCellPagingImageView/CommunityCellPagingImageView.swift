@@ -8,7 +8,7 @@
 import UIKit
 
 final class CommunityCellPagingImageView: UIView {
-    private var images: [UIImage] = [] {
+    private var images: [UIImage?] = [] {
         didSet {
             configurePageControl()
             pagingImageCollectionView.reloadData()
@@ -42,7 +42,7 @@ final class CommunityCellPagingImageView: UIView {
 
 // MARK: Public Interface
 extension CommunityCellPagingImageView {
-    func configureContents(_ images: [UIImage]) {
+    func configureContents(_ images: [UIImage?]) {
         self.images = images
     }
 }

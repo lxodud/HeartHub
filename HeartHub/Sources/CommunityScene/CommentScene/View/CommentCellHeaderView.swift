@@ -42,8 +42,14 @@ final class CommentCellHeaderView: UIView {
 
 // MARK: Public Interface
 extension CommentCellHeaderView {
-    func configureContents(_ data: MockData) {
-        profileView.configureContents(data)
+    func configureProfile(_ data: (authorname: String, image: UIImage)) {
+        profileView.profileIDLabel.text = data.authorname
+        profileView.profileImageView.image = data.image
+    }
+    
+    func configureHeartInformation(_ data: (isSelected: Bool, count: String)) {
+        heartButton.isSelected = data.isSelected
+        heartCountLabel.text = data.count
     }
     
     var idLabelLeadingAnchor: NSLayoutXAxisAnchor {

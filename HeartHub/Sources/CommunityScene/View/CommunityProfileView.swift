@@ -10,17 +10,17 @@ import UIKit
 final class CommunityProfileView: UIStackView {
     weak var delegate: CommunityProfileViewDelegate?
     
-    private let profileImageView: UIImageView = {
+    let profileImageView: UIImageView = {
         let imageView = HeartHubProfileImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.layer.borderWidth = 0.5
-        imageView.layer.borderColor = UIColor.black.cgColor
         return imageView
     }()
     
-    private let profileIdLabel: UILabel = {
+    let profileIDLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        label.font = UIFont(name: "Pretendard-SemiBold", size: 16)
         return label
     }()
     
@@ -39,13 +39,13 @@ final class CommunityProfileView: UIStackView {
 
 // MARK: Public Interface
 extension CommunityProfileView {
-    func configureContents(_ data: MockData) {
-        profileImageView.image = data.profileImage
-        profileIdLabel.text = data.profileName
+    func configureContents(_ username: String, _ profileImage: UIImage) {
+        profileImageView.image = profileImage
+        profileIDLabel.text = username
     }
     
     var labelLeadingAnchor: NSLayoutXAxisAnchor {
-        return profileIdLabel.leadingAnchor
+        return profileIDLabel.leadingAnchor
     }
 }
 
@@ -57,7 +57,7 @@ extension CommunityProfileView {
             action: #selector(tapUserProfile)
         )
         profileImageView.addGestureRecognizer(tapGesture)
-        profileIdLabel.addGestureRecognizer(tapGesture)
+        profileIDLabel.addGestureRecognizer(tapGesture)
     }
     
     @objc
@@ -76,11 +76,11 @@ extension CommunityProfileView {
     }
     
     private func configureSubview() {
-        [profileImageView, profileIdLabel].forEach {
+        [profileImageView, profileIDLabel].forEach {
             addArrangedSubview($0)
         }
         
-        profileIdLabel.setContentHuggingPriority(.required, for: .horizontal)
+        profileIDLabel.setContentHuggingPriority(.required, for: .horizontal)
     }
     
     private func configureLayout() {
@@ -92,7 +92,7 @@ extension CommunityProfileView {
             profileImageView.heightAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.heightAnchor,
                 multiplier: 0.5
-            ),
+            )
         ])
     }
 }

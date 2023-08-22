@@ -10,8 +10,18 @@ import UIKit
 final class SignUpProfileViewController: UIViewController {
     
     private let signUpProfileView = SignUpProfileView()
+    private let userInformationManager: SignUpManager
     
     private var sexButtons: [UIButton] = []
+    
+    init(userInformationManager: SignUpManager) {
+        self.userInformationManager = userInformationManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         view = signUpProfileView
@@ -47,7 +57,22 @@ extension SignUpProfileViewController {
     }
 
     @objc private func didTapNextPageButton() {
-        let signUpLoverLinkingVC = SignUpEnterNickNameEmailViewController()
+        sexButtons.forEach {
+            if $0.isSelected {
+                if $0 == signUpProfileView.maleBtn {
+                    userInformationManager.gender = "M"
+                } else {
+                    userInformationManager.gender = "W"
+                }
+            }
+        }
+        
+        userInformationManager.password = signUpProfileView.pwTextField.text
+        userInformationManager.birth = signUpProfileView.birthdayDateTextField.text
+        
+        let signUpLoverLinkingVC = SignUpEnterNickNameEmailViewController(
+            userInformationManager: userInformationManager
+        )
         navigationController?.pushViewController(signUpLoverLinkingVC, animated: true)
     }
     
@@ -57,8 +82,32 @@ extension SignUpProfileViewController {
 
     
     @objc private func didTapIdCheckBtn() {
+        guard let id = signUpProfileView.idTextField.text else {
+            return
+        }
         
-        
+        userInformationManager.checkIDAvailability(with: id) { isNotDuplicate in
+            DispatchQueue.main.async {
+                if isNotDuplicate {
+                    self.signUpProfileView.idDescriptionLabel.text = "사용 가능한 아이디입니다."
+                    self.signUpProfileView.idDescriptionLabel.textColor = UIColor(
+                        red: 0.105,
+                        green: 0.751,
+                        blue: 0.325,
+                        alpha: 1
+                    )
+
+                } else {
+                    self.signUpProfileView.idDescriptionLabel.text = "중복된 아이디입니다."
+                    self.signUpProfileView.idDescriptionLabel.textColor = UIColor(
+                        red: 1,
+                        green: 0.004,
+                        blue: 0.004,
+                        alpha: 1
+                    )
+                }
+            }
+        }
     }
     
     @objc private func didTapSexButton(_ sender: UIButton) {

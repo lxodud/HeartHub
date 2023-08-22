@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DropDown
 
 final class SignUpEnterNickNameEmailView: UIView {
     
@@ -15,12 +14,13 @@ final class SignUpEnterNickNameEmailView: UIView {
         ourStartLabelText: "사랑을 시작해볼까요?",
         descriptionLabelText: "계정을 생성하여 HeartHuB를 즐겨보아요.")
     
-    private lazy var nickNameTextField = SignUpUserInfoTextField(
+    let nickNameTextField = SignUpUserInfoTextField(
         placeholder: "닉네임을 입력해주세요.",
         keyboardType: .default,
-        isSecureTextEntry: false)
+        isSecureTextEntry: false
+    )
     
-    private var nickNameDescriptionLabel: UILabel = {
+    var nickNameDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "한글/영문/숫자/특수문자 구성"
         label.font = UIFont(name: "Pretendard-Regular", size: 12)
@@ -46,7 +46,7 @@ final class SignUpEnterNickNameEmailView: UIView {
     
     // MARK: 이메일 입력 + dropDown 버튼
     // 이메일 입력 텍스트 필드
-    private var emailTextField = SignUpUserInfoTextField(
+    var emailTextField = SignUpUserInfoTextField(
         placeholder: "이메일을 입력해주세요",
         keyboardType: .emailAddress,
         isSecureTextEntry: false)
@@ -267,6 +267,11 @@ extension SignUpEnterNickNameEmailView: UITextFieldDelegate {
     
     // 텍스트필드 별 글자수 제한
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == nickNameTextField {
+            nickNameDescriptionLabel.text = "한글/영문/숫자/특수문자 구성"
+            nickNameDescriptionLabel.textColor = #colorLiteral(red: 0.46, green: 0.46, blue: 0.46, alpha: 1)
+        }
         
         // 백스페이스 감지
         if let char = string.cString(using: String.Encoding.utf8) {

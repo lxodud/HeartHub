@@ -8,28 +8,55 @@
 import UIKit
 
 final class CommunityViewController: UIViewController {
-    private let communityPageViewController: UIViewController? = {
-        let pageViewController = HeartHubPageViewController(
-            viewControllers: [DailyDateViewController(), LookViewController(), DailyDateViewController()]
-        )
-        return pageViewController
+    private var communityPageViewController: UIViewController?
+    
+    private let articleDataSources: [CommunityArticleDataSource] = [
+        CommunityArticleDataSource(articleTheme: .daily),
+        CommunityArticleDataSource(articleTheme: .look),
+        CommunityArticleDataSource(articleTheme: .date)
+    ]
+        
+    private let writeArticleButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "WriteArticleButton"), for: .normal)
+        return button
     }()
-    private let communityFloatingButton = CommunityFloatingButton()
-    private let searchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCommunityPageViewInitialSetting()
         configureCommunityPageViewLayout()
-        configureFloatingButtonInitialSetting()
-        configureFloatingButtonLayout()
-        configureSearchBarInitialSetting()
+        configureWriteArticleButtonInitialSetting()
+        configureWriteArticleButtonLayout()
+        configureWriteArticelButtonAction()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
 }
 
 // MARK: Configure CommunityPageViewController
 extension CommunityViewController {
     private func configureCommunityPageViewInitialSetting() {
+        communityPageViewController = HeartHubPageViewController(
+            viewControllers: [
+                DailyDateViewController(
+                    articleDataSource: articleDataSources[0]
+                ),
+                LookViewController(
+                    articleDataSource: articleDataSources[1]
+                ),
+                DailyDateViewController(
+                    articleDataSource: articleDataSources[2]
+                )
+            ]
+        )
+        
         guard let communityPageView = communityPageViewController?.view else {
             return
         }
@@ -61,34 +88,41 @@ extension CommunityViewController {
     }
 }
 
-// MARK: Configure SearchBar
-extension CommunityViewController {
-    private func configureSearchBarInitialSetting() {
-        searchBar.placeholder = "Search your interest!"
-        navigationItem.titleView = searchBar
-        navigationController?.navigationBar.backgroundColor = .systemBackground
-    }
-}
-
 // MARK: Configure FloatingButton
 extension CommunityViewController {
-    private func configureFloatingButtonInitialSetting() {
-        view.addSubview(communityFloatingButton)
-        communityFloatingButton.translatesAutoresizingMaskIntoConstraints = false
+    private func configureWriteArticleButtonInitialSetting() {
+        view.addSubview(writeArticleButton)
+        writeArticleButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func configureFloatingButtonLayout() {
+    private func configureWriteArticleButtonLayout() {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            communityFloatingButton.bottomAnchor.constraint(
+            writeArticleButton.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor,
                 constant: -10
             ),
-            communityFloatingButton.trailingAnchor.constraint(
+            writeArticleButton.trailingAnchor.constraint(
                 equalTo: safeArea.trailingAnchor,
                 constant: -10
             )
         ])
+    }
+    
+    private func configureWriteArticelButtonAction() {
+        writeArticleButton.addTarget(self, action: #selector(tapWriteArticleButton), for: .touchUpInside)
+    }
+    
+    @objc
+    private func tapWriteArticleButton() {
+        let postArticleDatasourcec = PostArticleDataSource(
+            updateArticleDelegateList: articleDataSources
+        )
+        
+        let postArticleViewController = PostArticleViewController(
+            postArticleDataSource: postArticleDatasourcec
+        )
+        navigationController?.show(postArticleViewController, sender: nil)
     }
 }
