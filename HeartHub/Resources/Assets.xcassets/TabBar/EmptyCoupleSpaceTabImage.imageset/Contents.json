@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "solar_heart-lock-outline.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "solar_heart-lock-outline-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

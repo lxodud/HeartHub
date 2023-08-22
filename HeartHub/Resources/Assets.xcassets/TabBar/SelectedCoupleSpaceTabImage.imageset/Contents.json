@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "solar_heart-unlock-bold.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "solar_heart-unlock-bold-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
