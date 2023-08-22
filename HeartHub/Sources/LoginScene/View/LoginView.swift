@@ -30,6 +30,15 @@ final class LoginView: UIView {
         isSecureTextEntry: true
     )
     
+    private lazy var passwordSecureButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("표시", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 14)
+        button.addTarget(self, action: #selector(passwordSecureModeSetting), for: .touchUpInside)
+        return button
+    }()
+    
     // 로그인 버튼
     var loginButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -152,6 +161,12 @@ extension LoginView {
         [enterIdTextField, enterPwTextField].forEach {
             $0.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
         }
+        
+        passwordSecureButton.addTarget(self, action: #selector(passwordSecureModeSetting), for: .touchUpInside)
+    }
+    
+    @objc private func passwordSecureModeSetting() {
+        enterPwTextField.isSecureTextEntry.toggle()
     }
 }
 
@@ -165,6 +180,10 @@ extension LoginView {
     }
     
     private func configureSubviews() {
+        
+        enterPwTextField.addSubview(passwordSecureButton)
+        passwordSecureButton.translatesAutoresizingMaskIntoConstraints = false
+        
         [loginBackGroundView,
          selectPageButtonStackView,
          keyboardBackgroundView,
@@ -203,6 +222,10 @@ extension LoginView {
             idPwLoginBtnStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             idPwLoginBtnStackViewTopConstraint,
             idPwLoginBtnStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 59),
+            
+            passwordSecureButton.centerYAnchor.constraint(equalTo: enterPwTextField.centerYAnchor),
+            passwordSecureButton.topAnchor.constraint(equalTo: enterPwTextField.topAnchor, constant: -15),
+            passwordSecureButton.trailingAnchor.constraint(equalTo: enterPwTextField.trailingAnchor, constant: -8),
 
             // MARK: SignUp button, FindID button, FindPw button StackView Constraints
             selectPageButtonStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.028),

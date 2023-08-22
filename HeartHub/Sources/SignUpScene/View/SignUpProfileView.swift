@@ -51,19 +51,12 @@ final class SignUpProfileView: UIView {
         keyboardType: .default,
         isSecureTextEntry: true)
     
-    
-    // 비밀번호 중복확인 버튼
-     var pwCheckBtn: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = #colorLiteral(red: 0.8588235378, green: 0.8588235378, blue: 0.8588235378, alpha: 1)
-        button.setTitle("중복 확인", for: .normal)
-        button.setTitleColor(UIColor(red: 0.46, green: 0.46, blue: 0.46, alpha: 1), for: .normal)
+    private lazy var passwordSecureButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("표시", for: .normal)
+        button.setTitleColor(UIColor.lightGray, for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 14)
-        button.titleLabel?.contentMode = .scaleAspectFill
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 18
-        button.contentMode = .center
-        button.tintColor = .black
+        button.addTarget(self, action: #selector(passwordSecureModeSetting), for: .touchUpInside)
         return button
     }()
     
@@ -200,6 +193,12 @@ extension SignUpProfileView {
         [idTextField, pwTextField, birthdayDateTextField].forEach {
             $0.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .allEditingEvents)
         }
+        
+        passwordSecureButton.addTarget(self, action: #selector(passwordSecureModeSetting), for: .touchUpInside)
+
+    }
+    @objc private func passwordSecureModeSetting() {
+        pwTextField.isSecureTextEntry.toggle()
     }
 }
 
@@ -207,7 +206,9 @@ extension SignUpProfileView {
 extension SignUpProfileView {
      private func configureSubViews() {
          idTextField.addSubview(idCheckBtn)
-         pwTextField.addSubview(pwCheckBtn)
+         
+         pwTextField.addSubview(passwordSecureButton)
+         passwordSecureButton.translatesAutoresizingMaskIntoConstraints = false
          
         [signUpBackgroundView,
          enterStackView,
@@ -261,6 +262,10 @@ extension SignUpProfileView {
             idDescriptionLabel.topAnchor.constraint(equalTo: idTextField.bottomAnchor, constant: 3),
             idDescriptionLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 44),
             idDescriptionLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 211),
+            
+            passwordSecureButton.centerYAnchor.constraint(equalTo: pwTextField.centerYAnchor),
+            passwordSecureButton.topAnchor.constraint(equalTo: pwTextField.topAnchor, constant: -15),
+            passwordSecureButton.trailingAnchor.constraint(equalTo: pwTextField.trailingAnchor, constant: -15),
 
             pwDescriptionLabel.topAnchor.constraint(equalTo: pwTextField.bottomAnchor, constant: 3),
             pwDescriptionLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 44),
@@ -401,5 +406,22 @@ extension SignUpProfileView: UITextFieldDelegate {
         } else {
             return false
         }
+    }
+}
+
+
+// MARK: 프리뷰
+import SwiftUI
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Container().edgesIgnoringSafeArea(.all)
+    }
+    struct Container: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> UIViewController {
+            return     UINavigationController(rootViewController: SignUpProfileViewController())
+        }
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        }
+        typealias  UIViewControllerType = UIViewController
     }
 }
