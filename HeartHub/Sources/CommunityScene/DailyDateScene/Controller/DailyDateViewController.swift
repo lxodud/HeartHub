@@ -26,6 +26,9 @@ final class DailyDateViewController: UIViewController {
         }
     }
     
+    // 유저의 차단 상태 확인
+    private var blockStatus: Bool = false
+    
     init(articleDataSource: CommunityArticleDataSource) {
         self.articleDataSource = articleDataSource
         super.init(nibName: nil, bundle: nil)
@@ -137,7 +140,7 @@ extension DailyDateViewController: CommunityCellTransitionDelegate {
     }
     
     func didTapPostOption() {
-        
+        configureReportAlert()
     }
     
     func didTapCommentButton(_ articleID: Int?) {
@@ -170,6 +173,54 @@ extension DailyDateViewController {
             DailyDateNoImageCell.self,
             forCellWithReuseIdentifier: DailyDateNoImageCell.reuseIdentifier
         )
+    }
+}
+
+// MARK: Configure ActionSheet
+extension DailyDateViewController {
+    
+    @objc func configureReportAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let report = UIAlertAction(title: "게시물 신고하기", style: .default) { (action) in
+            self.presentReportUserViewController()
+        }
+        let block = UIAlertAction(title: "이 게시물의 작성자 차단하기", style: .default) { (action) in
+            self.presentBlockUserViewController()
+        }
+        let cancelBlock = UIAlertAction(title: "차단 해제", style: .default) { (action) in
+            self.presentCancelBlockUserViewController()
+        }
+
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+                
+        alert.addAction(report)
+        if blockStatus == true {
+            alert.addAction(cancelBlock)
+        } else {
+            alert.addAction(block)
+        }
+        alert.addAction(cancel)
+                
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func presentReportUserViewController() {
+        let reportUserViewController = ProfileReportReasonViewController()
+        modalPresentationStyle = .overFullScreen
+        present(reportUserViewController, animated: true)
+    }
+    
+    private func presentBlockUserViewController() {
+        let blockUserViewController = ProfileBlockUserViewController()
+        modalPresentationStyle = .overFullScreen
+        present(blockUserViewController, animated: true)
+    }
+    
+    private func presentCancelBlockUserViewController() {
+        let profileBlockCancelViewController = ProfileBlockCancelViewController()
+        modalPresentationStyle = .overFullScreen
+        present(profileBlockCancelViewController, animated: true)
     }
 }
 

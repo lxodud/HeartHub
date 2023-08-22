@@ -883,7 +883,6 @@
 		0C809A1C2A56D17F009EC362 /* CommunityScene */ = {
 			isa = PBXGroup;
 			children = (
-				562ABF772A951861006FA182 /* CommunityReport */,
 				0C43F6112A659CB000EED860 /* Util */,
 				0C4D32FB2A6830F000AD5EFF /* Protocol */,
 				0CE2CD792A90FC0000129724 /* Model */,
@@ -893,6 +892,7 @@
 				0C382E2A2A5B016800EA08E0 /* DailyDateScene */,
 				0CB49BD72A69230200C77341 /* LookScene */,
 				0C5929FA2A6D47D700C21570 /* CommentScene */,
+				562ABF772A951861006FA182 /* CommunityReport */,
 			);
 			path = CommunityScene;
 			sourceTree = "<group>";
