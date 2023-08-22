@@ -60,7 +60,7 @@ extension SignUpStartDateView {
     
     private func configureAddTarget() {
         startDateTextField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .allEditingEvents)
-        }
+    }
 }
 
 // MARK: Configure Layout

@@ -1,5 +1,5 @@
 //
-//  AddPostView.swift
+//  AddArticleView.swift
 //  HeartHub
 //
 //  Created by 제민우 on 2023/08/16.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class AddPostView: UIView {
+final class PostArticleView: UIView {
     
-    let addPostCellPagingImageView = CommunityCellPagingImageView()
+    let postArticleCellPagingImageView = CommunityCellPagingImageView()
     
-    var addPostProfileView = CommunityProfileView()
+    var postArticleProfileView = CommunityProfileView()
     
     private var isKeyboardShown = false
         
-    private let addPostTextView: UITextView = {
+    let postArticleTextView: UITextView = {
         let textView = UITextView()
         textView.font = UIFont(name: "Pretendard-Regular", size: 16)
         textView.textColor = .black
@@ -27,11 +27,23 @@ final class AddPostView: UIView {
         return textView
     }()
     
-    var addPostDailyButton = AddPostButton(text: "Daily", backgroundColor: .black)
-    var addPostLookButton = AddPostButton(text: "Look", backgroundColor: .white)
-    var addPostDateButton = AddPostButton(text: "Date", backgroundColor: .white)
+    var postArticleDailyButton = PostArticleButton(
+        text: "Daily",
+        backgroundColor: .black,
+        theme: .daily
+    )
+    var postArticleLookButton = PostArticleButton(
+        text: "Look",
+        backgroundColor: .white,
+        theme: .look
+    )
+    var postArticleDateButton = PostArticleButton(
+        text: "Date",
+        backgroundColor: .white,
+        theme: .date
+    )
     
-    private let addPostButtonStackView: UIStackView = {
+    private let postArticleButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 0
@@ -64,9 +76,9 @@ final class AddPostView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        addPostButtonStackView.layer.cornerRadius = addPostButtonStackView.frame.height / CGFloat(2)
+        postArticleButtonStackView.layer.cornerRadius = postArticleButtonStackView.frame.height / CGFloat(2)
         
-        addPostTextView.textContainerInset = UIEdgeInsets(top: addPostProfileView.frame.height, left: 25, bottom: 0, right: 25)
+        postArticleTextView.textContainerInset = UIEdgeInsets(top: postArticleProfileView.frame.height, left: 25, bottom: 0, right: 25)
     }
     
     deinit {
@@ -76,15 +88,15 @@ final class AddPostView: UIView {
 }
 
 // MARK: Configure InitialSetting
-extension AddPostView {
+extension PostArticleView {
     private func configureInitialSetting() {
-        addPostTextView.delegate = self
-        addPostDailyButton.isSelected = true
+        postArticleTextView.delegate = self
+        postArticleDailyButton.isSelected = true
     }
 }
 
 // MARK: Configure Notification
-extension AddPostView {
+extension PostArticleView {
     private func configureNotification() {
         NotificationCenter.default.addObserver(
             self,
@@ -137,20 +149,20 @@ extension AddPostView {
 }
 
 // MARK: Configure Layout
-extension AddPostView {
+extension PostArticleView {
     
     private func configureSubviews() {
-        addPostTextView.addSubview(addPostProfileView)
-        addPostTextView.translatesAutoresizingMaskIntoConstraints = false
+        postArticleTextView.addSubview(postArticleProfileView)
+        postArticleTextView.translatesAutoresizingMaskIntoConstraints = false
         
-        [addPostDailyButton, addPostLookButton, addPostDateButton].forEach {
-            addPostButtonStackView.addArrangedSubview($0)
+        [postArticleDailyButton, postArticleLookButton, postArticleDateButton].forEach {
+            postArticleButtonStackView.addArrangedSubview($0)
         }
         
-        [addPostCellPagingImageView,
-         addPostTextView,
-         addPostProfileView,
-         addPostButtonStackView
+        [postArticleCellPagingImageView,
+         postArticleTextView,
+         postArticleProfileView,
+         postArticleButtonStackView
         ].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -163,64 +175,64 @@ extension AddPostView {
         NSLayoutConstraint.activate([
 
             // MARK: postImageView Constraints
-            addPostCellPagingImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.462),
-            addPostCellPagingImageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            addPostCellPagingImageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            addPostCellPagingImageView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            addPostCellPagingImageView.widthAnchor.constraint(equalTo: addPostCellPagingImageView.heightAnchor),
+            postArticleCellPagingImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.462),
+            postArticleCellPagingImageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            postArticleCellPagingImageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            postArticleCellPagingImageView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            postArticleCellPagingImageView.widthAnchor.constraint(equalTo: postArticleCellPagingImageView.heightAnchor),
 
-            // MARK: addPostProfileView Constraints
-            addPostProfileView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.077),
-            addPostProfileView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            addPostProfileView.topAnchor.constraint(equalTo: addPostTextView.topAnchor),
-            addPostProfileView.leadingAnchor.constraint(equalTo: addPostTextView.leadingAnchor, constant: 25),
+            // MARK: postArticleProfileView Constraints
+            postArticleProfileView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.077),
+            postArticleProfileView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            postArticleProfileView.topAnchor.constraint(equalTo: postArticleTextView.topAnchor),
+            postArticleProfileView.leadingAnchor.constraint(equalTo: postArticleTextView.leadingAnchor, constant: 25),
 
-            // MARK: addPostTextField Constraints
-            addPostTextView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            // MARK: postArticleTextField Constraints
+            postArticleTextView.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            addPostTextView.topAnchor.constraint(equalTo: addPostCellPagingImageView.bottomAnchor),
-            addPostTextView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            addPostTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            postArticleTextView.topAnchor.constraint(equalTo: postArticleCellPagingImageView.bottomAnchor),
+            postArticleTextView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            postArticleTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
             
-            // MARK: addPostButtonStackView Constraints
-            addPostButtonStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.066),
-            addPostButtonStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.512),
-            addPostButtonStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -21),
-            addPostButtonStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -21),
+            // MARK: postArticleButtonStackView Constraints
+            postArticleButtonStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.066),
+            postArticleButtonStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.512),
+            postArticleButtonStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -21),
+            postArticleButtonStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -21),
         ])
     }
 }
 
 // MARK: GestureRecognizer Delegate Implement
-extension AddPostView: UIGestureRecognizerDelegate {
+extension PostArticleView: UIGestureRecognizerDelegate {
     func configureTapPostImageAction(_ target: Any, _ action: Selector) {
         let tapGesture = UITapGestureRecognizer(target: target, action: action)
         tapGesture.delegate = self
-        addPostCellPagingImageView.isUserInteractionEnabled = true
-        addPostCellPagingImageView.addGestureRecognizer(tapGesture)
+        postArticleCellPagingImageView.isUserInteractionEnabled = true
+        postArticleCellPagingImageView.addGestureRecognizer(tapGesture)
     }
 }
 
 // MARK: TextView Delegate Implement
-extension AddPostView: UITextViewDelegate {
+extension PostArticleView: UITextViewDelegate {
     // 플레이스홀더 기능 구현
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if addPostTextView.text == "문구를 입력해주세요." {
-            addPostTextView.text = nil
-            addPostTextView.textColor = .black
+        if postArticleTextView.text == "문구를 입력해주세요." {
+            postArticleTextView.text = nil
+            postArticleTextView.textColor = .black
         }
-        addPostTextView.textColor = .black
+        postArticleTextView.textColor = .black
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if addPostTextView.text == "" {
-            addPostTextView.text = "문구를 입력해주세요."
-            addPostTextView.textColor = #colorLiteral(red: 0.07, green: 0.07, blue: 0.07, alpha: 0.5)
+        if postArticleTextView.text == "" {
+            postArticleTextView.text = "문구를 입력해주세요."
+            postArticleTextView.textColor = #colorLiteral(red: 0.07, green: 0.07, blue: 0.07, alpha: 0.5)
         }
     }
     
     // 텍스트뷰를 이외의 영역을 눌렀을때 키보드 내려가도록
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        addPostTextView.resignFirstResponder()
+        postArticleTextView.resignFirstResponder()
     }
 }

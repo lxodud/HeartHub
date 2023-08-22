@@ -8,34 +8,38 @@
 import UIKit
 
 protocol CommunityCellable: UICollectionViewCell, CommunityCellHeaderViewDelegate, CommunityCellBottomButtonViewDelegate {
-    var delegate: CommunityCellDelegate? { get set }
+    var transitionDelegate: CommunityCellTransitionDelegate? { get set }
+    var communityCellDataSource: CommunityCellDataSource? { get set }
+    var tasks: [Cancellable?] { get set }
     
     func fetchAdjustedHeight() -> CGFloat
-    func configureCell(_ data: MockData)
 }
 
 // MARK: Profile View Delegate Implementation
 extension CommunityCellable {
     func didTapUserProfile() {
-        delegate?.didTapUserProfile()
+        transitionDelegate?.didTapUserProfile()
     }
     
     func didTapPostOptionButton() {
-        delegate?.didTapPostOption()
+        transitionDelegate?.didTapPostOption()
     }
 }
 
 // MARK: BottomButton Delegate Implementation
 extension CommunityCellable {
     func didTapThumbButton() {
-        delegate?.didTapThumbButton()
+        let task = communityCellDataSource?.checkGoodArticle()
+        tasks.append(task)
     }
     
     func didTapCommentButton() {
-        delegate?.didTapCommentButton()
+        let articleID = communityCellDataSource?.article.articleID
+        transitionDelegate?.didTapCommentButton(articleID)
     }
     
     func didTapHeartButton() {
-        delegate?.didTapHeartButton()
+        let task = communityCellDataSource?.scrapOrCancelArticle()
+        tasks.append(task)
     }
 }

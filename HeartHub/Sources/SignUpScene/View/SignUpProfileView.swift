@@ -16,7 +16,7 @@ final class SignUpProfileView: UIView {
     
     // MARK: 아이디, 비밀번호 입력란
     // 아이디 입력 텍스트필드
-    private lazy var idTextField = SignUpUserInfoTextField(
+    let idTextField = SignUpUserInfoTextField(
         placeholder: "아이디를 입력하세요",
         keyboardType: .default, isSecureTextEntry: false)
     
@@ -36,7 +36,7 @@ final class SignUpProfileView: UIView {
     }()
     
     // 아이디 제약
-    private var idDescriptionLabel: UILabel = {
+    var idDescriptionLabel: UILabel = {
         var label = UILabel()
         label.text = "영문/숫자 구성"
         label.font = UIFont(name: "Pretendard-Regular", size: 12)
@@ -46,7 +46,7 @@ final class SignUpProfileView: UIView {
     }()
     
     // 비밀번호 입력 텍스트필드
-    private var pwTextField = SignUpUserInfoTextField(
+    var pwTextField = SignUpUserInfoTextField(
         placeholder: "비밀번호를 입력하세요",
         keyboardType: .default,
         isSecureTextEntry: true)
@@ -61,7 +61,7 @@ final class SignUpProfileView: UIView {
     }()
     
     // 비밀번호 제약 레이블
-    private var pwDescriptionLabel: UILabel = {
+    var pwDescriptionLabel: UILabel = {
         var label = UILabel()
         label.text = "영문/숫자/특수문자 구성"
         label.font = UIFont(name: "Pretendard-Regular", size: 12)
@@ -114,7 +114,7 @@ final class SignUpProfileView: UIView {
         btn.layer.cornerRadius = 18
         btn.layer.borderWidth = 1
         btn.layer.borderColor = #colorLiteral(red: 0.8588235378, green: 0.8588235378, blue: 0.8588235378, alpha: 1)
-
+        
         // 라디오버튼 구현
         btn.setImage(UIImage(named:"AgreeRadioBtnUnChecked"), for: .normal)
         btn.setImage(UIImage(named: "AgreeRadioBtnChecked"), for: .selected)
@@ -220,7 +220,7 @@ extension SignUpProfileView {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-         
+        
         [idTextField,
          pwTextField,
          idCheckBtn,
@@ -229,7 +229,7 @@ extension SignUpProfileView {
          signUpProfilePreviousPageButton,
          signUpProfileNextPageButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
-         }
+        }
     }
     
     
@@ -251,13 +251,13 @@ extension SignUpProfileView {
             idTextField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.04),
             
             pwTextField.heightAnchor.constraint(equalTo: idTextField.heightAnchor),
-
+            
             // MARK: idCheckBtn Constraints
             idCheckBtn.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.19),
             idCheckBtn.topAnchor.constraint(equalTo: idTextField.topAnchor),
             idCheckBtn.bottomAnchor.constraint(equalTo: idTextField.bottomAnchor),
             idCheckBtn.trailingAnchor.constraint(equalTo: idTextField.trailingAnchor),
-
+            
             // MARK: ID,PW idDescriptionLabel Constraints
             idDescriptionLabel.topAnchor.constraint(equalTo: idTextField.bottomAnchor, constant: 3),
             idDescriptionLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 44),
@@ -279,7 +279,7 @@ extension SignUpProfileView {
             maleLabel.centerYAnchor.constraint(equalTo: maleBtn.centerYAnchor),
             maleLabel.leadingAnchor.constraint(equalTo: maleBtn.leadingAnchor, constant: 41),
             maleLabel.trailingAnchor.constraint(equalTo: maleBtn.trailingAnchor, constant: -14),
-
+            
             femaleLabel.centerYAnchor.constraint(equalTo: femaleBtn.centerYAnchor),
             femaleLabel.leadingAnchor.constraint(equalTo: femaleBtn.leadingAnchor, constant: 41),
             femaleLabel.trailingAnchor.constraint(equalTo: femaleBtn.trailingAnchor, constant: -14),
@@ -341,12 +341,14 @@ extension SignUpProfileView: UITextFieldDelegate {
             birthdayDateTextField.resignFirstResponder()
             return true
         }
-            return false
-        }
+        
+        return false
+    }
     
     // 텍스트필드 이외의 영역을 눌렀을때 키보드 내려가도록
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         idTextField.resignFirstResponder()
+        pwTextField.resignFirstResponder()
         birthdayDateTextField.resignFirstResponder()
     }
     
@@ -354,7 +356,11 @@ extension SignUpProfileView: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-      
+        if textField == idTextField {
+            idDescriptionLabel.text = "영문/숫자 구성"
+            idDescriptionLabel.textColor = #colorLiteral(red: 0.46, green: 0.46, blue: 0.46, alpha: 1)
+        }
+        
         // 백스페이스 감지
         if let char = string.cString(using: String.Encoding.utf8) {
             let isBackSpace = strcmp(char, "\\b")
@@ -377,14 +383,14 @@ extension SignUpProfileView: UITextFieldDelegate {
             maxLength = 18
             allowedCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
             return updatedText.count <= maxLength && allowedCharacterSet.isSuperset(of: CharacterSet(charactersIn: string))
-
+            
         case pwTextField:
             maxLength = 15
             allowedCharacterSet = CharacterSet(charactersIn:
-                                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_?+=~"
+                                                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_?+=~"
             )
             return updatedText.count <= maxLength && allowedCharacterSet.isSuperset(of: CharacterSet(charactersIn: string))
-        
+            
         case birthdayDateTextField:
             maxLength = 4
             allowedCharacterSet = CharacterSet(charactersIn: "0123456789")

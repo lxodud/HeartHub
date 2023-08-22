@@ -10,6 +10,10 @@ import UIKit
 final class LoginViewController: UIViewController {
     
     private let loginView = LoginView()
+    private let loginNetwork = LoginNetwork(
+        tokenRepository: TokenRepository(),
+        networkManager: DefaultNetworkManager()
+    )
     
     override func loadView() {
         view = loginView
@@ -29,9 +33,30 @@ final class LoginViewController: UIViewController {
     }
 
     @objc private func didTapLoginButton() {
-        print("로그인 버튼이 눌렸습니다.")
-        let findPwVC = SignUpTermAgreeViewController()
-       navigationController?.pushViewController(findPwVC, animated: true)
+        guard let id = loginView.enterIdTextField.text,
+              let password = loginView.enterPwTextField.text
+        else {
+            return
+        }
+        
+        loginNetwork.login(id: id, password: password) {
+            DispatchQueue.main.async {
+                guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+                      let window = sceneDelegate.window
+                else {
+                    return
+                }
+                
+                window.rootViewController = HeartHubTabBarController()
+                UIView.transition(
+                    with: window,
+                    duration: 0.2,
+                    options: [.transitionCrossDissolve],
+                    animations: nil,
+                    completion: nil
+                )
+            }
+        }
     }
     
     @objc private func didTapFindPwButton() {

@@ -1,17 +1,23 @@
 //
-//  DailyDateImageCell.swift
+//  DailyDateCell.swift
 //  HeartHub
 //
-//  Created by 이태영 on 2023/07/18.
+//  Created by 이태영 on 2023/07/19.
 //
 
 import UIKit
 
-final class DailyDateImageCell: UICollectionViewCell, CommunityCellable {
-    weak var delegate: CommunityCellDelegate?
-    
+final class DailyDateNoImageCell: UICollectionViewCell, CommunityCellable {
+    weak var transitionDelegate: CommunityCellTransitionDelegate?
+    var communityCellDataSource: CommunityCellDataSource? {
+        didSet {
+            bind(to: communityCellDataSource)
+            let task = communityCellDataSource?.fetchCellContents()
+            tasks = task ?? []
+        }
+    }
+    var tasks: [Cancellable?] = []
     private let headerView = CommunityCellHeaderView()
-    private let pagingImageView = CommunityCellPagingImageView()
     private let bottomButtonView = CommunityCellBottomButtonView()
     private let postLabel: UILabel = {
         let label = UILabel()
@@ -27,32 +33,65 @@ final class DailyDateImageCell: UICollectionViewCell, CommunityCellable {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func bind(to dataSource: CommunityCellDataSource?) {
+        dataSource?.commentCountPublisher = { [weak self] count in
+            self?.bottomButtonView.commentCountLabel.text = count.description
+        }
+        
+        dataSource?.authorProfileInformationPublisher = { [weak self] username, imageData in
+            var authorProfile: (String, UIImage) = (username, UIImage())
+            
+            if let imageData = imageData,
+               let image = UIImage(data: imageData)
+            {
+                authorProfile.1 = image
+            } else {
+                authorProfile.1 = UIImage(named: "BasicProfileImage")!
+            }
+            
+            self?.headerView.configureContents(authorProfile)
+        }
+        
+        dataSource?.heartStatusPublisher = { [weak self] isHeart in
+            self?.bottomButtonView.heartButton.isSelected = isHeart
+        }
+        
+        dataSource?.goodInformationPublisher = { [weak self] isGood, count in
+            self?.bottomButtonView.thumbButton.isSelected = isGood
+            self?.bottomButtonView.thumbCountLabel.text = count.description
+        }
+        
+        dataSource?.contentPublisher = { [weak self] content in
+            self?.postLabel.text = content
+        }
+    }
+    
+    // MARK: - override
+    override func prepareForReuse() {
+        tasks.forEach {
+            $0?.cancel()
+        }
     }
 }
 
 // MARK: Public Interface
-extension DailyDateImageCell {
+extension DailyDateNoImageCell {
     func fetchAdjustedHeight() -> CGFloat {
         var height = headerView.bounds.height
-        height += pagingImageView.bounds.height
         height += postLabel.bounds.height
         height += bottomButtonView.bounds.height
         
         return height
     }
-    
-    func configureCell(_ data: MockData) {
-        headerView.configureContents(data)
-        pagingImageView.configureContents(data.images)
-        postLabel.text = data.postLabel
-    }
 }
 
 // MARK: Configure UI
-extension DailyDateImageCell {
+extension DailyDateNoImageCell {
     private func configureSubview() {
-        [headerView, pagingImageView, postLabel, bottomButtonView].forEach {
+        [headerView, postLabel, bottomButtonView].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -82,24 +121,9 @@ extension DailyDateImageCell {
                 multiplier: 0.15
             ),
             
-            
-            // MARK: pagingImageView Constarint
-            pagingImageView.topAnchor.constraint(
-                equalTo: headerView.bottomAnchor
-            ),
-            pagingImageView.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
-            ),
-            pagingImageView.trailingAnchor.constraint(
-                equalTo: safeArea.trailingAnchor
-            ),
-            pagingImageView.heightAnchor.constraint(
-                equalTo: pagingImageView.widthAnchor
-            ),
-            
             // MARK: postLabel Constraint
             postLabel.topAnchor.constraint(
-                equalTo: pagingImageView.bottomAnchor
+                equalTo: headerView.bottomAnchor
             ),
             postLabel.leadingAnchor.constraint(
                 equalTo: safeArea.leadingAnchor,
@@ -111,7 +135,7 @@ extension DailyDateImageCell {
             ),
             postLabel.heightAnchor.constraint(
                 equalTo: headerView.heightAnchor,
-                multiplier: 0.8
+                multiplier: 2
             ),
             
             // MARK: bottomButtonView Constraint
@@ -127,8 +151,7 @@ extension DailyDateImageCell {
                 constant: -3
             ),
             bottomButtonView.heightAnchor.constraint(
-                equalTo: headerView.heightAnchor,
-                multiplier: 0.5
+                equalTo: headerView.heightAnchor
             )
         ])
     }

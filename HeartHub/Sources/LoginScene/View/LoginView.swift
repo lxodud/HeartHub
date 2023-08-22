@@ -18,13 +18,13 @@ final class LoginView: UIView {
         return imgView
     }()
     
-    private let enterIdTextField = LoginTextField(
+    let enterIdTextField = LoginTextField(
         placeholder: "아이디를 입력하세요",
         keyboardType: .default,
         isSecureTextEntry: false
     )
     
-    private let enterPwTextField = LoginTextField(
+    let enterPwTextField = LoginTextField(
         placeholder: "비밀번호를 입력하세요",
         keyboardType: .default,
         isSecureTextEntry: true

@@ -26,7 +26,6 @@ final class FindIdViewController: UIViewController {
         findIdView.signUpBtn.addTarget(self, action: #selector(didTapSignUpButton), for: .touchUpInside)
         findIdView.findPwBtn.addTarget(self, action: #selector(didTapFindPwButton), for: .touchUpInside)
         findIdView.loginBtn.addTarget(self, action: #selector(didTaploginBtn), for: .touchUpInside)
-
     }
 
     @objc private func didTaploginBtn() {

@@ -11,6 +11,7 @@ import UIKit
 final class SignUpTermAgreeViewController: UIViewController {
 
     private let signUpTermAgreeView = SignUpTermAgreeView()
+    private let userInformationManager: SignUpManager
     
     private let signUpTermTableView = UITableView()
     // 약관동의 사이 선
@@ -51,6 +52,15 @@ final class SignUpTermAgreeViewController: UIViewController {
     ]
     
     private var termAgreeButtonStates: [Int: Bool] = [:]
+    
+    init(userInformationManager: SignUpManager) {
+        self.userInformationManager = userInformationManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func loadView() {
         view = signUpTermAgreeView
@@ -203,8 +213,11 @@ extension SignUpTermAgreeViewController {
     
     @objc private func didTapCreateAccountButton() {
         // MARK: 계정생성 버튼 누를 시 동작 지정
-        
-        navigationController?.popToRootViewController(animated: true)
+        userInformationManager.join {
+            DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
     }
     
     @objc private func didTapsignUpTermAgreePreviousPageButton() {
@@ -244,6 +257,7 @@ extension SignUpTermAgreeViewController {
         if let cell = signUpTermTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SignUpTermTableViewCell {
             cell.termAgreeButton.isSelected = allTermAgreeButtonSelected
         }
+        userInformationManager.marketingStatus = termAgreeButtonStates[3]
     }
     
     @objc func termDescriptionButtonTapped(sender: UIButton) {

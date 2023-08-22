@@ -19,11 +19,35 @@ final class DailyDateViewController: UIViewController {
         return collectionView
     }()
     
+    private let articleDataSource: CommunityArticleDataSource
+    private var articles: [Article] = [] {
+        didSet {
+            dailyCollectionView.reloadData()
+        }
+    }
+    
+    init(articleDataSource: CommunityArticleDataSource) {
+        self.articleDataSource = articleDataSource
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDailyCollectionView()
         configureSubview()
         configureLayout()
+        bindToArticleDataSource()
+        articleDataSource.fetchArticle()
+    }
+    
+    private func bindToArticleDataSource() {
+        articleDataSource.articlesPublisher = { [weak self] articles in
+            self?.articles = articles
+        }
     }
 }
 
@@ -39,7 +63,7 @@ extension DailyDateViewController: UICollectionViewDelegateFlowLayout {
         let size = CGRect(x: 0, y: 0, width: width, height: estimateHeight)
         var dummyCell: CommunityCellable
         
-        if mockData[indexPath.row].images.isEmpty {
+        if articles[indexPath.row].communityImageUrl.isEmpty {
             dummyCell = DailyDateNoImageCell(frame: size)
         } else {
             dummyCell = DailyDateImageCell(frame: size)
@@ -60,7 +84,7 @@ extension DailyDateViewController: UICollectionViewDataSource {
         numberOfItemsInSection section: Int
     ) -> Int {
         
-        return mockData.count
+        return articles.count
     }
     
     func collectionView(
@@ -70,7 +94,7 @@ extension DailyDateViewController: UICollectionViewDataSource {
         
         let cellType: CommunityCellable.Type
         
-        if mockData[indexPath.row].images.isEmpty {
+        if articles[indexPath.row].communityImageUrl.isEmpty {
             cellType = DailyDateNoImageCell.self
         } else {
             cellType = DailyDateImageCell.self
@@ -83,15 +107,30 @@ extension DailyDateViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        cell.configureCell(mockData[indexPath.row])
-        cell.delegate = self
+        let tokenRepository = TokenRepository()
+        let networkManager = DefaultNetworkManager()
+        
+        let dataSource = CommunityCellDataSource(
+            article: articles[indexPath.row],
+            articleContentNetwork: ArticleContentNetwork(
+                tokenRepository: tokenRepository,
+                networkManager: networkManager
+            ),
+            userNetwork: UserNetwork(
+                tokenRepository: tokenRepository,
+                networkManager: networkManager
+            )
+        )
+        
+        cell.communityCellDataSource = dataSource
+        cell.transitionDelegate = self
         
         return cell
     }
 }
 
 // MARK: Community Cell Delegate Implementation
-extension DailyDateViewController: CommunityCellDelegate {
+extension DailyDateViewController: CommunityCellTransitionDelegate {
     func didTapUserProfile() {
         
     }
@@ -100,20 +139,19 @@ extension DailyDateViewController: CommunityCellDelegate {
         
     }
     
-    func didTapThumbButton() {
+    func didTapCommentButton(_ articleID: Int?) {
+        guard let articleID = articleID else {
+            return
+        }
         
-    }
-    
-    func didTapCommentButton() {
-        let commentViewController = CommentViewController()
+        let commentDataSource = CommentDataSource(articleID: articleID)
+        let commentViewController = CommentViewController(
+            commentDataSource: commentDataSource
+        )
         commentViewController.modalPresentationStyle = .custom
         commentViewController.transitioningDelegate = PanModalTransitioningDelegate.shared
         
         present(commentViewController, animated: true)
-    }
-    
-    func didTapHeartButton() {
-        
     }
 }
 
