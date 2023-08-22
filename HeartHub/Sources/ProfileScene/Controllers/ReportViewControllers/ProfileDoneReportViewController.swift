@@ -33,5 +33,6 @@ extension ProfileDoneReportViewController {
 
     @objc private func didTapprofileDoneReportClosebutton() {
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 }
