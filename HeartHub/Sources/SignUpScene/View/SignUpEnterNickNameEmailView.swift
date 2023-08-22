@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import DropDown
 
 final class SignUpEnterNickNameEmailView: UIView {
     
