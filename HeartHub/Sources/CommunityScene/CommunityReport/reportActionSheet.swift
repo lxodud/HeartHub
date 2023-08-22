@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class reportActionSheet {
+final class ReportActionSheet {
     
     private var blockStatus: Bool = true
     
