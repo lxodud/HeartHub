@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyPageDoneProfileSetView: UIView {
+final class MyPageDoneProfileSetView: UIView {
     
     private var doneProfileUpdateLabel: UILabel = {
         let label = UILabel()

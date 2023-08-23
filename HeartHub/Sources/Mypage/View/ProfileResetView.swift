@@ -11,8 +11,8 @@ final class ProfileResetView: UIView {
     
     private var backgroundGradientLayer: CAGradientLayer!
     
-    private var profileImageView: UIView = {
-        let view = UIView()
+    var profileImageView: UIImageView = {
+        let view = UIImageView()
         view.backgroundColor = UIColor(named: "softpink")
         view.layer.cornerRadius = 15
         view.layer.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25).cgColor
@@ -31,7 +31,7 @@ final class ProfileResetView: UIView {
         return button
     }()
     
-    private lazy var nickNameLabel: UITextField = {
+     lazy var nickNameLabel: UITextField = {
         var tf = UITextField()
         tf.backgroundColor = .clear
         tf.textColor = #colorLiteral(red: 0.07, green: 0.07, blue: 0.07, alpha: 0.5)
@@ -152,7 +152,7 @@ final class ProfileResetView: UIView {
         NSLayoutConstraint.activate([
             nickNameLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             nickNameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 40),
-            nickNameLabel.widthAnchor.constraint(equalTo: profileImageView.widthAnchor)
+            nickNameLabel.widthAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1.4)
         ])
     }
     
@@ -175,6 +175,11 @@ final class ProfileResetView: UIView {
             profileSetbtn.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -70),
             profileSetbtn.heightAnchor.constraint(equalTo: profileImageView.heightAnchor, multiplier: 0.3)
         ])
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        nickNameLabel.resignFirstResponder()
+        infoLabel.resignFirstResponder()
     }
 }
 

@@ -16,19 +16,19 @@ final class MyPageMainView: UIView {
         return img
     }()
     
-    private var profileImageView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "softpink")
-        view.layer.cornerRadius = 50
-        view.layer.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25).cgColor
-        view.layer.shadowOpacity = 0.4
-        view.layer.shadowOffset = CGSize(width: 2, height: 4)
-        view.layer.shadowRadius = 1
-        
-        return view
+    var profileImageView: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 40
+        image.layer.shadowColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.25).cgColor
+        image.layer.shadowOpacity = 1.0
+        image.layer.shadowOffset = CGSize(width: 0, height: 4)
+        image.layer.shadowRadius = 4
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
     
-    private var profileNickname: UILabel = {
+     var profileNickname: UILabel = {
         let name = UILabel()
         name.text = "우리 자기 사랑행행"
         name.textAlignment = .center
@@ -128,7 +128,7 @@ final class MyPageMainView: UIView {
     }()
     
     private lazy var stactView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews:  [profileResetBtn, lineView1, questionBtn, lineView2,  alertSettingBtn, lineView3, membershipWithdrawalBtn, lineView4, pwdChangeBtn, lineView5, logOutBtn, lineView6])
+        let stackview = UIStackView(arrangedSubviews:  [ profileResetBtn, lineView1, questionBtn, lineView2,  alertSettingBtn, lineView3, membershipWithdrawalBtn, lineView4, pwdChangeBtn, lineView5, logOutBtn, lineView6])
         stackview.spacing = 20
         stackview.axis = .vertical
         stackview.alignment = .leading
@@ -139,6 +139,7 @@ final class MyPageMainView: UIView {
     private let buttonViewHeight: CGFloat = 48
     
     //MARK: - 뷰 초기화
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -152,13 +153,14 @@ final class MyPageMainView: UIView {
     }
     
     //MARK: - 뷰 추가 및 제약
+    
     private func addViews() {
         [pinkWaveImage, profileImageView, profileNickname, stactView].forEach { addSubview($0) }
     }
     
     private func setConstraints() {
         pinkWaveImageConstraints()
-        profileImageViewConstriants()
+        imageShadowViewConstriants()
         proNicknameViewConstriants()
         stackViewConstriants()
         lineView1Constraints()
@@ -169,18 +171,21 @@ final class MyPageMainView: UIView {
         lineView6Constraints()
     }
     
+    func updateProfileImage(_ image: UIImage) {
+        profileImageView.image = image
+    }
     
     private func pinkWaveImageConstraints() {
         pinkWaveImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             pinkWaveImage.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            pinkWaveImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 460),
+            pinkWaveImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 400),
             pinkWaveImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             pinkWaveImage.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
-    private func profileImageViewConstriants() {
+    private func imageShadowViewConstriants() {
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             profileImageView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
@@ -189,6 +194,7 @@ final class MyPageMainView: UIView {
             profileImageView.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
+    
     
     private func proNicknameViewConstriants() {
         profileNickname.translatesAutoresizingMaskIntoConstraints = false
