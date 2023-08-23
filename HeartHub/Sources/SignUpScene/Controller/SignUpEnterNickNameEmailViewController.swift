@@ -10,7 +10,7 @@ import UIKit
 
 final class SignUpEnterNickNameEmailViewController: UIViewController {
     
-    private let signUpLoverLinkingView = SignUpEnterNickNameEmailView()
+    private let signUpEnterNickNameEmailView = SignUpEnterNickNameEmailView()
     private let userInformationManager: SignUpManager
     
     init(userInformationManager: SignUpManager) {
@@ -23,7 +23,7 @@ final class SignUpEnterNickNameEmailViewController: UIViewController {
     }
     
     override func loadView() {
-        view = signUpLoverLinkingView
+        view = signUpEnterNickNameEmailView
     }
     
     override func viewDidLoad() {
@@ -35,22 +35,22 @@ final class SignUpEnterNickNameEmailViewController: UIViewController {
 // MARK: Configure AddTarget
 extension SignUpEnterNickNameEmailViewController {
     private func configureAddTarget() {
-        signUpLoverLinkingView.signUpLoverNextPageButton.addTarget(self, action: #selector(didTapNextPageButton), for: .touchUpInside)
-        signUpLoverLinkingView.signUpLoverPreviousPageButton.addTarget(self, action: #selector(didTapPreviousPageButton), for: .touchUpInside)
-        signUpLoverLinkingView.emailVerifyButton.addTarget(self, action: #selector(didTapemailVerifyButton), for: .touchUpInside)
-        signUpLoverLinkingView.nickNameCheckButton.addTarget(self, action: #selector(didTapNickNameCheckButton), for: .touchUpInside)
+        signUpEnterNickNameEmailView.signUpLoverNextPageButton.addTarget(self, action: #selector(didTapNextPageButton), for: .touchUpInside)
+        signUpEnterNickNameEmailView.signUpLoverPreviousPageButton.addTarget(self, action: #selector(didTapPreviousPageButton), for: .touchUpInside)
+        signUpEnterNickNameEmailView.emailVerifyButton.addTarget(self, action: #selector(didTapemailVerifyButton), for: .touchUpInside)
+        signUpEnterNickNameEmailView.nickNameCheckButton.addTarget(self, action: #selector(didTapNickNameCheckButton), for: .touchUpInside)
     }
     
     @objc private func didTapNickNameCheckButton() {
-        guard let nickname = signUpLoverLinkingView.nickNameTextField.text else {
+        guard let nickname = signUpEnterNickNameEmailView.nickNameTextField.text else {
             return
         }
         
         userInformationManager.checkNicknameAvailability(with: nickname) { isNotDuplicate in
             DispatchQueue.main.async {
                 if isNotDuplicate {
-                    self.signUpLoverLinkingView.nickNameDescriptionLabel.text = "사용 가능한 닉네임입니다."
-                    self.signUpLoverLinkingView.nickNameDescriptionLabel.textColor = UIColor(
+                    self.signUpEnterNickNameEmailView.nickNameDescriptionLabel.text = "사용 가능한 닉네임입니다."
+                    self.signUpEnterNickNameEmailView.nickNameDescriptionLabel.textColor = UIColor(
                         red: 0.105,
                         green: 0.751,
                         blue: 0.325,
@@ -58,8 +58,8 @@ extension SignUpEnterNickNameEmailViewController {
                     )
                     
                 } else {
-                    self.signUpLoverLinkingView.nickNameDescriptionLabel.text = "중복된 닉네임입니다."
-                    self.signUpLoverLinkingView.nickNameDescriptionLabel.textColor = UIColor(
+                    self.signUpEnterNickNameEmailView.nickNameDescriptionLabel.text = "중복된 닉네임입니다."
+                    self.signUpEnterNickNameEmailView.nickNameDescriptionLabel.textColor = UIColor(
                         red: 1,
                         green: 0.004,
                         blue: 0.004,
@@ -81,7 +81,7 @@ extension SignUpEnterNickNameEmailViewController {
     }
     
     @objc private func didTapemailVerifyButton() {
-        guard let email = signUpLoverLinkingView.emailTextField.text else {
+        guard let email = signUpEnterNickNameEmailView.emailTextField.text else {
             return
         }
         

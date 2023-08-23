@@ -17,7 +17,7 @@ final class CommunitySegmentedControl: UISegmentedControl {
         items: [Any]?,
         normalColor: UIColor,
         selectedColor: UIColor,
-        font: UIFont = .systemFont(ofSize: 20, weight: .medium)
+        font: UIFont = UIFont(name: "Pretendard-SemiBold", size: 20)!
     ) {
         self.normalColor = normalColor
         self.selectedColor = selectedColor

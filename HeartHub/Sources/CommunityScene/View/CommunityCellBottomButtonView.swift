@@ -13,7 +13,7 @@ final class CommunityCellBottomButtonView: UIView {
     let thumbButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "CommunityThumb"), for: .normal)
-        button.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .selected)
+        button.setImage(UIImage(named: "CommunitySelectedThumb"), for: .selected)
         return button
     }()
     

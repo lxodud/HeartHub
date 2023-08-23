@@ -153,7 +153,7 @@ extension ConnectCheckPopUpView {
             // MARK: connectLoverLabel Constraints
             connectLoverLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             connectLoverLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 60),
-            connectLoverLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 48),
+            connectLoverLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             
             // MARK: loverProfileImage Constraints
             loverProfileImage.widthAnchor.constraint(equalTo: loverProfileImage.heightAnchor),

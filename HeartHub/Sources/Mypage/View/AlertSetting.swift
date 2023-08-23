@@ -13,7 +13,7 @@ final class AlertSettingView: UIView {
     private var alertSettingLabel: UILabel = {
         let lb = UILabel()
         lb.text = "알림 설정"
-        lb.font = UIFont.systemFont(ofSize: 22)
+        lb.font = UIFont(name: "Pretendard-SemiBold", size: 16)
         lb.textColor = .black
         return lb
     }()
@@ -21,7 +21,7 @@ final class AlertSettingView: UIView {
     private var lookNewsLabel: UILabel = {
         let lb = UILabel()
         lb.text =  "소식 보기"
-        lb.font = UIFont.boldSystemFont(ofSize: 15)
+        lb.font = UIFont(name: "Pretendard-SemiBold", size: 16)
         lb.textColor = .black
         return lb
     }()
@@ -29,7 +29,7 @@ final class AlertSettingView: UIView {
     private var lookNewsLabelDetail: UILabel = {
         let lb = UILabel()
         lb.text = "메인의 게시물이 게시되었을 때 소식을 알려줍니다."
-        lb.font = UIFont.systemFont(ofSize: 13)
+        lb.font = UIFont(name: "Pretendard-Regular", size: 14)
         lb.textColor = .lightGray
         return lb
     }()
@@ -44,7 +44,7 @@ final class AlertSettingView: UIView {
     private var likeAlertLabel: UILabel = {
         let lb = UILabel()
         lb.text =  "좋아요 알림"
-        lb.font = UIFont.boldSystemFont(ofSize: 15)
+        lb.font = UIFont(name: "Pretendard-SemiBold", size: 16)
         lb.textColor = .black
         return lb
     }()
@@ -52,7 +52,7 @@ final class AlertSettingView: UIView {
     private var likeAlertLabelDetail: UILabel = {
         let lb = UILabel()
         lb.text = "내 게시물에 좋아요가 달렸을 때 소식을 알려줍니다."
-        lb.font = UIFont.systemFont(ofSize: 13)
+        lb.font = UIFont(name: "Pretendard-Regular", size: 14)
         lb.textColor = .lightGray
         return lb
     }()
@@ -67,7 +67,7 @@ final class AlertSettingView: UIView {
     private var voteAlertLabel: UILabel = {
         let lb = UILabel()
         lb.text =  "투표 알림"
-        lb.font = UIFont.boldSystemFont(ofSize: 15)
+        lb.font = UIFont(name: "Pretendard-SemiBold", size: 16)
         lb.textColor = .black
         return lb
     }()
@@ -75,7 +75,7 @@ final class AlertSettingView: UIView {
     private var voteAlertLabelDetail: UILabel = {
         let lb = UILabel()
         lb.text = "내 게시물이 득표했을 떄 소식을 알려줍니다."
-        lb.font = UIFont.systemFont(ofSize: 13)
+        lb.font = UIFont(name: "Pretendard-Regular", size: 14)
         lb.textColor = .lightGray
         return lb
     }()

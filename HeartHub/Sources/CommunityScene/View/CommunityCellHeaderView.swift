@@ -13,7 +13,7 @@ final class CommunityCellHeaderView: UIView {
     private let profileView = CommunityProfileView()
     private let postOptionButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.setImage(UIImage(named: "CommunityElipsis"), for: .normal)
         return button
     }()
     
@@ -21,6 +21,7 @@ final class CommunityCellHeaderView: UIView {
         super.init(frame: .zero)
         configureSubview()
         configureLayout()
+        profileView.delegate = self
     }
     
     required init?(coder: NSCoder) {

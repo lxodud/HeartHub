@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "bxs_network-chart.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "bxs_network-chart-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

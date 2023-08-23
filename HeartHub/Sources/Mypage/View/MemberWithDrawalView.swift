@@ -14,7 +14,7 @@ final class MemberWithdrawalView: UIView {
     private var memberWithdrawalLabel: UILabel = {
         let label = UILabel()
         label.text = "회원 탈퇴"
-        label.font = UIFont.boldSystemFont(ofSize: 25)
+        label.font = UIFont(name: "Pretendard-SemiBold", size: 24)
         label.textColor = .black
         return label
     }()
@@ -22,7 +22,7 @@ final class MemberWithdrawalView: UIView {
     private var memberWithdrawalDetailLabel: UILabel = {
         let label = UILabel()
         label.text = "잠깐! 탈퇴 전, 아래의 사항을 꼭 확인해주세요."
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Pretendard-SemiBold", size: 16)
         label.numberOfLines = 2
         label.textColor = .lightGray
         label.textAlignment = .center
@@ -47,7 +47,7 @@ final class MemberWithdrawalView: UIView {
     private var allAgreeLabel: UILabel = {
         let label = UILabel()
         label.text = "탈퇴 시 모든 데이터가 사라지며, 복구 불가합니다."
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "Pretendard-SemiBold", size: 16)
         label.textAlignment = .center
         let attributedText = NSMutableAttributedString(string: label.text ?? "")
         let range = (label.text as NSString?)?.range(of: "복구 불가")
@@ -68,7 +68,7 @@ final class MemberWithdrawalView: UIView {
     private let allAgreeDetailLabel: UILabel = {
         let label = UILabel()
         label.text = "안내사항을 모두 확인하였으며 이에 동의합니다."
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont(name: "Pretendard-Regular", size: 14)
         label.textColor = .lightGray
         label.textAlignment = .center
         return label
@@ -104,28 +104,28 @@ final class MemberWithdrawalView: UIView {
     private var reasonLabel1: UILabel = {
         let label = UILabel()
         label.text = "애인과 헤어지게 됐습니다."
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "Pretendard-Regular", size: 14)
         return label
     }()
     
     private var reasonLabel2: UILabel = {
         let label = UILabel()
         label.text = "본 앱에 더이상 흥미가 없습니다."
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "Pretendard-Regular", size: 14)
         return label
     }()
     
     private var reasonLabel3: UILabel = {
         let label = UILabel()
         label.text = "기술적인 문제 및 버그가 발생하였습니다."
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "Pretendard-Regular", size: 14)
         return label
     }()
     
     private var reasonLabel4: UILabel = {
         let label = UILabel()
         label.text = "기타(서술해주십시오.)"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "Pretendard-Regular", size: 14)
         return label
     }()
     
@@ -213,7 +213,7 @@ final class MemberWithdrawalView: UIView {
         button.layer.shadowOffset = CGSize(width: 2, height: 4)
         button.layer.shadowRadius = 1
         button.setTitle("계정 삭제", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+       button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 16)!
         button.isEnabled = false
         return button
     }()

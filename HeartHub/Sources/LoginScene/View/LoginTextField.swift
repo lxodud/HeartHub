@@ -9,7 +9,7 @@ import UIKit
 
 final class LoginTextField: UITextField {
 
-    private let insets: UIEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+    private let insets: UIEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 40)
     
     init(placeholder: String, keyboardType: UIKeyboardType, isSecureTextEntry: Bool) {
         super.init(frame: .zero)

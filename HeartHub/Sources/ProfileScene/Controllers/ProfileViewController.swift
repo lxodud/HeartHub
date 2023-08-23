@@ -37,7 +37,7 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
-    private var blockStatus: Bool = true
+    private var blockStatus: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

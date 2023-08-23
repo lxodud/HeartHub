@@ -40,6 +40,7 @@ extension GameMissionViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
+        cell.selectionStyle = .none
         cell.gameMissionLabel.text = missionDataArray[indexPath.item]
         
         return cell

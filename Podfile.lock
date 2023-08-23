@@ -1,5 +1,4 @@
 PODS:
-  - DropDown (2.3.13)
   - FSCalendar (2.8.4)
   - PryntTrimmerView (4.0.2)
   - SnapKit (5.6.0)
@@ -10,7 +9,6 @@ PODS:
     - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
-  - DropDown
   - FSCalendar
   - SnapKit
   - Then
@@ -18,7 +16,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - DropDown
     - FSCalendar
     - PryntTrimmerView
     - SnapKit
@@ -27,7 +24,6 @@ SPEC REPOS:
     - YPImagePicker
 
 SPEC CHECKSUMS:
-  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
@@ -35,6 +31,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: ca66b01ce428d7e06dabe31c7457f6e6d63f3773
+PODFILE CHECKSUM: f4c7122f03a7db89e07a6c2dec7888e83fd38ee0
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
