@@ -156,6 +156,8 @@
 		562ABF6F2A94E088006FA182 /* MyPageDoneProfileSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562ABF6E2A94E088006FA182 /* MyPageDoneProfileSetViewController.swift */; };
 		562ABF762A951331006FA182 /* ReportActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562ABF752A951331006FA182 /* ReportActionSheet.swift */; };
 		562ABF792A951890006FA182 /* CommunityReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562ABF782A951890006FA182 /* CommunityReportViewController.swift */; };
+		562ABFA12A958728006FA182 /* MyPageLogoutAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562ABFA02A958728006FA182 /* MyPageLogoutAlertView.swift */; };
+		562ABFA32A9587A7006FA182 /* MyPageLogoutAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562ABFA22A9587A7006FA182 /* MyPageLogoutAlertViewController.swift */; };
 		56348A632A631283005BB635 /* FindIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A622A631283005BB635 /* FindIdView.swift */; };
 		56348A672A6318B0005BB635 /* FindIdPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A662A6318B0005BB635 /* FindIdPopUpView.swift */; };
 		56348A692A6319EA005BB635 /* FindIdPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A682A6319EA005BB635 /* FindIdPopUpViewController.swift */; };
@@ -371,6 +373,8 @@
 		562ABF6E2A94E088006FA182 /* MyPageDoneProfileSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDoneProfileSetViewController.swift; sourceTree = "<group>"; };
 		562ABF752A951331006FA182 /* ReportActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportActionSheet.swift; sourceTree = "<group>"; };
 		562ABF782A951890006FA182 /* CommunityReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityReportViewController.swift; sourceTree = "<group>"; };
+		562ABFA02A958728006FA182 /* MyPageLogoutAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageLogoutAlertView.swift; sourceTree = "<group>"; };
+		562ABFA22A9587A7006FA182 /* MyPageLogoutAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageLogoutAlertViewController.swift; sourceTree = "<group>"; };
 		56348A622A631283005BB635 /* FindIdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdView.swift; sourceTree = "<group>"; };
 		56348A662A6318B0005BB635 /* FindIdPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdPopUpView.swift; sourceTree = "<group>"; };
 		56348A682A6319EA005BB635 /* FindIdPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdPopUpViewController.swift; sourceTree = "<group>"; };
@@ -1082,6 +1086,7 @@
 				336E0F762A92076E00547013 /* MemberWithDrawalView.swift */,
 				336E0F782A92078D00547013 /* PasswordChangeView.swift */,
 				562ABF6C2A94DF44006FA182 /* MyPageDoneProfileSetView.swift */,
+				562ABFA02A958728006FA182 /* MyPageLogoutAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1095,6 +1100,7 @@
 				336E0F7A2A9207AD00547013 /* MemberWithdrawalViewController.swift */,
 				336E0F7C2A9207EA00547013 /* PasswordChangeViewController.swift */,
 				562ABF6E2A94E088006FA182 /* MyPageDoneProfileSetViewController.swift */,
+				562ABFA22A9587A7006FA182 /* MyPageLogoutAlertViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1610,6 +1616,7 @@
 				56C0488D2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift in Sources */,
 				0CB49BDC2A69237400C77341 /* MockData.swift in Sources */,
 				0C4D32F72A6823A600AD5EFF /* DailyDateNoImageCell.swift in Sources */,
+				562ABFA32A9587A7006FA182 /* MyPageLogoutAlertViewController.swift in Sources */,
 				562ABF552A921587006FA182 /* ProfileBlockCancelView.swift in Sources */,
 				0C6F454F2A701D520044EAC8 /* HeartHubProfileImageView.swift in Sources */,
 				0CC33AC22A5281C1001EF4E7 /* AppDelegate.swift in Sources */,
@@ -1618,6 +1625,7 @@
 				56348A932A6E841E005BB635 /* FindPwPopUpView.swift in Sources */,
 				562ABF6D2A94DF44006FA182 /* MyPageDoneProfileSetView.swift in Sources */,
 				336E0F6F2A9203F100547013 /* MyPageMainViewController.swift in Sources */,
+				562ABFA12A958728006FA182 /* MyPageLogoutAlertView.swift in Sources */,
 				336E0F7B2A9207AD00547013 /* MemberWithdrawalViewController.swift in Sources */,
 				569E4EED2A5D499900B51898 /* SignUpTermAgreeView.swift in Sources */,
 				0CE2CDBC2A94CD7100129724 /* PostArticleResponseDTO.swift in Sources */,
