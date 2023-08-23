@@ -15,20 +15,13 @@ final class AlertSettingViewController: UIViewController {
         view = alertSettingView
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-setupAddTarget()
+
     }
     
-    func setupAddTarget() {
-        alertSettingView.lookNewsSwitch.addTarget(self, action: #selector(lookNewsTapped(_:)), for: .valueChanged)
-    }
     
-    @objc private func lookNewsTapped(_ sender: UISwitch) {
-        alertSettingView.lookNewsSwitch.setOn(!alertSettingView.lookNewsSwitch.isOn, animated: true)
-    }
-
-
+    
 }
 
