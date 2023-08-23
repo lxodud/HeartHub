@@ -61,6 +61,11 @@ extension PostArticleViewController {
     }
     
     private func configureNavigationBar() {
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
+        backButton.tintColor = .black
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.title = "게시글 작성"
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "완료",
             style: .plain,
@@ -68,7 +73,7 @@ extension PostArticleViewController {
             action: #selector(tapDoneButton)
         )
     }
-    
+
     @objc
     private func tapDoneButton() {
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -101,6 +106,10 @@ extension PostArticleViewController {
         ) {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @objc private func didTapBackButton() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
