@@ -13,8 +13,8 @@ final class HeartHubPageViewController: UIViewController {
         navigationOrientation: .horizontal
     )
     
-    private let communitySegmentedControl: CommunitySegmentedControl = {
-        let segmentedControl = CommunitySegmentedControl(
+    private let communitySegmentedControl: HeartHubSegmentedControl = {
+        let segmentedControl = HeartHubSegmentedControl(
             items: ["Daily", "Look", "Date"],
             normalColor: UIColor(red: 0.463, green: 0.463, blue: 0.463, alpha: 1),
             selectedColor: UIColor(red: 0, green: 0, blue: 0, alpha: 1)

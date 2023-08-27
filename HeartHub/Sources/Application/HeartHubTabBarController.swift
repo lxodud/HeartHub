@@ -12,18 +12,12 @@ final class HeartHubTabBarController: UITabBarController {
         super.viewDidLoad()
         configureTabBarItems()
     }
-    
+
     private func configureTabBarInitialSetting() {
     }
-    
+
     private func configureTabBarItems() {
-        let communityViewController = UINavigationController(
-            rootViewController: CommunityViewController()
-        )
-        communityViewController.tabBarItem.title = "커뮤니티"
-        communityViewController.tabBarItem.image = UIImage(named: "EmptyCommunityTabImage")
-        communityViewController.tabBarItem.selectedImage = UIImage(named: "SelectedCommunityTabImage")
-        
+
         let coupleSpaceViewController = UINavigationController(
             rootViewController: CoupleSpaceMainViewController()
         )
@@ -31,15 +25,8 @@ final class HeartHubTabBarController: UITabBarController {
         coupleSpaceViewController.tabBarItem.image = UIImage(named: "EmptyCoupleSpaceTabImage")
         coupleSpaceViewController.tabBarItem.selectedImage = UIImage(named: "SelectedCoupleSpaceTabImage")
         
-        let myPageViewController = UINavigationController(
-            rootViewController: MyPageMainViewController()
-        )
-        myPageViewController.tabBarItem.title = "마이페이지"
-        myPageViewController.tabBarItem.image = UIImage(named: "EmptyMypageTabImage")
-        myPageViewController.tabBarItem.selectedImage = UIImage(named: "SelectedMypageTabImage")
-        
         setViewControllers(
-            [communityViewController, coupleSpaceViewController, myPageViewController],
+            [coupleSpaceViewController],
             animated: true
         )
     }

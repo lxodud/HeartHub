@@ -1,5 +1,5 @@
 //
-//  CommunityFloatingButton.swift
+//  HeartHubFloatingButton.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/07/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CommunityFloatingButton: UIView {
+final class HeartHubFloatingButton: UIView {
     private let menuButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "ReportButton"), for: .normal)
@@ -48,7 +48,7 @@ final class CommunityFloatingButton: UIView {
 }
 
 // MARK: Configure Action
-extension CommunityFloatingButton {
+extension HeartHubFloatingButton {
     private func configureAction() {
         menuButton.addTarget(
             self,
@@ -73,7 +73,7 @@ extension CommunityFloatingButton {
 }
 
 // MARK: Configure UI
-extension CommunityFloatingButton {
+extension HeartHubFloatingButton {
     private func configureSubview() {
         [calendarButton, writeArticleButton].forEach {
             floatButtonStackView.addArrangedSubview($0)

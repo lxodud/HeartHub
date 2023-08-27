@@ -1,5 +1,5 @@
 //
-//  CommunitySegmentControl.swift
+//  HeartHubSegmentedControl.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/07/08.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CommunitySegmentedControl: UISegmentedControl {
+final class HeartHubSegmentedControl: UISegmentedControl {
     private let underLine = UIView()
     private let normalColor: UIColor
     private let selectedColor: UIColor
@@ -48,7 +48,7 @@ final class CommunitySegmentedControl: UISegmentedControl {
 }
 
 // MARK: Configure SegmentedControl
-extension CommunitySegmentedControl {
+extension HeartHubSegmentedControl {
     private func setupTitleAttributes() {
         setTitleTextAttributes([.foregroundColor: normalColor, .font: font], for: .normal)
         setTitleTextAttributes([.foregroundColor: selectedColor, .font: font], for: .selected)
@@ -74,7 +74,7 @@ extension CommunitySegmentedControl {
 }
 
 // MARK: Configure UI
-extension CommunitySegmentedControl {
+extension HeartHubSegmentedControl {
     private func configureUnderLineview() {
         let originX: CGFloat = 0
         let originY: CGFloat = bounds.size.height - 3
