@@ -539,13 +539,14 @@
 			isa = PBXGroup;
 			children = (
 				0C43F6112A659CB000EED860 /* Util */,
-				0C59CF672A87EA3E00D847B7 /* Infra */,
 				0C59CF6C2A89222100D847B7 /* Data */,
+				0C59CF672A87EA3E00D847B7 /* Infra */,
 				0C6F45582A77AC870044EAC8 /* Application */,
-				56348A8D2A6DB4CE005BB635 /* SignUpScene */,
-				561462142A6EE3DF00C0AC1F /* LoginScene */,
-				5651FC4E2A7A659C00965300 /* ProfileScene */,
 				0C6F45592A77AE9F0044EAC8 /* CoupleSpaceScene */,
+				5651FC4E2A7A659C00965300 /* ProfileScene */,
+				561462142A6EE3DF00C0AC1F /* LoginScene */,
+				56348A8D2A6DB4CE005BB635 /* SignUpScene */,
+				0CCF04D52A9CBDEE00D66F37 /* MyPage */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -613,6 +614,13 @@
 				0C6F45572A77AC760044EAC8 /* Resources */,
 			);
 			path = HeartHub;
+			sourceTree = "<group>";
+		};
+		0CCF04D52A9CBDEE00D66F37 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		0CE2CD6A2A8FD03D00129724 /* Model */ = {
