@@ -1,11 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "DropUpArrow 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "DropUpArrow.png",
+      "filename" : "ic_round-arrow-drop-down-2 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
