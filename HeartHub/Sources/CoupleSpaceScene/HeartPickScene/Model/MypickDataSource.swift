@@ -31,13 +31,6 @@ extension MyPickDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CoupleSpaceMyPickCollectionCell.reuseIdentifier,
-            for: indexPath
-        ) as? CoupleSpaceMyPickCollectionCell else {
-            return UICollectionViewCell()
-        }
-        
-        return cell
+        return UICollectionViewCell()
     }
 }

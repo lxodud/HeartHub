@@ -31,13 +31,7 @@ extension HeartPickDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CoupleSpaceHeartPickCollectionCell.reuseIdentifier,
-            for: indexPath
-        ) as? CoupleSpaceHeartPickCollectionCell else {
-            return UICollectionViewCell()
-        }
         
-        return cell
+        return UICollectionViewCell()
     }
 }

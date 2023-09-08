@@ -10,8 +10,7 @@
 		0C4EF98E2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */; };
 		0C4EF9902A7A430100539320 /* CoupleSpaceMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */; };
 		0C4EF9942A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */; };
-		0C4EF9972A7B966F00539320 /* CoupleSpaceHeartPickCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9962A7B966F00539320 /* CoupleSpaceHeartPickCollectionCell.swift */; };
-		0C4EF9992A7BA19C00539320 /* CoupleSpaceMyPickCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9982A7BA19C00539320 /* CoupleSpaceMyPickCollectionCell.swift */; };
+		0C4EF9972A7B966F00539320 /* HeartHubImagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9962A7B966F00539320 /* HeartHubImagePickerCell.swift */; };
 		0C4EF99C2A7BF63100539320 /* HeartPickDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF99B2A7BF63100539320 /* HeartPickDataSource.swift */; };
 		0C4EF99F2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF99E2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift */; };
 		0C4EF9A12A7BFB3700539320 /* MypickDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9A02A7BFB3700539320 /* MypickDataSource.swift */; };
@@ -63,6 +62,7 @@
 		0CE2CDE02A9B716200129724 /* HeartHubFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE2CDDF2A9B716100129724 /* HeartHubFloatingButton.swift */; };
 		0CE2CDE22A9B71B600129724 /* HeartHubSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */; };
 		0CEDD8A22AA4B57E00662A03 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */; };
+		0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */; };
 		561462192A6EE50300C0AC1F /* FindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561462182A6EE50300C0AC1F /* FindIdViewController.swift */; };
 		5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B2D02A57EEB300477EBC /* LoginViewController.swift */; };
 		5626B3372A584A3D00477EBC /* SignUpStartDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */; };
@@ -148,8 +148,7 @@
 		0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMainButtonView.swift; sourceTree = "<group>"; };
 		0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMainViewController.swift; sourceTree = "<group>"; };
 		0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpacePickCollectionViewController.swift; sourceTree = "<group>"; };
-		0C4EF9962A7B966F00539320 /* CoupleSpaceHeartPickCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceHeartPickCollectionCell.swift; sourceTree = "<group>"; };
-		0C4EF9982A7BA19C00539320 /* CoupleSpaceMyPickCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMyPickCollectionCell.swift; sourceTree = "<group>"; };
+		0C4EF9962A7B966F00539320 /* HeartHubImagePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHubImagePickerCell.swift; sourceTree = "<group>"; };
 		0C4EF99B2A7BF63100539320 /* HeartPickDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartPickDataSource.swift; sourceTree = "<group>"; };
 		0C4EF99E2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpacePickDataSourceable.swift; sourceTree = "<group>"; };
 		0C4EF9A02A7BFB3700539320 /* MypickDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypickDataSource.swift; sourceTree = "<group>"; };
@@ -203,6 +202,7 @@
 		0CE2CDDF2A9B716100129724 /* HeartHubFloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartHubFloatingButton.swift; sourceTree = "<group>"; };
 		0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartHubSegmentedControl.swift; sourceTree = "<group>"; };
 		0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
+		0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHubImagePickerViewController.swift; sourceTree = "<group>"; };
 		561462182A6EE50300C0AC1F /* FindIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdViewController.swift; sourceTree = "<group>"; };
 		5626B2D02A57EEB300477EBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStartDateViewController.swift; sourceTree = "<group>"; };
@@ -318,8 +318,6 @@
 		0C4EF9922A7B7D4000539320 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0C4EF9962A7B966F00539320 /* CoupleSpaceHeartPickCollectionCell.swift */,
-				0C4EF9982A7BA19C00539320 /* CoupleSpaceMyPickCollectionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -542,6 +540,7 @@
 		0C6F45562A77AC610044EAC8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0CEDD8A42AA8926F00662A03 /* Common */,
 				0C43F6112A659CB000EED860 /* Util */,
 				0C59CF6C2A89222100D847B7 /* Data */,
 				0C59CF672A87EA3E00D847B7 /* Infra */,
@@ -571,12 +570,6 @@
 			children = (
 				0CC33AC32A5281C1001EF4E7 /* SceneDelegate.swift */,
 				0CC33AC12A5281C1001EF4E7 /* AppDelegate.swift */,
-				0C6F454E2A701D520044EAC8 /* HeartHubProfileImageView.swift */,
-				0C684F472A78D4F300A31865 /* HeartHubPageViewController.swift */,
-				0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */,
-				0CE2CDDF2A9B716100129724 /* HeartHubFloatingButton.swift */,
-				0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */,
-				562ABF4F2A920703006FA182 /* AlertButton.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -677,6 +670,29 @@
 				0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0CEDD8A42AA8926F00662A03 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0C6F454E2A701D520044EAC8 /* HeartHubProfileImageView.swift */,
+				0C684F472A78D4F300A31865 /* HeartHubPageViewController.swift */,
+				0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */,
+				0CE2CDDF2A9B716100129724 /* HeartHubFloatingButton.swift */,
+				0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */,
+				562ABF4F2A920703006FA182 /* AlertButton.swift */,
+				0CEDD8A72AAAE0F600662A03 /* ImagePicker */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0CEDD8A72AAAE0F600662A03 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */,
+				0C4EF9962A7B966F00539320 /* HeartHubImagePickerCell.swift */,
+			);
+			path = ImagePicker;
 			sourceTree = "<group>";
 		};
 		561462142A6EE3DF00C0AC1F /* LoginScene */ = {
@@ -1088,6 +1104,7 @@
 				56348A912A6E8286005BB635 /* FindPwViewController.swift in Sources */,
 				569013612A7E635200715D23 /* GameSegmentControll.swift in Sources */,
 				0C59CF602A87DB1200D847B7 /* SignInRequestDTO.swift in Sources */,
+				0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */,
 				56DEBEF42A7AAEF9000BC687 /* ProfileDatePostDataModel.swift in Sources */,
 				56DEBEF82A7AAF12000BC687 /* ProfileDatePostDataManager.swift in Sources */,
 				0CE2CDB32A93EB3400129724 /* TokenExpireResolver.swift in Sources */,
@@ -1108,8 +1125,7 @@
 				569E4EDB2A5C241B00B51898 /* LoginView.swift in Sources */,
 				56DEBEF62A7AAF03000BC687 /* ProfileLookPostDataManager.swift in Sources */,
 				56348A692A6319EA005BB635 /* FindIdPopUpViewController.swift in Sources */,
-				0C4EF9992A7BA19C00539320 /* CoupleSpaceMyPickCollectionCell.swift in Sources */,
-				0C4EF9972A7B966F00539320 /* CoupleSpaceHeartPickCollectionCell.swift in Sources */,
+				0C4EF9972A7B966F00539320 /* HeartHubImagePickerCell.swift in Sources */,
 				565473CB2A8639D2002F526C /* LoginSelectPageButtonStackView.swift in Sources */,
 				562ABF672A94005B006FA182 /* ProfileDoneCancelViewController.swift in Sources */,
 				569E4EE62A5D06C400B51898 /* SignUpProfileView.swift in Sources */,
@@ -1276,9 +1292,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KHQ37J8NU9;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HeartHub/Resources/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "HeartHub가 사용자의 사진에 접근하려 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1289,7 +1306,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xoxoxo.HeartHub;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xoxoxo.HeartHub111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1307,6 +1324,7 @@
 				DEVELOPMENT_TEAM = KHQ37J8NU9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HeartHub/Resources/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "HeartHub가 사용자의 사진에 접근하려 합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1317,7 +1335,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xoxoxo.HeartHub;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xoxoxo.HeartHub111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            navigationController.isNavigationBarHidden = true
 //            self.window?.rootViewController = navigationController
 //        }
-        window?.rootViewController = MyPageMainViewController()
+        window?.rootViewController = HeartHubImagePickerViewController()
         
         self.window?.backgroundColor = .systemBackground
         self.window?.makeKeyAndVisible()

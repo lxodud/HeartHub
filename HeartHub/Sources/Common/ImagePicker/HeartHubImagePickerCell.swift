@@ -1,5 +1,5 @@
 //
-//  CoupleSpaceHeartPickCollectionCell.swift
+//  HeartHubImagePickerCell.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/08/03.
@@ -7,15 +7,10 @@
 
 import UIKit
 
-class CoupleSpaceHeartPickCollectionCell: UICollectionViewCell {
-    private let imageView: UIImageView = {
+class HeartHubImagePickerCell: UICollectionViewCell {
+    let imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
-    }()
-    
-    private let label: UILabel = {
-        let label = UILabel()
-        return label
     }()
     
     override init(frame: CGRect) {
@@ -29,22 +24,13 @@ class CoupleSpaceHeartPickCollectionCell: UICollectionViewCell {
     }
 }
 
-// MARK: Public Interface
-extension CoupleSpaceHeartPickCollectionCell {
-    func configureContents() {
-        
-    }
-}
-
 // MARK: Configure UI
-extension CoupleSpaceHeartPickCollectionCell {
+extension HeartHubImagePickerCell {
     private func configureSubview() {
-        [imageView, label].forEach {
+        [imageView].forEach {
+            contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        contentView.addSubview(imageView)
-        imageView.addSubview(label)
     }
     
     private func configureLayout() {
@@ -63,17 +49,6 @@ extension CoupleSpaceHeartPickCollectionCell {
             ),
             imageView.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
-            ),
-            
-            // MARK: label Constraints
-            label.leadingAnchor.constraint(
-                equalTo: imageView.leadingAnchor
-            ),
-            label.trailingAnchor.constraint(
-                equalTo: imageView.trailingAnchor
-            ),
-            label.bottomAnchor.constraint(
-                equalTo: imageView.bottomAnchor
             ),
         ])
     }

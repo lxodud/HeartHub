@@ -67,36 +67,6 @@ extension CoupleSpacePickCollectionViewController {
     }
 }
 
-// MARK: Action Method
-extension CoupleSpacePickCollectionViewController {
-    private func configureAction() {
-        myPickTransitionButton.addTarget(
-            self,
-            action: #selector(tapMyPickTransitionButton),
-            for: .touchUpInside
-        )
-        heartPickTransitionButton.addTarget(
-            self,
-            action: #selector(tapHeartPickTransitionButton),
-            for: .touchUpInside
-        )
-    }
-    
-    @objc
-    private func tapMyPickTransitionButton(_ sender: UIButton) {
-        sender.isHidden = true
-        heartPickTransitionButton.isHidden = false
-        pickCollectionDataSource = HeartPickDataSource()
-    }
-    
-    @objc
-    private func tapHeartPickTransitionButton(_ sender: UIButton) {
-        sender.isHidden = true
-        myPickTransitionButton.isHidden = false
-        pickCollectionDataSource = MyPickDataSource()
-    }
-}
-
 // MARK: UICollectionView Delegate FlowLayout Implementation
 extension CoupleSpacePickCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
@@ -114,15 +84,6 @@ extension CoupleSpacePickCollectionViewController: UICollectionViewDelegateFlowL
 // MARK: Configure pickCollectionView
 extension CoupleSpacePickCollectionViewController {
     private func configurePickCollectionView() {
-        pickCollectionView.register(
-            CoupleSpaceMyPickCollectionCell.self,
-            forCellWithReuseIdentifier: CoupleSpaceMyPickCollectionCell.reuseIdentifier
-        )
-        pickCollectionView.register(
-            CoupleSpaceHeartPickCollectionCell.self,
-            forCellWithReuseIdentifier: CoupleSpaceHeartPickCollectionCell.reuseIdentifier
-        )
-        
         pickCollectionView.delegate = self
         pickCollectionView.dataSource = pickCollectionDataSource
     }
@@ -180,13 +141,48 @@ extension CoupleSpacePickCollectionViewController {
     }
     
     private func configureNavigationBar() {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
+        let backButton = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.left"),
+            style: .plain, target: self,
+            action: #selector(didTapBackButton)
+        )
         backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
         navigationItem.title = pickCollectionDataSource.fetchTitle()
     }
+}
+
+// MARK: Action Method
+extension CoupleSpacePickCollectionViewController {
+    private func configureAction() {
+        myPickTransitionButton.addTarget(
+            self,
+            action: #selector(tapMyPickTransitionButton),
+            for: .touchUpInside
+        )
+        heartPickTransitionButton.addTarget(
+            self,
+            action: #selector(tapHeartPickTransitionButton),
+            for: .touchUpInside
+        )
+    }
     
-    @objc private func didTapBackButton() {
+    @objc
+    private func tapMyPickTransitionButton(_ sender: UIButton) {
+        sender.isHidden = true
+        heartPickTransitionButton.isHidden = false
+        pickCollectionDataSource = HeartPickDataSource()
+    }
+    
+    @objc
+    private func tapHeartPickTransitionButton(_ sender: UIButton) {
+        sender.isHidden = true
+        myPickTransitionButton.isHidden = false
+        pickCollectionDataSource = MyPickDataSource()
+    }
+    
+    @objc
+    private func didTapBackButton() {
         navigationController?.popViewController(animated: true)
     }
 }
