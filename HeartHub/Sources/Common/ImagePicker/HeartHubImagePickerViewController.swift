@@ -8,7 +8,13 @@
 import UIKit
 import Photos
 
+protocol HeartHubImagePickerDelegate: AnyObject {
+    func passSelectedImage(_ image: UIImage)
+}
+
 final class HeartHubImagePickerViewController: UIViewController {
+    weak var delegate: HeartHubImagePickerDelegate?
+    
     private let imageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 3
@@ -204,10 +210,17 @@ extension HeartHubImagePickerViewController {
     
     private func configureNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "add",
+            title: "확인",
             style: .done,
             target: self,
             action: #selector(tapAddButton)
+        )
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "취소",
+            style: .done,
+            target: self,
+            action: #selector(tapCancelButton)
         )
     }
 }
@@ -216,6 +229,18 @@ extension HeartHubImagePickerViewController {
 extension HeartHubImagePickerViewController {
     @objc
     private func tapAddButton() {
-        // TODO: 선택된 indexPath를 이용해서 delegate를 통해 이미지를 넘겨준다.
+        guard let indexPath = selectedCellIndexPath,
+              let cell = imageCollectionView.cellForItem(at: indexPath) as? HeartHubImagePickerCell,
+              let image = cell.imageView.image
+        else {
+            return
+        }
+        
+        delegate?.passSelectedImage(image)
+    }
+    
+    @objc
+    private func tapCancelButton() {
+        dismiss(animated: true)
     }
 }
