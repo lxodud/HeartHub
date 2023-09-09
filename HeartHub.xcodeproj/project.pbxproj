@@ -65,7 +65,10 @@
 		0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */; };
 		0CF4C84B2AAB3F49004F805E /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C84A2AAB3F49004F805E /* ProfileEditViewController.swift */; };
 		0CF4C8532AAC9A27004F805E /* NetworkDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8522AAC9A27004F805E /* NetworkDeserializable.swift */; };
-		0CF4C8552AAC9A6B004F805E /* JSONDeeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8542AAC9A6B004F805E /* JSONDeeserializer.swift */; };
+		0CF4C8552AAC9A6B004F805E /* JSONDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8542AAC9A6B004F805E /* JSONDeserializer.swift */; };
+		0CF4C8582AAC9D1A004F805E /* NetworkSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8572AAC9D1A004F805E /* NetworkSerializable.swift */; };
+		0CF4C85B2AAC9DEF004F805E /* JSONSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C85A2AAC9DEF004F805E /* JSONSerializer.swift */; };
+		0CF4C85D2AAC9FF3004F805E /* MultiPartSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C85C2AAC9FF3004F805E /* MultiPartSerializer.swift */; };
 		561462192A6EE50300C0AC1F /* FindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561462182A6EE50300C0AC1F /* FindIdViewController.swift */; };
 		5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B2D02A57EEB300477EBC /* LoginViewController.swift */; };
 		5626B3372A584A3D00477EBC /* SignUpStartDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */; };
@@ -208,7 +211,10 @@
 		0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHubImagePickerViewController.swift; sourceTree = "<group>"; };
 		0CF4C84A2AAB3F49004F805E /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		0CF4C8522AAC9A27004F805E /* NetworkDeserializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeserializable.swift; sourceTree = "<group>"; };
-		0CF4C8542AAC9A6B004F805E /* JSONDeeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDeeserializer.swift; sourceTree = "<group>"; };
+		0CF4C8542AAC9A6B004F805E /* JSONDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDeserializer.swift; sourceTree = "<group>"; };
+		0CF4C8572AAC9D1A004F805E /* NetworkSerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSerializable.swift; sourceTree = "<group>"; };
+		0CF4C85A2AAC9DEF004F805E /* JSONSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerializer.swift; sourceTree = "<group>"; };
+		0CF4C85C2AAC9FF3004F805E /* MultiPartSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartSerializer.swift; sourceTree = "<group>"; };
 		561462182A6EE50300C0AC1F /* FindIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdViewController.swift; sourceTree = "<group>"; };
 		5626B2D02A57EEB300477EBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStartDateViewController.swift; sourceTree = "<group>"; };
@@ -398,8 +404,6 @@
 				0C59CF4F2A84DB0400D847B7 /* Requestable.swift */,
 				0C59CF582A87CCBC00D847B7 /* JSONBodyRequest.swift */,
 				0C59CF722A8A107400D847B7 /* MultipartBodyRequest.swift */,
-				0C63FF1B2A8BA3D60020D137 /* Factory */,
-				0C59CF5C2A87D85A00D847B7 /* DTO */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -441,6 +445,7 @@
 		0C59CF6C2A89222100D847B7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0CF4C8562AAC9C31004F805E /* Network */,
 				0CE2CD912A933DE600129724 /* UserInformation */,
 				0C63FF422A8E40620020D137 /* Token */,
 			);
@@ -724,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				0CF4C8522AAC9A27004F805E /* NetworkDeserializable.swift */,
+				0CF4C8572AAC9D1A004F805E /* NetworkSerializable.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -731,9 +737,20 @@
 		0CF4C8512AAC99DE004F805E /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				0CF4C8542AAC9A6B004F805E /* JSONDeeserializer.swift */,
+				0CF4C8542AAC9A6B004F805E /* JSONDeserializer.swift */,
+				0CF4C85A2AAC9DEF004F805E /* JSONSerializer.swift */,
+				0CF4C85C2AAC9FF3004F805E /* MultiPartSerializer.swift */,
 			);
 			path = Implementation;
+			sourceTree = "<group>";
+		};
+		0CF4C8562AAC9C31004F805E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0C63FF1B2A8BA3D60020D137 /* Factory */,
+				0C59CF5C2A87D85A00D847B7 /* DTO */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		561462142A6EE3DF00C0AC1F /* LoginScene */ = {
@@ -1088,7 +1105,7 @@
 				56C048892A8A91BE001BAAB5 /* ConnectViewController.swift in Sources */,
 				56C048842A8A7663001BAAB5 /* SignUpDatePicker.swift in Sources */,
 				569013792A80E26500715D23 /* SignUpDateTextField.swift in Sources */,
-				0CF4C8552AAC9A6B004F805E /* JSONDeeserializer.swift in Sources */,
+				0CF4C8552AAC9A6B004F805E /* JSONDeserializer.swift in Sources */,
 				0C684F4C2A78FA4D00A31865 /* CoupleSpaceMainHeaderView.swift in Sources */,
 				0C4EF9A42A7CE2EC00539320 /* HeartHubTabBarController.swift in Sources */,
 				562ABF652A921C33006FA182 /* ProfileReportReasonTableViewCell.swift in Sources */,
@@ -1110,6 +1127,7 @@
 				0C4EF9902A7A430100539320 /* CoupleSpaceMainViewController.swift in Sources */,
 				0C59CF592A87CCBC00D847B7 /* JSONBodyRequest.swift in Sources */,
 				5642627F2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift in Sources */,
+				0CF4C8582AAC9D1A004F805E /* NetworkSerializable.swift in Sources */,
 				0C59CF662A87E64000D847B7 /* FindPasswordRequestDTO.swift in Sources */,
 				0C59CF622A87E1FD00D847B7 /* SetMateRequestDTO.swift in Sources */,
 				0C59CF552A87C1AE00D847B7 /* UserRelatedRequestFactory.swift in Sources */,
@@ -1138,6 +1156,7 @@
 				5626B3372A584A3D00477EBC /* SignUpStartDateViewController.swift in Sources */,
 				569E4EE42A5CE18E00B51898 /* SignUpStartDateView.swift in Sources */,
 				0CF4C84B2AAB3F49004F805E /* ProfileEditViewController.swift in Sources */,
+				0CF4C85B2AAC9DEF004F805E /* JSONSerializer.swift in Sources */,
 				56C048912A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift in Sources */,
 				0CCF04D92A9CBF1E00D66F37 /* MyPageMainViewController.swift in Sources */,
 				56348A8F2A6E7ECC005BB635 /* FindPwView.swift in Sources */,
@@ -1190,6 +1209,7 @@
 				56DEBEF22A7AAEEE000BC687 /* ProfileLookPostDataModel.swift in Sources */,
 				0C6F45532A7384B10044EAC8 /* UIWindow+.swift in Sources */,
 				0CA858B02A6F981D00DFCFD5 /* Reusable.swift in Sources */,
+				0CF4C85D2AAC9FF3004F805E /* MultiPartSerializer.swift in Sources */,
 				0C59CF702A89236A00D847B7 /* Token.swift in Sources */,
 				56DEBEE22A7AAAB8000BC687 /* ProfileDateViewController.swift in Sources */,
 				56C048952A8B8083001BAAB5 /* ProfilePostTextCollectionViewCell.swift in Sources */,

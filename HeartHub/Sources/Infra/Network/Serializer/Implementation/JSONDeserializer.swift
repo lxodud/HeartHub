@@ -1,5 +1,5 @@
 //
-//  JSONDeeserializer.swift
+//  JSONDeserializer.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/09/09.
