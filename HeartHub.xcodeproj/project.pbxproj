@@ -64,6 +64,8 @@
 		0CEDD8A22AA4B57E00662A03 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */; };
 		0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */; };
 		0CF4C84B2AAB3F49004F805E /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C84A2AAB3F49004F805E /* ProfileEditViewController.swift */; };
+		0CF4C8532AAC9A27004F805E /* NetworkDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8522AAC9A27004F805E /* NetworkDeserializable.swift */; };
+		0CF4C8552AAC9A6B004F805E /* JSONDeeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8542AAC9A6B004F805E /* JSONDeeserializer.swift */; };
 		561462192A6EE50300C0AC1F /* FindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561462182A6EE50300C0AC1F /* FindIdViewController.swift */; };
 		5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B2D02A57EEB300477EBC /* LoginViewController.swift */; };
 		5626B3372A584A3D00477EBC /* SignUpStartDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */; };
@@ -205,6 +207,8 @@
 		0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHubImagePickerViewController.swift; sourceTree = "<group>"; };
 		0CF4C84A2AAB3F49004F805E /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		0CF4C8522AAC9A27004F805E /* NetworkDeserializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeserializable.swift; sourceTree = "<group>"; };
+		0CF4C8542AAC9A6B004F805E /* JSONDeeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDeeserializer.swift; sourceTree = "<group>"; };
 		561462182A6EE50300C0AC1F /* FindIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdViewController.swift; sourceTree = "<group>"; };
 		5626B2D02A57EEB300477EBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStartDateViewController.swift; sourceTree = "<group>"; };
@@ -377,11 +381,11 @@
 		0C59CF4B2A84D75A00D847B7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0CF4C84F2AAC99B1004F805E /* Serializer */,
+				0CF4C84D2AAC9973004F805E /* Error */,
 				0CE2CDCC2A94F8BF00129724 /* Cancellable.swift */,
 				0C59CF4C2A84D76D00D847B7 /* NetworkManager.swift */,
 				0CE2CD942A9342E600129724 /* ImageProvider.swift */,
-				0CE2CD962A9343B000129724 /* ImageProviderError.swift */,
-				0C63FF342A8E0FD70020D137 /* NetworkError.swift */,
 				0C59CF5B2A87D7E800D847B7 /* Request */,
 			);
 			path = Network;
@@ -390,8 +394,8 @@
 		0C59CF5B2A87D7E800D847B7 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				0C59CF4F2A84DB0400D847B7 /* Requestable.swift */,
 				0C59CF562A87C79500D847B7 /* Request.swift */,
+				0C59CF4F2A84DB0400D847B7 /* Requestable.swift */,
 				0C59CF582A87CCBC00D847B7 /* JSONBodyRequest.swift */,
 				0C59CF722A8A107400D847B7 /* MultipartBodyRequest.swift */,
 				0C63FF1B2A8BA3D60020D137 /* Factory */,
@@ -696,6 +700,40 @@
 				0C4EF9962A7B966F00539320 /* HeartHubImagePickerCell.swift */,
 			);
 			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		0CF4C84D2AAC9973004F805E /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				0CE2CD962A9343B000129724 /* ImageProviderError.swift */,
+				0C63FF342A8E0FD70020D137 /* NetworkError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		0CF4C84F2AAC99B1004F805E /* Serializer */ = {
+			isa = PBXGroup;
+			children = (
+				0CF4C8512AAC99DE004F805E /* Implementation */,
+				0CF4C8502AAC99D4004F805E /* Interface */,
+			);
+			path = Serializer;
+			sourceTree = "<group>";
+		};
+		0CF4C8502AAC99D4004F805E /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				0CF4C8522AAC9A27004F805E /* NetworkDeserializable.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		0CF4C8512AAC99DE004F805E /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				0CF4C8542AAC9A6B004F805E /* JSONDeeserializer.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		561462142A6EE3DF00C0AC1F /* LoginScene */ = {
@@ -1050,6 +1088,7 @@
 				56C048892A8A91BE001BAAB5 /* ConnectViewController.swift in Sources */,
 				56C048842A8A7663001BAAB5 /* SignUpDatePicker.swift in Sources */,
 				569013792A80E26500715D23 /* SignUpDateTextField.swift in Sources */,
+				0CF4C8552AAC9A6B004F805E /* JSONDeeserializer.swift in Sources */,
 				0C684F4C2A78FA4D00A31865 /* CoupleSpaceMainHeaderView.swift in Sources */,
 				0C4EF9A42A7CE2EC00539320 /* HeartHubTabBarController.swift in Sources */,
 				562ABF652A921C33006FA182 /* ProfileReportReasonTableViewCell.swift in Sources */,
@@ -1106,6 +1145,7 @@
 				562ABF502A920703006FA182 /* AlertButton.swift in Sources */,
 				5626B3452A597FA200477EBC /* SignUpProfileViewController.swift in Sources */,
 				56348A912A6E8286005BB635 /* FindPwViewController.swift in Sources */,
+				0CF4C8532AAC9A27004F805E /* NetworkDeserializable.swift in Sources */,
 				569013612A7E635200715D23 /* GameSegmentControll.swift in Sources */,
 				0C59CF602A87DB1200D847B7 /* SignInRequestDTO.swift in Sources */,
 				0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */,
