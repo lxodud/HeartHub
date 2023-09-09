@@ -63,6 +63,7 @@
 		0CE2CDE22A9B71B600129724 /* HeartHubSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */; };
 		0CEDD8A22AA4B57E00662A03 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */; };
 		0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */; };
+		0CF4C84B2AAB3F49004F805E /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C84A2AAB3F49004F805E /* ProfileEditViewController.swift */; };
 		561462192A6EE50300C0AC1F /* FindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561462182A6EE50300C0AC1F /* FindIdViewController.swift */; };
 		5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B2D02A57EEB300477EBC /* LoginViewController.swift */; };
 		5626B3372A584A3D00477EBC /* SignUpStartDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */; };
@@ -203,6 +204,7 @@
 		0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartHubSegmentedControl.swift; sourceTree = "<group>"; };
 		0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHubImagePickerViewController.swift; sourceTree = "<group>"; };
+		0CF4C84A2AAB3F49004F805E /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		561462182A6EE50300C0AC1F /* FindIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdViewController.swift; sourceTree = "<group>"; };
 		5626B2D02A57EEB300477EBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStartDateViewController.swift; sourceTree = "<group>"; };
@@ -642,6 +644,7 @@
 			isa = PBXGroup;
 			children = (
 				0CCF04D82A9CBF1E00D66F37 /* MyPageMainViewController.swift */,
+				0CF4C84A2AAB3F49004F805E /* ProfileEditViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1095,6 +1098,7 @@
 				56348A632A631283005BB635 /* FindIdView.swift in Sources */,
 				5626B3372A584A3D00477EBC /* SignUpStartDateViewController.swift in Sources */,
 				569E4EE42A5CE18E00B51898 /* SignUpStartDateView.swift in Sources */,
+				0CF4C84B2AAB3F49004F805E /* ProfileEditViewController.swift in Sources */,
 				56C048912A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift in Sources */,
 				0CCF04D92A9CBF1E00D66F37 /* MyPageMainViewController.swift in Sources */,
 				56348A8F2A6E7ECC005BB635 /* FindPwView.swift in Sources */,

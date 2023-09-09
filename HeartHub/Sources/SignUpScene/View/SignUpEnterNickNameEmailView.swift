@@ -141,7 +141,6 @@ extension SignUpEnterNickNameEmailView {
         
         emailTextField.delegate = self
         nickNameTextField.delegate = self
-        nickNameTextField.delegate = self
         
         signUpLoverNextPageButton.isEnabled = false
     }

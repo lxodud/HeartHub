@@ -25,8 +25,17 @@ final class HeartHubTabBarController: UITabBarController {
         coupleSpaceViewController.tabBarItem.image = UIImage(named: "EmptyCoupleSpaceTabImage")
         coupleSpaceViewController.tabBarItem.selectedImage = UIImage(named: "SelectedCoupleSpaceTabImage")
         
+        let myPageViewController = UINavigationController(
+            rootViewController: MyPageMainViewController()
+        )
+        
+        myPageViewController.tabBarItem.title = "마이페이지"
+        myPageViewController.tabBarItem.image = UIImage(named: "EmptyMypageTabImage")
+        myPageViewController.tabBarItem.selectedImage = UIImage(named: "SelectedMypageTabImage")
+        
+        
         setViewControllers(
-            [coupleSpaceViewController],
+            [coupleSpaceViewController, myPageViewController],
             animated: true
         )
     }

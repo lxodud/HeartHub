@@ -9,7 +9,7 @@ import UIKit
 import Photos
 
 protocol HeartHubImagePickerDelegate: AnyObject {
-    func passSelectedImage(_ image: UIImage)
+    func passSelectedImage(_ image: Data)
 }
 
 final class HeartHubImagePickerViewController: UIViewController {
@@ -39,6 +39,7 @@ final class HeartHubImagePickerViewController: UIViewController {
         checkAuthorization()
         configureSubview()
         configureLayout()
+        configureNavigationBar()
         configureImageCollectionView()
     }
 }
@@ -222,6 +223,8 @@ extension HeartHubImagePickerViewController {
             target: self,
             action: #selector(tapCancelButton)
         )
+        
+        navigationController?.navigationBar.backgroundColor = .systemBackground
     }
 }
 
@@ -231,12 +234,13 @@ extension HeartHubImagePickerViewController {
     private func tapAddButton() {
         guard let indexPath = selectedCellIndexPath,
               let cell = imageCollectionView.cellForItem(at: indexPath) as? HeartHubImagePickerCell,
-              let image = cell.imageView.image
+              let imageData = cell.imageView.image?.pngData()
         else {
             return
         }
         
-        delegate?.passSelectedImage(image)
+        delegate?.passSelectedImage(imageData)
+        dismiss(animated: true)
     }
     
     @objc

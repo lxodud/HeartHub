@@ -18,18 +18,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-//        let tokenRepository = TokenRepository()
-//
-//        if let _ = tokenRepository.fetchAccessToken() {
-//            let heartHubTabBarController = HeartHubTabBarController()
-//            self.window?.rootViewController = heartHubTabBarController
-//        } else {
-//            let loginVC = LoginViewController()
-//            let navigationController = UINavigationController(rootViewController: loginVC)
-//            navigationController.isNavigationBarHidden = true
-//            self.window?.rootViewController = navigationController
-//        }
-        window?.rootViewController = HeartHubImagePickerViewController()
+        let tokenRepository = TokenRepository()
+
+        if let _ = tokenRepository.fetchAccessToken() {
+            let heartHubTabBarController = HeartHubTabBarController()
+            self.window?.rootViewController = heartHubTabBarController
+        } else {
+            let loginVC = LoginViewController()
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            navigationController.isNavigationBarHidden = true
+            self.window?.rootViewController = navigationController
+        }
         
         self.window?.backgroundColor = .systemBackground
         self.window?.makeKeyAndVisible()

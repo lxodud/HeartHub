@@ -8,7 +8,7 @@
 import UIKit
 
 enum MyPageRow: Int, CaseIterable {
-    case modifyProfile = 0
+    case editProfile = 0
     case inquiry
     case notificationSettings
     case withdrawal
@@ -17,7 +17,7 @@ enum MyPageRow: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .modifyProfile:
+        case .editProfile:
             return "프로필 수정"
         case .inquiry:
             return "1:1 문의"
@@ -56,6 +56,35 @@ final class MyPageMainViewController: UIViewController {
     }
 }
 
+// MARK: - UITableView Delegate Implementation
+extension MyPageMainViewController: UITableViewDelegate {
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        guard let row = MyPageRow(rawValue: indexPath.row) else {
+            return
+        }
+        
+        switch row {
+        case .editProfile:
+            navigationController?.pushViewController(ProfileEditViewController(), animated: true)
+        case .inquiry:
+            break
+        case .notificationSettings:
+            break
+        case .withdrawal:
+            break
+        case .changePassword:
+            break
+        case .logout:
+            break
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
 // MARK: - UITableView DataSource Implementation
 extension MyPageMainViewController: UITableViewDataSource {
     func tableView(
@@ -86,6 +115,7 @@ extension MyPageMainViewController: UITableViewDataSource {
 extension MyPageMainViewController {
     private func configureTableView() {
         menuTableView.dataSource = self
+        menuTableView.delegate = self
         menuTableView.register(
             MyPageCell.self,
             forCellReuseIdentifier: MyPageCell.reuseIdentifier
