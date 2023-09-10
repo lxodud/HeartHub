@@ -1,5 +1,5 @@
 //
-//  MultipartBodyRequest.swift
+//  MultipartBodyRequestBuilder.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/08/14.
@@ -7,13 +7,16 @@
 
 import Foundation
 
-struct MultipartBodyRequest: MultipartBodyRequestable {
+struct MultipartBodyRequestBuilder<R: Decodable>: RequestBuilderProtocol {
+    typealias Response = R
+    
     let baseURL: String
     let httpMethod: HTTPMethod
     let path: String
     let queryItems: [URLQueryItem]
     let headers: [String : String]
     let boundary: UUID
+    var deserializer: NetworkDeserializable
     let multipartData: [(fieldName: String, fileName: String, mimeType: String, data: Data)]
     
     init(
@@ -23,6 +26,7 @@ struct MultipartBodyRequest: MultipartBodyRequestable {
         queryItems: [URLQueryItem] = [],
         headers: [String: String] = [:],
         boundary: UUID = UUID(),
+        deserializer: NetworkDeserializable = JSONNetworkDeserializer(),
         multipartData: [(fieldName: String, fileName: String, mimeType: String, data: Data)]
     ) {
         self.baseURL = baseURL
@@ -31,6 +35,7 @@ struct MultipartBodyRequest: MultipartBodyRequestable {
         self.queryItems = queryItems
         self.headers = headers
         self.boundary = boundary
+        self.deserializer = deserializer
         self.multipartData = multipartData
     }
     

@@ -22,7 +22,7 @@ final class TokenExpierResolver {
                 return
             }
             
-            let deserializedData: RequestFailResponseDTO? = try? self.decode(from: data)
+            let deserializedData: BasicResponseDTO? = try? self.decode(from: data)
             
             if deserializedData?.code == 3000 {
                 self.resolveExpireAccessToken {
@@ -41,21 +41,18 @@ final class TokenExpierResolver {
             return
         }
         
-        let request = UserRelatedRequestFactory.makeReissueTokenRequest(token: refreshToken)
+        let builder = UserRelatedRequestFactory.makeReissueTokenRequest(token: refreshToken)
         
-        self.networkManager.request(endpoint: request) { result in
+        self.networkManager.request(builder) { result in
             switch result {
             case .success(let data):
-                guard let deserializedData: FetchReissueTokenResponseDTO = try? self.decode(from: data)
-                else {
-                    return
-                }
+                let token = data.data
                 
-                let accessToken = deserializedData.data.newAccessToken
-                let refreshToken = deserializedData.data.newRefreshToken
-                let token = Token(accessToken: accessToken, refreshToken: refreshToken)
+                let accessToken = token.newAccessToken
+                let refreshToken = token.newRefreshToken
+                let newToken = Token(accessToken: accessToken, refreshToken: refreshToken)
                 
-                self.tokenRepository.saveToken(with: token)
+                self.tokenRepository.saveToken(with: newToken)
                 completion()
                 
             case .failure(let error):

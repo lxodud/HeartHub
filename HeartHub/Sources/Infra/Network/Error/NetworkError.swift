@@ -12,6 +12,7 @@ enum NetworkError: Error {
     case translateResponseError
     case requestFail(statusCode: Int, data: Data?)
     case missingData
+    case decodingError
 }
 
 extension NetworkError: LocalizedError {
@@ -25,6 +26,8 @@ extension NetworkError: LocalizedError {
             return NSLocalizedString("requestFailError error: \(statusCode)", comment: "server error")
         case .missingData:
             return NSLocalizedString("missing data", comment: "missing data")
+        case .decodingError:
+            return NSLocalizedString("decoding error", comment: "decoding error")
         }
     }
 }

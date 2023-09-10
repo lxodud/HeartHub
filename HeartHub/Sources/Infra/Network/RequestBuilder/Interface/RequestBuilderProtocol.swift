@@ -14,17 +14,20 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
-protocol Requestable {
+protocol RequestBuilderProtocol {
+    associatedtype Response: Decodable
+    
     var baseURL: String { get }
     var httpMethod: HTTPMethod { get }
     var path: String { get }
     var queryItems: [URLQueryItem] { get }
     var headers: [String: String] { get }
+    var deserializer: any NetworkDeserializable { get }
     
-    func makeURLRequest() -> URLRequest?
+    func makeURLRequest() throws -> URLRequest?
 }
 
-extension Requestable {
+extension RequestBuilderProtocol {
     func makeURL() -> URL? {
         guard var component = URLComponents(string: baseURL) else {
             return nil
@@ -36,13 +39,3 @@ extension Requestable {
         return component.url
     }
 }
-
-protocol JSONBodyRequestable: Requestable {
-    var jsonBody: Encodable { get }
-}
-
-protocol MultipartBodyRequestable: Requestable {
-    var multipartData: [(fieldName: String, fileName: String, mimeType: String, data: Data)] { get }
-    var boundary: UUID { get }
-}
-

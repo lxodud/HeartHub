@@ -75,18 +75,13 @@ extension SignUpManager {
             return
         }
         
-        let request = UserRelatedRequestFactory.makeIdCheckRequest(of: id)
+        let builder = UserRelatedRequestFactory.makeIdCheckRequest(of: id)
         
-        networkManager.request(endpoint: request) { result in
+        networkManager.request(builder) { result in
             switch result {
             case .success(let data):
                 self.userID = id
-                do {
-                    let deserializedData: CheckAvailabilityResponseDTO = try self.decode(from: data)
-                    completion(deserializedData.data)
-                } catch let error {
-                    print(error)
-                }
+                completion(data.data)
                 break
             case .failure(let error):
                 print(error)
@@ -99,19 +94,13 @@ extension SignUpManager {
             return
         }
         
-        let request = UserRelatedRequestFactory.makeNicknameCheckRequest(of: inputNickname)
+        let builder = UserRelatedRequestFactory.makeNicknameCheckRequest(of: inputNickname)
         
-        networkManager.request(endpoint: request) { result in
+        networkManager.request(builder) { result in
             switch result {
             case .success(let data):
                 self.nickname = inputNickname
-                do {
-                    let deserializedData: CheckAvailabilityResponseDTO = try self.decode(from: data)
-                    completion(deserializedData.data)
-                } catch let error {
-                    print(error)
-                }
-                break
+                completion(data.data)
             case .failure(let error):
                 print(error)
             }
@@ -123,17 +112,12 @@ extension SignUpManager {
             return
         }
         
-        let request = UserRelatedRequestFactory.makeVerificateEmailRequest(of: inputEmail)
+        let builder = UserRelatedRequestFactory.makeVerificateEmailRequest(of: inputEmail)
         
-        networkManager.request(endpoint: request) { result in
+        networkManager.request(builder) { result in
             switch result {
             case .success(let data):
-                do {
-                    let deserializedData: EmailVerificationResponseDTO = try self.decode(from: data)
-                    self.emailCertificationNumber = Int(deserializedData.data)
-                } catch let error {
-                    print(error)
-                }
+                self.emailCertificationNumber = Int(data.data)
                 self.email = inputEmail
             case .failure(let error):
                 print(error)
@@ -146,9 +130,9 @@ extension SignUpManager {
             return
         }
         
-        let request = UserRelatedRequestFactory.makeJoinRequest(of: userInformation)
+        let builder = UserRelatedRequestFactory.makeJoinRequest(of: userInformation)
 
-        networkManager.request(endpoint: request) { result in
+        networkManager.request(builder) { result in
             switch result {
             case .success(_):
                 completion()

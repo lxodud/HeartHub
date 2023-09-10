@@ -28,21 +28,14 @@ final class LoginNetwork {
 // MARK: Public Interface
 extension LoginNetwork {
     func login(id: String, password: String, completion: @escaping () -> Void) {
-        let request = UserRelatedRequestFactory.makeSignInRequest(
+        let builder = UserRelatedRequestFactory.makeSignInRequest(
             of: SignInRequestDTO(username: id, password: password)
         )
         
-        networkManager.request(endpoint: request) { result in
+        networkManager.request(builder) { result in
             switch result {
             case .success(let data):
-                
-                guard let deserializedData: FetchTokenResponseDTO = try? self.decode(from: data),
-                      deserializedData.isSuccess == true
-                else {
-                    return
-                }
-                
-                let token = deserializedData.data
+                let token = data.data
                 self.tokenRepository.saveToken(with: token)
                 self.saveCurrentUserInformation(token: token.accessToken, username: id)
                 completion()
@@ -53,22 +46,18 @@ extension LoginNetwork {
     }
     
     private func saveCurrentUserInformation(token: String, username: String) {
-        let request = UserRelatedRequestFactory.makeGetMyInformationRequest(token: token)
+        let builder = UserRelatedRequestFactory.makeGetMyInformationRequest(token: token)
         let userInformationRepository = UserInformationRepository()
         userInformationRepository.saveUsername(with: username)
         
-        networkManager.request(endpoint: request) { result in
+        networkManager.request(builder) { result in
             switch result {
             case .success(let data):
-                guard let deserializedData: GetMyInformationResponseDTO = try? self.decode(from: data)
-                else {
-                    return
-                }
-                
-                let nickname = deserializedData.data.myNickname
+                let info = data.data
+                let nickname = info.myNickname
                 userInformationRepository.saveNickname(with: nickname)
                 
-                guard let imageUrl = URL(string: deserializedData.data.myImageUrl) else {
+                guard let imageUrl = URL(string: info.myImageUrl) else {
                     return
                 }
                 

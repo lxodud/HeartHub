@@ -37,21 +37,15 @@ extension UserNetwork {
             return nil
         }
         
-        let request = UserRelatedRequestFactory.makeGetUserInformation(
+        let builder = UserRelatedRequestFactory.makeGetUserInformation(
             of: userId,
             token: accessToken
         )
         
-        let task = networkManager.request(endpoint: request) { result in
+        let task = networkManager.request(builder) { result in
             switch result {
             case .success(let data):
-                guard let deserializedData: GetUserInformationResponseDTO = try? self.decode(from: data),
-                      let imageUrl = deserializedData.data.userImageUrl
-                else {
-                    completion(nil)
-                    return
-                }
-                
+                let imageUrl = data.data.userImageUrl
                 completion(imageUrl)
             case .failure(let error):
                 print(#function)

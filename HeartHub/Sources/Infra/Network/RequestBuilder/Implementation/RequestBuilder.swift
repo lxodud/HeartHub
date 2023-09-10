@@ -7,28 +7,33 @@
 
 import Foundation
 
-struct Request: Requestable {
+struct RequestBuilder<R: Decodable>: RequestBuilderProtocol {
+    typealias Response = R
+    
     let baseURL: String
     let httpMethod: HTTPMethod
     let path: String
     let queryItems: [URLQueryItem]
     let headers: [String : String]
+    let deserializer: NetworkDeserializable
     
     init(
         baseURL: String = "https://usus.shop",
         httpMethod: HTTPMethod,
         path: String = "",
         queryItems: [URLQueryItem] = [],
-        headers: [String: String] = [:]
+        headers: [String: String] = [:],
+        deserializer: NetworkDeserializable = JSONNetworkDeserializer()
     ) {
         self.baseURL = baseURL
         self.httpMethod = httpMethod
         self.path = path
         self.queryItems = queryItems
         self.headers = headers
+        self.deserializer = deserializer
     }
     
-    func makeURLRequest() -> URLRequest? {
+    func makeURLRequest() throws -> URLRequest? {
         guard let url = makeURL() else {
             return nil
         }

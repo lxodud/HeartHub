@@ -9,9 +9,9 @@ import Foundation
 
 protocol NetworkManager {
     @discardableResult
-    func request(
-        endpoint: Requestable,
-        completion: @escaping (Result<Data, Error>) -> Void
+    func request<Builder: RequestBuilderProtocol>(
+        _ builder: Builder,
+        completion: @escaping (Result<Builder.Response, Error>) -> Void
      ) -> Cancellable?
 }
 
@@ -22,30 +22,18 @@ final class DefaultNetworkManager: NetworkManager {
         self.session = session
     }
     
-    func request(
-        endpoint: Requestable,
-        completion: @escaping (Result<Data, Error>) -> Void
+    @discardableResult
+    func request<Builder: RequestBuilderProtocol>(
+        _ builder: Builder,
+        completion: @escaping (Result<Builder.Response, Error>) -> Void
     ) -> Cancellable? {
-        guard let request = endpoint.makeURLRequest() else {
+        guard let request = try? builder.makeURLRequest() else {
             // TODO: Error Handling
             return nil
         }
         let task: Cancellable
         
-        if let body = request.httpBody {
-            task = uploadData(request: request, body: body, completion: completion)
-        } else {
-            task = requestData(request: request, completion: completion)
-        }
-        
-        return task
-    }
-    
-    private func requestData(
-        request: URLRequest,
-        completion: @escaping (Result<Data, Error>) -> Void
-    ) -> Cancellable {
-        let task = session.dataTask(with: request) { data, response, error in
+        let completionHandler: (Data?, URLResponse?, Error?) -> Void = { data, response, error in
             guard error == nil else {
                 completion(.failure(NetworkError.transportError))
                 return
@@ -66,7 +54,29 @@ final class DefaultNetworkManager: NetworkManager {
                 return
             }
             
-            completion(.success(data))
+            guard let decodedData: Builder.Response = try? builder.deserializer.deserialie(data) else {
+                completion(.failure(NetworkError.decodingError))
+                return
+            }
+            
+            completion(.success(decodedData))
+        }
+        
+        if let body = request.httpBody {
+            task = uploadData(request: request, body: body, completion: completionHandler)
+        } else {
+            task = requestData(request: request, completion: completionHandler)
+        }
+        
+        return task
+    }
+    
+    private func requestData(
+        request: URLRequest,
+        completion: @escaping (Data?, URLResponse?, Error?) -> Void
+    ) -> Cancellable {
+        let task = session.dataTask(with: request) { data, response, error in
+            completion(data, response, error)
         }
         
         task.resume()
@@ -77,30 +87,10 @@ final class DefaultNetworkManager: NetworkManager {
     private func uploadData(
         request: URLRequest,
         body: Data,
-        completion: @escaping (Result<Data, Error>) -> Void
+        completion: @escaping (Data?, URLResponse?, Error?) -> Void
     ) -> Cancellable {
         let task = session.uploadTask(with: request, from: body) { data, response, error in
-            guard error == nil else {
-                completion(.failure(NetworkError.transportError))
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(NetworkError.translateResponseError))
-                return
-            }
-            
-            guard (200...299) ~= httpResponse.statusCode else {
-                completion(.failure(NetworkError.requestFail(statusCode: httpResponse.statusCode, data: data)))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkError.missingData))
-                return
-            }
-            
-            completion(.success(data))
+            completion(data, response, error)
         }
         
         task.resume()
