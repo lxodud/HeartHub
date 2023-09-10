@@ -1,5 +1,5 @@
 //
-//  LoginNetwork.swift
+//  LoginService.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/08/19.
@@ -7,10 +7,9 @@
 
 import UIKit
 
-final class LoginNetwork {
+final class LoginService {
     private let tokenRepository: TokenRepository
     private let networkManager: NetworkManager
-    private let decoder = JSONDecoder()
     
     init(
         tokenRepository: TokenRepository,
@@ -19,14 +18,10 @@ final class LoginNetwork {
         self.tokenRepository = tokenRepository
         self.networkManager = networkManager
     }
-    
-    private func decode<T: Decodable>(from data: Data) throws -> T {
-        return try decoder.decode(T.self, from: data)
-    }
 }
 
 // MARK: Public Interface
-extension LoginNetwork {
+extension LoginService {
     func login(id: String, password: String, completion: @escaping () -> Void) {
         let builder = UserRelatedRequestFactory.makeSignInRequest(
             of: SignInRequestDTO(username: id, password: password)

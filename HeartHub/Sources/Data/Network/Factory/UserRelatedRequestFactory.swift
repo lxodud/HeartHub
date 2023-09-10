@@ -56,7 +56,8 @@ struct UserRelatedRequestFactory {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/user/datingDate",
-            headers: ["Authorization": "Bearer " + token]
+            headers: ["Authorization": "Bearer " + token],
+            useAuthorization: true
         )
     }
     
@@ -64,7 +65,8 @@ struct UserRelatedRequestFactory {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/user/info/" + id.description,
-            headers: ["Authorization": "Bearer " + token]
+            headers: ["Authorization": "Bearer " + token],
+            useAuthorization: true
         )
     }
     
@@ -72,7 +74,8 @@ struct UserRelatedRequestFactory {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/user/exist-mate",
-            headers: ["Authorization": token]
+            headers: ["Authorization": token],
+            useAuthorization: true
         )
     }
     
@@ -81,7 +84,8 @@ struct UserRelatedRequestFactory {
             httpMethod: .post,
             path: "/api/user/set/mate",
             headers: ["Authorization": "Bearer " + token],
-            jsonBody: body
+            jsonBody: body,
+            useAuthorization: true
         )
     }
     
@@ -97,7 +101,8 @@ struct UserRelatedRequestFactory {
         return RequestBuilder(
             httpMethod: .post,
             path: "/api/member/reissue",
-            headers: ["Authorization": "Bearer " + token]
+            headers: ["Authorization": "Bearer " + token],
+            useAuthorization: true
         )
     }
     
@@ -105,7 +110,8 @@ struct UserRelatedRequestFactory {
         return RequestBuilder(
             httpMethod: .post,
             path: "/api/member/logout",
-            headers: ["Authorization": "Bearer " + token]
+            headers: ["Authorization": "Bearer " + token],
+            useAuthorization: true
         )
     }
     
@@ -121,7 +127,8 @@ struct UserRelatedRequestFactory {
         return RequestBuilder(
             httpMethod: .post,
             path: "/api/member/delete/user",
-            headers: ["Authorization": "Bearer " + token]
+            headers: ["Authorization": "Bearer " + token],
+            useAuthorization: true
         )
     }
     
@@ -129,7 +136,8 @@ struct UserRelatedRequestFactory {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/user/myPage/first",
-            headers: ["Authorization": "Bearer " + token]
+            headers: ["Authorization": "Bearer " + token],
+            useAuthorization: true
         )
     }
 }

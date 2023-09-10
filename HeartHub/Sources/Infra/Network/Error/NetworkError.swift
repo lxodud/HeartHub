@@ -10,7 +10,7 @@ import Foundation
 enum NetworkError: Error {
     case transportError
     case translateResponseError
-    case requestFail(statusCode: Int, data: Data?)
+    case requestFail(statusCode: Int)
     case missingData
     case decodingError
 }
@@ -22,7 +22,7 @@ extension NetworkError: LocalizedError {
             return NSLocalizedString("transport error", comment: "transport error")
         case .translateResponseError:
             return NSLocalizedString("translate response error", comment: "translate response error")
-        case .requestFail(let statusCode, _):
+        case .requestFail(let statusCode):
             return NSLocalizedString("requestFailError error: \(statusCode)", comment: "server error")
         case .missingData:
             return NSLocalizedString("missing data", comment: "missing data")

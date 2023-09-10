@@ -10,7 +10,7 @@ import UIKit
 final class LoginViewController: UIViewController {
     
     private let loginView = LoginView()
-    private let loginNetwork = LoginNetwork(
+    private let loginNetwork = LoginService(
         tokenRepository: TokenRepository(),
         networkManager: DefaultNetworkManager()
     )

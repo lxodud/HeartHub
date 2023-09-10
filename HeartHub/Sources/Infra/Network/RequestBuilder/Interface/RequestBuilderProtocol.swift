@@ -22,7 +22,8 @@ protocol RequestBuilderProtocol {
     var path: String { get }
     var queryItems: [URLQueryItem] { get }
     var headers: [String: String] { get }
-    var deserializer: any NetworkDeserializable { get }
+    var deserializer: NetworkDeserializable { get }
+    var useAuthorization: Bool { get }
     
     func makeURLRequest() throws -> URLRequest?
 }

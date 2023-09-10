@@ -16,6 +16,7 @@ struct RequestBuilder<R: Decodable>: RequestBuilderProtocol {
     let queryItems: [URLQueryItem]
     let headers: [String : String]
     let deserializer: NetworkDeserializable
+    let useAuthorization: Bool
     
     init(
         baseURL: String = "https://usus.shop",
@@ -23,7 +24,8 @@ struct RequestBuilder<R: Decodable>: RequestBuilderProtocol {
         path: String = "",
         queryItems: [URLQueryItem] = [],
         headers: [String: String] = [:],
-        deserializer: NetworkDeserializable = JSONNetworkDeserializer()
+        deserializer: NetworkDeserializable = JSONNetworkDeserializer(),
+        useAuthorization: Bool = false
     ) {
         self.baseURL = baseURL
         self.httpMethod = httpMethod
@@ -31,6 +33,7 @@ struct RequestBuilder<R: Decodable>: RequestBuilderProtocol {
         self.queryItems = queryItems
         self.headers = headers
         self.deserializer = deserializer
+        self.useAuthorization = useAuthorization
     }
     
     func makeURLRequest() throws -> URLRequest? {

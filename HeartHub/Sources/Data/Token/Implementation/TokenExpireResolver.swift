@@ -16,27 +16,7 @@ final class TokenExpierResolver {
         return try decoder.decode(T.self, from: data)
     }
     
-    func validateExpireAccessTokenError(_ error: Error, completion: @escaping () -> Void) {
-        if case NetworkError.requestFail(_, let data) = error {
-            guard let data = data else {
-                return
-            }
-            
-            let deserializedData: BasicResponseDTO? = try? self.decode(from: data)
-            
-            if deserializedData?.code == 3000 {
-                self.resolveExpireAccessToken {
-                    completion()
-                }
-            } else {
-                print(error.localizedDescription)
-            }
-        } else {
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func resolveExpireAccessToken(completion: @escaping () -> Void) {
+    func resolveExpireAccessToken(completion: @escaping () -> Void) {
         guard let refreshToken = tokenRepository.fetchRefreshToken() else {
             return
         }
@@ -56,9 +36,7 @@ final class TokenExpierResolver {
                 completion()
                 
             case .failure(let error):
-                if case NetworkError.requestFail(_, let data) = error {
-                    print(error.localizedDescription)
-                }
+                print(error.localizedDescription)
             }
             
         }

@@ -17,9 +17,17 @@ protocol NetworkManager {
 
 final class DefaultNetworkManager: NetworkManager {
     private let session: URLSession
+    private let tokenRepository: TokenRepository
+    private let tokenExpireResolver: TokenExpierResolver
     
-    init(session: URLSession = URLSession.shared) {
+    init(
+        session: URLSession = URLSession.shared,
+        tokenRepository: TokenRepository = TokenRepository(),
+        tokenExpireResolver: TokenExpierResolver = TokenExpierResolver()
+    ) {
         self.session = session
+        self.tokenRepository = tokenRepository
+        self.tokenExpireResolver = tokenExpireResolver
     }
     
     @discardableResult
@@ -27,10 +35,17 @@ final class DefaultNetworkManager: NetworkManager {
         _ builder: Builder,
         completion: @escaping (Result<Builder.Response, Error>) -> Void
     ) -> Cancellable? {
-        guard let request = try? builder.makeURLRequest() else {
+        guard var request = try? builder.makeURLRequest() else {
             // TODO: Error Handling
             return nil
         }
+        
+        if builder.useAuthorization,
+           let accessToken = tokenRepository.fetchAccessToken()
+        {
+            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        }
+        
         let task: Cancellable
         
         let completionHandler: (Data?, URLResponse?, Error?) -> Void = { data, response, error in
@@ -45,7 +60,18 @@ final class DefaultNetworkManager: NetworkManager {
             }
             
             guard (200...299) ~= httpResponse.statusCode else {
-                completion(.failure(NetworkError.requestFail(statusCode: httpResponse.statusCode, data: data)))
+                guard let data = data,
+                      let decodedData = try? JSONDecoder().decode(BasicResponseDTO.self, from: data),
+                      decodedData.code == 3000
+                else {
+                    completion(.failure(NetworkError.requestFail(statusCode: httpResponse.statusCode)))
+                    return
+                }
+                
+                self.tokenExpireResolver.resolveExpireAccessToken {
+                    self.request(builder, completion: completion)
+                }
+                
                 return
             }
             

@@ -1,5 +1,5 @@
 //
-//  UserNetwork.swift
+//  UserService.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/08/22.
@@ -7,11 +7,10 @@
 
 import Foundation
 
-final class UserNetwork {
+final class UserService {
     private let tokenRepository: TokenRepository
     private let networkManager: NetworkManager
     private let tokenExpierResolver = TokenExpierResolver()
-    private let decoder = JSONDecoder()
     
     init(
         tokenRepository: TokenRepository,
@@ -20,14 +19,10 @@ final class UserNetwork {
         self.tokenRepository = tokenRepository
         self.networkManager = networkManager
     }
-    
-    private func decode<T: Decodable>(from data: Data) throws -> T {
-        return try decoder.decode(T.self, from: data)
-    }
 }
 
 // MARK: - Public Interface
-extension UserNetwork {
+extension UserService {
     @discardableResult
     func fetchAuthorInformation(
         from userId: Int,
@@ -49,9 +44,9 @@ extension UserNetwork {
                 completion(imageUrl)
             case .failure(let error):
                 print(#function)
-                self.tokenExpierResolver.validateExpireAccessTokenError(error) {
-                    self.fetchAuthorInformation(from: userId, completion: completion)
-                }
+//                self.tokenExpierResolver.validateExpireAccessTokenError(error) {
+//                    self.fetchAuthorInformation(from: userId, completion: completion)
+//                }
             }
         }
         

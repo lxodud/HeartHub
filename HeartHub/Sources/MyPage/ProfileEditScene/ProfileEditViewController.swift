@@ -71,22 +71,6 @@ final class ProfileEditViewController: UIViewController {
         return textField
     }()
     
-    private let descripttionTextField: UITextField = {
-        let textField = UITextField()
-
-        textField.font = UIFont(name: "Pretendard-Regular", size: 16)
-        textField.textAlignment = .center
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "소개글을 입력해주세요",
-            attributes: [
-                NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.07, green: 0.07, blue: 0.07, alpha: 0.5),
-                NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 16)!
-            ]
-        )
-        
-        return textField
-    }()
-    
     private let profileEditButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "editProfileButton")
@@ -154,7 +138,7 @@ extension ProfileEditViewController {
 // MARK: - Configure UI
 extension ProfileEditViewController {
     private func configureSubview() {
-        [profileImageView, nicknameTextField, descripttionTextField, profileEditButton].forEach {
+        [profileImageView, nicknameTextField, profileEditButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -212,19 +196,6 @@ extension ProfileEditViewController {
             nicknameTextField.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
                 multiplier: 0.7
-            ),
-            
-            // MARK: descripttionTextField Constraints
-            descripttionTextField.topAnchor.constraint(
-                equalTo: nicknameTextField.bottomAnchor,
-                constant: 30
-            ),
-            descripttionTextField.centerXAnchor.constraint(
-                equalTo: safeArea.centerXAnchor
-            ),
-            descripttionTextField.widthAnchor.constraint(
-                equalTo: safeArea.widthAnchor,
-                multiplier: 0.8
             ),
             
             // MARK: profileEditButton Constraints

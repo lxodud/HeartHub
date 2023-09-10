@@ -24,11 +24,6 @@ final class SignUpManager {
     
     private var emailCertificationNumber: Int?
     private let networkManager: NetworkManager = DefaultNetworkManager()
-    private let decoder = JSONDecoder()
-    
-    private func decode<T: Decodable>(from data: Data) throws -> T {
-        return try decoder.decode(T.self, from: data)
-    }
     
     private func convertDateFormForJoin(with date: String?) -> String? {
         guard let date = date else {

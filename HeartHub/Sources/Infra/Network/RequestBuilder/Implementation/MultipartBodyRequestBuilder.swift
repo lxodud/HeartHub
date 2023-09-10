@@ -16,8 +16,9 @@ struct MultipartBodyRequestBuilder<R: Decodable>: RequestBuilderProtocol {
     let queryItems: [URLQueryItem]
     let headers: [String : String]
     let boundary: UUID
-    var deserializer: NetworkDeserializable
+    let deserializer: NetworkDeserializable
     let multipartData: [(fieldName: String, fileName: String, mimeType: String, data: Data)]
+    let useAuthorization: Bool
     
     init(
         baseURL: String = "https://usus.shop",
@@ -27,7 +28,8 @@ struct MultipartBodyRequestBuilder<R: Decodable>: RequestBuilderProtocol {
         headers: [String: String] = [:],
         boundary: UUID = UUID(),
         deserializer: NetworkDeserializable = JSONNetworkDeserializer(),
-        multipartData: [(fieldName: String, fileName: String, mimeType: String, data: Data)]
+        multipartData: [(fieldName: String, fileName: String, mimeType: String, data: Data)],
+        useAuthorization: Bool = false
     ) {
         self.baseURL = baseURL
         self.httpMethod = httpMethod
@@ -37,6 +39,7 @@ struct MultipartBodyRequestBuilder<R: Decodable>: RequestBuilderProtocol {
         self.boundary = boundary
         self.deserializer = deserializer
         self.multipartData = multipartData
+        self.useAuthorization = useAuthorization
     }
     
     func makeURLRequest() -> URLRequest? {

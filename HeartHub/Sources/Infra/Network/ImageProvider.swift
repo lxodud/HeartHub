@@ -28,7 +28,7 @@ final class ImageProvider {
             }
             
             guard (200...299) ~= httpResponse.statusCode else {
-                completion(.failure(NetworkError.requestFail(statusCode: httpResponse.statusCode, data: data)))
+                completion(.failure(NetworkError.requestFail(statusCode: httpResponse.statusCode)))
                 return
             }
             

@@ -8,7 +8,6 @@
 import UIKit
 
 final class SignUpTermOfUseScrollView: UIScrollView {
-
     private let contentView = UIView()
     
     private let termOfUseMainLabel: UILabel = {
