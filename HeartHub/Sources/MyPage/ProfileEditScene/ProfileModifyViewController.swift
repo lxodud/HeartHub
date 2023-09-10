@@ -1,5 +1,5 @@
 //
-//  ProfileEditViewController.swift
+//  ProfileModifyViewController.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/09/08.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-final class ProfileEditViewModel {
-    private let userInformationRepository: UserInformationRepository
+final class ProfileModifyViewModel {
+    private let myInformationService: MyInformationService
+    private let nicknameService: NicknameService
     
     private var profileImage: Data? {
         didSet {
@@ -16,29 +17,56 @@ final class ProfileEditViewModel {
         }
     }
     
-    var profileImageHandler: ((Data?) -> Void)?
+    private var nicknameDescription: String? {
+        didSet {
+            nicknameDescriptionHandler?(nicknameDescription)
+        }
+    }
+    private var canModify: Bool = false {
+        didSet {
+            canModifyHandler?(canModify)
+        }
+    }
     
-    init(userInformationRepository: UserInformationRepository) {
-        self.userInformationRepository = userInformationRepository
+    var profileImageHandler: ((Data?) -> Void)?
+    var nicknameDescriptionHandler: ((String?) -> Void)?
+    var canModifyHandler: ((Bool) -> Void)?
+    
+    init(
+        myInformationService: MyInformationService = MyInformationService(),
+        nicknameService: NicknameService = NicknameService()
+    ) {
+        self.myInformationService = myInformationService
+        self.nicknameService = nicknameService
     }
     
     func fetchProfileImage() {
-        profileImage = userInformationRepository.fetchProfileImage()
+        profileImage = myInformationService.fetchProfileImage()
     }
     
-    func editProfile() {
-        
+    func modifyProfile() {
+//        nicknameService.checkNicknameAvailability(with: nickname) { isDuplicate in
+//            if isDuplicate {
+//
+//            } else {
+//
+//            }
+//        }
+    }
+    
+    func changeModifyState(_ state: Bool) {
+        canModify = state
     }
 }
 
-extension ProfileEditViewModel: HeartHubImagePickerDelegate {
+extension ProfileModifyViewModel: HeartHubImagePickerDelegate {
     func passSelectedImage(_ image: Data) {
         profileImage = image
     }
 }
 
-final class ProfileEditViewController: UIViewController {
-    private let viewModel: ProfileEditViewModel
+final class ProfileModifyViewController: UIViewController {
+    private let viewModel: ProfileModifyViewModel
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
@@ -57,7 +85,6 @@ final class ProfileEditViewController: UIViewController {
     
     private let nicknameTextField: UITextField = {
         let textField = UITextField()
-
         textField.font = UIFont(name: "Pretendard-Regular", size: 20)
         textField.textAlignment = .center
         textField.attributedPlaceholder = NSAttributedString(
@@ -71,16 +98,21 @@ final class ProfileEditViewController: UIViewController {
         return textField
     }()
     
-    private let profileEditButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "editProfileButton")
-        button.setImage(image, for: .normal)
-        button.adjustsImageWhenHighlighted = false
+    private let profileModifyButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 18
+        
+        button.setTitle("프로필로 적용하기", for: .normal)
+        button.titleLabel?.font = UIFont.init(name: "Pretendard-Regular", size: 14)
+        button.titleLabel?.textAlignment = .center
+        button.setTitleColor(UIColor(red: 0.067, green: 0.067, blue: 0.067, alpha: 1), for: .normal)
+        button.backgroundColor = .systemGray4
         return button
     }()
     
     init(
-        viewModel: ProfileEditViewModel = ProfileEditViewModel(userInformationRepository: UserInformationRepository())
+        viewModel: ProfileModifyViewModel = ProfileModifyViewModel()
     ) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -98,7 +130,7 @@ final class ProfileEditViewController: UIViewController {
         viewModel.fetchProfileImage()
     }
     
-    func bind(to viewModel: ProfileEditViewModel) {
+    func bind(to viewModel: ProfileModifyViewModel) {
         viewModel.profileImageHandler = { [weak self] imageData in
             guard let imageData = imageData else {
                 self?.profileImageView.image = UIImage(named: "basicProfileImage")
@@ -107,15 +139,37 @@ final class ProfileEditViewController: UIViewController {
             
             self?.profileImageView.image = UIImage(data: imageData)
         }
+        viewModel.canModifyHandler = { [weak self] canModify in
+            self?.profileModifyButton.isEnabled = canModify
+            if canModify {
+                self?.profileModifyButton.backgroundColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1)
+            } else {
+                self?.profileModifyButton.backgroundColor = .systemGray4
+            }
+            
+        }
     }
 }
 
-// MARK: Configure Action
-extension ProfileEditViewController {
+// MARK: - Configure Action
+extension ProfileModifyViewController {
     private func configureAction() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapprofileImageView))
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapProfileImageView)
+        )
+        
         profileImageView.addGestureRecognizer(tapGesture)
-        profileEditButton.addTarget(self, action: #selector(tapProfileEditButton), for: .touchUpInside)
+        profileModifyButton.addTarget(
+            self,
+            action: #selector(tapProfileEditButton),
+            for: .touchUpInside
+        )
+        nicknameTextField.addTarget(
+            self,
+            action: #selector(textFieldDidChanged),
+            for: .editingChanged
+        )
     }
     
     @objc
@@ -124,7 +178,7 @@ extension ProfileEditViewController {
     }
     
     @objc
-    private func tapprofileImageView() {
+    private func tapProfileImageView() {
         let imagePickerViewController = HeartHubImagePickerViewController()
         imagePickerViewController.delegate = viewModel
         let imagePickerNavigationViewController = UINavigationController(
@@ -133,18 +187,69 @@ extension ProfileEditViewController {
         imagePickerNavigationViewController.modalPresentationStyle = .fullScreen
         navigationController?.present(imagePickerNavigationViewController, animated: true)
     }
+    
+    @objc
+    private func textFieldDidChanged() {
+        guard let nickname = nicknameTextField.text else {
+            return
+        }
+        
+        viewModel.changeModifyState(!nickname.isEmpty)
+    }
+}
+
+// MARK: - UITextField Delegate Implementation
+extension ProfileModifyViewController: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        if textField.text?.count == 1 && string == " " {
+            return false
+        }
+        
+        if let char = string.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        
+        guard let text = textField.text else {
+            return true
+        }
+        
+        let maxLength = 10
+        let allowedCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_?+=~")
+                .union(CharacterSet(charactersIn: "\u{AC00}"..."\u{D7A3}"))
+                .union(CharacterSet(charactersIn: "\u{3131}"..."\u{314E}"))
+                .union(CharacterSet(charactersIn: "\u{314F}"..."\u{3163}"))
+
+        let newLength = text.count + string.count - range.length
+        
+        if newLength <= maxLength {
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacterSet.isSuperset(of: characterSet)
+        } else {
+            return false
+        }
+    }
 }
 
 // MARK: - Configure UI
-extension ProfileEditViewController {
+extension ProfileModifyViewController {
     private func configureSubview() {
-        [profileImageView, nicknameTextField, profileEditButton].forEach {
+        [profileImageView, nicknameTextField, profileModifyButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         profileImageView.addSubview(decorateImageView)
         decorateImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        nicknameTextField.delegate = self
+        
         view.backgroundColor = .systemBackground
     }
     
@@ -168,7 +273,7 @@ extension ProfileEditViewController {
                 equalTo: profileImageView.heightAnchor
             ),
             
-            // MARK: decorateImageView Constraints
+            // MARK: - decorateImageView Constraints
             decorateImageView.trailingAnchor.constraint(
                 equalTo: profileImageView.trailingAnchor,
                 constant: -10
@@ -185,7 +290,7 @@ extension ProfileEditViewController {
                 equalTo: decorateImageView.heightAnchor
             ),
             
-            // MARK: nicknameTextField Constraints
+            // MARK: - nicknameTextField Constraints
             nicknameTextField.topAnchor.constraint(
                 equalTo: profileImageView.bottomAnchor,
                 constant: 30
@@ -198,19 +303,23 @@ extension ProfileEditViewController {
                 multiplier: 0.7
             ),
             
-            // MARK: profileEditButton Constraints
-            profileEditButton.leadingAnchor.constraint(
+            // MARK: - profileEditButton Constraints
+            profileModifyButton.leadingAnchor.constraint(
                 equalTo: safeArea.leadingAnchor,
                 constant: 30
             ),
-            profileEditButton.trailingAnchor.constraint(
+            profileModifyButton.trailingAnchor.constraint(
                 equalTo: safeArea.trailingAnchor,
                 constant: -30
             ),
-            profileEditButton.bottomAnchor.constraint(
+            profileModifyButton.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor,
                 constant: -20
             ),
+            profileModifyButton.heightAnchor.constraint(
+                equalTo: safeArea.heightAnchor,
+                multiplier: 0.08
+            )
         ])
     }
 }

@@ -1,5 +1,5 @@
 //
-//  UserInformation.swift
+//  MyInformationRepository.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/08/21.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-final class UserInformationRepository {
+final class MyInformationRepository {
     private let store = UserDefaults.standard
 }
 
 // MARK: Public Interface
-extension UserInformationRepository {
+extension MyInformationRepository {
     func saveProfileImage(with imageData: Data) {
         store.set(imageData, forKey: "profileImage")
     }

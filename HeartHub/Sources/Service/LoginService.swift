@@ -12,8 +12,8 @@ final class LoginService {
     private let networkManager: NetworkManager
     
     init(
-        tokenRepository: TokenRepository,
-        networkManager: NetworkManager
+        tokenRepository: TokenRepository = TokenRepository(),
+        networkManager: NetworkManager = DefaultNetworkManager()
     ) {
         self.tokenRepository = tokenRepository
         self.networkManager = networkManager
@@ -23,7 +23,7 @@ final class LoginService {
 // MARK: Public Interface
 extension LoginService {
     func login(id: String, password: String, completion: @escaping () -> Void) {
-        let builder = UserRelatedRequestFactory.makeSignInRequest(
+        let builder = UserRelatedRequestBuilderFactory.makeSignInRequest(
             of: SignInRequestDTO(username: id, password: password)
         )
         
@@ -32,7 +32,7 @@ extension LoginService {
             case .success(let data):
                 let token = data.data
                 self.tokenRepository.saveToken(with: token)
-                self.saveCurrentUserInformation(token: token.accessToken, username: id)
+                self.saveCurrentUserInformation(username: id)
                 completion()
             case .failure(let error):
                 print(error)
@@ -40,9 +40,9 @@ extension LoginService {
         }
     }
     
-    private func saveCurrentUserInformation(token: String, username: String) {
-        let builder = UserRelatedRequestFactory.makeGetMyInformationRequest(token: token)
-        let userInformationRepository = UserInformationRepository()
+    private func saveCurrentUserInformation(username: String) {
+        let builder = UserRelatedRequestBuilderFactory.makeGetMyInformationRequest()
+        let userInformationRepository = MyInformationRepository()
         userInformationRepository.saveUsername(with: username)
         
         networkManager.request(builder) { result in

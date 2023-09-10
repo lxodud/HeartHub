@@ -18,16 +18,13 @@ protocol NetworkManager {
 final class DefaultNetworkManager: NetworkManager {
     private let session: URLSession
     private let tokenRepository: TokenRepository
-    private let tokenExpireResolver: TokenExpierResolver
     
     init(
         session: URLSession = URLSession.shared,
-        tokenRepository: TokenRepository = TokenRepository(),
-        tokenExpireResolver: TokenExpierResolver = TokenExpierResolver()
+        tokenRepository: TokenRepository = TokenRepository()
     ) {
         self.session = session
         self.tokenRepository = tokenRepository
-        self.tokenExpireResolver = tokenExpireResolver
     }
     
     @discardableResult
@@ -39,7 +36,7 @@ final class DefaultNetworkManager: NetworkManager {
             // TODO: Error Handling
             return nil
         }
-        
+
         if builder.useAuthorization,
            let accessToken = tokenRepository.fetchAccessToken()
         {
@@ -68,7 +65,7 @@ final class DefaultNetworkManager: NetworkManager {
                     return
                 }
                 
-                self.tokenExpireResolver.resolveExpireAccessToken {
+                self.resolveExpireAccessToken {
                     self.request(builder, completion: completion)
                 }
                 
@@ -122,5 +119,30 @@ final class DefaultNetworkManager: NetworkManager {
         task.resume()
         
         return task
+    }
+    
+    private func resolveExpireAccessToken(completion: @escaping () -> Void) {
+        guard let refreshToken = tokenRepository.fetchRefreshToken() else {
+            return
+        }
+        
+        let builder = UserRelatedRequestBuilderFactory.makeReissueTokenRequest(token: refreshToken)
+        
+        request(builder) { result in
+            switch result {
+            case .success(let data):
+                let token = data.data
+                
+                let accessToken = token.newAccessToken
+                let refreshToken = token.newRefreshToken
+                let newToken = Token(accessToken: accessToken, refreshToken: refreshToken)
+                
+                self.tokenRepository.saveToken(with: newToken)
+                completion()
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }

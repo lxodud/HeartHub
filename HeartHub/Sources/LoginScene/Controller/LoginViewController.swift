@@ -10,10 +10,7 @@ import UIKit
 final class LoginViewController: UIViewController {
     
     private let loginView = LoginView()
-    private let loginNetwork = LoginService(
-        tokenRepository: TokenRepository(),
-        networkManager: DefaultNetworkManager()
-    )
+    private let loginService = LoginService()
     
     override func loadView() {
         view = loginView
@@ -22,7 +19,6 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAddTarget()
-        
     }
     
     func setupAddTarget() {
@@ -39,7 +35,7 @@ final class LoginViewController: UIViewController {
             return
         }
         
-        loginNetwork.login(id: id, password: password) {
+        loginService.login(id: id, password: password) {
             DispatchQueue.main.async {
                 guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
                       let window = sceneDelegate.window

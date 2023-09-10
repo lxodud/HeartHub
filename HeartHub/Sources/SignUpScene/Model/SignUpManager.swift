@@ -70,7 +70,7 @@ extension SignUpManager {
             return
         }
         
-        let builder = UserRelatedRequestFactory.makeIdCheckRequest(of: id)
+        let builder = UserRelatedRequestBuilderFactory.makeIdCheckRequest(of: id)
         
         networkManager.request(builder) { result in
             switch result {
@@ -89,7 +89,7 @@ extension SignUpManager {
             return
         }
         
-        let builder = UserRelatedRequestFactory.makeNicknameCheckRequest(of: inputNickname)
+        let builder = UserRelatedRequestBuilderFactory.makeNicknameCheckRequest(of: inputNickname)
         
         networkManager.request(builder) { result in
             switch result {
@@ -107,7 +107,7 @@ extension SignUpManager {
             return
         }
         
-        let builder = UserRelatedRequestFactory.makeVerificateEmailRequest(of: inputEmail)
+        let builder = UserRelatedRequestBuilderFactory.makeVerificateEmailRequest(of: inputEmail)
         
         networkManager.request(builder) { result in
             switch result {
@@ -125,7 +125,7 @@ extension SignUpManager {
             return
         }
         
-        let builder = UserRelatedRequestFactory.makeJoinRequest(of: userInformation)
+        let builder = UserRelatedRequestBuilderFactory.makeJoinRequest(of: userInformation)
 
         networkManager.request(builder) { result in
             switch result {

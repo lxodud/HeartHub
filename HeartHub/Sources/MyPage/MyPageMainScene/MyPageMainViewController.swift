@@ -68,7 +68,7 @@ extension MyPageMainViewController: UITableViewDelegate {
         
         switch row {
         case .editProfile:
-            navigationController?.pushViewController(ProfileEditViewController(), animated: true)
+            navigationController?.pushViewController(ProfileModifyViewController(), animated: true)
         case .inquiry:
             break
         case .notificationSettings:

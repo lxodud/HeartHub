@@ -1,5 +1,5 @@
 //
-//  UserRelatedRequestFactory.swift
+//  UserRelatedRequestBuilderFactory.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/08/12.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserRelatedRequestFactory {
+struct UserRelatedRequestBuilderFactory {
     static func makeEmailCheckRequest(of email: String) -> RequestBuilder<CheckAvailabilityResponseDTO> {
         return RequestBuilder(
             httpMethod: .get,
@@ -52,38 +52,34 @@ struct UserRelatedRequestFactory {
         )
     }
     
-    static func makeGetDatingDateRequest(token: String) -> RequestBuilder<GetDatingDataResponseDTO> {
+    static func makeGetDatingDateRequest() -> RequestBuilder<GetDatingDataResponseDTO> {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/user/datingDate",
-            headers: ["Authorization": "Bearer " + token],
             useAuthorization: true
         )
     }
     
-    static func makeGetUserInformation(of id: Int, token: String) -> RequestBuilder<GetUserInformationResponseDTO> {
+    static func makeGetUserInformation(of id: Int) -> RequestBuilder<GetUserInformationResponseDTO> {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/user/info/" + id.description,
-            headers: ["Authorization": "Bearer " + token],
             useAuthorization: true
         )
     }
     
-    static func makeCheckMateExistRequest(token: String) -> RequestBuilder<CheckMateExistResponseDTO> {
+    static func makeCheckMateExistRequest() -> RequestBuilder<CheckMateExistResponseDTO> {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/user/exist-mate",
-            headers: ["Authorization": token],
             useAuthorization: true
         )
     }
     
-    static func makeSetMateRequest(of body: SetMateRequestDTO, token: String) -> JSONBodyRequestBuilder<CheckAvailabilityResponseDTO> {
+    static func makeSetMateRequest(of body: SetMateRequestDTO) -> JSONBodyRequestBuilder<CheckAvailabilityResponseDTO> {
         return JSONBodyRequestBuilder(
             httpMethod: .post,
             path: "/api/user/set/mate",
-            headers: ["Authorization": "Bearer " + token],
             jsonBody: body,
             useAuthorization: true
         )
@@ -101,16 +97,14 @@ struct UserRelatedRequestFactory {
         return RequestBuilder(
             httpMethod: .post,
             path: "/api/member/reissue",
-            headers: ["Authorization": "Bearer " + token],
-            useAuthorization: true
+            headers: ["Authorization": "Bearer \(token)"]
         )
     }
     
-    static func makeLogoutRequest(token: String) -> RequestBuilder<BasicResponseDTO> {
+    static func makeLogoutRequest() -> RequestBuilder<BasicResponseDTO> {
         return RequestBuilder(
             httpMethod: .post,
             path: "/api/member/logout",
-            headers: ["Authorization": "Bearer " + token],
             useAuthorization: true
         )
     }
@@ -123,20 +117,18 @@ struct UserRelatedRequestFactory {
         )
     }
     
-    static func makeDeleteUserRequest(token: String) -> RequestBuilder<CheckAvailabilityResponseDTO> {
+    static func makeDeleteUserRequest() -> RequestBuilder<CheckAvailabilityResponseDTO> {
         return RequestBuilder(
             httpMethod: .post,
             path: "/api/member/delete/user",
-            headers: ["Authorization": "Bearer " + token],
             useAuthorization: true
         )
     }
     
-    static func makeGetMyInformationRequest(token: String) -> RequestBuilder<GetMyInformationResponseDTO> {
+    static func makeGetMyInformationRequest() -> RequestBuilder<GetMyInformationResponseDTO> {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/user/myPage/first",
-            headers: ["Authorization": "Bearer " + token],
             useAuthorization: true
         )
     }
