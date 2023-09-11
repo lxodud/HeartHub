@@ -15,13 +15,13 @@ struct MyPageRequestBuilderFactory {
         let jsonData = try JSONSerialization.data(withJSONObject: ["userMessage": "", "userNickName": nickname])
         
         var multipartData = [
-            ("params", UUID().uuidString, "application/json", jsonData)
+            ("request", UUID().uuidString, "application/json", jsonData)
         ]
         
-        multipartData.append(("files", UUID().uuidString, "image/png", imageData))
+        multipartData.append(("file", UUID().uuidString, "image/png", imageData))
         
         return MultipartBodyRequestBuilder(
-            httpMethod: .post,
+            httpMethod: .put,
             path: "/api/user/myPage/update",
             multipartData: multipartData
         )

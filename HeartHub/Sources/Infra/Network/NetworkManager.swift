@@ -58,7 +58,7 @@ final class DefaultNetworkManager: NetworkManager {
             
             guard (200...299) ~= httpResponse.statusCode else {
                 guard let data = data,
-                      let decodedData = try? JSONDecoder().decode(BasicResponseDTO.self, from: data),
+                      let decodedData: BasicResponseDTO = try? builder.deserializer.deserialie(data),
                       decodedData.code == 3000
                 else {
                     completion(.failure(NetworkError.requestFail(statusCode: httpResponse.statusCode)))

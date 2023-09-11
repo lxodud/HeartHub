@@ -7,64 +7,6 @@
 
 import UIKit
 
-final class ProfileModifyViewModel {
-    private let myInformationService: MyInformationService
-    private let nicknameService: NicknameService
-    
-    private var profileImage: Data? {
-        didSet {
-            profileImageHandler?(profileImage)
-        }
-    }
-    
-    private var nicknameDescription: String? {
-        didSet {
-            nicknameDescriptionHandler?(nicknameDescription)
-        }
-    }
-    private var canModify: Bool = false {
-        didSet {
-            canModifyHandler?(canModify)
-        }
-    }
-    
-    var profileImageHandler: ((Data?) -> Void)?
-    var nicknameDescriptionHandler: ((String?) -> Void)?
-    var canModifyHandler: ((Bool) -> Void)?
-    
-    init(
-        myInformationService: MyInformationService = MyInformationService(),
-        nicknameService: NicknameService = NicknameService()
-    ) {
-        self.myInformationService = myInformationService
-        self.nicknameService = nicknameService
-    }
-    
-    func fetchProfileImage() {
-        profileImage = myInformationService.fetchProfileImage()
-    }
-    
-    func modifyProfile() {
-//        nicknameService.checkNicknameAvailability(with: nickname) { isDuplicate in
-//            if isDuplicate {
-//
-//            } else {
-//
-//            }
-//        }
-    }
-    
-    func changeModifyState(_ state: Bool) {
-        canModify = state
-    }
-}
-
-extension ProfileModifyViewModel: HeartHubImagePickerDelegate {
-    func passSelectedImage(_ image: Data) {
-        profileImage = image
-    }
-}
-
 final class ProfileModifyViewController: UIViewController {
     private let viewModel: ProfileModifyViewModel
     private let profileImageView: UIImageView = {
@@ -109,6 +51,11 @@ final class ProfileModifyViewController: UIViewController {
         button.setTitleColor(UIColor(red: 0.067, green: 0.067, blue: 0.067, alpha: 1), for: .normal)
         button.backgroundColor = .systemGray4
         return button
+    }()
+    
+    private let activicyIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        return indicator
     }()
     
     init(
@@ -174,7 +121,19 @@ extension ProfileModifyViewController {
     
     @objc
     private func tapProfileEditButton() {
-        // TODO: 프로필 수정 이벤트 전달
+        let nickname = nicknameTextField.text
+        activicyIndicator.startAnimating()
+        
+        viewModel.modifyProfile(with: nickname) { message in
+            DispatchQueue.main.async {
+                self.activicyIndicator.stopAnimating()
+                
+                let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+                self.present(alert, animated: true) {
+                    self.dismiss(animated: true)
+                }
+            }
+        }
     }
     
     @objc
@@ -222,10 +181,10 @@ extension ProfileModifyViewController: UITextFieldDelegate {
         
         let maxLength = 10
         let allowedCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_?+=~")
-                .union(CharacterSet(charactersIn: "\u{AC00}"..."\u{D7A3}"))
-                .union(CharacterSet(charactersIn: "\u{3131}"..."\u{314E}"))
-                .union(CharacterSet(charactersIn: "\u{314F}"..."\u{3163}"))
-
+            .union(CharacterSet(charactersIn: "\u{AC00}"..."\u{D7A3}"))
+            .union(CharacterSet(charactersIn: "\u{3131}"..."\u{314E}"))
+            .union(CharacterSet(charactersIn: "\u{314F}"..."\u{3163}"))
+        
         let newLength = text.count + string.count - range.length
         
         if newLength <= maxLength {
@@ -240,7 +199,7 @@ extension ProfileModifyViewController: UITextFieldDelegate {
 // MARK: - Configure UI
 extension ProfileModifyViewController {
     private func configureSubview() {
-        [profileImageView, nicknameTextField, profileModifyButton].forEach {
+        [profileImageView, nicknameTextField, profileModifyButton, activicyIndicator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -319,6 +278,14 @@ extension ProfileModifyViewController {
             profileModifyButton.heightAnchor.constraint(
                 equalTo: safeArea.heightAnchor,
                 multiplier: 0.08
+            ),
+            
+            // MARK: - activiryIndicator Constraints
+            activicyIndicator.centerXAnchor.constraint(
+                equalTo: safeArea.centerXAnchor
+            ),
+            activicyIndicator.centerYAnchor.constraint(
+                equalTo: safeArea.centerYAnchor
             )
         ])
     }
