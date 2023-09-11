@@ -10,7 +10,6 @@ import UIKit
 enum MyPageRow: Int, CaseIterable {
     case editProfile = 0
     case inquiry
-    case notificationSettings
     case withdrawal
     case changePassword
     case logout
@@ -21,8 +20,6 @@ enum MyPageRow: Int, CaseIterable {
             return "프로필 수정"
         case .inquiry:
             return "1:1 문의"
-        case .notificationSettings:
-            return "알림설정"
         case .withdrawal:
             return "회원탈퇴"
         case .changePassword:
@@ -71,10 +68,8 @@ extension MyPageMainViewController: UITableViewDelegate {
             navigationController?.pushViewController(ProfileModifyViewController(), animated: true)
         case .inquiry:
             break
-        case .notificationSettings:
-            break
         case .withdrawal:
-            break
+            navigationController?.pushViewController(WithdrawalViewController(), animated: true)
         case .changePassword:
             break
         case .logout:

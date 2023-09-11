@@ -72,6 +72,7 @@ final class ProfileModifyViewController: UIViewController {
     override func viewDidLoad() {
         configureSubview()
         configureLayout()
+        configureNavigationBar()
         configureAction()
         bind(to: viewModel)
         viewModel.fetchProfileImage()
@@ -288,5 +289,9 @@ extension ProfileModifyViewController {
                 equalTo: safeArea.centerYAnchor
             )
         ])
+    }
+    
+    private func configureNavigationBar() {
+        navigationItem.title = "프로필 수정"
     }
 }
