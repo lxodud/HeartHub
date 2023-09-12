@@ -42,14 +42,15 @@ final class ProfileModifyViewController: UIViewController {
     
     private let profileModifyButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = .white
         button.layer.cornerRadius = 18
-        
         button.setTitle("프로필로 적용하기", for: .normal)
         button.titleLabel?.font = UIFont.init(name: "Pretendard-Regular", size: 14)
-        button.titleLabel?.textAlignment = .center
         button.setTitleColor(UIColor(red: 0.067, green: 0.067, blue: 0.067, alpha: 1), for: .normal)
-        button.backgroundColor = .systemGray4
+        button.clipsToBounds = true
+        button.isEnabled = false
+        let normalColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1)
+        button.setBackgroundColor(.systemGray4, for: .disabled)
+        button.setBackgroundColor(normalColor, for: .normal)
         return button
     }()
     
@@ -89,12 +90,6 @@ final class ProfileModifyViewController: UIViewController {
         }
         viewModel.canModifyHandler = { [weak self] canModify in
             self?.profileModifyButton.isEnabled = canModify
-            if canModify {
-                self?.profileModifyButton.backgroundColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1)
-            } else {
-                self?.profileModifyButton.backgroundColor = .systemGray4
-            }
-            
         }
     }
 }

@@ -10,6 +10,7 @@
 		0C40FD7D2AAF341600F207DA /* ProfileModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD7C2AAF341600F207DA /* ProfileModifyViewModel.swift */; };
 		0C40FD802AAF351B00F207DA /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD7F2AAF351B00F207DA /* WithdrawalViewController.swift */; };
 		0C40FD822AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD812AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift */; };
+		0C40FD852AB03DF200F207DA /* UIButton+backgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD842AB03DF200F207DA /* UIButton+backgroundColor.swift */; };
 		0C4EF98E2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */; };
 		0C4EF9902A7A430100539320 /* CoupleSpaceMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */; };
 		0C4EF9942A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */; };
@@ -131,6 +132,7 @@
 		0C40FD7C2AAF341600F207DA /* ProfileModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyViewModel.swift; sourceTree = "<group>"; };
 		0C40FD7F2AAF351B00F207DA /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
 		0C40FD812AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonCheckBoxStackView.swift; sourceTree = "<group>"; };
+		0C40FD842AB03DF200F207DA /* UIButton+backgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+backgroundColor.swift"; sourceTree = "<group>"; };
 		0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMainButtonView.swift; sourceTree = "<group>"; };
 		0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMainViewController.swift; sourceTree = "<group>"; };
 		0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpacePickCollectionViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,14 @@
 			path = WithdrawalScene;
 			sourceTree = "<group>";
 		};
+		0C40FD872AB03E0E00F207DA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0C40FD842AB03DF200F207DA /* UIButton+backgroundColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		0C43F6112A659CB000EED860 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				0CE2CD8A2A91277000129724 /* BasicResponseDTO.swift */,
+				0C63FF452A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift */,
 				0C63FF4A2A8F31790020D137 /* UserRelated */,
 				0CADFF542AADE46A00253DA1 /* MyPage */,
 			);
@@ -454,7 +465,6 @@
 		0C63FF442A8E6A430020D137 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				0C63FF452A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift */,
 				5642627E2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift */,
 				0CE2CD702A90817A00129724 /* FetchTokenResponseDTO.swift */,
 				0CE2CDA82A93A95F00129724 /* FetchReissueTokenResponseDTO.swift */,
@@ -655,13 +665,14 @@
 		0CEDD8A42AA8926F00662A03 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0C6F454E2A701D520044EAC8 /* HeartHubProfileImageView.swift */,
-				0C684F472A78D4F300A31865 /* HeartHubPageViewController.swift */,
-				0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */,
-				0CE2CDDF2A9B716100129724 /* HeartHubFloatingButton.swift */,
-				0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */,
 				562ABF4F2A920703006FA182 /* AlertButton.swift */,
+				0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */,
+				0CE2CDDF2A9B716100129724 /* HeartHubFloatingButton.swift */,
+				0C6F454E2A701D520044EAC8 /* HeartHubProfileImageView.swift */,
+				0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */,
+				0C684F472A78D4F300A31865 /* HeartHubPageViewController.swift */,
 				0CEDD8A72AAAE0F600662A03 /* ImagePicker */,
+				0C40FD872AB03E0E00F207DA /* Extension */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1051,6 +1062,7 @@
 				56D4E6172A814049005215D1 /* SignUpTermTableViewCell.swift in Sources */,
 				569013752A80D7FD00715D23 /* SignUpChangePageButton.swift in Sources */,
 				0CE2CDE22A9B71B600129724 /* HeartHubSegmentedControl.swift in Sources */,
+				0C40FD852AB03DF200F207DA /* UIButton+backgroundColor.swift in Sources */,
 				56C048932A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift in Sources */,
 				0CF4C8612AACAF63004F805E /* GetDatingDataResponseDTO.swift in Sources */,
 				56C0487E2A8A309C001BAAB5 /* SignUpPrivacyTermViewController.swift in Sources */,

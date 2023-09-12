@@ -7,7 +7,46 @@
 
 import UIKit
 
+final class WithdrawalViewModel {
+    private let myInformationService: MyInformationService
+    
+    private var canWithdrawal: Bool = false {
+        didSet {
+            canWithdrawalHandler?(canWithdrawal)
+        }
+    }
+    
+    private var isCautionAgree: Bool = false {
+        didSet {
+            isCautionAgreeHandler?(canWithdrawal)
+        }
+    }
+    
+    var isCautionAgreeHandler: ((Bool) -> Void)?
+    var canWithdrawalHandler: ((Bool) -> Void)?
+    
+    init(myInformationService: MyInformationService = MyInformationService()) {
+        self.myInformationService = myInformationService
+    }
+}
+
+// MARK: - Public Interface
+extension WithdrawalViewModel {
+    func agreeCaution() {
+        canWithdrawal.toggle()
+        isCautionAgree.toggle()
+    }
+    
+    func withdraw(completion: @escaping (Bool) -> Void) {
+        myInformationService.withdraw { isSuccess in
+            completion(isSuccess)
+        }
+    }
+}
+
 final class WithdrawalViewController: UIViewController {
+    private let viewModel = WithdrawalViewModel()
+    
     private let noticeLabel: UILabel = {
         let label = UILabel()
         label.text = "잠깐! 탈퇴 전, 아래의 사항을\n꼭 확인해주세요."
@@ -18,7 +57,7 @@ final class WithdrawalViewController: UIViewController {
         return label
     }()
     
-    private let agreeCheckBoxRectangle: UIView = {
+    private let cautionAgreeCheckBoxRectangle: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.systemGray4.cgColor
         view.layer.borderWidth = 1
@@ -27,7 +66,7 @@ final class WithdrawalViewController: UIViewController {
         return view
     }()
     
-    private let agreeNoticeLabel: UILabel = {
+    private let cautionAgreeNoticeLabel: UILabel = {
         let text = "탈퇴 시 모든 데이터가 사라지며, 복구 불가합니다."
         let attributedString = NSMutableAttributedString(string: text)
         let range = (text as NSString).range(of: "복구 불가")
@@ -39,14 +78,14 @@ final class WithdrawalViewController: UIViewController {
         return label
     }()
     
-    private let agreeCheckBox: UIButton = {
+    private let cautionAgreeCheckBox: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "withdrawalAgreeCheckoutBoxEnabled"), for: .selected)
         button.setImage(UIImage(named: "withdrawalAgreeCheckoutBoxDisabled"), for: .normal)
         return button
     }()
     
-    private let agreeCheckBoxDescriptionLabel: UILabel = {
+    private let cautionAgreeCheckBoxDescriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "안내사항을 모두 확인하였으며 이에 동의합니다."
         label.textColor = UIColor(red: 0.463, green: 0.463, blue: 0.463, alpha: 1)
@@ -82,11 +121,15 @@ final class WithdrawalViewController: UIViewController {
         return stackView
     }()
     
-    private let withdrawalButton: UIButton = {
+    private let withdrawButton: UIButton = {
         let button = UIButton()
         button.setTitle("계정 삭제", for: .normal)
-        button.backgroundColor = .systemGray4
+        let normalColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+        button.setBackgroundColor(.systemGray4, for: .disabled)
+        button.setBackgroundColor(normalColor, for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 16)
+        button.isEnabled = false
+        button.clipsToBounds = true
         button.layer.cornerRadius = 20
         return button
     }()
@@ -95,19 +138,94 @@ final class WithdrawalViewController: UIViewController {
         configureSubview()
         configureLayout()
         configureNavigationBar()
+        configureAction()
+        bind(to: viewModel)
+    }
+    
+    private func bind(to viewModel: WithdrawalViewModel) {
+        viewModel.canWithdrawalHandler = { [weak self] canWithdrawal in
+            self?.withdrawButton.isEnabled = canWithdrawal
+        }
+        
+        viewModel.isCautionAgreeHandler =  { [weak self] isAgree in
+            self?.cautionAgreeCheckBox.isSelected = isAgree
+        }
+    }
+}
+
+// MARK: Configure Action
+extension WithdrawalViewController {
+    private func configureAction() {
+        cautionAgreeCheckBox.addTarget(
+            self,
+            action: #selector(tapCautionAgreeCheckBox),
+            for: .touchUpInside
+        )
+        
+        withdrawButton.addTarget(
+            self,
+            action: #selector(tapWithdrawButton),
+            for: .touchUpInside
+        )
+    }
+    
+    @objc
+    private func tapCautionAgreeCheckBox() {
+        viewModel.agreeCaution()
+    }
+    
+    @objc
+    private func tapWithdrawButton() {
+        viewModel.withdraw { isSuccess in
+            let title: String
+            let action: UIAlertAction
+            
+            if isSuccess {
+                title = "탈퇴 완료되었습니다."
+                action = UIAlertAction(title: "확인", style: .default, handler: { _ in
+                    DispatchQueue.main.async {
+                        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+                              let window = sceneDelegate.window
+                        else {
+                            return
+                        }
+                        
+                        window.rootViewController = HeartHubTabBarController()
+                        UIView.transition(
+                            with: window,
+                            duration: 0.2,
+                            options: [.transitionCrossDissolve],
+                            animations: nil,
+                            completion: nil
+                        )
+                    }
+                })
+            } else {
+                title = "탈퇴 실패했습니다."
+                action = UIAlertAction(title: "확인", style: .default)
+            }
+            
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            alert.addAction(action)
+            
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
+            
+        }
     }
 }
 
 // MARK: - Configure UI
 extension WithdrawalViewController {
     private func configureSubview() {
-        [noticeLabel, agreeCheckBoxRectangle, reasonNoticeLabel, reasonCheckBoxes, withdrawalButton].forEach {
+        [noticeLabel, cautionAgreeCheckBoxRectangle, reasonNoticeLabel, reasonCheckBoxes, withdrawButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        [agreeNoticeLabel, agreeCheckBox, agreeCheckBoxDescriptionLabel].forEach {
-            agreeCheckBoxRectangle.addSubview($0)
+        [cautionAgreeNoticeLabel, cautionAgreeCheckBox, cautionAgreeCheckBoxDescriptionLabel].forEach {
+            cautionAgreeCheckBoxRectangle.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -128,56 +246,56 @@ extension WithdrawalViewController {
             ),
             
             // MARK: - agreeCheckBoxRectangle Constraints
-            agreeCheckBoxRectangle.topAnchor.constraint(
+            cautionAgreeCheckBoxRectangle.topAnchor.constraint(
                 equalTo: noticeLabel.bottomAnchor,
                 constant: 26
             ),
-            agreeCheckBoxRectangle.widthAnchor.constraint(
+            cautionAgreeCheckBoxRectangle.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
                 multiplier: 0.9
             ),
-            agreeCheckBoxRectangle.heightAnchor.constraint(
+            cautionAgreeCheckBoxRectangle.heightAnchor.constraint(
                 equalTo: safeArea.heightAnchor,
                 multiplier: 0.25
             ),
-            agreeCheckBoxRectangle.centerXAnchor.constraint(
+            cautionAgreeCheckBoxRectangle.centerXAnchor.constraint(
                 equalTo: safeArea.centerXAnchor
             ),
             
             // MARK: - agreeNoticeLabel Constraints
-            agreeNoticeLabel.centerXAnchor.constraint(
-                equalTo: agreeCheckBoxRectangle.centerXAnchor
+            cautionAgreeNoticeLabel.centerXAnchor.constraint(
+                equalTo: cautionAgreeCheckBoxRectangle.centerXAnchor
             ),
-            agreeNoticeLabel.centerYAnchor.constraint(
-                equalTo: agreeCheckBoxRectangle.centerYAnchor,
+            cautionAgreeNoticeLabel.centerYAnchor.constraint(
+                equalTo: cautionAgreeCheckBoxRectangle.centerYAnchor,
                 constant: -20
             ),
             
             // MARK: - agreeCheckBox Constraints
-            agreeCheckBox.leadingAnchor.constraint(
-                equalTo: agreeNoticeLabel.leadingAnchor
+            cautionAgreeCheckBox.leadingAnchor.constraint(
+                equalTo: cautionAgreeNoticeLabel.leadingAnchor
             ),
-            agreeCheckBox.centerYAnchor.constraint(
-                equalTo: agreeCheckBoxRectangle.centerYAnchor,
+            cautionAgreeCheckBox.centerYAnchor.constraint(
+                equalTo: cautionAgreeCheckBoxRectangle.centerYAnchor,
                 constant: 25
             ),
             
             // MARK: - agreeCheckBoxDescriptionLabel Constraints
-            agreeCheckBoxDescriptionLabel.leadingAnchor.constraint(
-                equalTo: agreeCheckBox.trailingAnchor,
+            cautionAgreeCheckBoxDescriptionLabel.leadingAnchor.constraint(
+                equalTo: cautionAgreeCheckBox.trailingAnchor,
                 constant: 8
             ),
-            agreeCheckBoxDescriptionLabel.centerYAnchor.constraint(
-                equalTo: agreeCheckBox.centerYAnchor
+            cautionAgreeCheckBoxDescriptionLabel.centerYAnchor.constraint(
+                equalTo: cautionAgreeCheckBox.centerYAnchor
             ),
             
             // MARK: reasonNoticeLabel Constraints
             reasonNoticeLabel.topAnchor.constraint(
-                equalTo: agreeCheckBoxRectangle.bottomAnchor,
+                equalTo: cautionAgreeCheckBoxRectangle.bottomAnchor,
                 constant: 26
             ),
             reasonNoticeLabel.leadingAnchor.constraint(
-                equalTo: agreeCheckBoxRectangle.leadingAnchor
+                equalTo: cautionAgreeCheckBoxRectangle.leadingAnchor
             ),
             
             // MARK: - reasonCheckBoxes Constraints
@@ -194,18 +312,18 @@ extension WithdrawalViewController {
             ),
             
             // MARK: - withdrawalButton Constraints
-            withdrawalButton.bottomAnchor.constraint(
+            withdrawButton.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor,
-                constant: -26
+                constant: -15
             ),
-            withdrawalButton.centerXAnchor.constraint(
+            withdrawButton.centerXAnchor.constraint(
                 equalTo: safeArea.centerXAnchor
             ),
-            withdrawalButton.widthAnchor.constraint(
+            withdrawButton.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
                 multiplier: 0.85
             ),
-            withdrawalButton.heightAnchor.constraint(
+            withdrawButton.heightAnchor.constraint(
                 equalToConstant: 60
             ),
         ])

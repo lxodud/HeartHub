@@ -63,4 +63,17 @@ extension MyInformationService {
             completion(.failure(error))
         }
     }
+    
+    func withdraw(completion: @escaping (Bool) -> Void) {
+        let builder = MyPageRequestBuilderFactory.makeDeleteUserRequestBuilder()
+        
+        networkManager.request(builder) { result in
+            switch result {
+            case .success(let data):
+                completion(data.data)
+            case .failure(let error):
+                completion(false)
+            }
+        }
+    }
 }

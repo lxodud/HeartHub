@@ -26,4 +26,12 @@ struct MyPageRequestBuilderFactory {
             multipartData: multipartData
         )
     }
+    
+    static func makeDeleteUserRequestBuilder() -> RequestBuilder<CheckAvailabilityResponseDTO> {
+        return RequestBuilder(
+            httpMethod: .put,
+            path: "/api/member/delete/user",
+            useAuthorization: true
+        )
+    }
 }
