@@ -7,43 +7,6 @@
 
 import UIKit
 
-final class WithdrawalViewModel {
-    private let myInformationService: MyInformationService
-    
-    private var canWithdrawal: Bool = false {
-        didSet {
-            canWithdrawalHandler?(canWithdrawal)
-        }
-    }
-    
-    private var isCautionAgree: Bool = false {
-        didSet {
-            isCautionAgreeHandler?(canWithdrawal)
-        }
-    }
-    
-    var isCautionAgreeHandler: ((Bool) -> Void)?
-    var canWithdrawalHandler: ((Bool) -> Void)?
-    
-    init(myInformationService: MyInformationService = MyInformationService()) {
-        self.myInformationService = myInformationService
-    }
-}
-
-// MARK: - Public Interface
-extension WithdrawalViewModel {
-    func agreeCaution() {
-        canWithdrawal.toggle()
-        isCautionAgree.toggle()
-    }
-    
-    func withdraw(completion: @escaping (Bool) -> Void) {
-        myInformationService.withdraw { isSuccess in
-            completion(isSuccess)
-        }
-    }
-}
-
 final class WithdrawalViewController: UIViewController {
     private let viewModel = WithdrawalViewModel()
     
@@ -190,7 +153,9 @@ extension WithdrawalViewController {
                             return
                         }
                         
-                        window.rootViewController = HeartHubTabBarController()
+                        window.rootViewController = UINavigationController(
+                            rootViewController: LoginViewController()
+                        )
                         UIView.transition(
                             with: window,
                             duration: 0.2,
@@ -211,7 +176,6 @@ extension WithdrawalViewController {
             DispatchQueue.main.async {
                 self.present(alert, animated: true)
             }
-            
         }
     }
 }

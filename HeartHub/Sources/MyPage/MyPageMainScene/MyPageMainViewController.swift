@@ -71,7 +71,7 @@ extension MyPageMainViewController: UITableViewDelegate {
         case .withdrawal:
             navigationController?.pushViewController(WithdrawalViewController(), animated: true)
         case .changePassword:
-            break
+            navigationController?.pushViewController(PasswordModifyViewController(), animated: true)
         case .logout:
             break
         }

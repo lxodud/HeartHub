@@ -79,7 +79,11 @@ final class ProfileModifyViewController: UIViewController {
         viewModel.fetchProfileImage()
     }
     
-    func bind(to viewModel: ProfileModifyViewModel) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        nicknameTextField.resignFirstResponder()
+    }
+    
+    private func bind(to viewModel: ProfileModifyViewModel) {
         viewModel.profileImageHandler = { [weak self] imageData in
             guard let imageData = imageData else {
                 self?.profileImageView.image = UIImage(named: "basicProfileImage")

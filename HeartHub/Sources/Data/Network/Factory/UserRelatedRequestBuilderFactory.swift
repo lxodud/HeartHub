@@ -132,4 +132,14 @@ struct UserRelatedRequestBuilderFactory {
             useAuthorization: true
         )
     }
+    
+    static func makeChangePasswordRequest(
+        of body: ChangePasswordRequestDTO
+    ) -> JSONBodyRequestBuilder<CheckAvailabilityResponseDTO> {
+        return JSONBodyRequestBuilder(
+            httpMethod: .put,
+            path: "/api/user/change/passwd",
+            jsonBody: body
+        )
+    }
 }

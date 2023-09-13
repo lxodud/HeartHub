@@ -16,7 +16,7 @@ final class SignUpProfileView: UIView {
     
     // MARK: 아이디, 비밀번호 입력란
     // 아이디 입력 텍스트필드
-    let idTextField = SignUpUserInfoTextField(
+    let idTextField = HeartHubUserInfoInputTextField(
         placeholder: "아이디를 입력하세요",
         keyboardType: .default, isSecureTextEntry: false)
     
@@ -46,7 +46,7 @@ final class SignUpProfileView: UIView {
     }()
     
     // 비밀번호 입력 텍스트필드
-    var pwTextField = SignUpUserInfoTextField(
+    var pwTextField = HeartHubUserInfoInputTextField(
         placeholder: "비밀번호를 입력하세요",
         keyboardType: .default,
         isSecureTextEntry: true)

@@ -64,7 +64,6 @@ final class LoginViewController: UIViewController {
     @objc private func didTapSignUpButton() {
         let signUpVC = SignUpStartDateViewController()
         navigationController?.pushViewController(signUpVC, animated: true)
-
     }
     
     @objc private func didTapFindIdButton() {

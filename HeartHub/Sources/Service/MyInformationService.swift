@@ -9,13 +9,16 @@ import Foundation
 
 final class MyInformationService {
     private let myInformationRepository: MyInformationRepository
+    private let tokenRepository: TokenRepository
     private let networkManager: NetworkManager
     
     init(
         myInformationRepository: MyInformationRepository = MyInformationRepository(),
+        tokenRepository: TokenRepository = TokenRepository(),
         networkManager: NetworkManager = DefaultNetworkManager()
     ) {
         self.myInformationRepository = myInformationRepository
+        self.tokenRepository = tokenRepository
         self.networkManager = networkManager
     }
 }
@@ -70,7 +73,36 @@ extension MyInformationService {
         networkManager.request(builder) { result in
             switch result {
             case .success(let data):
+                self.myInformationRepository.removeAllInformation()
+                self.tokenRepository.deleteToken()
                 completion(data.data)
+            case .failure(_):
+                completion(false)
+            }
+        }
+    }
+    
+    func modifyPassword(
+        current: String,
+        new: String,
+        completion: @escaping (Bool) -> Void
+    ) {
+        guard let token = tokenRepository.fetchAccessToken() else {
+            return
+        }
+        let body = ChangePasswordRequestDTO(
+            token: token,
+            currentPassword: current,
+            changePassword: new
+        
+        )
+        
+        let builder = UserRelatedRequestBuilderFactory.makeChangePasswordRequest(of: body)
+        
+        networkManager.request(builder) { result in
+            switch result {
+            case .success(let data):
+                completion(true)
             case .failure(let error):
                 completion(false)
             }

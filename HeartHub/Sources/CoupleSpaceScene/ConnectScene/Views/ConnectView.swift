@@ -9,7 +9,7 @@ import UIKit
 
 final class ConnectView: UIView {
 
-    private let connectTextField = SignUpUserInfoTextField(
+    private let connectTextField = HeartHubUserInfoInputTextField(
         placeholder: "내 애인의 아이디를 입력하세요",
         keyboardType: .default,
         isSecureTextEntry: false)

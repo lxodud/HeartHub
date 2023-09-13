@@ -14,7 +14,7 @@ final class SignUpEnterNickNameEmailView: UIView {
         ourStartLabelText: "사랑을 시작해볼까요?",
         descriptionLabelText: "계정을 생성하여 HeartHuB를 즐겨보아요.")
     
-    let nickNameTextField = SignUpUserInfoTextField(
+    let nickNameTextField = HeartHubUserInfoInputTextField(
         placeholder: "닉네임을 입력해주세요.",
         keyboardType: .default,
         isSecureTextEntry: false
@@ -46,7 +46,7 @@ final class SignUpEnterNickNameEmailView: UIView {
     
     // MARK: 이메일 입력
     // 이메일 입력 텍스트 필드
-    var emailTextField = SignUpUserInfoTextField(
+    var emailTextField = HeartHubUserInfoInputTextField(
         placeholder: "이메일을 입력해주세요",
         keyboardType: .emailAddress,
         isSecureTextEntry: false)
@@ -77,7 +77,7 @@ final class SignUpEnterNickNameEmailView: UIView {
         return label
     }()
     
-    var emailDoVerifyTextField = SignUpUserInfoTextField(
+    var emailDoVerifyTextField = HeartHubUserInfoInputTextField(
         placeholder: "인증번호를 입력해주세요.",
         keyboardType: .default,
         isSecureTextEntry: false)
