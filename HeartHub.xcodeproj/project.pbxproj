@@ -51,6 +51,8 @@
 		0CAFFF752AB1A18A00422FC7 /* PasswordModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF742AB1A18A00422FC7 /* PasswordModifyViewModel.swift */; };
 		0CAFFF782AB2153700422FC7 /* AlertTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF772AB2153700422FC7 /* AlertTransitionDelegate.swift */; };
 		0CAFFF7A2AB2F0A000422FC7 /* AlertPresentaionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF792AB2F0A000422FC7 /* AlertPresentaionController.swift */; };
+		0CAFFF7D2AB2F2A300422FC7 /* LogoutAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF7C2AB2F2A300422FC7 /* LogoutAlertViewController.swift */; };
+		0CAFFF7F2AB3248A00422FC7 /* AlertTransitioningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF7E2AB3248A00422FC7 /* AlertTransitioningAnimator.swift */; };
 		0CC33AC22A5281C1001EF4E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC33AC12A5281C1001EF4E7 /* AppDelegate.swift */; };
 		0CC33AC42A5281C1001EF4E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC33AC32A5281C1001EF4E7 /* SceneDelegate.swift */; };
 		0CC33ACB2A5281C3001EF4E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CC33ACA2A5281C3001EF4E7 /* Assets.xcassets */; };
@@ -179,6 +181,8 @@
 		0CAFFF742AB1A18A00422FC7 /* PasswordModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModifyViewModel.swift; sourceTree = "<group>"; };
 		0CAFFF772AB2153700422FC7 /* AlertTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTransitionDelegate.swift; sourceTree = "<group>"; };
 		0CAFFF792AB2F0A000422FC7 /* AlertPresentaionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentaionController.swift; sourceTree = "<group>"; };
+		0CAFFF7C2AB2F2A300422FC7 /* LogoutAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAlertViewController.swift; sourceTree = "<group>"; };
+		0CAFFF7E2AB3248A00422FC7 /* AlertTransitioningAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTransitioningAnimator.swift; sourceTree = "<group>"; };
 		0CC33ABE2A5281C1001EF4E7 /* HeartHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC33AC12A5281C1001EF4E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CC33AC32A5281C1001EF4E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -614,8 +618,17 @@
 			children = (
 				0CAFFF772AB2153700422FC7 /* AlertTransitionDelegate.swift */,
 				0CAFFF792AB2F0A000422FC7 /* AlertPresentaionController.swift */,
+				0CAFFF7E2AB3248A00422FC7 /* AlertTransitioningAnimator.swift */,
 			);
 			path = CustomPresentation;
+			sourceTree = "<group>";
+		};
+		0CAFFF7B2AB2F28900422FC7 /* LogoutScene */ = {
+			isa = PBXGroup;
+			children = (
+				0CAFFF7C2AB2F2A300422FC7 /* LogoutAlertViewController.swift */,
+			);
+			path = LogoutScene;
 			sourceTree = "<group>";
 		};
 		0CC33AB52A5281C1001EF4E7 = {
@@ -647,10 +660,11 @@
 		0CCF04D52A9CBDEE00D66F37 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				0CF4C86B2AADB230004F805E /* ProfileModifyScene */,
+				0CAFFF7B2AB2F28900422FC7 /* LogoutScene */,
 				0C40FD882AB0552800F207DA /* PasswordModifyScene */,
 				0C40FD7E2AAF34E800F207DA /* WithdrawalScene */,
 				0CCF04D72A9CBF0C00D66F37 /* MyPageMainScene */,
-				0CF4C86B2AADB230004F805E /* ProfileModifyScene */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1140,6 +1154,7 @@
 				0C40FD8A2AB0554000F207DA /* PasswordModifyViewController.swift in Sources */,
 				0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */,
 				56348A672A6318B0005BB635 /* FindIdPopUpView.swift in Sources */,
+				0CAFFF7D2AB2F2A300422FC7 /* LogoutAlertViewController.swift in Sources */,
 				0CE2CDA92A93A95F00129724 /* FetchReissueTokenResponseDTO.swift in Sources */,
 				0C40FD7D2AAF341600F207DA /* ProfileModifyViewModel.swift in Sources */,
 				0C63FF352A8E0FD70020D137 /* NetworkError.swift in Sources */,
@@ -1166,6 +1181,7 @@
 				0C40FD8C2AB08B5900F207DA /* WithdrawalViewModel.swift in Sources */,
 				0C4EF98E2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift in Sources */,
 				0CE2CD6C2A8FD04F00129724 /* LoginService.swift in Sources */,
+				0CAFFF7F2AB3248A00422FC7 /* AlertTransitioningAnimator.swift in Sources */,
 				0C40FD822AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift in Sources */,
 				56C048802A8A4D83001BAAB5 /* SignUpTermOfUseScrollView.swift in Sources */,
 				56C0488F2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift in Sources */,

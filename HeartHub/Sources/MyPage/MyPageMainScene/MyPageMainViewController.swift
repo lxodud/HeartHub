@@ -74,11 +74,10 @@ extension MyPageMainViewController: UITableViewDelegate {
         case .changePassword:
             navigationController?.pushViewController(PasswordModifyViewController(), animated: true)
         case .logout:
-            let vc = UIViewController()
-            vc.transitioningDelegate = transitionDelegate
-            vc.modalPresentationStyle = .custom
-            vc.view.backgroundColor = .red
-            present(vc, animated: true)
+            let logoutAlert = LogoutAlertViewController()
+            logoutAlert.transitioningDelegate = transitionDelegate
+            logoutAlert.modalPresentationStyle = .custom
+            present(logoutAlert, animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

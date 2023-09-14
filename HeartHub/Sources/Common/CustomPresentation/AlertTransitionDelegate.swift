@@ -18,4 +18,18 @@ final class AlertTransitionDelegate: NSObject, UIViewControllerTransitioningDele
             presenting: presented
         )
     }
+    
+    func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        return AlertTransitioningAnimator(transitionStyle: .presentation)
+    }
+    
+    func animationController(
+        forDismissed dismissed: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning?{
+        return AlertTransitioningAnimator(transitionStyle: .dismissal)
+    }
 }

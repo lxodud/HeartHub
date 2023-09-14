@@ -16,49 +16,51 @@ final class AlertPresentationController: UIPresentationController {
     }()
     
     override func presentationTransitionWillBegin() {
-        guard let containerView = containerView,
-              let presentedView = presentedView,
-              let transitionCoordinator = presentedViewController.transitionCoordinator
-        else {
+        guard let containerView = containerView else {
             return
         }
-        
-        configureDimming(to: containerView)
-        containerView.addSubview(presentedView)
-        presentedView.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
-        presentedView.alpha = 0
-        
-        transitionCoordinator.animate(alongsideTransition: { _ in
-            presentedView.transform = .identity
-            presentedView.alpha = 1
-        })
+        presentingViewController.beginAppearanceTransition(false, animated: false)
+        configureSubview(to: containerView)
+        configureLayout(to: containerView)
     }
     
-    override func dismissalTransitionWillBegin() {
-        guard let transitionCoordinator = presentedViewController.transitionCoordinator,
-              let presentedView = presentedView
-        else {
-            return
+    override func presentationTransitionDidEnd(_ completed: Bool) {
+            presentingViewController.endAppearanceTransition()
         }
-        
-        transitionCoordinator.animate(alongsideTransition: { _ in
-            presentedView.alpha = 0
-        }, completion: { _ in
-            presentedView.removeFromSuperview()
-        })
+    
+    override func dismissalTransitionWillBegin() {
+        presentingViewController.beginAppearanceTransition(true, animated: true)
+        dimmingView.removeFromSuperview()
     }
+    
+    override func dismissalTransitionDidEnd(_ completed: Bool) {
+            presentingViewController.endAppearanceTransition()
+        }
 }
 
 
-// MARK: Configure UI
+// MARK: - Configure UI
 extension AlertPresentationController {
-    private func configureDimming(to containerView: UIView) {
-        containerView.addSubview(dimmingView)
-        dimmingView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureSubview(to containerView: UIView) {
+        guard let presentedView = presentedView else {
+            return
+        }
+        
+        [dimmingView, presentedView].forEach {
+            containerView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    private func configureLayout(to containerView: UIView) {
+        guard let presentedView = presentedView else {
+            return
+        }
         
         let safeArea = containerView.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
+            // MARK: - dimmingView Constraints
             dimmingView.topAnchor.constraint(
                 equalTo: containerView.topAnchor
             ),
@@ -70,6 +72,14 @@ extension AlertPresentationController {
             ),
             dimmingView.bottomAnchor.constraint(
                 equalTo: containerView.bottomAnchor
+            ),
+            
+            // MARK: - presentedView Constraints
+            presentedView.centerXAnchor.constraint(
+                equalTo: containerView.centerXAnchor
+            ),
+            presentedView.centerYAnchor.constraint(
+                equalTo: containerView.centerYAnchor
             ),
         ])
     }
