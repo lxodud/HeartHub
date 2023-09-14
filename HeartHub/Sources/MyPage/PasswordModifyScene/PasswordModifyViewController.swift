@@ -156,12 +156,12 @@ extension PasswordModifyViewController {
         let newPassword = newPasswordTextField.text
 
         viewModel.modifyPassword(current: currentPassword, new: newPassword) { message in
-            let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
-            let action = UIAlertAction(title: "확인", style: .default) { _ in
-                self.dismiss(animated: true)
-            }
-            alert.addAction(action)
             DispatchQueue.main.async {
+                let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+                let action = UIAlertAction(title: "확인", style: .default) { _ in
+                    self.dismiss(animated: true)
+                }
+                alert.addAction(action)
                 self.present(alert, animated: true)
             }
         }

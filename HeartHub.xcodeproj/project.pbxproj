@@ -49,6 +49,8 @@
 		0CADFF5A2AADEEC500253DA1 /* MyInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF592AADEEC500253DA1 /* MyInformationService.swift */; };
 		0CAFFF732AB19C2700422FC7 /* ChangePasswordRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF722AB19C2700422FC7 /* ChangePasswordRequestDTO.swift */; };
 		0CAFFF752AB1A18A00422FC7 /* PasswordModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF742AB1A18A00422FC7 /* PasswordModifyViewModel.swift */; };
+		0CAFFF782AB2153700422FC7 /* AlertTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF772AB2153700422FC7 /* AlertTransitionDelegate.swift */; };
+		0CAFFF7A2AB2F0A000422FC7 /* AlertPresentaionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF792AB2F0A000422FC7 /* AlertPresentaionController.swift */; };
 		0CC33AC22A5281C1001EF4E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC33AC12A5281C1001EF4E7 /* AppDelegate.swift */; };
 		0CC33AC42A5281C1001EF4E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC33AC32A5281C1001EF4E7 /* SceneDelegate.swift */; };
 		0CC33ACB2A5281C3001EF4E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CC33ACA2A5281C3001EF4E7 /* Assets.xcassets */; };
@@ -175,6 +177,8 @@
 		0CADFF592AADEEC500253DA1 /* MyInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInformationService.swift; sourceTree = "<group>"; };
 		0CAFFF722AB19C2700422FC7 /* ChangePasswordRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordRequestDTO.swift; sourceTree = "<group>"; };
 		0CAFFF742AB1A18A00422FC7 /* PasswordModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModifyViewModel.swift; sourceTree = "<group>"; };
+		0CAFFF772AB2153700422FC7 /* AlertTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTransitionDelegate.swift; sourceTree = "<group>"; };
+		0CAFFF792AB2F0A000422FC7 /* AlertPresentaionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentaionController.swift; sourceTree = "<group>"; };
 		0CC33ABE2A5281C1001EF4E7 /* HeartHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC33AC12A5281C1001EF4E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CC33AC32A5281C1001EF4E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -605,6 +609,15 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
+		0CAFFF762AB213B900422FC7 /* CustomPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				0CAFFF772AB2153700422FC7 /* AlertTransitionDelegate.swift */,
+				0CAFFF792AB2F0A000422FC7 /* AlertPresentaionController.swift */,
+			);
+			path = CustomPresentation;
+			sourceTree = "<group>";
+		};
 		0CC33AB52A5281C1001EF4E7 = {
 			isa = PBXGroup;
 			children = (
@@ -685,6 +698,7 @@
 				0C6F454E2A701D520044EAC8 /* HeartHubProfileImageView.swift */,
 				0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */,
 				0C684F472A78D4F300A31865 /* HeartHubPageViewController.swift */,
+				0CAFFF762AB213B900422FC7 /* CustomPresentation */,
 				0CEDD8A72AAAE0F600662A03 /* ImagePicker */,
 			);
 			path = Common;
@@ -1097,7 +1111,9 @@
 				0CE2CDE02A9B716200129724 /* HeartHubFloatingButton.swift in Sources */,
 				0CF4C8652AADA903004F805E /* JSONBodyRequestBuilder.swift in Sources */,
 				5690137D2A80EEA200715D23 /* HeartHubUserInfoInputTextField.swift in Sources */,
+				0CAFFF7A2AB2F0A000422FC7 /* AlertPresentaionController.swift in Sources */,
 				0CEDD8A22AA4B57E00662A03 /* MyPageCell.swift in Sources */,
+				0CAFFF782AB2153700422FC7 /* AlertTransitionDelegate.swift in Sources */,
 				56348A932A6E841E005BB635 /* FindPwPopUpView.swift in Sources */,
 				569E4EED2A5D499900B51898 /* SignUpTermAgreeView.swift in Sources */,
 				569013672A7E6D0700715D23 /* GameClearViewController.swift in Sources */,
