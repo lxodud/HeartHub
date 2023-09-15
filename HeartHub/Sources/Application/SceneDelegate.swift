@@ -9,6 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    private var appCoordinator: Coordinatable?
     
     func scene(
         _ scene: UIScene,
@@ -18,17 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let tokenRepository = TokenRepository()
-
-        if let _ = tokenRepository.fetchAccessToken() {
-            let heartHubTabBarController = HeartHubTabBarController()
-            self.window?.rootViewController = heartHubTabBarController
-        } else {
-            let loginVC = LoginViewController()
-            let navigationController = UINavigationController(rootViewController: loginVC)
-            navigationController.isNavigationBarHidden = true
-            self.window?.rootViewController = navigationController
-        }
+        let navigationController = UINavigationController()
+        window?.rootViewController = navigationController
+        appCoordinator = AppCoordinator(navigationController: navigationController)
+        appCoordinator?.start()
         
         self.window?.backgroundColor = .systemBackground
         self.window?.makeKeyAndVisible()

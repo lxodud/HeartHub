@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeartHubImagePickerCell: UICollectionViewCell {
+final class HeartHubImagePickerCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView

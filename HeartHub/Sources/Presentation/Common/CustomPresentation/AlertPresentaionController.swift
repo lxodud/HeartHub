@@ -25,8 +25,8 @@ final class AlertPresentationController: UIPresentationController {
     }
     
     override func presentationTransitionDidEnd(_ completed: Bool) {
-            presentingViewController.endAppearanceTransition()
-        }
+        presentingViewController.endAppearanceTransition()
+    }
     
     override func dismissalTransitionWillBegin() {
         presentingViewController.beginAppearanceTransition(true, animated: true)
@@ -34,8 +34,8 @@ final class AlertPresentationController: UIPresentationController {
     }
     
     override func dismissalTransitionDidEnd(_ completed: Bool) {
-            presentingViewController.endAppearanceTransition()
-        }
+        presentingViewController.endAppearanceTransition()
+    }
 }
 
 

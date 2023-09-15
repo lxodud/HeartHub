@@ -8,7 +8,6 @@
 import UIKit
 
 final class LoginViewController: UIViewController {
-    
     private let loginView = LoginView()
     private let loginService = LoginService()
     
@@ -43,14 +42,13 @@ final class LoginViewController: UIViewController {
                     return
                 }
                 
-                window.rootViewController = HeartHubTabBarController()
                 UIView.transition(
                     with: window,
                     duration: 0.2,
                     options: [.transitionCrossDissolve],
-                    animations: nil,
-                    completion: nil
-                )
+                    animations: {
+                        window.rootViewController = HeartHubTabBarController()
+                    })
             }
         }
     }

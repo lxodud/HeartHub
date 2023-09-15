@@ -154,7 +154,7 @@ extension WithdrawalViewController {
                         }
                         
                         window.rootViewController = UINavigationController(
-                            rootViewController: LoginViewController()
+//                            rootViewController: LoginViewController()
                         )
                         UIView.transition(
                             with: window,
