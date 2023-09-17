@@ -8,7 +8,6 @@
 import UIKit
 
 final class LoginTextField: UITextField {
-
     private let insets: UIEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 40)
     
     init(placeholder: String, keyboardType: UIKeyboardType, isSecureTextEntry: Bool) {
@@ -22,9 +21,8 @@ final class LoginTextField: UITextField {
         self.isSecureTextEntry = isSecureTextEntry
         
         configureTextField()
-        configureLayout()
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -37,6 +35,7 @@ final class LoginTextField: UITextField {
         return bounds.inset(by: insets)
     }
 }
+
 
 extension LoginTextField {
     private func configureTextField() {
@@ -53,19 +52,5 @@ extension LoginTextField {
         layer.cornerRadius = 8
         layer.borderColor = #colorLiteral(red: 1, green: 0.9999999404, blue: 1, alpha: 1)
         layer.borderWidth = 1
-    }
-
-    
-    private func configureLayout() {
-        
-        let safeArea = safeAreaLayoutGuide
-
-        NSLayoutConstraint.activate([
-            // MARK: loginTextFieldView Constraints
-            centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 12),
-            leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 12)
-        ])
     }
 }

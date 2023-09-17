@@ -8,7 +8,6 @@
 import UIKit
 
 final class LoginBackGroundView: UIView {
-
     private let backgroundView: UIImageView = {
         var imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
@@ -23,15 +22,13 @@ final class LoginBackGroundView: UIView {
         return imgView
     }()
     
-    // 산이미지 앞에 gradient
-    private let LoginMountainFrontView: UIImageView = {
+    private let loginMountainFrontView: UIImageView = {
         var imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
         imgView.image = UIImage(named: "LoginMountainFront.png")
         return imgView
     }()
     
-    // 메인하트 이미지
     private let heartImageView: UIImageView = {
         var imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
@@ -39,36 +36,32 @@ final class LoginBackGroundView: UIView {
         return imgView
     }()
     
-    // MARK: HeartHub main Label Image
-    private let HeartHubMainLabelImageView: UIImageView = {
+    private let heartHubMainLabelImageView: UIImageView = {
         var imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
         imgView.image = UIImage(named: "HeartHubMainLabel")
         return imgView
     }()
     
-    // MARK: 뷰 초기화
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configureSubView()
         configureLayout()
-        
     }
         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
-// MARK: Configure Layout
+// MARK: Configure UI
 extension LoginBackGroundView {
     private func configureSubView() {
         [backgroundView,
          mountainBackgroundView,
-         LoginMountainFrontView,
-         HeartHubMainLabelImageView,
+         loginMountainFrontView,
+         heartHubMainLabelImageView,
          heartImageView
          ].forEach {
             addSubview($0)
@@ -78,31 +71,58 @@ extension LoginBackGroundView {
     
     private func configureLayout() {
         NSLayoutConstraint.activate([
-            // MARK: BackgroundView Constraints
-            backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            backgroundView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            backgroundView.topAnchor.constraint(equalTo: topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            // MARK: - backgroundView Constraints
+            backgroundView.topAnchor.constraint(
+                equalTo: topAnchor
+            ),
+            backgroundView.leadingAnchor.constraint(
+                equalTo: leadingAnchor
+            ),
+            backgroundView.trailingAnchor.constraint(
+                equalTo: trailingAnchor
+            ),
+            backgroundView.bottomAnchor.constraint(
+                equalTo: bottomAnchor
+            ),
             
-            // MARK: mountainBackgroundView Constraints
-            mountainBackgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 558),
-            mountainBackgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 6),
-            mountainBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            mountainBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            // MARK: - mountainBackgroundView Constraints
+            mountainBackgroundView.leadingAnchor.constraint(
+                equalTo: leadingAnchor
+            ),
+            mountainBackgroundView.trailingAnchor.constraint(
+                equalTo: trailingAnchor
+            ),
+            mountainBackgroundView.bottomAnchor.constraint(
+                equalTo: bottomAnchor
+            ),
             
-            // MARK: LoginMountainFrontView Constraints
-            LoginMountainFrontView.topAnchor.constraint(equalTo: topAnchor, constant: 422),
-            LoginMountainFrontView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10),
-            LoginMountainFrontView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            LoginMountainFrontView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            // MARK: loginMountainFrontView Constraints
+            loginMountainFrontView.leadingAnchor.constraint(
+                equalTo: leadingAnchor
+            ),
+            loginMountainFrontView.trailingAnchor.constraint(
+                equalTo: trailingAnchor
+            ),
+            loginMountainFrontView.bottomAnchor.constraint(
+                equalTo: bottomAnchor
+            ),
             
-            // MARK: HeartHubMainLabelImageView Constraints
-            HeartHubMainLabelImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            HeartHubMainLabelImageView.topAnchor.constraint(equalTo: topAnchor, constant: 261),
+            // MARK: - heartImageView Constraints
+            heartImageView.centerYAnchor.constraint(
+                equalTo: centerYAnchor
+            ),
+            heartImageView.centerXAnchor.constraint(
+                equalTo: centerXAnchor
+            ),
             
-            // MARK: LoginMountainFrontView Constraints
-            heartImageView.topAnchor.constraint(equalTo: HeartHubMainLabelImageView.bottomAnchor, constant: 33),
-            heartImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            // MARK: - heartHubMainLabelImageView Constraints
+            heartHubMainLabelImageView.centerXAnchor.constraint(
+                equalTo: centerXAnchor
+            ),
+            heartHubMainLabelImageView.bottomAnchor.constraint(
+                equalTo: heartImageView.topAnchor,
+                constant: -30
+            ),
         ])
     }
 }

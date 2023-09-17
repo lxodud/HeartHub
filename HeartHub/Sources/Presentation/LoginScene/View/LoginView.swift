@@ -8,15 +8,7 @@
 import UIKit
 
 final class LoginView: UIView {
-    
     private let loginBackGroundView = LoginBackGroundView()
-    
-    private let keyboardBackgroundView: UIImageView = {
-        var imgView = UIImageView()
-        imgView.contentMode = .scaleAspectFit
-        imgView.image = UIImage(named: "KeyboardBackground")
-        return imgView
-    }()
     
     let enterIdTextField = LoginTextField(
         placeholder: "아이디를 입력하세요",
@@ -104,7 +96,6 @@ final class LoginView: UIView {
         return button
     }()
     
-    // 회원가입 닉네임 로그인 사이 선
     private var lineView1: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 1, green: 0.9999999404, blue: 1, alpha: 1)
@@ -128,7 +119,6 @@ final class LoginView: UIView {
     }()
     
     private var idPwLoginBtnStackViewTopConstraint: NSLayoutConstraint!
-    
     private var keyboardBackgroundViewTopConstraint: NSLayoutConstraint!
     
     // MARK: 뷰 초기화
@@ -186,7 +176,6 @@ extension LoginView {
         
         [loginBackGroundView,
          selectPageButtonStackView,
-         keyboardBackgroundView,
          idPwLoginBtnStackView,
         ].forEach {
             addSubview($0)
@@ -201,7 +190,6 @@ extension LoginView {
         idPwLoginBtnStackViewTopConstraint =
         idPwLoginBtnStackView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 527)
         
-        keyboardBackgroundViewTopConstraint = keyboardBackgroundView.topAnchor.constraint(equalTo: topAnchor, constant: frame.height)
 
         NSLayoutConstraint.activate([
             
@@ -211,12 +199,6 @@ extension LoginView {
             loginBackGroundView.topAnchor.constraint(equalTo: topAnchor),
             loginBackGroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             
-            // MARK: keyboardBackgroundView Constraints
-            keyboardBackgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            keyboardBackgroundView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            keyboardBackgroundViewTopConstraint,
-            keyboardBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
-
             // MARK: ID, PW TextField, LoginButton StackView Constraints
             idPwLoginBtnStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2037),
             idPwLoginBtnStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
