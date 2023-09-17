@@ -5,9 +5,14 @@
 //  Created by 이태영 on 2023/09/15.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class LoginViewController: UIViewController {
+    private let loginViewModel: LoginViewModel
+    private let disposeBag = DisposeBag()
+    
     private let backgroundView = LoginBackGroundView()
     private let idTextField = LoginTextField(
         placeholder: "아이디를 입력하세요",
@@ -23,13 +28,14 @@ final class LoginViewController: UIViewController {
     
     private let loginButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = .white
         button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1
-        button.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        button.clipsToBounds = true
         button.setTitle("로그인", for: .normal)
         button.titleLabel?.font = UIFont.init(name: "Pretendard-SemiBold", size: 16)
         button.setTitleColor(UIColor(red: 0.98, green: 0.18, blue: 0.74, alpha: 1), for: .normal)
+        button.setTitleColor(.white, for: .disabled)
+        button.setBackgroundColor(.white, for: .normal)
+        button.setBackgroundColor(.systemGray4, for: .disabled)
         button.contentVerticalAlignment = .center
         return button
     }()
@@ -98,11 +104,50 @@ final class LoginViewController: UIViewController {
         view.backgroundColor = .white
         return view
     }()
+    
+    init(loginViewModel: LoginViewModel) {
+        self.loginViewModel = loginViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSubview()
         configureLayout()
-        view.backgroundColor = .red
+        bind()
+    }
+    
+    private func bind() {
+        let input = LoginViewModel.Input(
+            id: idTextField.rx.text.orEmpty.asDriver(),
+            password: passwordTextField.rx.text.orEmpty.asDriver(),
+            loginTap: loginButton.rx.tap.asDriver(),
+            findIdTap: findIdButton.rx.tap.asDriver(),
+            findPasswordTap: findPasswordButton.rx.tap.asDriver(),
+            signUpTap: signUpButton.rx.tap.asDriver()
+        )
+        
+        let output = loginViewModel.transform(input)
+        
+        output.loginEnabled
+            .drive(loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.findId
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.findPassword
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.signUp
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 

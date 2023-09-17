@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol LoginCoordinatable: Coordinatable {
-    func toFindPassword()
-    func toFindID()
-    func toSignUp()
-}
-
 final class LoginCoordinator {
     private let navigationController: UINavigationController
 
@@ -24,7 +18,7 @@ final class LoginCoordinator {
 // MARK: - Public Interface
 extension LoginCoordinator: LoginCoordinatable {
     func start() {
-        let loginViewController = LoginViewController()
+        let loginViewController = LoginViewController(loginViewModel: LoginViewModel(coordinator: self))
         navigationController.viewControllers = [loginViewController]
         navigationController.setNavigationBarHidden(true, animated: false)
     }
