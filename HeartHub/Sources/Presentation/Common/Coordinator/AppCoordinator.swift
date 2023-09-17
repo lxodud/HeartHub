@@ -8,11 +8,11 @@
 import UIKit
 
 final class AppCoordinator {
-    private let navigationController: UINavigationController
+    private let window: UIWindow
     private var childCoordinators: [Coordinatable] = []
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(window: UIWindow) {
+        self.window = window
     }
 }
 
@@ -31,7 +31,7 @@ extension AppCoordinator: Coordinatable {
 // MARK: - Private Method
 extension AppCoordinator {
     private func showLogin() {
-        let loginCoordinator = LoginCoordinator(navigationController: navigationController)
+        let loginCoordinator = LoginCoordinator(window: window)
         childCoordinators.append(loginCoordinator)
         loginCoordinator.start()
     }

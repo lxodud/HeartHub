@@ -231,6 +231,11 @@ extension LoginViewController {
             ),
             secondSeperateView.heightAnchor.constraint(
                 equalTo: firstSeperateView.heightAnchor
+            ),
+            
+            loginButton.heightAnchor.constraint(
+                equalTo: safeArea.heightAnchor,
+                multiplier: 0.06
             )
         ])
     }

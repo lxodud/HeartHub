@@ -301,11 +301,11 @@
 			path = LoginScene;
 			sourceTree = "<group>";
 		};
-		0C143BEF2AB6DBF800C0A5A9 /* FindIDScene */ = {
+		0C143BEF2AB6DBF800C0A5A9 /* FindIdScene */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = FindIDScene;
+			path = FindIdScene;
 			sourceTree = "<group>";
 		};
 		0C143BF02AB6DC0100C0A5A9 /* FindPasswordScene */ = {
@@ -945,7 +945,7 @@
 				0CAFFF8C2AB3618200422FC7 /* Coordinator */,
 				0C143BEE2AB6DBF100C0A5A9 /* LoginScene */,
 				0C143BF02AB6DC0100C0A5A9 /* FindPasswordScene */,
-				0C143BEF2AB6DBF800C0A5A9 /* FindIDScene */,
+				0C143BEF2AB6DBF800C0A5A9 /* FindIdScene */,
 				56348A8A2A6DB17C005BB635 /* View */,
 				561462152A6EE3EA00C0AC1F /* Controller */,
 			);
