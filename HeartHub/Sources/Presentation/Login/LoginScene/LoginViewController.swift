@@ -118,10 +118,11 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         configureSubview()
         configureLayout()
-        bind()
+        bind(to: loginViewModel)
+        bindUI()
     }
     
-    private func bind() {
+    private func bind(to: LoginViewModel) {
         let input = LoginViewModel.Input(
             id: idTextField.rx.text.orEmpty.asDriver(),
             password: passwordTextField.rx.text.orEmpty.asDriver(),
@@ -147,6 +148,41 @@ final class LoginViewController: UIViewController {
         
         output.signUp
             .drive()
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI() {
+        let tapBackground = UITapGestureRecognizer()
+        view.addGestureRecognizer(tapBackground)
+        tapBackground.rx.event
+            .withUnretained(self)
+            .subscribe(onNext: { _ in
+                self.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx
+            .notification(UIResponder.keyboardWillShowNotification)
+            .filter({ _ in self.view.frame.origin.y >= 0 })
+            .compactMap({ $0.userInfo as? NSDictionary })
+            .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
+            .compactMap({ $0.cgRectValue.height })
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {
+                self.view.frame.origin.y -= $0
+            })
+            .disposed(by: disposeBag)
+
+        NotificationCenter.default.rx
+            .notification(UIResponder.keyboardWillHideNotification)
+            .filter({ _ in self.view.frame.origin.y <= 0 })
+            .compactMap({ $0.userInfo as? NSDictionary })
+            .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
+            .compactMap({ $0.cgRectValue.height })
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {
+                self.view.frame.origin.y += $0
+            })
             .disposed(by: disposeBag)
     }
 }
