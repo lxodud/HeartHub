@@ -168,8 +168,9 @@ final class LoginViewController: UIViewController {
             .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
             .compactMap({ $0.cgRectValue.height })
             .observe(on: MainScheduler.instance)
+            .withUnretained(self)
             .subscribe(onNext: {
-                self.view.frame.origin.y -= $0
+                self.view.frame.origin.y -= $0.1
             })
             .disposed(by: disposeBag)
 
@@ -180,8 +181,9 @@ final class LoginViewController: UIViewController {
             .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
             .compactMap({ $0.cgRectValue.height })
             .observe(on: MainScheduler.instance)
+            .withUnretained(self)
             .subscribe(onNext: {
-                self.view.frame.origin.y += $0
+                self.view.frame.origin.y += $0.1
             })
             .disposed(by: disposeBag)
     }

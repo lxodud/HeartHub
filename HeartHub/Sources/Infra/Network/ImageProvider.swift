@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import RxSwift
 
 final class ImageProvider {
     static let shared = ImageProvider()
     
+    private init() { }
+    
     @discardableResult
     func fetch(
         from url: URL,
-        queue: DispatchQueue = DispatchQueue.global(),
         completion: @escaping (Result<Data, Error>) -> Void
     ) -> Cancellable {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -43,5 +45,47 @@ final class ImageProvider {
         task.resume()
         
         return task
+    }
+}
+
+final class RxImageProvider {
+    static let shared = RxImageProvider()
+    
+    private init() { }
+    
+    func fetch(
+        from url: URL
+    ) -> Observable<Data> {
+        return Observable.create { emitter in
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                guard error == nil else {
+                    emitter.onError(NetworkError.transportError)
+                    return
+                }
+                
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    emitter.onError(NetworkError.transportError)
+                    return
+                }
+                
+                guard (200...299) ~= httpResponse.statusCode else {
+                    emitter.onError(NetworkError.requestFail(statusCode: httpResponse.statusCode))
+                    return
+                }
+                
+                guard let data = data else {
+                    emitter.onError(NetworkError.missingData)
+                    return
+                }
+                
+                emitter.onNext(data)
+            }
+            
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
     }
 }

@@ -5,15 +5,17 @@
 //  Created by 이태영 on 2023/08/19.
 //
 
+import RxSwift
 import UIKit
 
 final class LoginService {
     private let tokenRepository: TokenRepository
-    private let networkManager: NetworkManager
+    private let networkManager: RxNetworkManager
+    private let disposeBag = DisposeBag()
     
     init(
         tokenRepository: TokenRepository = TokenRepository(),
-        networkManager: NetworkManager = DefaultNetworkManager()
+        networkManager: RxNetworkManager = DefaultRxNetworkManager()
     ) {
         self.tokenRepository = tokenRepository
         self.networkManager = networkManager
@@ -22,22 +24,17 @@ final class LoginService {
 
 // MARK: Public Interface
 extension LoginService {
-    func login(id: String, password: String, completion: @escaping () -> Void) {
+    func login(id: String, password: String) -> Observable<Void> {
         let builder = UserRelatedRequestBuilderFactory.makeSignInRequest(
             of: SignInRequestDTO(username: id, password: password)
         )
         
-        networkManager.request(builder) { result in
-            switch result {
-            case .success(let data):
-                let token = data.data
-                self.tokenRepository.saveToken(with: token)
+        return networkManager.request(builder)
+            .do(onNext: {
+                self.tokenRepository.saveToken(with: $0.data)
                 self.saveCurrentUserInformation(username: id)
-                completion()
-            case .failure(let error):
-                print(error)
-            }
-        }
+            })
+            .map({ _ in  })
     }
     
     private func saveCurrentUserInformation(username: String) {
@@ -45,28 +42,15 @@ extension LoginService {
         let userInformationRepository = MyInformationRepository()
         userInformationRepository.saveUsername(with: username)
         
-        networkManager.request(builder) { result in
-            switch result {
-            case .success(let data):
-                let info = data.data
-                let nickname = info.myNickname
-                userInformationRepository.saveNickname(with: nickname)
-                
-                guard let imageUrl = URL(string: info.myImageUrl) else {
-                    return
-                }
-                
-                ImageProvider.shared.fetch(from: imageUrl) { result in
-                    switch result {
-                    case .success(let data):
-                        userInformationRepository.saveProfileImage(with: data)
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+        networkManager.request(builder)
+            .do(onNext: { userInformationRepository.saveNickname(with: $0.data.myNickname) })
+            .compactMap({ URL(string: $0.data.myImageUrl) })
+            .flatMap({
+                RxImageProvider.shared.fetch(from: $0)
+            })
+            .subscribe(onNext: {
+                userInformationRepository.saveProfileImage(with: $0)
+            })
+            .disposed(by: disposeBag)
     }
 }
