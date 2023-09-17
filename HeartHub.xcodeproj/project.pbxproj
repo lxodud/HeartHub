@@ -136,6 +136,7 @@
 		56C048932A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C048922A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift */; };
 		56D4E6172A814049005215D1 /* SignUpTermTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4E6162A814049005215D1 /* SignUpTermTableViewCell.swift */; };
 		56DEBEDA2A7A9B24000BC687 /* GameMissionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DEBED92A7A9B24000BC687 /* GameMissionTableViewCell.swift */; };
+		D1070D4C0C1725CAF3B61D0A /* Pods_HeartHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F919B1F8DC83C6A78A367C82 /* Pods_HeartHub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +220,7 @@
 		0CF4C8602AACAF63004F805E /* GetDatingDataResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDatingDataResponseDTO.swift; sourceTree = "<group>"; };
 		0CF4C8622AACB0C1004F805E /* CheckMateExistResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMateExistResponseDTO.swift; sourceTree = "<group>"; };
 		0CF4C8642AADA903004F805E /* JSONBodyRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONBodyRequestBuilder.swift; sourceTree = "<group>"; };
+		23C115A0B51548BE8211E044 /* Pods-HeartHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartHub.release.xcconfig"; path = "Target Support Files/Pods-HeartHub/Pods-HeartHub.release.xcconfig"; sourceTree = "<group>"; };
 		561462182A6EE50300C0AC1F /* FindIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdViewController.swift; sourceTree = "<group>"; };
 		5626B2D02A57EEB300477EBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5626B3362A584A3D00477EBC /* SignUpStartDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStartDateViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,8 @@
 		56C048922A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCompletePopUpViewController.swift; sourceTree = "<group>"; };
 		56D4E6162A814049005215D1 /* SignUpTermTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTermTableViewCell.swift; sourceTree = "<group>"; };
 		56DEBED92A7A9B24000BC687 /* GameMissionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMissionTableViewCell.swift; sourceTree = "<group>"; };
+		E6FD5ACAF90264E49048EFF1 /* Pods-HeartHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartHub.debug.xcconfig"; path = "Target Support Files/Pods-HeartHub/Pods-HeartHub.debug.xcconfig"; sourceTree = "<group>"; };
+		F919B1F8DC83C6A78A367C82 /* Pods_HeartHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeartHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +281,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1070D4C0C1725CAF3B61D0A /* Pods_HeartHub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +754,7 @@
 				0CC33AC02A5281C1001EF4E7 /* HeartHub */,
 				0CC33ABF2A5281C1001EF4E7 /* Products */,
 				CB34CEB8D5CDE48E63185AFF /* Pods */,
+				5EC70D3BC202B4E5C6333A12 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1093,9 +1099,19 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		5EC70D3BC202B4E5C6333A12 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F919B1F8DC83C6A78A367C82 /* Pods_HeartHub.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CB34CEB8D5CDE48E63185AFF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				E6FD5ACAF90264E49048EFF1 /* Pods-HeartHub.debug.xcconfig */,
+				23C115A0B51548BE8211E044 /* Pods-HeartHub.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1107,9 +1123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CC33AD22A5281C3001EF4E7 /* Build configuration list for PBXNativeTarget "HeartHub" */;
 			buildPhases = (
+				F750D5733A230DF0947BA3FC /* [CP] Check Pods Manifest.lock */,
 				0CC33ABA2A5281C1001EF4E7 /* Sources */,
 				0CC33ABB2A5281C1001EF4E7 /* Frameworks */,
 				0CC33ABC2A5281C1001EF4E7 /* Resources */,
+				D49605275B59B1F1CAF8396D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1167,6 +1185,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D49605275B59B1F1CAF8396D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeartHub/Pods-HeartHub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeartHub/Pods-HeartHub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeartHub/Pods-HeartHub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F750D5733A230DF0947BA3FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HeartHub-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0CC33ABA2A5281C1001EF4E7 /* Sources */ = {
@@ -1430,6 +1490,7 @@
 		};
 		0CC33AD32A5281C3001EF4E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6FD5ACAF90264E49048EFF1 /* Pods-HeartHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1459,6 +1520,7 @@
 		};
 		0CC33AD42A5281C3001EF4E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23C115A0B51548BE8211E044 /* Pods-HeartHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
