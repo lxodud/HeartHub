@@ -8,7 +8,7 @@
 import UIKit
 
 final class LoginView: UIView {
-    private let loginBackGroundView = LoginBackGroundView()
+    private let loginBackGroundView = LoginBackgroundView()
     
     let enterIdTextField = LoginTextField(
         placeholder: "아이디를 입력하세요",

@@ -113,7 +113,7 @@
 		569013672A7E6D0700715D23 /* GameClearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013662A7E6D0700715D23 /* GameClearViewController.swift */; };
 		5690136B2A7E6FA400715D23 /* GameClearMissionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5690136A2A7E6FA400715D23 /* GameClearMissionDataManager.swift */; };
 		5690136D2A7FA60800715D23 /* GameClearTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5690136C2A7FA60800715D23 /* GameClearTableViewCell.swift */; };
-		5690136F2A7FCC7700715D23 /* LoginBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5690136E2A7FCC7700715D23 /* LoginBackGroundView.swift */; };
+		5690136F2A7FCC7700715D23 /* LoginBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5690136E2A7FCC7700715D23 /* LoginBackgroundView.swift */; };
 		569013712A80004700715D23 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013702A80004700715D23 /* LoginTextField.swift */; };
 		569013732A80167700715D23 /* SignUpBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013722A80167700715D23 /* SignUpBackgroundView.swift */; };
 		569013752A80D7FD00715D23 /* SignUpChangePageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013742A80D7FD00715D23 /* SignUpChangePageButton.swift */; };
@@ -252,7 +252,7 @@
 		569013662A7E6D0700715D23 /* GameClearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClearViewController.swift; sourceTree = "<group>"; };
 		5690136A2A7E6FA400715D23 /* GameClearMissionDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClearMissionDataManager.swift; sourceTree = "<group>"; };
 		5690136C2A7FA60800715D23 /* GameClearTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClearTableViewCell.swift; sourceTree = "<group>"; };
-		5690136E2A7FCC7700715D23 /* LoginBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackGroundView.swift; sourceTree = "<group>"; };
+		5690136E2A7FCC7700715D23 /* LoginBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBackgroundView.swift; sourceTree = "<group>"; };
 		569013702A80004700715D23 /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		569013722A80167700715D23 /* SignUpBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBackgroundView.swift; sourceTree = "<group>"; };
 		569013742A80D7FD00715D23 /* SignUpChangePageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpChangePageButton.swift; sourceTree = "<group>"; };
@@ -306,6 +306,7 @@
 		0C143BEF2AB6DBF800C0A5A9 /* FindIdScene */ = {
 			isa = PBXGroup;
 			children = (
+				561462182A6EE50300C0AC1F /* FindIdViewController.swift */,
 			);
 			path = FindIdScene;
 			sourceTree = "<group>";
@@ -328,7 +329,7 @@
 		0C143BF22AB6DCAC00C0A5A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5690136E2A7FCC7700715D23 /* LoginBackGroundView.swift */,
+				5690136E2A7FCC7700715D23 /* LoginBackgroundView.swift */,
 				569013702A80004700715D23 /* LoginTextField.swift */,
 			);
 			path = View;
@@ -958,7 +959,6 @@
 		561462152A6EE3EA00C0AC1F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				561462182A6EE50300C0AC1F /* FindIdViewController.swift */,
 				56348A902A6E8286005BB635 /* FindPwViewController.swift */,
 				56348A682A6319EA005BB635 /* FindIdPopUpViewController.swift */,
 				56348A942A6E87BF005BB635 /* FindPwPopUpViewController.swift */,
@@ -1244,7 +1244,7 @@
 			files = (
 				0C59CF6A2A87EA9E00D847B7 /* KeychainManager.swift in Sources */,
 				0CE2CD712A90817A00129724 /* FetchTokenResponseDTO.swift in Sources */,
-				5690136F2A7FCC7700715D23 /* LoginBackGroundView.swift in Sources */,
+				5690136F2A7FCC7700715D23 /* LoginBackgroundView.swift in Sources */,
 				0C63FF462A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift in Sources */,
 				5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */,
 				56DEBEDA2A7A9B24000BC687 /* GameMissionTableViewCell.swift in Sources */,

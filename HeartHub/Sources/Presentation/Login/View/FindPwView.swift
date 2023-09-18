@@ -9,7 +9,7 @@ import UIKit
 
 final class FindPwView: UIView {
     
-    private let loginBackGroundView = LoginBackGroundView()
+    private let loginBackGroundView = LoginBackgroundView()
     
     private let keyboardBackgroundView: UIImageView = {
         var imgView = UIImageView()

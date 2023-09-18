@@ -1,5 +1,5 @@
 //
-//  LoginBackGroundView.swift
+//  LoginBackgroundView.swift
 //  HeartHub
 //
 //  Created by 제민우 on 2023/08/06.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LoginBackGroundView: UIView {
+final class LoginBackgroundView: UIView {
     private let backgroundView: UIImageView = {
         var imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
@@ -56,7 +56,7 @@ final class LoginBackGroundView: UIView {
 }
 
 // MARK: Configure UI
-extension LoginBackGroundView {
+extension LoginBackgroundView {
     private func configureSubView() {
         [backgroundView,
          mountainBackgroundView,

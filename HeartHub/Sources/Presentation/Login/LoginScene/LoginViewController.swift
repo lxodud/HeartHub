@@ -13,11 +13,12 @@ final class LoginViewController: UIViewController {
     private let loginViewModel: LoginViewModel
     private let disposeBag = DisposeBag()
     
-    private let backgroundView = LoginBackGroundView()
+    private let backgroundView = LoginBackgroundView()
+    private let activityIndicator = UIActivityIndicatorView()
+    
     private let idTextField = LoginTextField(
         placeholder: "아이디를 입력하세요",
-        keyboardType: .default,
-        isSecureTextEntry: false
+        keyboardType: .default
     )
     
     private let passwordTextField = LoginTextField(
@@ -49,7 +50,7 @@ final class LoginViewController: UIViewController {
         return stackView
     }()
     
-    private let findIdButton: UIButton = {
+    private let toFindIdButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .clear
         button.setTitle("아이디 찾기", for: .normal)
@@ -61,7 +62,7 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    private let signUpButton: UIButton = {
+    private let toSignUpButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .clear
         button.setTitle("회원가입", for: .normal)
@@ -73,7 +74,7 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    private let findPasswordButton: UIButton = {
+    private let toFindPasswordButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .clear
         button.setTitle("비밀번호 찾기", for: .normal)
@@ -85,11 +86,12 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    private let findSignButtonStackView: UIStackView = {
+    private let toFindSignButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .fillProportionally
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -104,9 +106,7 @@ final class LoginViewController: UIViewController {
         view.backgroundColor = .white
         return view
     }()
-    
-    private let activityIndicator = UIActivityIndicatorView()
-    
+
     init(loginViewModel: LoginViewModel) {
         self.loginViewModel = loginViewModel
         super.init(nibName: nil, bundle: nil)
@@ -129,9 +129,9 @@ final class LoginViewController: UIViewController {
             id: idTextField.rx.text.orEmpty.asDriver(),
             password: passwordTextField.rx.text.orEmpty.asDriver(),
             loginTap: loginButton.rx.tap.asDriver(),
-            findIdTap: findIdButton.rx.tap.asDriver(),
-            findPasswordTap: findPasswordButton.rx.tap.asDriver(),
-            signUpTap: signUpButton.rx.tap.asDriver()
+            findIdTap: toFindIdButton.rx.tap.asDriver(),
+            findPasswordTap: toFindPasswordButton.rx.tap.asDriver(),
+            signUpTap: toSignUpButton.rx.tap.asDriver()
         )
         
         let output = loginViewModel.transform(input)
@@ -184,25 +184,45 @@ final class LoginViewController: UIViewController {
         
         NotificationCenter.default.rx
             .notification(UIResponder.keyboardWillShowNotification)
-            .filter({ [weak self] _ in self!.view.frame.origin.y >= 0 })
+            .filter({ [weak self] _ in
+                guard let self = self else {
+                    return false
+                }
+                
+                return self.view.frame.origin.y >= 0
+            })
             .compactMap({ $0.userInfo as? NSDictionary })
             .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
             .compactMap({ $0.cgRectValue.height })
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                self!.view.frame.origin.y -= $0
+                guard let self = self else {
+                    return
+                }
+                
+                self.view.frame.origin.y -= $0
             })
             .disposed(by: disposeBag)
         
         NotificationCenter.default.rx
             .notification(UIResponder.keyboardWillHideNotification)
-            .filter({ [weak self] _ in self!.view.frame.origin.y < 0 })
+            .filter({ [weak self] _ in
+                guard let self = self else {
+                    return false
+                }
+                
+                return self.view.frame.origin.y < 0
+            })
             .compactMap({ $0.userInfo as? NSDictionary })
             .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
             .compactMap({ $0.cgRectValue.height })
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self]  in
-                self!.view.frame.origin.y += $0
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                self.view.frame.origin.y += $0
             })
             .disposed(by: disposeBag)
     }
@@ -226,15 +246,16 @@ extension LoginViewController {
         
         idPasswordLoginStackView.setCustomSpacing(20, after: passwordTextField)
         
-        [findIdButton,
+        [toFindIdButton,
          firstSeperateView,
-         signUpButton,
+         toFindPasswordButton,
          secondSeperateView,
-         findPasswordButton].forEach {
-            findSignButtonStackView.addArrangedSubview($0)
+         toSignUpButton
+         ].forEach {
+            toFindSignButtonStackView.addArrangedSubview($0)
         }
         
-        [backgroundView,idPasswordLoginStackView, findSignButtonStackView, activityIndicator].forEach {
+        [backgroundView, idPasswordLoginStackView, toFindSignButtonStackView, activityIndicator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -271,17 +292,19 @@ extension LoginViewController {
                 multiplier: 0.75
             ),
             
+            // MARK: - loginButton Constraints
+            loginButton.heightAnchor.constraint(
+                equalTo: safeArea.heightAnchor,
+                multiplier: 0.06
+            ),
+            
             // MARK: - findSignButtonStackView Constraints
-            findSignButtonStackView.topAnchor.constraint(
+            toFindSignButtonStackView.topAnchor.constraint(
                 equalTo: idPasswordLoginStackView.bottomAnchor,
                 constant: 20
             ),
-            findSignButtonStackView.centerXAnchor.constraint(
+            toFindSignButtonStackView.centerXAnchor.constraint(
                 equalTo: safeArea.centerXAnchor
-            ),
-            findSignButtonStackView.widthAnchor.constraint(
-                equalTo: safeArea.widthAnchor,
-                multiplier: 0.7
             ),
             
             // MARK: - seperateView Constraints
@@ -289,7 +312,7 @@ extension LoginViewController {
                 equalToConstant: 1
             ),
             firstSeperateView.heightAnchor.constraint(
-                equalTo: findIdButton.heightAnchor,
+                equalTo: toFindIdButton.heightAnchor,
                 multiplier: 0.5
             ),
             secondSeperateView.widthAnchor.constraint(
@@ -297,11 +320,6 @@ extension LoginViewController {
             ),
             secondSeperateView.heightAnchor.constraint(
                 equalTo: firstSeperateView.heightAnchor
-            ),
-            
-            loginButton.heightAnchor.constraint(
-                equalTo: safeArea.heightAnchor,
-                multiplier: 0.06
             ),
             
             // MARK: - activityIndicator Constraints
