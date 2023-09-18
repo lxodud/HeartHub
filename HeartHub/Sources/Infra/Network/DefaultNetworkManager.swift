@@ -69,6 +69,7 @@ final class DefaultRxNetworkManager: RxNetworkManager {
                 }
                 
                 emitter.onNext(decodedData)
+                emitter.onCompleted()
             }
             
             task.resume()

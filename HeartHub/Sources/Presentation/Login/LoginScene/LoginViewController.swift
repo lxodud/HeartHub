@@ -164,6 +164,8 @@ final class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
                 
         output.logedIn
+            .filter({ $0 == false })
+            .do(onNext: { _ in self.showAlert() })
             .drive()
             .disposed(by: disposeBag)
         }
@@ -193,7 +195,7 @@ final class LoginViewController: UIViewController {
         
         NotificationCenter.default.rx
             .notification(UIResponder.keyboardWillHideNotification)
-            .filter({ _ in self.view.frame.origin.y <= 0 })
+            .filter({ _ in self.view.frame.origin.y < 0 })
             .compactMap({ $0.userInfo as? NSDictionary })
             .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
             .compactMap({ $0.cgRectValue.height })
@@ -203,6 +205,15 @@ final class LoginViewController: UIViewController {
                 self.view.frame.origin.y += $0.1
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: "로그인 실패", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default) { _ in
+            self.dismiss(animated: true)
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
 }
 

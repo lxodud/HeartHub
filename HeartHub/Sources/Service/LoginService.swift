@@ -30,7 +30,6 @@ extension LoginService {
         )
         
         return networkManager.request(builder)
-            .debug()
             .do(onNext: { self.tokenRepository.saveToken(with: $0.data) })
             .do(onNext: { _ in self.saveCurrentUserInformation(username: id) })
             .map({ _ in true })

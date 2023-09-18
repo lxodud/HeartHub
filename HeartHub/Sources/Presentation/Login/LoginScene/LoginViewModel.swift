@@ -58,11 +58,10 @@ final class LoginViewModel: ViewModelType {
         
         let loginTap = input.loginTap.withLatestFrom(idAndPassword)
         
-                let logedIn = loginTap.flatMapLatest({ pair in
-            return self.loginService.login(id: pair.id, password: pair.password)
-                .asDriver(onErrorJustReturn: false)
-        })
-                .debug()
+        let logedIn = loginTap.flatMapLatest({ pair in
+                return self.loginService.login(id: pair.id, password: pair.password)
+                    .asDriver(onErrorJustReturn: false)
+            })
             .do(onNext: { _ in self.coordinator?.toSignUp() })
         
         let logingIn = Observable.from([
