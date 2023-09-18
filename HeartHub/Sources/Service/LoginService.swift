@@ -24,18 +24,18 @@ final class LoginService {
 
 // MARK: Public Interface
 extension LoginService {
-    func login(id: String, password: String) -> Observable<Void> {
+    func login(id: String, password: String) -> Observable<Bool> {
         let builder = UserRelatedRequestBuilderFactory.makeSignInRequest(
             of: SignInRequestDTO(username: id, password: password)
         )
         
         return networkManager.request(builder)
-            .do(onNext: {
-                self.tokenRepository.saveToken(with: $0.data)
-                self.saveCurrentUserInformation(username: id)
-            })
-            .map({ _ in  })
+            .debug()
+            .do(onNext: { self.tokenRepository.saveToken(with: $0.data) })
+            .do(onNext: { _ in self.saveCurrentUserInformation(username: id) })
+            .map({ _ in true })
     }
+    
     
     private func saveCurrentUserInformation(username: String) {
         let builder = UserRelatedRequestBuilderFactory.makeGetMyInformationRequest()

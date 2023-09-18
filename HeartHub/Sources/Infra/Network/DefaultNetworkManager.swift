@@ -71,6 +71,8 @@ final class DefaultRxNetworkManager: RxNetworkManager {
                 emitter.onNext(decodedData)
             }
             
+            task.resume()
+            
             return Disposables.create {
                 task.cancel()
             }

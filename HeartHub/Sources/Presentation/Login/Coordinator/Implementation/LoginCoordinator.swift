@@ -50,5 +50,6 @@ extension LoginCoordinator: LoginCoordinatable {
     
     func toSignUp() {
         // TODO: - SignUpCoordinator 구현
+        print(#function)
     }
 }

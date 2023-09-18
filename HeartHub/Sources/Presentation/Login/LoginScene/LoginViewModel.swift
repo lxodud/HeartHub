@@ -23,12 +23,16 @@ final class LoginViewModel: ViewModelType {
         let findId: Driver<Void>
         let findPassword: Driver<Void>
         let signUp: Driver<Void>
+        let loginIn: Driver<Bool>
+        let logedIn: Driver<Bool>
     }
     
     private weak var coordinator: LoginCoordinatable?
+    private let loginService: LoginService
     
-    init(coordinator: LoginCoordinatable) {
+    init(coordinator: LoginCoordinatable, loginService: LoginService = LoginService()) {
         self.coordinator = coordinator
+        self.loginService = loginService
     }
     
     func transform(_ input: Input) -> Output {
@@ -36,34 +40,45 @@ final class LoginViewModel: ViewModelType {
             input.id,
             input.password,
             resultSelector: {
-                ($0, $1)
+                (id: $0, password: $1)
             })
         
         let loginEnabled = idAndPassword
             .map({ !$0.isEmpty && !$1.isEmpty })
             .distinctUntilChanged()
-            .asDriver()
         
         let findId = input.findIdTap
-            .do(onNext: {
-                self.coordinator?.toFindID()
-            })
+            .do(onNext: { _ in self.coordinator?.toFindID() })
         
         let findPassword = input.findPasswordTap
-            .do(onNext: {
-                self.coordinator?.toFindPassword()
-            })
+            .do(onNext: { _ in self.coordinator?.toFindPassword() })
         
         let signUp = input.signUpTap
-            .do(onNext: {
-                self.coordinator?.toSignUp()
-            })
+            .do(onNext: { _ in self.coordinator?.toSignUp() })
+        
+        let loginTap = input.loginTap.withLatestFrom(idAndPassword)
+        
+                let logedIn = loginTap.flatMapLatest({ pair in
+            return self.loginService.login(id: pair.id, password: pair.password)
+                .asDriver(onErrorJustReturn: false)
+        })
+                .debug()
+            .do(onNext: { _ in self.coordinator?.toSignUp() })
+        
+        let logingIn = Observable.from([
+            loginTap.map { _ in true },
+            logedIn.map { _ in false }
+        ])
+        .merge()
+        .asDriver(onErrorJustReturn: false)
         
         return Output(
             loginEnabled: loginEnabled,
             findId: findId,
             findPassword: findPassword,
-            signUp: signUp
+            signUp: signUp,
+            loginIn: logingIn,
+            logedIn: logedIn
         )
     }
 }

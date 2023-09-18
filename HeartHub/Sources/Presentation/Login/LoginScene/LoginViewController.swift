@@ -105,6 +105,8 @@ final class LoginViewController: UIViewController {
         return view
     }()
     
+    private let activityIndicator = UIActivityIndicatorView()
+    
     init(loginViewModel: LoginViewModel) {
         self.loginViewModel = loginViewModel
         super.init(nibName: nil, bundle: nil)
@@ -149,8 +151,23 @@ final class LoginViewController: UIViewController {
         output.signUp
             .drive()
             .disposed(by: disposeBag)
-    }
-    
+        
+        output.loginIn
+            .do(onNext: { _ in self.view.endEditing(true) })
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+                
+        output.loginIn
+            .drive(with: self, onNext: {
+                self.loginButton.isEnabled = !$1
+            })
+            .disposed(by: disposeBag)
+                
+        output.logedIn
+            .drive()
+            .disposed(by: disposeBag)
+        }
+
     private func bindUI() {
         let tapBackground = UITapGestureRecognizer()
         view.addGestureRecognizer(tapBackground)
@@ -173,7 +190,7 @@ final class LoginViewController: UIViewController {
                 self.view.frame.origin.y -= $0.1
             })
             .disposed(by: disposeBag)
-
+        
         NotificationCenter.default.rx
             .notification(UIResponder.keyboardWillHideNotification)
             .filter({ _ in self.view.frame.origin.y <= 0 })
@@ -206,7 +223,7 @@ extension LoginViewController {
             findSignButtonStackView.addArrangedSubview($0)
         }
         
-        [backgroundView,idPasswordLoginStackView, findSignButtonStackView].forEach {
+        [backgroundView,idPasswordLoginStackView, findSignButtonStackView, activityIndicator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -274,6 +291,14 @@ extension LoginViewController {
             loginButton.heightAnchor.constraint(
                 equalTo: safeArea.heightAnchor,
                 multiplier: 0.06
+            ),
+            
+            // MARK: - activityIndicator Constraints
+            activityIndicator.centerXAnchor.constraint(
+                equalTo: safeArea.centerXAnchor
+            ),
+            activityIndicator.centerYAnchor.constraint(
+                equalTo: safeArea.centerYAnchor
             )
         ])
     }
