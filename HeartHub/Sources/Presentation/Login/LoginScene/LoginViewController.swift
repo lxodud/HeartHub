@@ -153,19 +153,21 @@ final class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.loginIn
-            .do(onNext: { _ in self.view.endEditing(true) })
+            .do(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
             .drive(activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
                 
         output.loginIn
-            .drive(with: self, onNext: {
-                self.loginButton.isEnabled = !$1
+            .drive(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
             })
             .disposed(by: disposeBag)
                 
         output.logedIn
             .filter({ $0 == false })
-            .do(onNext: { _ in self.showAlert() })
+            .do(onNext: { [weak self] _ in self?.showAlert() })
             .drive()
             .disposed(by: disposeBag)
         }
@@ -173,36 +175,34 @@ final class LoginViewController: UIViewController {
     private func bindUI() {
         let tapBackground = UITapGestureRecognizer()
         view.addGestureRecognizer(tapBackground)
+        
         tapBackground.rx.event
-            .withUnretained(self)
-            .subscribe(onNext: { _ in
-                self.view.endEditing(true)
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
             })
             .disposed(by: disposeBag)
         
         NotificationCenter.default.rx
             .notification(UIResponder.keyboardWillShowNotification)
-            .filter({ _ in self.view.frame.origin.y >= 0 })
+            .filter({ [weak self] _ in self!.view.frame.origin.y >= 0 })
             .compactMap({ $0.userInfo as? NSDictionary })
             .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
             .compactMap({ $0.cgRectValue.height })
             .observe(on: MainScheduler.instance)
-            .withUnretained(self)
-            .subscribe(onNext: {
-                self.view.frame.origin.y -= $0.1
+            .subscribe(onNext: { [weak self] in
+                self!.view.frame.origin.y -= $0
             })
             .disposed(by: disposeBag)
         
         NotificationCenter.default.rx
             .notification(UIResponder.keyboardWillHideNotification)
-            .filter({ _ in self.view.frame.origin.y < 0 })
+            .filter({ [weak self] _ in self!.view.frame.origin.y < 0 })
             .compactMap({ $0.userInfo as? NSDictionary })
             .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
             .compactMap({ $0.cgRectValue.height })
             .observe(on: MainScheduler.instance)
-            .withUnretained(self)
-            .subscribe(onNext: {
-                self.view.frame.origin.y += $0.1
+            .subscribe(onNext: { [weak self]  in
+                self!.view.frame.origin.y += $0
             })
             .disposed(by: disposeBag)
     }
