@@ -18,14 +18,27 @@ final class LoginCoordinator {
 // MARK: - Public Interface
 extension LoginCoordinator: LoginCoordinatable {
     func start() {
+        toLogin()
+    }
+    
+    func toLogin() {
         let loginViewController = LoginViewController(
             loginViewModel: LoginViewModel(coordinator: self)
         )
         window.rootViewController = loginViewController
+        UIView.transition(
+            with: window,
+            duration: 0.5,
+            options: [.transitionCrossDissolve],
+            animations: nil,
+            completion: nil
+        )
     }
     
     func toFindID() {
-        let findIdViewController = FindIdViewController()
+        let findIdViewController = FindIdViewController(
+            findIdViewModel: FindIdViewModel(coordinator: self)
+        )
         window.rootViewController = findIdViewController
         UIView.transition(
             with: window,

@@ -5,9 +5,14 @@
 //  Created by 제민우 on 2023/07/16.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class FindIdViewController: UIViewController {
+    private let findIdViewModel: FindIdViewModel
+    private let disposeBag = DisposeBag()
+    
     private let backgroundView = LoginBackgroundView()
     private let activityIndicator = UIActivityIndicatorView()
     
@@ -97,10 +102,49 @@ final class FindIdViewController: UIViewController {
         return view
     }()
     
+    // MARK: - initializer
+    init(findIdViewModel: FindIdViewModel) {
+        self.findIdViewModel = findIdViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSubview()
         configureLayout()
+        bind(to: findIdViewModel)
+    }
+    
+    private func bind(to viewModel: FindIdViewModel) {
+        let input = FindIdViewModel.Input(
+            email: emailTextField.rx.text.orEmpty.asDriver(),
+            toLoginTap: toLoginButton.rx.tap.asDriver(),
+            toFindPasswordTap: toFindPasswordButton.rx.tap.asDriver(),
+            toSignUpTap: toSignUpButton.rx.tap.asDriver()
+            
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.findIdEnabled
+            .drive(findIdButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.toLogin
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.toFindPassword
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.toSignUp
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 

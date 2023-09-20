@@ -13,16 +13,16 @@ final class LoginViewModel: ViewModelType {
         let id: Driver<String>
         let password: Driver<String>
         let loginTap: Driver<Void>
-        let findIdTap: Driver<Void>
-        let findPasswordTap: Driver<Void>
-        let signUpTap: Driver<Void>
+        let toFindIdTap: Driver<Void>
+        let toFindPasswordTap: Driver<Void>
+        let toSignUpTap: Driver<Void>
     }
     
     struct Output {
         let loginEnabled: Driver<Bool>
-        let findId: Driver<Void>
-        let findPassword: Driver<Void>
-        let signUp: Driver<Void>
+        let toFindId: Driver<Void>
+        let toFindPassword: Driver<Void>
+        let toSignUp: Driver<Void>
         let loginIn: Driver<Bool>
         let logedIn: Driver<Bool>
     }
@@ -30,6 +30,7 @@ final class LoginViewModel: ViewModelType {
     private weak var coordinator: LoginCoordinatable?
     private let loginService: LoginService
     
+    // MARK: - initializer
     init(coordinator: LoginCoordinatable, loginService: LoginService = LoginService()) {
         self.coordinator = coordinator
         self.loginService = loginService
@@ -47,13 +48,13 @@ final class LoginViewModel: ViewModelType {
             .map({ !$0.isEmpty && !$1.isEmpty })
             .distinctUntilChanged()
         
-        let findId = input.findIdTap
+        let toFindId = input.toFindIdTap
             .do(onNext: { _ in self.coordinator?.toFindID() })
         
-        let findPassword = input.findPasswordTap
+        let toFindPassword = input.toFindPasswordTap
             .do(onNext: { _ in self.coordinator?.toFindPassword() })
         
-        let signUp = input.signUpTap
+        let toSignUp = input.toSignUpTap
             .do(onNext: { _ in self.coordinator?.toSignUp() })
         
         let loginTap = input.loginTap.withLatestFrom(idAndPassword)
@@ -73,9 +74,9 @@ final class LoginViewModel: ViewModelType {
         
         return Output(
             loginEnabled: loginEnabled,
-            findId: findId,
-            findPassword: findPassword,
-            signUp: signUp,
+            toFindId: toFindId,
+            toFindPassword: toFindPassword,
+            toSignUp: toSignUp,
             loginIn: logingIn,
             logedIn: logedIn
         )

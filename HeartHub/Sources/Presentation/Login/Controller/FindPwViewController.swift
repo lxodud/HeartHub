@@ -34,8 +34,8 @@ final class FindPwViewController: UIViewController {
     }
     
     @objc private func didTapFindIdButton() {
-        let findIdVC = FindIdViewController()
-        navigationController?.pushViewController(findIdVC, animated: true)
+//        let findIdVC = FindIdViewController()
+//        navigationController?.pushViewController(findIdVC, animated: true)
     }
     
     @objc private func didTapSignUpButton() {

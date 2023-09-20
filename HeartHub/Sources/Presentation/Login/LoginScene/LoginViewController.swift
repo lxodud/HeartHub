@@ -106,7 +106,8 @@ final class LoginViewController: UIViewController {
         view.backgroundColor = .white
         return view
     }()
-
+    
+    // MARK: - initializer
     init(loginViewModel: LoginViewModel) {
         self.loginViewModel = loginViewModel
         super.init(nibName: nil, bundle: nil)
@@ -129,9 +130,9 @@ final class LoginViewController: UIViewController {
             id: idTextField.rx.text.orEmpty.asDriver(),
             password: passwordTextField.rx.text.orEmpty.asDriver(),
             loginTap: loginButton.rx.tap.asDriver(),
-            findIdTap: toFindIdButton.rx.tap.asDriver(),
-            findPasswordTap: toFindPasswordButton.rx.tap.asDriver(),
-            signUpTap: toSignUpButton.rx.tap.asDriver()
+            toFindIdTap: toFindIdButton.rx.tap.asDriver(),
+            toFindPasswordTap: toFindPasswordButton.rx.tap.asDriver(),
+            toSignUpTap: toSignUpButton.rx.tap.asDriver()
         )
         
         let output = loginViewModel.transform(input)
@@ -140,15 +141,15 @@ final class LoginViewController: UIViewController {
             .drive(loginButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        output.findId
+        output.toFindId
             .drive()
             .disposed(by: disposeBag)
         
-        output.findPassword
+        output.toFindPassword
             .drive()
             .disposed(by: disposeBag)
         
-        output.signUp
+        output.toSignUp
             .drive()
             .disposed(by: disposeBag)
         

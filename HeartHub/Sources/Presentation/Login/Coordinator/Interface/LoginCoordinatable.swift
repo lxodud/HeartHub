@@ -6,6 +6,7 @@
 //
 
 protocol LoginCoordinatable: Coordinatable {
+    func toLogin()
     func toFindPassword()
     func toFindID()
     func toSignUp()
