@@ -102,7 +102,7 @@
 		56348A672A6318B0005BB635 /* FindIdPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A662A6318B0005BB635 /* FindIdPopUpView.swift */; };
 		56348A692A6319EA005BB635 /* FindIdPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A682A6319EA005BB635 /* FindIdPopUpViewController.swift */; };
 		56348A8F2A6E7ECC005BB635 /* FindPwView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A8E2A6E7ECC005BB635 /* FindPwView.swift */; };
-		56348A912A6E8286005BB635 /* FindPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A902A6E8286005BB635 /* FindPwViewController.swift */; };
+		56348A912A6E8286005BB635 /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A902A6E8286005BB635 /* FindPasswordViewController.swift */; };
 		56348A932A6E841E005BB635 /* FindPwPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A922A6E841E005BB635 /* FindPwPopUpView.swift */; };
 		56348A952A6E87BF005BB635 /* FindPwPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A942A6E87BF005BB635 /* FindPwPopUpViewController.swift */; };
 		5642627F2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5642627E2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift */; };
@@ -233,7 +233,7 @@
 		56348A662A6318B0005BB635 /* FindIdPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdPopUpView.swift; sourceTree = "<group>"; };
 		56348A682A6319EA005BB635 /* FindIdPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdPopUpViewController.swift; sourceTree = "<group>"; };
 		56348A8E2A6E7ECC005BB635 /* FindPwView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPwView.swift; sourceTree = "<group>"; };
-		56348A902A6E8286005BB635 /* FindPwViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPwViewController.swift; sourceTree = "<group>"; };
+		56348A902A6E8286005BB635 /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
 		56348A922A6E841E005BB635 /* FindPwPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPwPopUpView.swift; sourceTree = "<group>"; };
 		56348A942A6E87BF005BB635 /* FindPwPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPwPopUpViewController.swift; sourceTree = "<group>"; };
 		5642627E2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailVerificationResponseDTO.swift; sourceTree = "<group>"; };
@@ -299,6 +299,7 @@
 		0C143BF02AB6DC0100C0A5A9 /* FindPasswordScene */ = {
 			isa = PBXGroup;
 			children = (
+				56348A902A6E8286005BB635 /* FindPasswordViewController.swift */,
 			);
 			path = FindPasswordScene;
 			sourceTree = "<group>";
@@ -1120,7 +1121,6 @@
 		561462152A6EE3EA00C0AC1F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				56348A902A6E8286005BB635 /* FindPwViewController.swift */,
 				56348A682A6319EA005BB635 /* FindIdPopUpViewController.swift */,
 				56348A942A6E87BF005BB635 /* FindPwPopUpViewController.swift */,
 			);
@@ -1420,7 +1420,7 @@
 				0CCF04D92A9CBF1E00D66F37 /* MyPageMainViewController.swift in Sources */,
 				56348A8F2A6E7ECC005BB635 /* FindPwView.swift in Sources */,
 				0CE2CD9B2A9347EB00129724 /* GetUserInformationResponseDTO.swift in Sources */,
-				56348A912A6E8286005BB635 /* FindPwViewController.swift in Sources */,
+				56348A912A6E8286005BB635 /* FindPasswordViewController.swift in Sources */,
 				0CF4C8532AAC9A27004F805E /* NetworkDeserializable.swift in Sources */,
 				0CF4C8632AACB0C1004F805E /* CheckMateExistResponseDTO.swift in Sources */,
 				569013612A7E635200715D23 /* GameSegmentControll.swift in Sources */,

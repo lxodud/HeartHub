@@ -92,6 +92,10 @@ extension LoginAlertViewController {
         
         NSLayoutConstraint.activate([
             // MARK: - titleLabel Constraints
+            titleLabel.widthAnchor.constraint(
+                equalTo: safeArea.widthAnchor,
+                multiplier: 0.7
+            ),
             titleLabel.centerXAnchor.constraint(
                 equalTo: safeArea.centerXAnchor
             ),

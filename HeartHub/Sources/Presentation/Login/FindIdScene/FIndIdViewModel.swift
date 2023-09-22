@@ -23,7 +23,7 @@ final class FindIdViewModel: ViewModelType {
         let toFindPassword: Driver<Void>
         let toSignUp: Driver<Void>
         let searchingId: Driver<Bool>
-        let foundId: Driver<Bool>
+        let foundId: Driver<Void>
     }
     
     private weak var coordinator: LoginCoordinatable?
@@ -53,7 +53,11 @@ final class FindIdViewModel: ViewModelType {
                 return self.accountUseCase.findId(with: email)
                     .asDriver(onErrorJustReturn: false)
             })
-            .do { _ in self.coordinator?.showAlert(message: "하잇") }
+            .map({ isSuccess in
+                isSuccess == true ? "메일로 아이디가 전송되었습니다." : "사용자 정보를 찾을 수 없습니다."
+            })
+            .do { self.coordinator?.showAlert(message: $0) }
+            .map({ _ in })
         
         let searchingId = Observable.from([
             input.findIdTap.map({ _ in true }),

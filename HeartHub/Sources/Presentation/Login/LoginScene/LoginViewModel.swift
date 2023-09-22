@@ -24,7 +24,8 @@ final class LoginViewModel: ViewModelType {
         let toFindPassword: Driver<Void>
         let toSignUp: Driver<Void>
         let loginIn: Driver<Bool>
-        let logedIn: Driver<Bool>
+        let loginSuccess: Driver<Void>
+        let loginFail: Driver<Void>
     }
     
     private weak var coordinator: LoginCoordinatable?
@@ -52,20 +53,32 @@ final class LoginViewModel: ViewModelType {
             .distinctUntilChanged()
         
         let toFindId = input.toFindIdTap
-            .do(onNext: { _ in self.coordinator?.toFindID() })
+            .do { _ in self.coordinator?.toFindID() }
         
         let toFindPassword = input.toFindPasswordTap
-            .do(onNext: { _ in self.coordinator?.toFindPassword() })
+            .do { _ in self.coordinator?.toFindPassword() }
         
         let toSignUp = input.toSignUpTap
-            .do(onNext: { _ in self.coordinator?.toSignUp() })
+            .do { _ in self.coordinator?.toSignUp() }
         
         let loginTap = input.loginTap.withLatestFrom(idAndPassword)
         
         let logedIn = loginTap.flatMapLatest({ pair in
-                return self.authenticationUseCase.login(id: pair.id, password: pair.password)
-                    .asDriver(onErrorJustReturn: false)
-            })
+            return self.authenticationUseCase.login(id: pair.id, password: pair.password)
+                .asDriver(onErrorJustReturn: false)
+        })
+        
+        let loginSuccess = logedIn.filter({ $0 == true })
+            .do { _ in
+                // TODO: 탭바로 이동
+            }
+            .map({ _ in })
+        
+        
+        let loginFail = logedIn.filter({ $0 == false })
+            .do { _ in self.coordinator?.showAlert(message: "로그인 실패") }
+            .map({ _ in })
+        
         
         let logingIn = Observable.from([
             loginTap.map { _ in true },
@@ -80,7 +93,8 @@ final class LoginViewModel: ViewModelType {
             toFindPassword: toFindPassword,
             toSignUp: toSignUp,
             loginIn: logingIn,
-            logedIn: logedIn
+            loginSuccess: loginSuccess,
+            loginFail: loginFail
         )
     }
 }

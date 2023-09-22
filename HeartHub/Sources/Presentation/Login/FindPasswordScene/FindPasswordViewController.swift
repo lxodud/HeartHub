@@ -1,16 +1,15 @@
 //
-//  LoginViewController.swift
+//  FindPasswordViewController.swift
 //  HeartHub
 //
-//  Created by 이태영 on 2023/09/15.
+//  Created by 이태영 on 2023/09/22.
 //
 
 import RxCocoa
 import RxSwift
 import UIKit
 
-final class LoginViewController: UIViewController {
-    private let loginViewModel: LoginViewModel
+final class FindPasswordViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private let backgroundView = LoginBackgroundView()
@@ -21,17 +20,17 @@ final class LoginViewController: UIViewController {
         keyboardType: .default
     )
     
-    private let passwordTextField = LoginTextField(
-        placeholder: "비밀번호를 입력하세요",
+    private let emailTextField = LoginTextField(
+        placeholder: "이메일을 입력하세요",
         keyboardType: .default,
         isSecureTextEntry: true
     )
     
-    private let loginButton: UIButton = {
+    private let findPasswordButton: UIButton = {
         let button = UIButton(type: .custom)
         button.layer.cornerRadius = 8
         button.clipsToBounds = true
-        button.setTitle("로그인", for: .normal)
+        button.setTitle("비밀번호 찾기", for: .normal)
         button.titleLabel?.font = UIFont.init(name: "Pretendard-SemiBold", size: 16)
         button.setTitleColor(UIColor(red: 0.98, green: 0.18, blue: 0.74, alpha: 1), for: .normal)
         button.setTitleColor(.white, for: .disabled)
@@ -74,10 +73,10 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
-    private let toFindPasswordButton: UIButton = {
+    private let toLoginButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .clear
-        button.setTitle("비밀번호 찾기", for: .normal)
+        button.setTitle("로그인", for: .normal)
         button.titleLabel?.textAlignment = .center
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.init(name: "Pretendard-Regular", size: 16)
@@ -106,146 +105,26 @@ final class LoginViewController: UIViewController {
         view.backgroundColor = .white
         return view
     }()
-    
-    // MARK: - initializer
-    init(loginViewModel: LoginViewModel) {
-        self.loginViewModel = loginViewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSubview()
         configureLayout()
-        bind(to: loginViewModel)
-        bindUI()
-    }
-    
-    private func bind(to: LoginViewModel) {
-        let input = LoginViewModel.Input(
-            id: idTextField.rx.text.orEmpty.asDriver(),
-            password: passwordTextField.rx.text.orEmpty.asDriver(),
-            loginTap: loginButton.rx.tap.asDriver(),
-            toFindIdTap: toFindIdButton.rx.tap.asDriver(),
-            toFindPasswordTap: toFindPasswordButton.rx.tap.asDriver(),
-            toSignUpTap: toSignUpButton.rx.tap.asDriver()
-        )
-        
-        let output = loginViewModel.transform(input)
-        
-        output.loginEnabled
-            .drive(loginButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        output.toFindId
-            .drive()
-            .disposed(by: disposeBag)
-        
-        output.toFindPassword
-            .drive()
-            .disposed(by: disposeBag)
-        
-        output.toSignUp
-            .drive()
-            .disposed(by: disposeBag)
-        
-        output.loginIn
-            .do { [weak self] _ in
-                self?.view.endEditing(true)
-            }
-            .drive(activityIndicator.rx.isAnimating)
-            .disposed(by: disposeBag)
-        
-        output.loginSuccess
-            .drive()
-            .disposed(by: disposeBag)
-        
-        output.loginFail
-            .drive()
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindUI() {
-        let tapBackground = UITapGestureRecognizer()
-        view.addGestureRecognizer(tapBackground)
-        
-        tapBackground.rx.event
-            .subscribe(onNext: { [weak self] _ in
-                self?.view.endEditing(true)
-            })
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx
-            .notification(UIResponder.keyboardWillShowNotification)
-            .filter({ [weak self] _ in
-                guard let self = self else {
-                    return false
-                }
-                
-                return self.view.frame.origin.y >= 0
-            })
-            .compactMap({ $0.userInfo as? NSDictionary })
-            .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
-            .compactMap({ $0.cgRectValue.height })
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                
-                self.view.frame.origin.y -= $0
-            })
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx
-            .notification(UIResponder.keyboardWillHideNotification)
-            .filter({ [weak self] _ in
-                guard let self = self else {
-                    return false
-                }
-                
-                return self.view.frame.origin.y < 0
-            })
-            .compactMap({ $0.userInfo as? NSDictionary })
-            .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
-            .compactMap({ $0.cgRectValue.height })
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else {
-                    return
-                }
-                
-                self.view.frame.origin.y += $0
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func showAlert() {
-        let alert = UIAlertController(title: "로그인 실패", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "확인", style: .default) { _ in
-            self.dismiss(animated: true)
-        }
-        alert.addAction(action)
-        self.present(alert, animated: true)
     }
 }
 
 // MARK: - Configure UI
-extension LoginViewController {
+extension FindPasswordViewController {
     private func configureSubview() {
-        [idTextField, passwordTextField, loginButton].forEach {
+        [idTextField, emailTextField, findPasswordButton].forEach {
             idPasswordLoginStackView.addArrangedSubview($0)
         }
         
-        idPasswordLoginStackView.setCustomSpacing(20, after: passwordTextField)
+        idPasswordLoginStackView.setCustomSpacing(20, after: emailTextField)
         
-        [toFindIdButton,
+        [toLoginButton,
          firstSeperateView,
-         toFindPasswordButton,
+         toFindIdButton,
          secondSeperateView,
          toSignUpButton
         ].forEach {
@@ -290,7 +169,7 @@ extension LoginViewController {
             ),
             
             // MARK: - loginButton Constraints
-            loginButton.heightAnchor.constraint(
+            findPasswordButton.heightAnchor.constraint(
                 equalTo: safeArea.heightAnchor,
                 multiplier: 0.06
             ),

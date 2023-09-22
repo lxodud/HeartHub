@@ -51,8 +51,8 @@ extension LoginCoordinator: LoginCoordinatable {
     }
     
     func toFindPassword() {
-        let findPwViewController = FindPwViewController()
-        window.rootViewController = findPwViewController
+        let findPasswordViewController = FindPasswordViewController()
+        window.rootViewController = findPasswordViewController
         UIView.transition(
             with: window,
             duration: 0.5,
