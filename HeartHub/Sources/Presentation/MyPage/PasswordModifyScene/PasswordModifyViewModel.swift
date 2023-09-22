@@ -54,26 +54,26 @@ extension PasswordModifyViewModel {
             }
         
         let modifyed = input.tapModify.withLatestFrom(currentAndNewPassword)
-            .flatMap({ password in
+            .flatMap{ password in
                 return self.accountUseCase.modifyPassword(
                     current: password.current,
                     new: password.new
                 )
                 .andThen(Observable.just(false))
                 .asDriver(onErrorJustReturn: false)
-            })
+            }
             
         let modifying = Observable.from([
-            input.tapModify.map({ _ in true }),
-            modifyed.map({ _ in false })
+            input.tapModify.map { _ in true },
+            modifyed.map { _ in false }
         ])
             .merge()
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: false)
         
         let canModify = Observable.from([
-            currentAndNewPassword.map({ !$0.isEmpty && !$1.isEmpty }),
-            modifying.map({ !$0 })
+            currentAndNewPassword.map { !$0.isEmpty && !$1.isEmpty },
+            modifying.map { !$0 }
         ])
             .merge()
             .distinctUntilChanged()

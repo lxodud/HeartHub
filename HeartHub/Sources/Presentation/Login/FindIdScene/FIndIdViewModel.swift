@@ -49,15 +49,15 @@ final class FindIdViewModel: ViewModelType {
             .do { _ in self.coordinator?.toSignUp() }
         
         let foundId = input.findIdTap.withLatestFrom(input.email)
-            .flatMap({ email in
+            .flatMap { email in
                 return self.accountUseCase.findId(with: email)
                     .asDriver(onErrorJustReturn: false)
-            })
-            .map({ isSuccess in
+            }
+            .map { isSuccess in
                 isSuccess == true ? "메일로 아이디가 전송되었습니다." : "사용자 정보를 찾을 수 없습니다."
-            })
+            }
             .do { self.coordinator?.showAlert(message: $0) }
-            .map({ _ in })
+            .map { _ in }
         
         let searchingId = Observable.from([
             input.findIdTap.map({ _ in true }),
@@ -68,8 +68,8 @@ final class FindIdViewModel: ViewModelType {
             .asDriver(onErrorJustReturn: false)
         
         let findIdEnabled = Observable.from([
-            input.email.map({ !$0.isEmpty }),
-            searchingId.map({ !$0 })
+            input.email.map { !$0.isEmpty },
+            searchingId.map { !$0 }
         ])
             .merge()
             .distinctUntilChanged()

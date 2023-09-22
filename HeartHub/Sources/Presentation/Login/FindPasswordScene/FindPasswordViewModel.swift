@@ -57,26 +57,26 @@ final class FindPasswordViewModel: ViewModelType {
             .do { _ in self.coordinator?.toSignUp() }
         
         let foundPassword = input.findPasswordTap.withLatestFrom(idAndEmail)
-            .flatMap({
+            .flatMap {
                 return self.accountUseCase.findPassword(id: $0.id, email: $0.email)
                     .asDriver(onErrorJustReturn: false)
-            })
-            .map({ isSuccess in
+            }
+            .map { isSuccess in
                 isSuccess == true ? "메일로 임시 비밀번호가 전송되었습니다." : "사용자 정보를 찾을 수 없습니다."
-            })
+            }
             .do { self.coordinator?.showAlert(message: $0) }
-            .map({ _ in })
+            .map { _ in }
         
         let searchingPassword = Driver.from([
-            input.findPasswordTap.map({ _ in true }),
-            foundPassword.map({ _ in false })
+            input.findPasswordTap.map { _ in true },
+            foundPassword.map { _ in false }
         ])
             .merge()
             .distinctUntilChanged()
         
         let findPasswordEnabled = Driver.from([
-            idAndEmail.map({ !$0.id.isEmpty && !$0.email.isEmpty }),
-            searchingPassword.map({ !$0 })
+            idAndEmail.map { !$0.id.isEmpty && !$0.email.isEmpty },
+            searchingPassword.map { !$0 }
         ])
             .merge()
             .distinctUntilChanged()

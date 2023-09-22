@@ -9,16 +9,13 @@ import Foundation
 import RxSwift
 
 final class AccountRepository {
-    private let myInformationRepository: MyInformationRepositoryType
     private let networkManager: NetworkManagerType
     private let tokenProvider: TokenProvidable
     
     init(
-        myInformationRepository: MyInformationRepositoryType = MyInformationRepository(),
         networkManager: NetworkManagerType = NetworkManager(),
         tokenProvider: TokenProvidable = TokenProvider()
     ) {
-        self.myInformationRepository = myInformationRepository
         self.networkManager = networkManager
         self.tokenProvider = tokenProvider
     }
@@ -47,7 +44,6 @@ extension AccountRepository: AccountRepositoryType {
     func withdraw() -> Completable {
         let builder = MyPageRequestBuilderFactory.makeDeleteUserRequestBuilder()
         tokenProvider.deleteToken()
-        myInformationRepository.removeMyInformation()
         
         return networkManager.request(builder)
             .ignoreElements()
@@ -58,7 +54,7 @@ extension AccountRepository: AccountRepositoryType {
         let builder = UserRelatedRequestBuilderFactory.makeFindUsernameRequest(of: email)
         
         return networkManager.request(builder)
-            .map({ $0.data })
+            .map { $0.data }
     }
     
     func findPassword(id: String, email: String) -> Observable<Bool> {
@@ -66,6 +62,6 @@ extension AccountRepository: AccountRepositoryType {
         let builder = UserRelatedRequestBuilderFactory.makeFindPasswordRequest(of: requestBody)
         
         return networkManager.request(builder)
-            .map({ $0.data })
+            .map { $0.data }
     }
 }

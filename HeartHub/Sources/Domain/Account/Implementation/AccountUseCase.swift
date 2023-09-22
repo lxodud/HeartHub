@@ -10,9 +10,14 @@ import RxSwift
 
 final class AccountUseCase {
     private let accountRepository: AccountRepositoryType
-    
-    init(accountRepository: AccountRepositoryType = AccountRepository()) {
+    private let myInformationRepository: MyInformationRepositoryType
+
+    init(
+        accountRepository: AccountRepositoryType = AccountRepository(),
+        myInformationRepository: MyInformationRepositoryType = MyInformationRepository()
+    ) {
         self.accountRepository = accountRepository
+        self.myInformationRepository = myInformationRepository
     }
 }
 
@@ -23,6 +28,7 @@ extension AccountUseCase: AccountUseCaseType {
     }
     
     func withdraw() -> Completable {
+        myInformationRepository.removeMyInformation()
         return accountRepository.withdraw()
     }
     

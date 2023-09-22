@@ -131,7 +131,7 @@ final class WithdrawalViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.withdrawResult
-            .filter({ $0 == false })
+            .filter { $0 == false }
             .do(onNext: { [weak self] _ in self?.showAlert() })
             .drive()
             .disposed(by: disposeBag)

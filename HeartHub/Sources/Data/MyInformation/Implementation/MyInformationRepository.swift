@@ -70,11 +70,11 @@ extension MyInformationRepository {
         var username: String = ""
         
         return networkManager.request(builder)
-            .do(onNext: { username = $0.data.myNickname })
-            .compactMap({ URL(string: $0.data.myImageUrl) })
-            .flatMap({ ImageProvider.shared.fetch(from: $0) })
-            .map({ UserInformation(profileImage: $0, nickname: username) })
-            .do(onNext: { self.upsertUserInformation(with: $0) })
+            .do { username = $0.data.myNickname }
+            .compactMap { URL(string: $0.data.myImageUrl) }
+            .flatMap { ImageProvider.shared.fetch(from: $0) }
+            .map { UserInformation(profileImage: $0, nickname: username) }
+            .do { self.upsertUserInformation(with: $0) }
     }
     
     func removeMyInformation() {

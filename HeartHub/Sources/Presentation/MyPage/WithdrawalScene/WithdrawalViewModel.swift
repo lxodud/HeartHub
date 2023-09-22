@@ -38,22 +38,22 @@ extension WithdrawalViewModel {
             }
         
         let withdrawResult = input.tapWithdraw
-            .flatMap({
+            .flatMap {
                 return self.accountUseCase.withdraw()
                     .andThen(Observable<Bool>.just((true)))
                     .asDriver(onErrorJustReturn: false)
-            })
+            }
         
         let withdrawing = Observable.from([
-            input.tapWithdraw.map({ _ in true }),
-            withdrawResult.map({ _ in false })
+            input.tapWithdraw.map { _ in true },
+            withdrawResult.map { _ in false }
         ])
             .merge()
             .asDriver(onErrorJustReturn: false)
         
         let withdrawEnable = Observable.from([
             isAgreed,
-            withdrawing.map({ !$0 }),
+            withdrawing.map { !$0 },
         ])
             .merge()
             .asDriver(onErrorJustReturn: false)

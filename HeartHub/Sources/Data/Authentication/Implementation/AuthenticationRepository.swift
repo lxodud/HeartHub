@@ -27,9 +27,9 @@ extension AuthenticationRepository: AuthenticationRepositoryType {
         let builder = UserRelatedRequestBuilderFactory.makeLoginRequest(of: loginInfo)
         
         return networkManager.request(builder)
-            .map({ Token(accessToken: $0.data.accessToken, refreshToken: $0.data.refreshToken)})
-            .do(onNext: { self.tokenProvider.saveToken(with: $0) })
-            .map({ _ in true})
+            .map { Token(accessToken: $0.data.accessToken, refreshToken: $0.data.refreshToken)}
+            .do { self.tokenProvider.saveToken(with: $0) }
+            .map { _ in true }
     }
     
     func logout() -> Completable {

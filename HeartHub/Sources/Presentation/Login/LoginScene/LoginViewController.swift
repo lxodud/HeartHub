@@ -181,13 +181,13 @@ final class LoginViewController: UIViewController {
         
         NotificationCenter.default.rx
             .notification(UIResponder.keyboardWillShowNotification)
-            .filter({ [weak self] _ in
+            .filter { [weak self] _ in
                 guard let self = self else {
                     return false
                 }
                 
                 return self.view.frame.origin.y >= 0
-            })
+            }
             .mapKeyboardHeight()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
@@ -201,13 +201,13 @@ final class LoginViewController: UIViewController {
         
         NotificationCenter.default.rx
             .notification(UIResponder.keyboardWillHideNotification)
-            .filter({ [weak self] _ in
+            .filter { [weak self] _ in
                 guard let self = self else {
                     return false
                 }
                 
                 return self.view.frame.origin.y < 0
-            })
+            }
             .mapKeyboardHeight()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in

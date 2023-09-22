@@ -81,7 +81,7 @@ final class ProfileModifyViewController: UIViewController {
 
     private func bind(to viewModel: ProfileModifyViewModel) {
         let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-            .map({ _ in })
+            .map { _ in }
             .asDriver(onErrorJustReturn: ())
         
         let input = ProfileModifyViewModel.Input(
@@ -92,7 +92,7 @@ final class ProfileModifyViewController: UIViewController {
         let output = viewModel.transform(input)
         
         output.profileImage
-            .map({ UIImage(data: $0) })
+            .map { UIImage(data: $0) }
             .drive(profileImageView.rx.image)
             .disposed(by: disposeBag)
         
@@ -101,14 +101,14 @@ final class ProfileModifyViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.initialNicknameAndImage
-            .map({ $0.nickname })
+            .map { $0.nickname }
             .drive(nicknameTextField.rx.text)
             .disposed(by: disposeBag)
         
         output.initialNicknameAndImage
-            .map({
+            .map {
                 UIImage(data: $0.profileImage) == nil ? UIImage(named: "basicProfileImage") : UIImage(data: $0.profileImage)
-            })
+            }
             .drive(profileImageView.rx.image)
             .disposed(by: disposeBag)
     }

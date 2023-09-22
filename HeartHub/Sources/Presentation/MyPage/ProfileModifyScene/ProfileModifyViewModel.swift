@@ -43,15 +43,15 @@ extension ProfileModifyViewModel {
                     return previous
                 }
             }
-            .map({ $0.trimmingCharacters(in: .whitespaces) })
+            .map { $0.trimmingCharacters(in: .whitespaces) }
             .distinctUntilChanged()
             .asDriver()
             
         let fetchUserInformation = input.viewWillAppear
-            .flatMapLatest({
+            .flatMapLatest {
                 return self.myInformationUseCase.fetchMyInformation()
                     .asDriver(onErrorJustReturn: UserInformation(profileImage: Data(), nickname: "닉네임"))
-            })
+            }
 
         return Output(
             profileImage: pickedImage.asDriver(onErrorJustReturn: Data()),

@@ -68,7 +68,7 @@ final class LoginViewModel: ViewModelType {
             .do { _ in
                 // TODO: 탭바로 이동
             }
-            .map({ _ in })
+            .map { _ in }
         
         
         let loginFail = logedIn.filter({ $0 == false })
