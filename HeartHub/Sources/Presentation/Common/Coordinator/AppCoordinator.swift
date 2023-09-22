@@ -19,8 +19,8 @@ final class AppCoordinator {
 // MARK: - Public Interface
 extension AppCoordinator: Coordinatable {
     func start() {
-        TokenRepository().deleteToken()
-        if TokenRepository().fetchAccessToken() == nil {
+        TokenProvider().deleteToken()
+        if TokenProvider().fetchAccessToken() == nil {
             showLogin()
         } else {
             showTabBar()

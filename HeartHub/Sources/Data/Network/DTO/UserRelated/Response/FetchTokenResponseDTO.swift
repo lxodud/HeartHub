@@ -12,4 +12,9 @@ struct FetchTokenResponseDTO: Decodable {
     let code: Int
     let message: String
     let data: Token
+    
+    struct Token: Decodable {
+        let accessToken: String
+        let refreshToken: String
+    }
 }

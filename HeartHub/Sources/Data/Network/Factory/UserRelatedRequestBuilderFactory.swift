@@ -44,7 +44,7 @@ struct UserRelatedRequestBuilderFactory {
         )
     }
     
-    static func makeSignInRequest(of body: SignInRequestDTO) -> JSONBodyRequestBuilder<FetchTokenResponseDTO> {
+    static func makeLoginRequest(of body: LoginRequestDTO) -> JSONBodyRequestBuilder<FetchTokenResponseDTO> {
         return JSONBodyRequestBuilder(
             httpMethod: .post,
             path: "/api/login",

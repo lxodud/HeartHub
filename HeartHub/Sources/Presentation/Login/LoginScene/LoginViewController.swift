@@ -160,18 +160,12 @@ final class LoginViewController: UIViewController {
             .drive(activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
                 
-        output.loginIn
-            .drive(onNext: { [weak self] _ in
-                self?.view.endEditing(true)
-            })
-            .disposed(by: disposeBag)
-                
         output.logedIn
             .filter({ $0 == false })
             .do(onNext: { [weak self] _ in self?.showAlert() })
             .drive()
             .disposed(by: disposeBag)
-        }
+    }
 
     private func bindUI() {
         let tapBackground = UITapGestureRecognizer()

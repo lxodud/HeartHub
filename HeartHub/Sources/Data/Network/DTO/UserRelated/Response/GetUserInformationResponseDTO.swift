@@ -12,4 +12,10 @@ struct GetUserInformationResponseDTO: Decodable {
     let code: Int
     let message: String
     let data: UserInformation
+    
+    struct UserInformation: Decodable {
+        let username: String
+        let nickname: String
+        let userImageUrl: String?
+    }
 }

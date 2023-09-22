@@ -39,8 +39,8 @@ final class FindPwViewController: UIViewController {
     }
     
     @objc private func didTapSignUpButton() {
-        let signUpVC = SignUpStartDateViewController()
-        navigationController?.pushViewController(signUpVC, animated: true)
+//        let signUpVC = SignUpStartDateViewController()
+//        navigationController?.pushViewController(signUpVC, animated: true)
     }
     
     @objc private func didTapFindPwButton() {
