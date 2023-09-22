@@ -117,6 +117,7 @@ final class FindIdViewController: UIViewController {
         configureSubview()
         configureLayout()
         bind(to: findIdViewModel)
+        bindUI()
     }
     
     private func bind(to viewModel: FindIdViewModel) {
@@ -148,6 +149,57 @@ final class FindIdViewController: UIViewController {
         
         output.searchingId
             .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI() {
+        let tapBackground = UITapGestureRecognizer()
+        view.addGestureRecognizer(tapBackground)
+        
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx
+            .notification(UIResponder.keyboardWillShowNotification)
+            .filter({ [weak self] _ in
+                guard let self = self else {
+                    return false
+                }
+                
+                return self.view.frame.origin.y >= 0
+            })
+            .mapKeyboardHeight()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                self.view.frame.origin.y -= $0
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx
+            .notification(UIResponder.keyboardWillHideNotification)
+            .filter({ [weak self] _ in
+                guard let self = self else {
+                    return false
+                }
+                
+                return self.view.frame.origin.y < 0
+            })
+            .mapKeyboardHeight()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                self.view.frame.origin.y += $0
+            })
             .disposed(by: disposeBag)
     }
 }

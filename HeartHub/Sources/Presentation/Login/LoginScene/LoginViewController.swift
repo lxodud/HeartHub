@@ -219,15 +219,6 @@ final class LoginViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
-    
-    private func showAlert() {
-        let alert = UIAlertController(title: "로그인 실패", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "확인", style: .default) { _ in
-            self.dismiss(animated: true)
-        }
-        alert.addAction(action)
-        self.present(alert, animated: true)
-    }
 }
 
 // MARK: - Configure UI
