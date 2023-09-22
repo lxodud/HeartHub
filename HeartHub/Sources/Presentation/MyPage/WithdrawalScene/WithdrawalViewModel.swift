@@ -22,10 +22,10 @@ final class WithdrawalViewModel: ViewModelType {
         let withdrawResult: Driver<Bool>
     }
     
-    private let withdrawUseCase: WithdrawUseCaseType
+    private let accountUseCase: AccountUseCaseType
     
-    init(withdrawUseCase: WithdrawUseCaseType = WithdrawUseCase()) {
-        self.withdrawUseCase = withdrawUseCase
+    init(accountUseCase: AccountUseCaseType = AccountUseCase()) {
+        self.accountUseCase = accountUseCase
     }
 }
 
@@ -39,7 +39,7 @@ extension WithdrawalViewModel {
         
         let withdrawResult = input.tapWithdraw
             .flatMap({
-                return self.withdrawUseCase.withdraw()
+                return self.accountUseCase.withdraw()
                     .andThen(Observable<Bool>.just((true)))
                     .asDriver(onErrorJustReturn: false)
             })

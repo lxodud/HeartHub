@@ -21,4 +21,8 @@ extension AccountUseCase: AccountUseCaseType {
     func modifyPassword(current: String, new: String ) -> Completable {
         return accountRepository.modifyPassword(current: current, new: new)
     }
+    
+    func withdraw() -> Completable {
+        return accountRepository.withdraw()
+    }
 }

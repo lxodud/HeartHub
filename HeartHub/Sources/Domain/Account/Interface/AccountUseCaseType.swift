@@ -10,4 +10,5 @@ import RxSwift
 
 protocol AccountUseCaseType {
     func modifyPassword(current: String, new: String ) -> Completable
+    func withdraw() -> Completable
 }

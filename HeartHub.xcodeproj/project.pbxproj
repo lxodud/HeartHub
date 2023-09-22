@@ -52,8 +52,6 @@
 		0C9F987C2ABB20C80084A938 /* MyInformationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F987B2ABB20C80084A938 /* MyInformationRepositoryType.swift */; };
 		0C9F98822ABB26710084A938 /* AuthenticationUseCaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98812ABB26710084A938 /* AuthenticationUseCaseType.swift */; };
 		0C9F98892ABB50B50084A938 /* MyInformationUseCaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98882ABB50B50084A938 /* MyInformationUseCaseType.swift */; };
-		0C9F98912ABD6EAE0084A938 /* WithdrawUseCaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98902ABD6EAE0084A938 /* WithdrawUseCaseType.swift */; };
-		0C9F98932ABD6F140084A938 /* WithdrawUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98922ABD6F140084A938 /* WithdrawUseCase.swift */; };
 		0C9F98982ABD6FC80084A938 /* AccountUseCaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98972ABD6FC80084A938 /* AccountUseCaseType.swift */; };
 		0C9F989A2ABD6FD20084A938 /* AccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98992ABD6FD20084A938 /* AccountUseCase.swift */; };
 		0C9F98A12ABD70810084A938 /* AccountRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98A02ABD70810084A938 /* AccountRepositoryType.swift */; };
@@ -180,8 +178,6 @@
 		0C9F987B2ABB20C80084A938 /* MyInformationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInformationRepositoryType.swift; sourceTree = "<group>"; };
 		0C9F98812ABB26710084A938 /* AuthenticationUseCaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUseCaseType.swift; sourceTree = "<group>"; };
 		0C9F98882ABB50B50084A938 /* MyInformationUseCaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInformationUseCaseType.swift; sourceTree = "<group>"; };
-		0C9F98902ABD6EAE0084A938 /* WithdrawUseCaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawUseCaseType.swift; sourceTree = "<group>"; };
-		0C9F98922ABD6F140084A938 /* WithdrawUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawUseCase.swift; sourceTree = "<group>"; };
 		0C9F98972ABD6FC80084A938 /* AccountUseCaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUseCaseType.swift; sourceTree = "<group>"; };
 		0C9F98992ABD6FD20084A938 /* AccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUseCase.swift; sourceTree = "<group>"; };
 		0C9F98A02ABD70810084A938 /* AccountRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepositoryType.swift; sourceTree = "<group>"; };
@@ -479,7 +475,7 @@
 			children = (
 				0CF4C8562AAC9C31004F805E /* Network */,
 				0C9F989C2ABD70560084A938 /* Account */,
-				0C9F98732ABB1BBA0084A938 /* AuthenticationRepository */,
+				0C9F98732ABB1BBA0084A938 /* Authentication */,
 				0CE2CD912A933DE600129724 /* MyInformation */,
 				0C63FF422A8E40620020D137 /* Token */,
 			);
@@ -660,13 +656,13 @@
 			path = DataMapping;
 			sourceTree = "<group>";
 		};
-		0C9F98732ABB1BBA0084A938 /* AuthenticationRepository */ = {
+		0C9F98732ABB1BBA0084A938 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				0C9F98742ABB1BC60084A938 /* Implementation */,
 				0C9F98752ABB1BCF0084A938 /* Interface */,
 			);
-			path = AuthenticationRepository;
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		0C9F98742ABB1BC60084A938 /* Implementation */ = {
@@ -741,31 +737,6 @@
 				0CADFF592AADEEC500253DA1 /* MyInformationUseCase.swift */,
 			);
 			path = Implementation;
-			sourceTree = "<group>";
-		};
-		0C9F988D2ABD6E920084A938 /* Withdraw */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F988F2ABD6E9F0084A938 /* Implemetation */,
-				0C9F988E2ABD6E9A0084A938 /* Interface */,
-			);
-			path = Withdraw;
-			sourceTree = "<group>";
-		};
-		0C9F988E2ABD6E9A0084A938 /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F98902ABD6EAE0084A938 /* WithdrawUseCaseType.swift */,
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
-		0C9F988F2ABD6E9F0084A938 /* Implemetation */ = {
-			isa = PBXGroup;
-			children = (
-				0C9F98922ABD6F140084A938 /* WithdrawUseCase.swift */,
-			);
-			path = Implemetation;
 			sourceTree = "<group>";
 		};
 		0C9F98942ABD6FAF0084A938 /* Account */ = {
@@ -1085,7 +1056,6 @@
 			children = (
 				0C9F98832ABB272F0084A938 /* Common */,
 				0C9F98942ABD6FAF0084A938 /* Account */,
-				0C9F988D2ABD6E920084A938 /* Withdraw */,
 				0C9F98842ABB273C0084A938 /* MyInformation */,
 				0C9F987D2ABB25CF0084A938 /* Authentication */,
 			);
@@ -1375,7 +1345,6 @@
 				5690136F2A7FCC7700715D23 /* LoginBackgroundView.swift in Sources */,
 				0C63FF462A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift in Sources */,
 				5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */,
-				0C9F98932ABD6F140084A938 /* WithdrawUseCase.swift in Sources */,
 				56DEBEDA2A7A9B24000BC687 /* GameMissionTableViewCell.swift in Sources */,
 				56348A952A6E87BF005BB635 /* FindPwPopUpViewController.swift in Sources */,
 				561462192A6EE50300C0AC1F /* FindIdViewController.swift in Sources */,
@@ -1444,7 +1413,6 @@
 				0C40FD8A2AB0554000F207DA /* PasswordModifyViewController.swift in Sources */,
 				0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */,
 				56348A672A6318B0005BB635 /* FindIdPopUpView.swift in Sources */,
-				0C9F98912ABD6EAE0084A938 /* WithdrawUseCaseType.swift in Sources */,
 				0CAFFF7D2AB2F2A300422FC7 /* LogoutAlertViewController.swift in Sources */,
 				0CE2CDA92A93A95F00129724 /* FetchReissueTokenResponseDTO.swift in Sources */,
 				0C40FD7D2AAF341600F207DA /* ProfileModifyViewModel.swift in Sources */,
