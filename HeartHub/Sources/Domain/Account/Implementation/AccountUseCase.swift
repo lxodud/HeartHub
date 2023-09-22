@@ -25,4 +25,8 @@ extension AccountUseCase: AccountUseCaseType {
     func withdraw() -> Completable {
         return accountRepository.withdraw()
     }
+    
+    func findId(with email: String) -> Observable<Bool> {
+        return accountRepository.findId(with: email)
+    }
 }

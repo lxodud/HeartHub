@@ -56,6 +56,7 @@
 		0C9F989A2ABD6FD20084A938 /* AccountUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98992ABD6FD20084A938 /* AccountUseCase.swift */; };
 		0C9F98A12ABD70810084A938 /* AccountRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98A02ABD70810084A938 /* AccountRepositoryType.swift */; };
 		0C9F98A32ABD70A40084A938 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98A22ABD70A40084A938 /* AccountRepository.swift */; };
+		0C9F98AD2ABD82380084A938 /* FindIdRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98AC2ABD82380084A938 /* FindIdRequestDTO.swift */; };
 		0CA858B02A6F981D00DFCFD5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */; };
 		0CADFF532AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF522AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift */; };
 		0CADFF582AADE7AE00253DA1 /* NicknameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF572AADE7AE00253DA1 /* NicknameService.swift */; };
@@ -182,6 +183,7 @@
 		0C9F98992ABD6FD20084A938 /* AccountUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUseCase.swift; sourceTree = "<group>"; };
 		0C9F98A02ABD70810084A938 /* AccountRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepositoryType.swift; sourceTree = "<group>"; };
 		0C9F98A22ABD70A40084A938 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
+		0C9F98AC2ABD82380084A938 /* FindIdRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdRequestDTO.swift; sourceTree = "<group>"; };
 		0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		0CADFF522AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRequestBuilderFactory.swift; sourceTree = "<group>"; };
 		0CADFF572AADE7AE00253DA1 /* NicknameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameService.swift; sourceTree = "<group>"; };
@@ -767,6 +769,7 @@
 		0C9F989C2ABD70560084A938 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				0C9F98AB2ABD82170084A938 /* DataMapping */,
 				0C9F989D2ABD705B0084A938 /* Implementation */,
 				0C9F989E2ABD70600084A938 /* Interface */,
 			);
@@ -787,6 +790,14 @@
 				0C9F98A02ABD70810084A938 /* AccountRepositoryType.swift */,
 			);
 			path = Interface;
+			sourceTree = "<group>";
+		};
+		0C9F98AB2ABD82170084A938 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				0C9F98AC2ABD82380084A938 /* FindIdRequestDTO.swift */,
+			);
+			path = DataMapping;
 			sourceTree = "<group>";
 		};
 		0CADFF542AADE46A00253DA1 /* MyPage */ = {
@@ -834,9 +845,9 @@
 			isa = PBXGroup;
 			children = (
 				0CEDD8A42AA8926F00662A03 /* Common */,
-				0CCF04D52A9CBDEE00D66F37 /* MyPage */,
 				561462142A6EE3DF00C0AC1F /* Login */,
 				0C6F45592A77AE9F0044EAC8 /* CoupleSpaceScene */,
+				0CCF04D52A9CBDEE00D66F37 /* MyPage */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1092,11 +1103,11 @@
 		561462142A6EE3DF00C0AC1F /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				0C143BF12AB6DC7F00C0A5A9 /* Common */,
 				0CAFFF8C2AB3618200422FC7 /* Coordinator */,
+				0C143BF12AB6DC7F00C0A5A9 /* Common */,
 				0C143BEE2AB6DBF100C0A5A9 /* LoginScene */,
-				0C143BF02AB6DC0100C0A5A9 /* FindPasswordScene */,
 				0C143BEF2AB6DBF800C0A5A9 /* FindIdScene */,
+				0C143BF02AB6DC0100C0A5A9 /* FindPasswordScene */,
 				56348A8A2A6DB17C005BB635 /* View */,
 				561462152A6EE3EA00C0AC1F /* Controller */,
 			);
@@ -1373,6 +1384,7 @@
 				0C4EF9902A7A430100539320 /* CoupleSpaceMainViewController.swift in Sources */,
 				5642627F2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift in Sources */,
 				0C59CF662A87E64000D847B7 /* FindPasswordRequestDTO.swift in Sources */,
+				0C9F98AD2ABD82380084A938 /* FindIdRequestDTO.swift in Sources */,
 				0C59CF622A87E1FD00D847B7 /* SetMateRequestDTO.swift in Sources */,
 				0C59CF552A87C1AE00D847B7 /* UserRelatedRequestBuilderFactory.swift in Sources */,
 				0CE2CD952A9342E600129724 /* ImageProvider.swift in Sources */,

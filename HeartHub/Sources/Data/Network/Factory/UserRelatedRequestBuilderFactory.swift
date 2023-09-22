@@ -89,7 +89,7 @@ struct UserRelatedRequestBuilderFactory {
         return JSONBodyRequestBuilder(
             httpMethod: .post,
             path: "/api/find/username",
-            jsonBody: email
+            jsonBody: FindIdRequestDTO(email: email)
         )
     }
     

@@ -14,6 +14,7 @@ final class FindIdViewModel: ViewModelType {
         let toLoginTap: Driver<Void>
         let toFindPasswordTap: Driver<Void>
         let toSignUpTap: Driver<Void>
+        let findIdTap: Driver<Void>
     }
     
     struct Output {
@@ -21,35 +22,63 @@ final class FindIdViewModel: ViewModelType {
         let toLogin: Driver<Void>
         let toFindPassword: Driver<Void>
         let toSignUp: Driver<Void>
+        let searchingId: Driver<Bool>
+        let foundId: Driver<Bool>
     }
     
     private weak var coordinator: LoginCoordinator?
+    private let accountUseCase: AccountUseCaseType
     
     // MARK: - initializer
-    init(coordinator: LoginCoordinator?) {
+    init(
+        coordinator: LoginCoordinator?,
+        accountUseCase: AccountUseCaseType = AccountUseCase()
+    ) {
         self.coordinator = coordinator
+        self.accountUseCase = accountUseCase
     }
     
     func transform(_ input: Input) -> Output {
-        let findIdEnabled = input.email
-            .map({ !$0.isEmpty })
-            .distinctUntilChanged()
-            .asDriver()
-        
         let toLogin = input.toLoginTap
-            .do(onNext: { _ in self.coordinator?.toLogin()})
+            .do { _ in self.coordinator?.toLogin() }
         
         let toFindPassword = input.toFindPasswordTap
-            .do(onNext: { _ in self.coordinator?.toFindPassword()})
+            .do { _ in self.coordinator?.toFindPassword() }
         
         let toSignUp = input.toSignUpTap
-            .do(onNext: { _ in self.coordinator?.toSignUp()})
-
+            .do { _ in self.coordinator?.toSignUp() }
+        
+        let foundId = input.findIdTap.withLatestFrom(input.email)
+            .flatMap({ email in
+                return self.accountUseCase.findId(with: email)
+                    .asDriver(onErrorJustReturn: false)
+            })
+            .debug()
+        
+        let searchingId = Observable.from([
+            input.findIdTap.map({ _ in true }),
+            foundId.map({ _ in false })
+        ])
+            .merge()
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+        
+        let findIdEnabled = Observable.from([
+            input.email.map({ !$0.isEmpty }),
+            searchingId.map({ !$0 })
+        ])
+            .merge()
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: false)
+        
+        
         return Output(
             findIdEnabled: findIdEnabled,
             toLogin: toLogin,
             toFindPassword: toFindPassword,
-            toSignUp: toSignUp
+            toSignUp: toSignUp,
+            searchingId: searchingId,
+            foundId: foundId
         )
     }
 }

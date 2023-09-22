@@ -11,4 +11,5 @@ import RxSwift
 protocol AccountRepositoryType {
     func modifyPassword(current: String, new: String) -> Completable
     func withdraw() -> Completable
+    func findId(with email: String) -> Observable<Bool>
 }

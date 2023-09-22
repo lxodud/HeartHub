@@ -53,4 +53,11 @@ extension AccountRepository: AccountRepositoryType {
             .ignoreElements()
             .asCompletable()
     }
+    
+    func findId(with email: String) -> Observable<Bool> {
+        let builder = UserRelatedRequestBuilderFactory.makeFindUsernameRequest(of: email)
+        
+        return networkManager.request(builder)
+            .map({ $0.data })
+    }
 }

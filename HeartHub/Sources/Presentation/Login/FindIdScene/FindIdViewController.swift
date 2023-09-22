@@ -2,7 +2,7 @@
 //  FindIdViewController.swift
 //  HeartHub
 //
-//  Created by 제민우 on 2023/07/16.
+//  Created by 이태영 on 2023/09/17.
 //
 
 import RxCocoa
@@ -124,8 +124,8 @@ final class FindIdViewController: UIViewController {
             email: emailTextField.rx.text.orEmpty.asDriver(),
             toLoginTap: toLoginButton.rx.tap.asDriver(),
             toFindPasswordTap: toFindPasswordButton.rx.tap.asDriver(),
-            toSignUpTap: toSignUpButton.rx.tap.asDriver()
-            
+            toSignUpTap: toSignUpButton.rx.tap.asDriver(),
+            findIdTap: findIdButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -144,6 +144,10 @@ final class FindIdViewController: UIViewController {
         
         output.toSignUp
             .drive()
+            .disposed(by: disposeBag)
+        
+        output.searchingId
+            .drive(activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
     }
 }
