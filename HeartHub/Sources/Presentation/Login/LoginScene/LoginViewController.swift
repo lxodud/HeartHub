@@ -188,9 +188,7 @@ final class LoginViewController: UIViewController {
                 
                 return self.view.frame.origin.y >= 0
             })
-            .compactMap({ $0.userInfo as? NSDictionary })
-            .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
-            .compactMap({ $0.cgRectValue.height })
+            .mapKeyboardHeight()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self = self else {
@@ -210,9 +208,7 @@ final class LoginViewController: UIViewController {
                 
                 return self.view.frame.origin.y < 0
             })
-            .compactMap({ $0.userInfo as? NSDictionary })
-            .compactMap({ $0.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue})
-            .compactMap({ $0.cgRectValue.height })
+            .mapKeyboardHeight()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self = self else {
@@ -329,3 +325,5 @@ extension LoginViewController {
         ])
     }
 }
+
+

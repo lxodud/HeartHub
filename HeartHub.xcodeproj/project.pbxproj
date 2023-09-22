@@ -58,6 +58,7 @@
 		0C9F98A32ABD70A40084A938 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98A22ABD70A40084A938 /* AccountRepository.swift */; };
 		0C9F98AD2ABD82380084A938 /* FindIdRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98AC2ABD82380084A938 /* FindIdRequestDTO.swift */; };
 		0C9F98B12ABD8DD60084A938 /* LoginAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98B02ABD8DD60084A938 /* LoginAlertViewController.swift */; };
+		0C9F98B42ABDB3260084A938 /* Observable+mapKeyboardHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98B32ABDB3260084A938 /* Observable+mapKeyboardHeight.swift */; };
 		0CA858B02A6F981D00DFCFD5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */; };
 		0CADFF532AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF522AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift */; };
 		0CADFF582AADE7AE00253DA1 /* NicknameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF572AADE7AE00253DA1 /* NicknameService.swift */; };
@@ -186,6 +187,7 @@
 		0C9F98A22ABD70A40084A938 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		0C9F98AC2ABD82380084A938 /* FindIdRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdRequestDTO.swift; sourceTree = "<group>"; };
 		0C9F98B02ABD8DD60084A938 /* LoginAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAlertViewController.swift; sourceTree = "<group>"; };
+		0C9F98B32ABDB3260084A938 /* Observable+mapKeyboardHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+mapKeyboardHeight.swift"; sourceTree = "<group>"; };
 		0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		0CADFF522AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRequestBuilderFactory.swift; sourceTree = "<group>"; };
 		0CADFF572AADE7AE00253DA1 /* NicknameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameService.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */,
 				0C6F45522A7384B10044EAC8 /* UIWindow+.swift */,
 				0C40FD842AB03DF200F207DA /* UIButton+backgroundColor.swift */,
+				0C9F98B32ABDB3260084A938 /* Observable+mapKeyboardHeight.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1473,6 +1476,7 @@
 				0C59CF702A89236A00D847B7 /* Token.swift in Sources */,
 				0CE2CD9D2A93875100129724 /* GetMyInformationResponseDTO.swift in Sources */,
 				0C4EF9AB2A829E0B00539320 /* CoupleSpaceAlbumViewController.swift in Sources */,
+				0C9F98B42ABDB3260084A938 /* Observable+mapKeyboardHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
