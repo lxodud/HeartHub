@@ -10,6 +10,7 @@ import RxSwift
 import UIKit
 
 final class FindPasswordViewController: UIViewController {
+    private let viewModel: FindPasswordViewModel
     private let disposeBag = DisposeBag()
     
     private let backgroundView = LoginBackgroundView()
@@ -105,11 +106,111 @@ final class FindPasswordViewController: UIViewController {
         view.backgroundColor = .white
         return view
     }()
-
+    
+    // MARK: - initializer
+    init(viewModel: FindPasswordViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSubview()
         configureLayout()
+        bind(to: viewModel)
+        bindUI()
+    }
+    
+    private func bind(to viewModel: FindPasswordViewModel) {
+        let input = FindPasswordViewModel.Input(
+            id: idTextField.rx.text.orEmpty.asDriver(),
+            email: emailTextField.rx.text.orEmpty.asDriver(),
+            findPasswordTap: findPasswordButton.rx.tap.asDriver(),
+            toFindIdTap: toFindIdButton.rx.tap.asDriver(),
+            toLoginTap: toLoginButton.rx.tap.asDriver(),
+            toSignUpTap: toSignUpButton.rx.tap.asDriver()
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.findPasswordEnabled
+            .drive(findPasswordButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.foundPassword
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.searchingPassword
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        output.toFindId
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.toLogin
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.toSignUp
+            .drive()
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI() {
+        let tapBackground = UITapGestureRecognizer()
+        view.addGestureRecognizer(tapBackground)
+        
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx
+            .notification(UIResponder.keyboardWillShowNotification)
+            .filter({ [weak self] _ in
+                guard let self = self else {
+                    return false
+                }
+                
+                return self.view.frame.origin.y >= 0
+            })
+            .mapKeyboardHeight()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                self.view.frame.origin.y -= $0
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx
+            .notification(UIResponder.keyboardWillHideNotification)
+            .filter({ [weak self] _ in
+                guard let self = self else {
+                    return false
+                }
+                
+                return self.view.frame.origin.y < 0
+            })
+            .mapKeyboardHeight()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                self.view.frame.origin.y += $0
+            })
+            .disposed(by: disposeBag)
     }
 }
 

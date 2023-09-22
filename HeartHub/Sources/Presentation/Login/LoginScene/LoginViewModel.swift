@@ -23,7 +23,7 @@ final class LoginViewModel: ViewModelType {
         let toFindId: Driver<Void>
         let toFindPassword: Driver<Void>
         let toSignUp: Driver<Void>
-        let loginIn: Driver<Bool>
+        let logingIn: Driver<Bool>
         let loginSuccess: Driver<Void>
         let loginFail: Driver<Void>
     }
@@ -48,12 +48,8 @@ final class LoginViewModel: ViewModelType {
                 (id: $0, password: $1)
             })
         
-        let loginEnabled = idAndPassword
-            .map({ !$0.isEmpty && !$1.isEmpty })
-            .distinctUntilChanged()
-        
         let toFindId = input.toFindIdTap
-            .do { _ in self.coordinator?.toFindID() }
+            .do { _ in self.coordinator?.toFindId() }
         
         let toFindPassword = input.toFindPasswordTap
             .do { _ in self.coordinator?.toFindPassword() }
@@ -62,13 +58,13 @@ final class LoginViewModel: ViewModelType {
             .do { _ in self.coordinator?.toSignUp() }
         
         let loginTap = input.loginTap.withLatestFrom(idAndPassword)
-        
-        let logedIn = loginTap.flatMapLatest({ pair in
+    
+        let logedIn = loginTap.flatMapLatest { pair in
             return self.authenticationUseCase.login(id: pair.id, password: pair.password)
                 .asDriver(onErrorJustReturn: false)
-        })
+        }
         
-        let loginSuccess = logedIn.filter({ $0 == true })
+        let loginSuccess = logedIn.filter { $0 == true }
             .do { _ in
                 // TODO: 탭바로 이동
             }
@@ -77,22 +73,27 @@ final class LoginViewModel: ViewModelType {
         
         let loginFail = logedIn.filter({ $0 == false })
             .do { _ in self.coordinator?.showAlert(message: "로그인 실패") }
-            .map({ _ in })
+            .map { _ in }
         
         
-        let logingIn = Observable.from([
+        let logingIn = Driver.from([
             loginTap.map { _ in true },
             logedIn.map { _ in false }
         ])
             .merge()
-            .asDriver(onErrorJustReturn: false)
+        
+        let loginEnabled = Driver.from([
+            idAndPassword.map { !$0.isEmpty && !$1.isEmpty },
+            logingIn.map { !$0 }
+        ])
+            .merge()
         
         return Output(
             loginEnabled: loginEnabled,
             toFindId: toFindId,
             toFindPassword: toFindPassword,
             toSignUp: toSignUp,
-            loginIn: logingIn,
+            logingIn: logingIn,
             loginSuccess: loginSuccess,
             loginFail: loginFail
         )

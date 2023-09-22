@@ -153,7 +153,7 @@ final class LoginViewController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        output.loginIn
+        output.logingIn
             .do { [weak self] _ in
                 self?.view.endEditing(true)
             }

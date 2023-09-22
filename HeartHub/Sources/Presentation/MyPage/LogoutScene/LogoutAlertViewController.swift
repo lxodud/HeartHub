@@ -114,7 +114,8 @@ extension LogoutAlertViewController {
             
             // MARK: - cancelButton Constraints
             cancelButton.heightAnchor.constraint(
-                equalTo: titleLabel.heightAnchor
+                equalTo: safeArea.heightAnchor,
+                multiplier: 0.13
             ),
             cancelButton.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,

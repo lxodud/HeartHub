@@ -59,6 +59,7 @@
 		0C9F98AD2ABD82380084A938 /* FindIdRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98AC2ABD82380084A938 /* FindIdRequestDTO.swift */; };
 		0C9F98B12ABD8DD60084A938 /* LoginAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98B02ABD8DD60084A938 /* LoginAlertViewController.swift */; };
 		0C9F98B42ABDB3260084A938 /* Observable+mapKeyboardHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98B32ABDB3260084A938 /* Observable+mapKeyboardHeight.swift */; };
+		0C9F98B62ABDB5650084A938 /* FindPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98B52ABDB5650084A938 /* FindPasswordViewModel.swift */; };
 		0CA858B02A6F981D00DFCFD5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */; };
 		0CADFF532AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF522AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift */; };
 		0CADFF582AADE7AE00253DA1 /* NicknameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF572AADE7AE00253DA1 /* NicknameService.swift */; };
@@ -188,6 +189,7 @@
 		0C9F98AC2ABD82380084A938 /* FindIdRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdRequestDTO.swift; sourceTree = "<group>"; };
 		0C9F98B02ABD8DD60084A938 /* LoginAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAlertViewController.swift; sourceTree = "<group>"; };
 		0C9F98B32ABDB3260084A938 /* Observable+mapKeyboardHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+mapKeyboardHeight.swift"; sourceTree = "<group>"; };
+		0C9F98B52ABDB5650084A938 /* FindPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewModel.swift; sourceTree = "<group>"; };
 		0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		0CADFF522AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRequestBuilderFactory.swift; sourceTree = "<group>"; };
 		0CADFF572AADE7AE00253DA1 /* NicknameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameService.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				56348A902A6E8286005BB635 /* FindPasswordViewController.swift */,
+				0C9F98B52ABDB5650084A938 /* FindPasswordViewModel.swift */,
 			);
 			path = FindPasswordScene;
 			sourceTree = "<group>";
@@ -498,7 +501,6 @@
 				0CAFFF722AB19C2700422FC7 /* ChangePasswordRequestDTO.swift */,
 				0C59CF5F2A87DB1200D847B7 /* LoginRequestDTO.swift */,
 				0C59CF612A87E1FD00D847B7 /* SetMateRequestDTO.swift */,
-				0C59CF652A87E64000D847B7 /* FindPasswordRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -803,6 +805,7 @@
 			isa = PBXGroup;
 			children = (
 				0C9F98AC2ABD82380084A938 /* FindIdRequestDTO.swift */,
+				0C59CF652A87E64000D847B7 /* FindPasswordRequestDTO.swift */,
 			);
 			path = DataMapping;
 			sourceTree = "<group>";
@@ -1357,6 +1360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C9F98B62ABDB5650084A938 /* FindPasswordViewModel.swift in Sources */,
 				0C59CF6A2A87EA9E00D847B7 /* KeychainManager.swift in Sources */,
 				0CE2CD712A90817A00129724 /* FetchTokenResponseDTO.swift in Sources */,
 				5690136F2A7FCC7700715D23 /* LoginBackgroundView.swift in Sources */,

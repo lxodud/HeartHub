@@ -8,6 +8,11 @@
 import Foundation
 
 struct FindPasswordRequestDTO: Encodable {
+    let id: String
     let email: String
-    let username: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "username"
+        case email
+    }
 }

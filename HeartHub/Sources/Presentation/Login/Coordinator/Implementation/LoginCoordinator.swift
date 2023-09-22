@@ -36,7 +36,7 @@ extension LoginCoordinator: LoginCoordinatable {
         )
     }
     
-    func toFindID() {
+    func toFindId() {
         let findIdViewController = FindIdViewController(
             findIdViewModel: FindIdViewModel(coordinator: self)
         )
@@ -51,7 +51,10 @@ extension LoginCoordinator: LoginCoordinatable {
     }
     
     func toFindPassword() {
-        let findPasswordViewController = FindPasswordViewController()
+        let findPasswordViewController = FindPasswordViewController(
+            viewModel: FindPasswordViewModel(coordinator: self)
+        )
+        
         window.rootViewController = findPasswordViewController
         UIView.transition(
             with: window,

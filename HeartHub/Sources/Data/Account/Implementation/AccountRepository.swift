@@ -60,4 +60,12 @@ extension AccountRepository: AccountRepositoryType {
         return networkManager.request(builder)
             .map({ $0.data })
     }
+    
+    func findPassword(id: String, email: String) -> Observable<Bool> {
+        let requestBody = FindPasswordRequestDTO(id: id, email: email)
+        let builder = UserRelatedRequestBuilderFactory.makeFindPasswordRequest(of: requestBody)
+        
+        return networkManager.request(builder)
+            .map({ $0.data })
+    }
 }

@@ -29,4 +29,8 @@ extension AccountUseCase: AccountUseCaseType {
     func findId(with email: String) -> Observable<Bool> {
         return accountRepository.findId(with: email)
     }
+    
+    func findPassword(id: String, email: String) -> Observable<Bool> {
+        return accountRepository.findPassword(id: id, email: email)
+    }
 }

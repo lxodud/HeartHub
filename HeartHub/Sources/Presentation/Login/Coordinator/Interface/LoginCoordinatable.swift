@@ -8,7 +8,7 @@
 protocol LoginCoordinatable: Coordinatable {
     func toLogin()
     func toFindPassword()
-    func toFindID()
+    func toFindId()
     func toSignUp()
     func showAlert(message: String)
 }

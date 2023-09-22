@@ -11,6 +11,7 @@ final class LoginAlertViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Pretendard-SemiBold", size: 24)
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -107,7 +108,8 @@ extension LoginAlertViewController {
             
             // MARK: - closeButton Constraints
             closeButton.heightAnchor.constraint(
-                equalTo: titleLabel.heightAnchor
+                equalTo: safeArea.heightAnchor,
+                multiplier: 0.13
             ),
             closeButton.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
