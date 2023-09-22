@@ -1,5 +1,5 @@
 //
-//  WithdrawUseCase.swift
+//  AccountUseCase.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/09/22.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class WithdrawUseCase {
+final class AccountUseCase {
     private let accountRepository: AccountRepositoryType
     
     init(accountRepository: AccountRepositoryType = AccountRepository()) {
@@ -16,8 +16,9 @@ final class WithdrawUseCase {
     }
 }
 
-extension WithdrawUseCase: WithdrawUseCaseType {
-    func withdraw() -> Completable {
-        return accountRepository.withdraw()
+// MARK: - Public Interface
+extension AccountUseCase: AccountUseCaseType {
+    func modifyPassword(current: String, new: String ) -> Completable {
+        return accountRepository.modifyPassword(current: current, new: new)
     }
 }

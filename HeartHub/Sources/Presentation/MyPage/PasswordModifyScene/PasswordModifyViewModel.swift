@@ -26,10 +26,10 @@ final class PasswordModifyViewModel: ViewModelType {
         let modifyed: Driver<Bool>
     }
     
-    private let passwordUseCase: PasswordUseCaseType
+    private let accountUseCase: AccountUseCaseType
     
-    init(passwordUseCase: PasswordUseCaseType = PasswordUseCase()) {
-        self.passwordUseCase = passwordUseCase
+    init(accountUseCase: AccountUseCaseType = AccountUseCase()) {
+        self.accountUseCase = accountUseCase
     }
 }
 
@@ -55,7 +55,7 @@ extension PasswordModifyViewModel {
         
         let modifyed = input.tapModify.withLatestFrom(currentAndNewPassword)
             .flatMap({ password in
-                return self.passwordUseCase.modifyPassword(
+                return self.accountUseCase.modifyPassword(
                     current: password.current,
                     new: password.new
                 )

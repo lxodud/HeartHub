@@ -28,12 +28,15 @@ final class LoginViewModel: ViewModelType {
     }
     
     private weak var coordinator: LoginCoordinatable?
-    private let loginUseCase: LoginUseCaseType
+    private let authenticationUseCase: AuthenticationUseCaseType
     
     // MARK: - initializer
-    init(coordinator: LoginCoordinatable, loginUseCase: LoginUseCaseType = LoginUseCase()) {
+    init(
+        coordinator: LoginCoordinatable,
+        authenticationUseCase: AuthenticationUseCaseType = AuthenticationUseCase()
+    ) {
         self.coordinator = coordinator
-        self.loginUseCase = loginUseCase
+        self.authenticationUseCase = authenticationUseCase
     }
     
     func transform(_ input: Input) -> Output {
@@ -60,7 +63,7 @@ final class LoginViewModel: ViewModelType {
         let loginTap = input.loginTap.withLatestFrom(idAndPassword)
         
         let logedIn = loginTap.flatMapLatest({ pair in
-                return self.loginUseCase.login(id: pair.id, password: pair.password)
+                return self.authenticationUseCase.login(id: pair.id, password: pair.password)
                     .asDriver(onErrorJustReturn: false)
             })
         
