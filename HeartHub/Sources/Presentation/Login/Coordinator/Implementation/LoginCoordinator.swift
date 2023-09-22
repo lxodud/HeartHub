@@ -9,6 +9,7 @@ import UIKit
 
 final class LoginCoordinator {
     private let window: UIWindow
+    private let alertTransitionDelegate = AlertTransitionDelegate()
 
     init(window: UIWindow) {
         self.window = window
@@ -64,5 +65,12 @@ extension LoginCoordinator: LoginCoordinatable {
     func toSignUp() {
         // TODO: - SignUpCoordinator 구현
         print(#function)
+    }
+    
+    func showAlert(message: String) {
+        let alert = LoginAlertViewController(title: message)
+        alert.transitioningDelegate = alertTransitionDelegate
+        alert.modalPresentationStyle = .custom
+        window.rootViewController?.present(alert, animated: true)
     }
 }

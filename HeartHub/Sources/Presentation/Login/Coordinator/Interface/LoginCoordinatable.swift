@@ -10,4 +10,5 @@ protocol LoginCoordinatable: Coordinatable {
     func toFindPassword()
     func toFindID()
     func toSignUp()
+    func showAlert(message: String)
 }

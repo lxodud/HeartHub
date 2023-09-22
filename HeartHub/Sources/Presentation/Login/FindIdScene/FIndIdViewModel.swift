@@ -26,12 +26,12 @@ final class FindIdViewModel: ViewModelType {
         let foundId: Driver<Bool>
     }
     
-    private weak var coordinator: LoginCoordinator?
+    private weak var coordinator: LoginCoordinatable?
     private let accountUseCase: AccountUseCaseType
     
     // MARK: - initializer
     init(
-        coordinator: LoginCoordinator?,
+        coordinator: LoginCoordinatable?,
         accountUseCase: AccountUseCaseType = AccountUseCase()
     ) {
         self.coordinator = coordinator
@@ -53,7 +53,7 @@ final class FindIdViewModel: ViewModelType {
                 return self.accountUseCase.findId(with: email)
                     .asDriver(onErrorJustReturn: false)
             })
-            .debug()
+            .do { _ in self.coordinator?.showAlert(message: "하잇") }
         
         let searchingId = Observable.from([
             input.findIdTap.map({ _ in true }),
