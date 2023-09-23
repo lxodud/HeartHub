@@ -37,7 +37,7 @@ final class ProfileModifyViewController: UIViewController {
             string: "닉네임을 작성해주세요",
             attributes: [
                 NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.07, green: 0.07, blue: 0.07, alpha: 0.5),
-                NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 20)!
+                NSAttributedString.Key.font: UIFont(name: "Pretendard-Regular", size: 20) ?? UIFont()
             ]
         )
         

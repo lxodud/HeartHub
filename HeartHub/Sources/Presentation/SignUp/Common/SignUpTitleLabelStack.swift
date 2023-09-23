@@ -26,12 +26,10 @@ final class SignUpTitleLabelStackView: UIStackView {
         return label
     }()
     
+    // MARK: - initializer
     init(title: String, description: String) {
         super.init(frame: .zero)
-        titleLabel.text = title
-        descriptionLabel.text = description
-        
-        configureInitialSettings()
+        configureInitialSettings(with: title, and: description)
         configureSubview()
     }
     
@@ -42,7 +40,10 @@ final class SignUpTitleLabelStackView: UIStackView {
 
 // MARK: - Configure UI
 extension SignUpTitleLabelStackView {
-    private func configureInitialSettings() {
+    private func configureInitialSettings(with title: String, and description: String) {
+        titleLabel.text = title
+        descriptionLabel.text = description
+        
         axis = .vertical
         alignment = .fill
         distribution = .fill

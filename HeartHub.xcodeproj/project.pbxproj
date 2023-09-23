@@ -48,6 +48,9 @@
 		0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */; };
 		0C9790832ABEFC0F001BD3BD /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */; };
 		0C9790892ABF0116001BD3BD /* SignUpTitleLabelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */; };
+		0C97908B2ABF02AD001BD3BD /* StartDateInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97908A2ABF02AD001BD3BD /* StartDateInputViewController.swift */; };
+		0C97908D2ABF1255001BD3BD /* SignUpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */; };
+		0C97908F2ABF1DC1001BD3BD /* SignUpBottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */; };
 		0C9F986F2ABB13520084A938 /* NetworkManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */; };
 		0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98712ABB1B180084A938 /* TokenProvidable.swift */; };
 		0C9F98782ABB1C800084A938 /* AuthenticationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */; };
@@ -173,6 +176,9 @@
 		0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinatable.swift; sourceTree = "<group>"; };
 		0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
 		0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTitleLabelStack.swift; sourceTree = "<group>"; };
+		0C97908A2ABF02AD001BD3BD /* StartDateInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateInputViewController.swift; sourceTree = "<group>"; };
+		0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDateTextField.swift; sourceTree = "<group>"; };
+		0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomButton.swift; sourceTree = "<group>"; };
 		0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerType.swift; sourceTree = "<group>"; };
 		0C9F98712ABB1B180084A938 /* TokenProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvidable.swift; sourceTree = "<group>"; };
 		0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryType.swift; sourceTree = "<group>"; };
@@ -624,17 +630,20 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
-		0C9790842ABEFCEA001BD3BD /* StartDateScene */ = {
+		0C9790842ABEFCEA001BD3BD /* StartDateInputScene */ = {
 			isa = PBXGroup;
 			children = (
+				0C97908A2ABF02AD001BD3BD /* StartDateInputViewController.swift */,
 			);
-			path = StartDateScene;
+			path = StartDateInputScene;
 			sourceTree = "<group>";
 		};
 		0C9790872ABF00F7001BD3BD /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */,
+				0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */,
+				0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -828,7 +837,7 @@
 			children = (
 				0C9F98B82ABDE6260084A938 /* Coordinator */,
 				0C9790872ABF00F7001BD3BD /* Common */,
-				0C9790842ABEFCEA001BD3BD /* StartDateScene */,
+				0C9790842ABEFCEA001BD3BD /* StartDateInputScene */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -1413,14 +1422,17 @@
 				0CAFFF8E2AB3619B00422FC7 /* LoginCoordinator.swift in Sources */,
 				0CAFFF752AB1A18A00422FC7 /* PasswordModifyViewModel.swift in Sources */,
 				0C9F98892ABB50B50084A938 /* MyInformationUseCaseType.swift in Sources */,
+				0C97908F2ABF1DC1001BD3BD /* SignUpBottomButton.swift in Sources */,
 				0C6F454F2A701D520044EAC8 /* HeartHubProfileImageView.swift in Sources */,
 				0CC33AC22A5281C1001EF4E7 /* AppDelegate.swift in Sources */,
 				0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */,
 				0CE2CDE02A9B716200129724 /* HeartHubFloatingButton.swift in Sources */,
 				0CF4C8652AADA903004F805E /* JSONBodyRequestBuilder.swift in Sources */,
+				0C97908B2ABF02AD001BD3BD /* StartDateInputViewController.swift in Sources */,
 				5690137D2A80EEA200715D23 /* HeartHubUserInfoInputTextField.swift in Sources */,
 				0CAFFF7A2AB2F0A000422FC7 /* AlertPresentaionController.swift in Sources */,
 				0CEDD8A22AA4B57E00662A03 /* MyPageCell.swift in Sources */,
+				0C97908D2ABF1255001BD3BD /* SignUpDateTextField.swift in Sources */,
 				0CAFFF782AB2153700422FC7 /* AlertTransitionDelegate.swift in Sources */,
 				569013672A7E6D0700715D23 /* GameClearViewController.swift in Sources */,
 				0CC33AC42A5281C1001EF4E7 /* SceneDelegate.swift in Sources */,
