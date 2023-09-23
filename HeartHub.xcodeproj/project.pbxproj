@@ -47,6 +47,7 @@
 		0C6F45532A7384B10044EAC8 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6F45522A7384B10044EAC8 /* UIWindow+.swift */; };
 		0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */; };
 		0C9790832ABEFC0F001BD3BD /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */; };
+		0C9790892ABF0116001BD3BD /* SignUpTitleLabelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */; };
 		0C9F986F2ABB13520084A938 /* NetworkManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */; };
 		0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98712ABB1B180084A938 /* TokenProvidable.swift */; };
 		0C9F98782ABB1C800084A938 /* AuthenticationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */; };
@@ -171,6 +172,7 @@
 		0C6F45522A7384B10044EAC8 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
 		0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinatable.swift; sourceTree = "<group>"; };
 		0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
+		0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTitleLabelStack.swift; sourceTree = "<group>"; };
 		0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerType.swift; sourceTree = "<group>"; };
 		0C9F98712ABB1B180084A938 /* TokenProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvidable.swift; sourceTree = "<group>"; };
 		0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryType.swift; sourceTree = "<group>"; };
@@ -622,6 +624,21 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		0C9790842ABEFCEA001BD3BD /* StartDateScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = StartDateScene;
+			sourceTree = "<group>";
+		};
+		0C9790872ABF00F7001BD3BD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		0C9F986A2ABB09E80084A938 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +827,8 @@
 			isa = PBXGroup;
 			children = (
 				0C9F98B82ABDE6260084A938 /* Coordinator */,
+				0C9790872ABF00F7001BD3BD /* Common */,
+				0C9790842ABEFCEA001BD3BD /* StartDateScene */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -1362,6 +1381,7 @@
 				569013712A80004700715D23 /* LoginTextField.swift in Sources */,
 				0C9F98982ABD6FC80084A938 /* AccountUseCaseType.swift in Sources */,
 				0C143BFF2AB86BB900C0A5A9 /* FIndIdViewModel.swift in Sources */,
+				0C9790892ABF0116001BD3BD /* SignUpTitleLabelStack.swift in Sources */,
 				5651FC7C2A7A7FB800965300 /* GameViewController.swift in Sources */,
 				0C4EF9A12A7BFB3700539320 /* MypickDataSource.swift in Sources */,
 				0C59CF6E2A89223500D847B7 /* TokenProvider.swift in Sources */,
