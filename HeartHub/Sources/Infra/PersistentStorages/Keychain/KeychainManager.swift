@@ -28,7 +28,6 @@ extension KeychainManager {
     ) -> OSStatus {
         let status = SecItemAdd(attributes as CFDictionary, nil)
         return status
-        
     }
     
     @discardableResult
