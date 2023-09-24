@@ -49,7 +49,7 @@ extension HeartHubUserInfoInputTextField {
         
         clipsToBounds = true
         layer.cornerRadius = 18
-        layer.borderColor = #colorLiteral(red: 0.86, green: 0.86, blue: 0.86, alpha: 1)
+        layer.borderColor = UIColor.systemGray4.cgColor
         layer.borderWidth = 1
     }
 }

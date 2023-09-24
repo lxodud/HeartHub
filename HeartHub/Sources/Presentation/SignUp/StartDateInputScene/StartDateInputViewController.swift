@@ -20,7 +20,6 @@ final class StartDateInputViewController: UIViewController {
     
     private let dateTextField: UITextField = SignUpDateTextField(placeholder: "우리의 시작")
     private let selectDoneButton = UIBarButtonItem(systemItem: .done)
-    
     private let startDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -32,6 +31,8 @@ final class StartDateInputViewController: UIViewController {
     
     private let nextButton: UIButton = SignUpBottomButton(title: "다음")
     
+    
+    // MARK: - initializer
     init(viewModel: StartDateInputViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -86,7 +87,7 @@ final class StartDateInputViewController: UIViewController {
     }
 }
 
-// MARK: Configure UI
+// MARK: - Configure UI
 extension StartDateInputViewController {
     private func configureSuperview() {
         view.backgroundColor = .systemBackground
@@ -111,7 +112,7 @@ extension StartDateInputViewController {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            // MARK: titleLabel Constraints
+            // MARK: - titleLabel Constraints
             titleLabel.centerYAnchor.constraint(
                 equalTo: safeArea.centerYAnchor,
                 constant: -(view.bounds.height * 0.35)
@@ -124,7 +125,7 @@ extension StartDateInputViewController {
                 multiplier: 0.8
             ),
             
-            // MARK: dateTextField Constraints
+            // MARK: - dateTextField Constraints
             dateTextField.topAnchor.constraint(
                 equalTo: titleLabel.bottomAnchor,
                 constant: 30
@@ -134,13 +135,13 @@ extension StartDateInputViewController {
             ),
             dateTextField.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
-                multiplier: 0.8
+                multiplier: 0.85
             ),
             dateTextField.heightAnchor.constraint(
                 equalToConstant: 35
             ),
             
-            // MARK: nextButton Constraints
+            // MARK: - nextButton Constraints
             nextButton.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor,
                 constant: -30

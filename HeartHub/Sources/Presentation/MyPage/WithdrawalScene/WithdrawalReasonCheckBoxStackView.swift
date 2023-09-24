@@ -17,8 +17,8 @@ final class WithdrawalReasonCheckBoxStackView: UIStackView {
     
     private let checkButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "RadioBtnUnChecked"), for: .normal)
-        button.setImage(UIImage(named: "RadioBtnChecked"), for: .selected)
+        button.setImage(UIImage(named: "RadioButtonUnChecked"), for: .normal)
+        button.setImage(UIImage(named: "RadioButtonChecked"), for: .selected)
         return button
     }()
     

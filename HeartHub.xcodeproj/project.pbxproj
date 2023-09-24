@@ -56,6 +56,7 @@
 		0C97909C2AC04DE5001BD3BD /* SignUpUseCaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97909B2AC04DE5001BD3BD /* SignUpUseCaseType.swift */; };
 		0C97909E2AC04DFA001BD3BD /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97909D2AC04DFA001BD3BD /* SignUpUseCase.swift */; };
 		0C9790A02AC04FD4001BD3BD /* SignUpDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */; };
+		0C9790A32AC0526E001BD3BD /* AccountProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790A22AC0526E001BD3BD /* AccountProfileInputViewController.swift */; };
 		0C9F986F2ABB13520084A938 /* NetworkManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */; };
 		0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98712ABB1B180084A938 /* TokenProvidable.swift */; };
 		0C9F98782ABB1C800084A938 /* AuthenticationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */; };
@@ -189,6 +190,7 @@
 		0C97909B2AC04DE5001BD3BD /* SignUpUseCaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCaseType.swift; sourceTree = "<group>"; };
 		0C97909D2AC04DFA001BD3BD /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDateFormatter.swift; sourceTree = "<group>"; };
+		0C9790A22AC0526E001BD3BD /* AccountProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileInputViewController.swift; sourceTree = "<group>"; };
 		0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerType.swift; sourceTree = "<group>"; };
 		0C9F98712ABB1B180084A938 /* TokenProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvidable.swift; sourceTree = "<group>"; };
 		0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryType.swift; sourceTree = "<group>"; };
@@ -321,7 +323,6 @@
 				5690136E2A7FCC7700715D23 /* LoginBackgroundView.swift */,
 				569013702A80004700715D23 /* LoginTextField.swift */,
 				0C9F98B02ABD8DD60084A938 /* LoginAlertViewController.swift */,
-				0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -656,6 +657,7 @@
 				0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */,
 				0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */,
 				0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */,
+				0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -692,6 +694,14 @@
 				0C9790992AC04894001BD3BD /* SignUpInformation.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0C9790A12AC0517E001BD3BD /* AccountProfileInputScene */ = {
+			isa = PBXGroup;
+			children = (
+				0C9790A22AC0526E001BD3BD /* AccountProfileInputViewController.swift */,
+			);
+			path = AccountProfileInputScene;
 			sourceTree = "<group>";
 		};
 		0C9F986A2ABB09E80084A938 /* Implementation */ = {
@@ -884,6 +894,7 @@
 				0C9F98B82ABDE6260084A938 /* Coordinator */,
 				0C9790872ABF00F7001BD3BD /* Common */,
 				0C9790842ABEFCEA001BD3BD /* StartDateInputScene */,
+				0C9790A12AC0517E001BD3BD /* AccountProfileInputScene */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -1494,6 +1505,7 @@
 				0C40FD802AAF351B00F207DA /* WithdrawalViewController.swift in Sources */,
 				0C9F98A12ABD70810084A938 /* AccountRepositoryType.swift in Sources */,
 				0CF4C84B2AAB3F49004F805E /* ProfileModifyViewController.swift in Sources */,
+				0C9790A32AC0526E001BD3BD /* AccountProfileInputViewController.swift in Sources */,
 				56C048912A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift in Sources */,
 				0CCF04D92A9CBF1E00D66F37 /* MyPageMainViewController.swift in Sources */,
 				0CE2CD9B2A9347EB00129724 /* GetUserInformationResponseDTO.swift in Sources */,
