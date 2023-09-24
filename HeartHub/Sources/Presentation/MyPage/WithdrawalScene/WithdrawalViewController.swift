@@ -90,11 +90,15 @@ final class WithdrawalViewController: UIViewController {
     private let withdrawButton: UIButton = {
         let button = UIButton()
         button.setTitle("계정 삭제", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 16)
+        
+        button.setTitleColor(UIColor(red: 0.067, green: 0.067, blue: 0.067, alpha: 1), for: .normal)
+        button.setTitleColor(.systemGray, for: .disabled)
+        
         let normalColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
         button.setBackgroundColor(.systemGray4, for: .disabled)
         button.setBackgroundColor(normalColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 16)
-        button.isEnabled = false
+        
         button.clipsToBounds = true
         button.layer.cornerRadius = 20
         return button

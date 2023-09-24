@@ -30,6 +30,10 @@ final class HeartHubUserInfoInputTextField: UITextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: insets)
     }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: insets)
+    }
 }
 
 // MARK: Configure TextField

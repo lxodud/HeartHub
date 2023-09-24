@@ -58,16 +58,18 @@ final class PasswordModifyViewController: UIViewController {
     }()
     
     private let passwordModifyButton: UIButton = {
-        let button = UIButton(type: .custom)
+        let button = UIButton()
         button.layer.cornerRadius = 18
         button.setTitle("비밀번호 변경하기", for: .normal)
         button.titleLabel?.font = UIFont.init(name: "Pretendard-Regular", size: 14)
         button.setTitleColor(UIColor(red: 0.067, green: 0.067, blue: 0.067, alpha: 1), for: .normal)
-        button.clipsToBounds = true
-        button.isEnabled = false
+        button.setTitleColor(.systemGray, for: .disabled)
+        
         let normalColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1)
         button.setBackgroundColor(.systemGray4, for: .disabled)
         button.setBackgroundColor(normalColor, for: .normal)
+        
+        button.clipsToBounds = true
         return button
     }()
     

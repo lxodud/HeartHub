@@ -18,12 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        
-        let navigationController = UINavigationController(rootViewController: StartDateInputViewController())
-        navigationController.isNavigationBarHidden = false
-        window?.rootViewController = navigationController
-//        appCoordinator = AppCoordinator(window: window ?? UIWindow())
-//        appCoordinator?.start()
+
+        appCoordinator = AppCoordinator(window: window ?? UIWindow())
+        appCoordinator?.start()
         
         self.window?.backgroundColor = .systemBackground
         self.window?.makeKeyAndVisible()

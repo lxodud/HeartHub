@@ -56,6 +56,7 @@ extension WithdrawalViewModel {
             withdrawing.map { !$0 },
         ])
             .merge()
+            .startWith(false)
             .asDriver(onErrorJustReturn: false)
         
         return Output(

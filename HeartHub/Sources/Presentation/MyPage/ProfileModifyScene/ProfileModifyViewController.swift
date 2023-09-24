@@ -46,13 +46,17 @@ final class ProfileModifyViewController: UIViewController {
     
     private let profileModifyButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.layer.cornerRadius = 18
         button.setTitle("프로필로 적용하기", for: .normal)
         button.titleLabel?.font = UIFont.init(name: "Pretendard-Regular", size: 14)
         button.setTitleColor(UIColor(red: 0.067, green: 0.067, blue: 0.067, alpha: 1), for: .normal)
-        button.clipsToBounds = true
+        button.setTitleColor(.systemGray, for: .disabled)
+        
         let normalColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1)
         button.setBackgroundColor(normalColor, for: .normal)
+        
+        button.layer.cornerRadius = 18
+        button.clipsToBounds = true
+        
         return button
     }()
     

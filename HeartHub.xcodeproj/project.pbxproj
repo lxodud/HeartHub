@@ -51,6 +51,7 @@
 		0C97908B2ABF02AD001BD3BD /* StartDateInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97908A2ABF02AD001BD3BD /* StartDateInputViewController.swift */; };
 		0C97908D2ABF1255001BD3BD /* SignUpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */; };
 		0C97908F2ABF1DC1001BD3BD /* SignUpBottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */; };
+		0C9790912AC010E5001BD3BD /* StartDateInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790902AC010E5001BD3BD /* StartDateInputViewModel.swift */; };
 		0C9F986F2ABB13520084A938 /* NetworkManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */; };
 		0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98712ABB1B180084A938 /* TokenProvidable.swift */; };
 		0C9F98782ABB1C800084A938 /* AuthenticationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */; };
@@ -179,6 +180,7 @@
 		0C97908A2ABF02AD001BD3BD /* StartDateInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateInputViewController.swift; sourceTree = "<group>"; };
 		0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDateTextField.swift; sourceTree = "<group>"; };
 		0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomButton.swift; sourceTree = "<group>"; };
+		0C9790902AC010E5001BD3BD /* StartDateInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateInputViewModel.swift; sourceTree = "<group>"; };
 		0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerType.swift; sourceTree = "<group>"; };
 		0C9F98712ABB1B180084A938 /* TokenProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvidable.swift; sourceTree = "<group>"; };
 		0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryType.swift; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				0C97908A2ABF02AD001BD3BD /* StartDateInputViewController.swift */,
+				0C9790902AC010E5001BD3BD /* StartDateInputViewModel.swift */,
 			);
 			path = StartDateInputScene;
 			sourceTree = "<group>";
@@ -1466,6 +1469,7 @@
 				0C9F987C2ABB20C80084A938 /* MyInformationRepositoryType.swift in Sources */,
 				0C4EF9972A7B966F00539320 /* HeartHubImagePickerCell.swift in Sources */,
 				0C4EF99C2A7BF63100539320 /* HeartPickDataSource.swift in Sources */,
+				0C9790912AC010E5001BD3BD /* StartDateInputViewModel.swift in Sources */,
 				0C684F452A77D53200A31865 /* CoupleImageBetweenHeartView.swift in Sources */,
 				0CE2CD8B2A91277000129724 /* BasicResponseDTO.swift in Sources */,
 				569013652A7E6CFD00715D23 /* GameMissionViewController.swift in Sources */,

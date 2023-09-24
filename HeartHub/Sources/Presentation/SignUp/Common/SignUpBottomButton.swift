@@ -26,8 +26,10 @@ extension SignUpBottomButton {
         setTitle(title, for: .normal)
         titleLabel?.font = UIFont.init(name: "Pretendard-SemiBold", size: 14)
         setTitleColor(UIColor(red: 0.067, green: 0.067, blue: 0.067, alpha: 1), for: .normal)
+        setTitleColor(.systemGray, for: .disabled)
         
         let normalColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1)
+        setBackgroundColor(.systemGray4, for: .disabled)
         setBackgroundColor(normalColor, for: .normal)
         
         layer.cornerRadius = 18
