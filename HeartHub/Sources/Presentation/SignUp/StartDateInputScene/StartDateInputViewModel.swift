@@ -12,17 +12,24 @@ import RxSwift
 final class StartDateInputViewModel: ViewModelType {
     struct Input {
         let date: Observable<Date>
+        let tapNext: Driver<Void>
     }
     
     struct Output {
         let formattedDate: Driver<String>
         let isNextEnable: Driver<Bool>
+        let toNext: Driver<Void>
     }
     
     private let coordinator: SignUpCoordinatable
-    
-    init(coordinator: SignUpCoordinatable) {
+    private let signUpUseCase: SignUpUseCaseType
+
+    init(
+        coordinator: SignUpCoordinatable,
+        signUpUseCase: SignUpUseCaseType
+    ) {
         self.coordinator = coordinator
+        self.signUpUseCase = signUpUseCase
     }
 }
 
@@ -30,6 +37,7 @@ final class StartDateInputViewModel: ViewModelType {
 extension StartDateInputViewModel {
     func transform(_ input: Input) -> Output {
         let formattedDate = input.date
+            .do { self.signUpUseCase.upsertStartDate($0) }
             .map { SignUpDateFormatter.shared.string(from: $0) }
             .asDriver(onErrorJustReturn: "")
         
@@ -39,25 +47,13 @@ extension StartDateInputViewModel {
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: false)
         
+        let toNext = input.tapNext
+            .do { _ in }
+        
         return Output(
             formattedDate: formattedDate,
-            isNextEnable: isNextEnable
+            isNextEnable: isNextEnable,
+            toNext: toNext
         )
-    }
-}
-
-final class SignUpDateFormatter {
-    static let shared = SignUpDateFormatter()
-    
-    private init() { }
-    
-    private let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
-        return dateFormatter
-    }()
-    
-    func string(from: Date) -> String {
-        return dateFormatter.string(from: from)
     }
 }

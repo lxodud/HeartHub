@@ -13,12 +13,12 @@ enum Gender {
 }
 
 struct SignUpInfomation {
-    var startDate: Date?
-    var birth: Date?
-    var id: String?
-    var password: String?
-    var gender: Gender?
-    var nickname: String?
-    var email: String?
-    var isAgreeMarketing: Bool?
+    var startDate: Date
+    var birth: Date
+    var id: String
+    var password: String
+    var gender: Gender
+    var nickname: String
+    var email: String
+    var isAgreeMarketing: Bool
 }

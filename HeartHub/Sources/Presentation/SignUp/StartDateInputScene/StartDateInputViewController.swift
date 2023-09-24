@@ -54,7 +54,8 @@ final class StartDateInputViewController: UIViewController {
         let date = selectDoneButton.rx.tap.withLatestFrom(startDatePicker.rx.date)
         
         let input = StartDateInputViewModel.Input(
-            date: date
+            date: date,
+            tapNext: nextButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -66,6 +67,10 @@ final class StartDateInputViewController: UIViewController {
         
         output.isNextEnable
             .drive(nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.toNext
+            .drive()
             .disposed(by: disposeBag)
     }
     

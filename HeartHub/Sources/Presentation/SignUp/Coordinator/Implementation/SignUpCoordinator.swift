@@ -9,6 +9,7 @@ import UIKit
 
 final class SignUpCoordinator {
     private let navigationController: UINavigationController
+    private let signUpUseCase = SignUpUseCase()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -23,7 +24,10 @@ extension SignUpCoordinator: SignUpCoordinatable {
     
     private func toStartDateInput() {
         let startDateInputViewController = StartDateInputViewController(
-            viewModel: StartDateInputViewModel(coordinator: self)
+            viewModel: StartDateInputViewModel(
+                coordinator: self,
+                signUpUseCase: signUpUseCase
+            )
         )
         navigationController.pushViewController(startDateInputViewController, animated: true)
     }
