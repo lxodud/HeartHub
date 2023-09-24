@@ -26,12 +26,12 @@ final class FindIdViewModel: ViewModelType {
         let foundId: Driver<Void>
     }
     
-    private weak var coordinator: LoginCoordinatable?
+    private let coordinator: LoginCoordinatable
     private let accountUseCase: AccountUseCaseType
     
     // MARK: - initializer
     init(
-        coordinator: LoginCoordinatable?,
+        coordinator: LoginCoordinatable,
         accountUseCase: AccountUseCaseType = AccountUseCase()
     ) {
         self.coordinator = coordinator
@@ -40,13 +40,13 @@ final class FindIdViewModel: ViewModelType {
     
     func transform(_ input: Input) -> Output {
         let toLogin = input.toLoginTap
-            .do { _ in self.coordinator?.toLogin() }
+            .do { _ in self.coordinator.toLogin() }
         
         let toFindPassword = input.toFindPasswordTap
-            .do { _ in self.coordinator?.toFindPassword() }
+            .do { _ in self.coordinator.toFindPassword() }
         
         let toSignUp = input.toSignUpTap
-            .do { _ in self.coordinator?.toSignUp() }
+            .do { _ in self.coordinator.toSignUp() }
         
         let foundId = input.findIdTap.withLatestFrom(input.email)
             .flatMap { email in
@@ -56,7 +56,7 @@ final class FindIdViewModel: ViewModelType {
             .map { isSuccess in
                 isSuccess == true ? "메일로 아이디가 전송되었습니다." : "사용자 정보를 찾을 수 없습니다."
             }
-            .do { self.coordinator?.showAlert(message: $0) }
+            .do { self.coordinator.showAlert(message: $0) }
             .map { _ in }
         
         let searchingId = Observable.from([

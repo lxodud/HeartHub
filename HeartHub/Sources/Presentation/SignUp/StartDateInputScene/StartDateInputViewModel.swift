@@ -18,6 +18,12 @@ final class StartDateInputViewModel: ViewModelType {
         let formattedDate: Driver<String>
         let isNextEnable: Driver<Bool>
     }
+    
+    private let coordinator: SignUpCoordinatable
+    
+    init(coordinator: SignUpCoordinatable) {
+        self.coordinator = coordinator
+    }
 }
 
 // MARK: - Public Interface

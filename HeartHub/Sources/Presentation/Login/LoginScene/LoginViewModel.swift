@@ -28,7 +28,7 @@ final class LoginViewModel: ViewModelType {
         let loginFail: Driver<Void>
     }
     
-    private weak var coordinator: LoginCoordinatable?
+    private let coordinator: LoginCoordinatable
     private let authenticationUseCase: AuthenticationUseCaseType
     
     // MARK: - initializer
@@ -49,13 +49,13 @@ final class LoginViewModel: ViewModelType {
             })
         
         let toFindId = input.toFindIdTap
-            .do { _ in self.coordinator?.toFindId() }
+            .do { _ in self.coordinator.toFindId() }
         
         let toFindPassword = input.toFindPasswordTap
-            .do { _ in self.coordinator?.toFindPassword() }
+            .do { _ in self.coordinator.toFindPassword() }
         
         let toSignUp = input.toSignUpTap
-            .do { _ in self.coordinator?.toSignUp() }
+            .do { _ in self.coordinator.toSignUp() }
         
         let loginTap = input.loginTap.withLatestFrom(idAndPassword)
     
@@ -72,7 +72,7 @@ final class LoginViewModel: ViewModelType {
         
         
         let loginFail = logedIn.filter({ $0 == false })
-            .do { _ in self.coordinator?.showAlert(message: "로그인 실패") }
+            .do { _ in self.coordinator.showAlert(message: "로그인 실패") }
             .map { _ in }
         
         

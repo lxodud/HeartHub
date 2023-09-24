@@ -9,7 +9,6 @@ import UIKit
 
 final class AppCoordinator {
     private let window: UIWindow
-    private var childCoordinators: [Coordinatable] = []
     
     init(window: UIWindow) {
         self.window = window
@@ -32,7 +31,6 @@ extension AppCoordinator: Coordinatable {
 extension AppCoordinator {
     private func showLogin() {
         let loginCoordinator = LoginCoordinator(window: window)
-        childCoordinators.append(loginCoordinator)
         loginCoordinator.start()
     }
     

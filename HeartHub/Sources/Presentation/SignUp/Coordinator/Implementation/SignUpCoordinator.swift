@@ -18,6 +18,13 @@ final class SignUpCoordinator {
 // MARK: Public Interface
 extension SignUpCoordinator: SignUpCoordinatable {
     func start() {
-        
+        toStartDateInput()
+    }
+    
+    private func toStartDateInput() {
+        let startDateInputViewController = StartDateInputViewController(
+            viewModel: StartDateInputViewModel(coordinator: self)
+        )
+        navigationController.pushViewController(startDateInputViewController, animated: true)
     }
 }

@@ -133,6 +133,10 @@ extension ProfileModifyViewController {
 
 // MARK: - Configure UI
 extension ProfileModifyViewController {
+    private func configureSuperview() {
+        view.backgroundColor = .systemBackground
+    }
+    
     private func configureSubview() {
         [profileImageView, nicknameTextField, profileModifyButton, activicyIndicator].forEach {
             view.addSubview($0)
@@ -141,8 +145,6 @@ extension ProfileModifyViewController {
         
         profileImageView.addSubview(decorateImageView)
         decorateImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.backgroundColor = .systemBackground
     }
     
     private func configureLayout() {

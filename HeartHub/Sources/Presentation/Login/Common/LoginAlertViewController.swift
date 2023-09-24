@@ -39,7 +39,7 @@ final class LoginAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         configureAction()
-        configureSuperView()
+        configureSuperview()
         configureSubview()
         configureLayout()
     }
@@ -63,7 +63,7 @@ extension LoginAlertViewController {
 
 // MARK: - Configure UI
 extension LoginAlertViewController {
-    private func configureSuperView() {
+    private func configureSuperview() {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 20

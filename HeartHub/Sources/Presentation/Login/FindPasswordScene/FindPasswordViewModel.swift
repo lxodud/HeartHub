@@ -28,7 +28,7 @@ final class FindPasswordViewModel: ViewModelType {
         let foundPassword: Driver<Void>
     }
     
-    private weak var coordinator: LoginCoordinatable?
+    private let coordinator: LoginCoordinatable
     private let accountUseCase: AccountUseCaseType
     
     init(
@@ -48,13 +48,13 @@ final class FindPasswordViewModel: ViewModelType {
             })
         
         let toFindId = input.toFindIdTap
-            .do { _ in self.coordinator?.toFindId() }
+            .do { _ in self.coordinator.toFindId() }
             
         let toLogin = input.toLoginTap
-            .do { _ in self.coordinator?.toLogin() }
+            .do { _ in self.coordinator.toLogin() }
         
         let toSignUp = input.toSignUpTap
-            .do { _ in self.coordinator?.toSignUp() }
+            .do { _ in self.coordinator.toSignUp() }
         
         let foundPassword = input.findPasswordTap.withLatestFrom(idAndEmail)
             .flatMap {
@@ -64,7 +64,7 @@ final class FindPasswordViewModel: ViewModelType {
             .map { isSuccess in
                 isSuccess == true ? "메일로 임시 비밀번호가 전송되었습니다." : "사용자 정보를 찾을 수 없습니다."
             }
-            .do { self.coordinator?.showAlert(message: $0) }
+            .do { self.coordinator.showAlert(message: $0) }
             .map { _ in }
         
         let searchingPassword = Driver.from([

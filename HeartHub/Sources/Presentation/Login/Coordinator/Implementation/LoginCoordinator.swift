@@ -9,6 +9,7 @@ import UIKit
 
 final class LoginCoordinator {
     private let window: UIWindow
+    private let navigationController = UINavigationController()
     private let alertTransitionDelegate = AlertTransitionDelegate()
 
     init(window: UIWindow) {
@@ -26,7 +27,10 @@ extension LoginCoordinator: LoginCoordinatable {
         let loginViewController = LoginViewController(
             loginViewModel: LoginViewModel(coordinator: self)
         )
-        window.rootViewController = loginViewController
+        
+        navigationController.viewControllers = [loginViewController]
+        window.rootViewController = navigationController
+        
         UIView.transition(
             with: window,
             duration: 0.5,
@@ -40,7 +44,9 @@ extension LoginCoordinator: LoginCoordinatable {
         let findIdViewController = FindIdViewController(
             findIdViewModel: FindIdViewModel(coordinator: self)
         )
-        window.rootViewController = findIdViewController
+        navigationController.viewControllers = [findIdViewController]
+        window.rootViewController = navigationController
+        
         UIView.transition(
             with: window,
             duration: 0.5,
@@ -55,7 +61,9 @@ extension LoginCoordinator: LoginCoordinatable {
             viewModel: FindPasswordViewModel(coordinator: self)
         )
         
-        window.rootViewController = findPasswordViewController
+        navigationController.viewControllers = [findPasswordViewController]
+        window.rootViewController = navigationController
+        
         UIView.transition(
             with: window,
             duration: 0.5,
@@ -66,8 +74,8 @@ extension LoginCoordinator: LoginCoordinatable {
     }
     
     func toSignUp() {
-        // TODO: - SignUpCoordinator 구현
-        print(#function)
+        let signUpCoordinator = SignUpCoordinator(navigationController: navigationController)
+        signUpCoordinator.start()
     }
     
     func showAlert(message: String) {

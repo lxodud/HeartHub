@@ -651,6 +651,29 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		0C9790922AC02B0B001BD3BD /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				0C9790952AC02B1F001BD3BD /* Implementation */,
+				0C9790942AC02B1C001BD3BD /* Interface */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		0C9790942AC02B1C001BD3BD /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		0C9790952AC02B1F001BD3BD /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
 		0C9F986A2ABB09E80084A938 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1121,6 +1144,7 @@
 			isa = PBXGroup;
 			children = (
 				0C9F98832ABB272F0084A938 /* Common */,
+				0C9790922AC02B0B001BD3BD /* SignUp */,
 				0C9F98942ABD6FAF0084A938 /* Account */,
 				0C9F98842ABB273C0084A938 /* MyInformation */,
 				0C9F987D2ABB25CF0084A938 /* Authentication */,

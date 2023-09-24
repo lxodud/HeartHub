@@ -32,7 +32,7 @@ final class StartDateInputViewController: UIViewController {
     
     private let nextButton: UIButton = SignUpBottomButton(title: "다음")
     
-    init(viewModel: StartDateInputViewModel = StartDateInputViewModel()) {
+    init(viewModel: StartDateInputViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,6 +42,7 @@ final class StartDateInputViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        configureSuperview()
         configureSubview()
         configureLayout()
         configureNavigationBar()
@@ -59,7 +60,7 @@ final class StartDateInputViewController: UIViewController {
         let output = viewModel.transform(input)
         
         output.formattedDate
-            .do { _ in self.view.endEditing(true) }
+            .do { [weak self] _ in self?.view.endEditing(true) }
             .drive(dateTextField.rx.text)
             .disposed(by: disposeBag)
         
@@ -82,6 +83,10 @@ final class StartDateInputViewController: UIViewController {
 
 // MARK: Configure UI
 extension StartDateInputViewController {
+    private func configureSuperview() {
+        view.backgroundColor = .systemBackground
+    }
+    
     private func configureSubview() {
         [titleLabel, dateTextField, nextButton].forEach {
             view.addSubview($0)

@@ -38,7 +38,7 @@ final class LogoutAlertViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        configureBasicView()
+        configureSuperview()
         configureSubview()
         configureLayout()
         configureAction()
@@ -73,7 +73,7 @@ extension LogoutAlertViewController {
 
 // MARK: - Configure UI
 extension LogoutAlertViewController {
-    private func configureBasicView() {
+    private func configureSuperview() {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 20

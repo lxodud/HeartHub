@@ -76,6 +76,7 @@ final class PasswordModifyViewController: UIViewController {
     private let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
+        configureSuperview()
         configureSubview()
         configureLayout()
         configureNavigationBar()
@@ -130,6 +131,10 @@ final class PasswordModifyViewController: UIViewController {
 
 // MARK: Configure UI
 extension PasswordModifyViewController {
+    private func configureSuperview() {
+        view.backgroundColor = .systemBackground
+    }
+    
     private func configureSubview() {
         [currentPasswordTextField,
          currentPasswordSecureButton,
@@ -143,8 +148,6 @@ extension PasswordModifyViewController {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        view.backgroundColor = .systemBackground
     }
     
     private func configureLayout() {

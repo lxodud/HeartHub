@@ -107,6 +107,7 @@ final class WithdrawalViewController: UIViewController {
     private let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
+        configureSuperview()
         configureSubview()
         configureLayout()
         configureNavigationBar()
@@ -153,6 +154,10 @@ final class WithdrawalViewController: UIViewController {
 
 // MARK: - Configure UI
 extension WithdrawalViewController {
+    private func configureSuperview() {
+        view.backgroundColor = .systemBackground
+    }
+    
     private func configureSubview() {
         [noticeLabel,
          cautionAgreeCheckBoxRectangle,
@@ -170,8 +175,6 @@ extension WithdrawalViewController {
             cautionAgreeCheckBoxRectangle.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        view.backgroundColor = .systemBackground
     }
     
     private func configureLayout() {
