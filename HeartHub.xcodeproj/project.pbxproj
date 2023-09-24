@@ -52,6 +52,7 @@
 		0C97908D2ABF1255001BD3BD /* SignUpDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */; };
 		0C97908F2ABF1DC1001BD3BD /* SignUpBottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */; };
 		0C9790912AC010E5001BD3BD /* StartDateInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790902AC010E5001BD3BD /* StartDateInputViewModel.swift */; };
+		0C97909A2AC04894001BD3BD /* SignUpInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790992AC04894001BD3BD /* SignUpInformation.swift */; };
 		0C9F986F2ABB13520084A938 /* NetworkManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */; };
 		0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98712ABB1B180084A938 /* TokenProvidable.swift */; };
 		0C9F98782ABB1C800084A938 /* AuthenticationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */; };
@@ -181,6 +182,7 @@
 		0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDateTextField.swift; sourceTree = "<group>"; };
 		0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBottomButton.swift; sourceTree = "<group>"; };
 		0C9790902AC010E5001BD3BD /* StartDateInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDateInputViewModel.swift; sourceTree = "<group>"; };
+		0C9790992AC04894001BD3BD /* SignUpInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInformation.swift; sourceTree = "<group>"; };
 		0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerType.swift; sourceTree = "<group>"; };
 		0C9F98712ABB1B180084A938 /* TokenProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvidable.swift; sourceTree = "<group>"; };
 		0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryType.swift; sourceTree = "<group>"; };
@@ -654,6 +656,7 @@
 		0C9790922AC02B0B001BD3BD /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				0C9790982AC04888001BD3BD /* Model */,
 				0C9790952AC02B1F001BD3BD /* Implementation */,
 				0C9790942AC02B1C001BD3BD /* Interface */,
 			);
@@ -672,6 +675,14 @@
 			children = (
 			);
 			path = Implementation;
+			sourceTree = "<group>";
+		};
+		0C9790982AC04888001BD3BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C9790992AC04894001BD3BD /* SignUpInformation.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0C9F986A2ABB09E80084A938 /* Implementation */ = {
@@ -1517,6 +1528,7 @@
 				0CE2CD972A9343B000129724 /* ImageProviderError.swift in Sources */,
 				0CAFFF732AB19C2700422FC7 /* ChangePasswordRequestDTO.swift in Sources */,
 				569013552A7BB32600715D23 /* GameMissionDataManager.swift in Sources */,
+				0C97909A2AC04894001BD3BD /* SignUpInformation.swift in Sources */,
 				0C6F45532A7384B10044EAC8 /* UIWindow+.swift in Sources */,
 				0C9F989A2ABD6FD20084A938 /* AccountUseCase.swift in Sources */,
 				0CA858B02A6F981D00DFCFD5 /* Reusable.swift in Sources */,
