@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "showPassword.png",
+      "filename" : "비밀번호 보기_pressed.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "showPassword1.png",
+      "filename" : "비밀번호 보기_pressed (1).png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -58,6 +58,7 @@
 		0C9790A02AC04FD4001BD3BD /* SignUpDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */; };
 		0C9790A32AC0526E001BD3BD /* AccountProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790A22AC0526E001BD3BD /* AccountProfileInputViewController.swift */; };
 		0C9790A52AC1560D001BD3BD /* AccountProfileInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790A42AC1560D001BD3BD /* AccountProfileInputViewModel.swift */; };
+		0C9790A82AC1A55C001BD3BD /* SignUpColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790A72AC1A55C001BD3BD /* SignUpColor.swift */; };
 		0C9F986F2ABB13520084A938 /* NetworkManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */; };
 		0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98712ABB1B180084A938 /* TokenProvidable.swift */; };
 		0C9F98782ABB1C800084A938 /* AuthenticationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */; };
@@ -193,6 +194,7 @@
 		0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDateFormatter.swift; sourceTree = "<group>"; };
 		0C9790A22AC0526E001BD3BD /* AccountProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileInputViewController.swift; sourceTree = "<group>"; };
 		0C9790A42AC1560D001BD3BD /* AccountProfileInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileInputViewModel.swift; sourceTree = "<group>"; };
+		0C9790A72AC1A55C001BD3BD /* SignUpColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpColor.swift; sourceTree = "<group>"; };
 		0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerType.swift; sourceTree = "<group>"; };
 		0C9F98712ABB1B180084A938 /* TokenProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvidable.swift; sourceTree = "<group>"; };
 		0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryType.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 				0C97908C2ABF1255001BD3BD /* SignUpDateTextField.swift */,
 				0C97908E2ABF1DC1001BD3BD /* SignUpBottomButton.swift */,
 				0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */,
+				0C9790A72AC1A55C001BD3BD /* SignUpColor.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1494,6 +1497,7 @@
 				0CE2CDE02A9B716200129724 /* HeartHubFloatingButton.swift in Sources */,
 				0CF4C8652AADA903004F805E /* JSONBodyRequestBuilder.swift in Sources */,
 				0C97908B2ABF02AD001BD3BD /* StartDateInputViewController.swift in Sources */,
+				0C9790A82AC1A55C001BD3BD /* SignUpColor.swift in Sources */,
 				5690137D2A80EEA200715D23 /* HeartHubUserInfoInputTextField.swift in Sources */,
 				0CAFFF7A2AB2F0A000422FC7 /* AlertPresentaionController.swift in Sources */,
 				0CEDD8A22AA4B57E00662A03 /* MyPageCell.swift in Sources */,

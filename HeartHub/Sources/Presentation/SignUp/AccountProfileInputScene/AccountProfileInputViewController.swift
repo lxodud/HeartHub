@@ -155,13 +155,46 @@ final class AccountProfileInputViewController: UIViewController {
         
         let input = AccountProfileInputViewModel.Input(
             id: idTextField.rx.text.orEmpty.asDriver(),
+            tapCheckIdDuplication: idCheckButton.rx.tap.asDriver(),
             password: passwordTextField.rx.text.orEmpty.asDriver(),
+            tapPasswordSecure: passwordSecureButton.rx.tap.asDriver(),
             tapMale: maleCheckBox.rx.tap.asDriver(),
             tapFemale: femaleCheckBox.rx.tap.asDriver(),
-            birth: date
+            birth: date,
+            tapNext: nextButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
+        
+        output.verifiedId
+            .drive(idTextField.rx.text)
+            .disposed(by: disposBag)
+        
+        output.idDescription
+            .drive(idDescriptionLabel.rx.text)
+            .disposed(by: disposBag)
+        
+        output.idDescriptionColor
+            .drive(onNext: {
+                self.idDescriptionLabel.textColor = $0.uiColor
+            })
+            .disposed(by: disposBag)
+        
+        output.verifiedPassword
+            .drive(passwordTextField.rx.text)
+            .disposed(by: disposBag)
+        
+        output.isPasswordSecure
+            .drive(
+                passwordTextField.rx.isSecureTextEntry,
+                passwordSecureButton.rx.isSelected
+            )
+            .disposed(by: disposBag)
+        
+        output.isPasswordSecure
+            .map { !$0 }
+            .drive(passwordSecureButton.rx.isSelected)
+            .disposed(by: disposBag)
         
         output.isMale
             .drive(maleCheckBox.rx.isSelected)
@@ -175,6 +208,14 @@ final class AccountProfileInputViewController: UIViewController {
             .do { [weak self] _ in self?.view.endEditing(true) }
             .drive(birthTextField.rx.text)
             .disposed(by: disposBag)
+        
+        output.isNextEnable
+            .drive(nextButton.rx.isEnabled)
+            .disposed(by: disposBag)
+        
+        output.toNext
+            .drive()
+            .disposed(by: disposBag)
     }
 }
 
@@ -187,8 +228,10 @@ extension AccountProfileInputViewController {
     private func configureSubview() {
         [titleLabel,
          idTextField,
+         idCheckButton,
          idDescriptionLabel,
          passwordTextField,
+         passwordSecureButton,
          passwordDescriptionLabel,
          maleStackView,
          femaleStackView,
@@ -197,9 +240,6 @@ extension AccountProfileInputViewController {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        idTextField.addSubview(idCheckButton)
-        idCheckButton.translatesAutoresizingMaskIntoConstraints = false
         
         [maleCheckBox, maleLabel].forEach {
             maleStackView.addArrangedSubview($0)
@@ -289,6 +329,18 @@ extension AccountProfileInputViewController {
             ),
             passwordTextField.heightAnchor.constraint(
                 equalTo: idTextField.heightAnchor
+            ),
+            
+            // MARK: passwordSecureButton Constraints
+            passwordSecureButton.topAnchor.constraint(
+                equalTo: passwordTextField.topAnchor
+            ),
+            passwordSecureButton.trailingAnchor.constraint(
+                equalTo: passwordTextField.trailingAnchor,
+                constant: -15
+            ),
+            passwordSecureButton.bottomAnchor.constraint(
+                equalTo: passwordTextField.bottomAnchor
             ),
             
             // MARK: - passwordDescriptionLabel Constraints

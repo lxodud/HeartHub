@@ -44,15 +44,15 @@ extension PasswordModifyViewModel {
             })
         
         let isCurrentPasswordSecure = input.tapCurrentPasswodSecure
-            .scan(false) { state, _ in
+            .scan(true) { state, _ in
                 return !state
             }
         
         let isNewPasswordSecure = input.tapNewPasswodSecure
-            .scan(false) { state, _ in
+            .scan(true) { state, _ in
                 return !state
             }
-        
+
         let modifyed = input.tapModify.withLatestFrom(currentAndNewPassword)
             .flatMap{ password in
                 return self.accountUseCase.modifyPassword(

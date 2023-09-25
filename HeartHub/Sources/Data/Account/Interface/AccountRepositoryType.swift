@@ -13,4 +13,5 @@ protocol AccountRepositoryType {
     func withdraw() -> Completable
     func findId(with email: String) -> Observable<Bool>
     func findPassword(id: String, email: String) -> Observable<Bool>
+    func checkDuplicateId(_ id: String) -> Observable<Bool>
 }

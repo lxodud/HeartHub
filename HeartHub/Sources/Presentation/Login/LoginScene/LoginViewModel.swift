@@ -70,11 +70,9 @@ final class LoginViewModel: ViewModelType {
             }
             .map { _ in }
         
-        
         let loginFail = logedIn.filter({ $0 == false })
             .do { _ in self.coordinator.showAlert(message: "로그인 실패") }
             .map { _ in }
-        
         
         let logingIn = Driver.from([
             loginTap.map { _ in true },

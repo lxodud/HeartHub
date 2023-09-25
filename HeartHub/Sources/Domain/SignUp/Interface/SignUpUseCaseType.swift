@@ -9,4 +9,8 @@ import Foundation
 
 protocol SignUpUseCaseType {
     func upsertStartDate(_ date: Date)
+    func upsertId(_ id: String)
+    func upsertPassword(_ password: String)
+    func upsertGender(_ gender: Gender)
+    func upsertBirth(_ date: Date)
 }

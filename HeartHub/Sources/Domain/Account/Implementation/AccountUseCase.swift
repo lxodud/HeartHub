@@ -40,7 +40,11 @@ extension AccountUseCase: AccountUseCaseType {
         return accountRepository.findPassword(id: id, email: email)
     }
     
-    func validateId(id: String) -> Bool {
+    func checkDuplicateId(_ id: String) -> Observable<Bool> {
+        return accountRepository.checkDuplicateId(id)
+    }
+    
+    func verifyId(_ id: String) -> Bool {
         let maxLength = 18
         let allowedCharacterSet = CharacterSet(
             charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -53,10 +57,10 @@ extension AccountUseCase: AccountUseCaseType {
         return allowedCharacterSet.isSuperset(of: CharacterSet(charactersIn: id))
     }
     
-    func validatePassword(password: String) -> Bool {
+    func verifyPassword(_ password: String) -> Bool {
         let maxLength = 15
         let allowedCharacterSet = CharacterSet(
-            charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_?+=~"
+            charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_?+=~,./[]{}<>"
         )
         
         guard password.count <= maxLength else {

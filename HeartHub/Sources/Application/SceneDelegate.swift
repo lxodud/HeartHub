@@ -21,8 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         appCoordinator = AppCoordinator(window: window ?? UIWindow())
         appCoordinator?.start()
-        
+
         self.window?.backgroundColor = .systemBackground
+//        window?.rootViewController = PasswordModifyViewController()
         self.window?.makeKeyAndVisible()
     }
 }

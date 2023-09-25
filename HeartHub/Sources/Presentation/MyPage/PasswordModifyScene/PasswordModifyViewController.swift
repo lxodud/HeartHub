@@ -18,7 +18,7 @@ final class PasswordModifyViewController: UIViewController {
         isSecureTextEntry: true
     )
     private let currentPasswordSecureButton: UIButton = {
-        let button = UIButton(type: .custom)
+        let button = UIButton()
         button.setImage(UIImage(named: "hidePassword"), for: .normal)
         button.setImage(UIImage(named: "showPassword"), for: .selected)
         button.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 14)
@@ -41,7 +41,7 @@ final class PasswordModifyViewController: UIViewController {
     )
     
     private let newPasswordSecureButton: UIButton = {
-        let button = UIButton(type: .custom)
+        let button = UIButton()
         button.setImage(UIImage(named: "hidePassword"), for: .normal)
         button.setImage(UIImage(named: "showPassword"), for: .selected)
         button.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 14)
@@ -103,8 +103,18 @@ final class PasswordModifyViewController: UIViewController {
             .drive(currentPasswordTextField.rx.isSecureTextEntry)
             .disposed(by: disposeBag)
         
+        output.isCurrentPasswordSecure
+            .map { !$0 }
+            .drive(currentPasswordSecureButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
         output.isNewPasswordSecure
             .drive(newPasswordTextField.rx.isSecureTextEntry)
+            .disposed(by: disposeBag)
+        
+        output.isNewPasswordSecure
+            .map { !$0 }
+            .drive(newPasswordSecureButton.rx.isSelected)
             .disposed(by: disposeBag)
         
         output.modifying

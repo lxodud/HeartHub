@@ -36,10 +36,16 @@ extension SignUpCoordinator: SignUpCoordinatable {
     func toAccountProfileInput() {
         let accountProfileInputViewController = AccountProfileInputViewController(
             viewModel: AccountProfileInputViewModel(
-                accountUseCase: AccountUseCase()
+                coordinator: self,
+                accountUseCase: AccountUseCase(),
+                signUpUseCase: signUpUseCase
             )
         )
         
         navigationController.pushViewController(accountProfileInputViewController, animated: true)
+    }
+    
+    func toNicknameEmailInput() {
+
     }
 }
