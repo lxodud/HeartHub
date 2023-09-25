@@ -11,7 +11,7 @@ import UIKit
 
 final class AccountProfileInputViewController: UIViewController {
     private let viewModel: AccountProfileInputViewModel
-    private let disposBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     private let titleLabel = SignUpTitleLabelStackView(
         title: "사랑을 시작해볼까요?",
@@ -148,6 +148,7 @@ final class AccountProfileInputViewController: UIViewController {
         configureSubview()
         configureLayout()
         bind(to: viewModel)
+        bindUI()
     }
     
     private func bind(to viewModel: AccountProfileInputViewModel) {
@@ -168,54 +169,65 @@ final class AccountProfileInputViewController: UIViewController {
         
         output.verifiedId
             .drive(idTextField.rx.text)
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.idDescription
             .drive(idDescriptionLabel.rx.text)
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.idDescriptionColor
             .drive(onNext: {
                 self.idDescriptionLabel.textColor = $0.uiColor
             })
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.verifiedPassword
             .drive(passwordTextField.rx.text)
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.isPasswordSecure
             .drive(
                 passwordTextField.rx.isSecureTextEntry,
                 passwordSecureButton.rx.isSelected
             )
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.isPasswordSecure
             .map { !$0 }
             .drive(passwordSecureButton.rx.isSelected)
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.isMale
             .drive(maleCheckBox.rx.isSelected)
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.isFemale
             .drive(femaleCheckBox.rx.isSelected)
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.formattedBirth
             .do { [weak self] _ in self?.view.endEditing(true) }
             .drive(birthTextField.rx.text)
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.isNextEnable
             .drive(nextButton.rx.isEnabled)
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
         
         output.toNext
             .drive()
-            .disposed(by: disposBag)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI() {
+        let tapBackground = UITapGestureRecognizer()
+        view.addGestureRecognizer(tapBackground)
+        
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
