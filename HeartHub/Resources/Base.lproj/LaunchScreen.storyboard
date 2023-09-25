@@ -17,8 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="F5Z-Z1-RdU">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="F5Z-Z1-RdU">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MountainBackground" translatesAutoresizingMaskIntoConstraints="NO" id="xJW-Go-odU">
+                                <rect key="frame" x="0.0" y="565.66666666666663" width="393" height="286.33333333333337"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeartHubMainLabel" translatesAutoresizingMaskIntoConstraints="NO" id="5mg-HV-ges">
                                 <rect key="frame" x="56.666666666666657" y="237.66666666666666" width="280" height="67.333333333333343"/>
@@ -26,17 +29,13 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeartBrand" translatesAutoresizingMaskIntoConstraints="NO" id="098-2B-xhA">
                                 <rect key="frame" x="61.333333333333343" y="335" width="270.33333333333326" height="182"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MountainBackground" translatesAutoresizingMaskIntoConstraints="NO" id="xJW-Go-odU">
-                                <rect key="frame" x="0.0" y="558" width="393" height="300"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="098-2B-xhA" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4WX-TZ-ICc"/>
                             <constraint firstAttribute="trailing" secondItem="xJW-Go-odU" secondAttribute="trailing" id="Ard-DE-mQb"/>
-                            <constraint firstItem="xJW-Go-odU" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="558" id="C4R-q8-uq3"/>
-                            <constraint firstAttribute="bottom" secondItem="xJW-Go-odU" secondAttribute="bottom" constant="-6" id="D6U-x3-niG"/>
+                            <constraint firstAttribute="bottom" secondItem="xJW-Go-odU" secondAttribute="bottom" id="D6U-x3-niG"/>
                             <constraint firstItem="F5Z-Z1-RdU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ID0-ca-tTN"/>
                             <constraint firstItem="5mg-HV-ges" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JCV-sr-Yuc"/>
                             <constraint firstItem="xJW-Go-odU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="OgQ-FV-Fui"/>
