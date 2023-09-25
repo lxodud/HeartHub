@@ -49,7 +49,7 @@ extension StartDateInputViewModel {
             .asDriver(onErrorJustReturn: false)
         
         let toNext = input.tapNext
-            .do { _ in }
+            .do { _ in self.coordinator.toAccountProfileInput() }
         
         return Output(
             formattedDate: formattedDate,

@@ -134,7 +134,7 @@ final class AccountProfileInputViewController: UIViewController {
     
     private let nextButton: UIButton = SignUpBottomButton(title: "다음")
     
-    init(viewModel: AccountProfileInputViewModel = AccountProfileInputViewModel()) {
+    init(viewModel: AccountProfileInputViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

@@ -23,6 +23,14 @@ final class AccountProfileInputViewModel: ViewModelType {
         let isMale: Driver<Bool>
         let isFemale: Driver<Bool>
     }
+    
+    private let accountUseCase: AccountUseCaseType
+    
+    init(
+        accountUseCase: AccountUseCaseType
+    ) {
+        self.accountUseCase = accountUseCase
+    }
 }
 
 // MARK: - Public Interface

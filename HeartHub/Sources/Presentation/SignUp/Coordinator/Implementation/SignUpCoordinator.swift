@@ -29,6 +29,17 @@ extension SignUpCoordinator: SignUpCoordinatable {
                 signUpUseCase: signUpUseCase
             )
         )
+        
         navigationController.pushViewController(startDateInputViewController, animated: true)
+    }
+    
+    func toAccountProfileInput() {
+        let accountProfileInputViewController = AccountProfileInputViewController(
+            viewModel: AccountProfileInputViewModel(
+                accountUseCase: AccountUseCase()
+            )
+        )
+        
+        navigationController.pushViewController(accountProfileInputViewController, animated: true)
     }
 }
