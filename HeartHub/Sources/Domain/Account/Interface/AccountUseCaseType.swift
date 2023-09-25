@@ -13,4 +13,6 @@ protocol AccountUseCaseType {
     func withdraw() -> Completable
     func findId(with email: String) -> Observable<Bool>
     func findPassword(id: String, email: String) -> Observable<Bool>
+    func validateId(id: String) -> Bool
+    func validatePassword(password: String) -> Bool
 }

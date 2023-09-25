@@ -11,7 +11,7 @@ import RxSwift
 final class AccountUseCase {
     private let accountRepository: AccountRepositoryType
     private let myInformationRepository: MyInformationRepositoryType
-
+    
     init(
         accountRepository: AccountRepositoryType = AccountRepository(),
         myInformationRepository: MyInformationRepositoryType = MyInformationRepository()
@@ -38,5 +38,30 @@ extension AccountUseCase: AccountUseCaseType {
     
     func findPassword(id: String, email: String) -> Observable<Bool> {
         return accountRepository.findPassword(id: id, email: email)
+    }
+    
+    func validateId(id: String) -> Bool {
+        let maxLength = 18
+        let allowedCharacterSet = CharacterSet(
+            charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        )
+        
+        guard id.count <= maxLength else {
+            return false
+        }
+        
+        return allowedCharacterSet.isSuperset(of: CharacterSet(charactersIn: id))
+    }
+    
+    func validatePassword(password: String) -> Bool {
+        let maxLength = 15
+        let allowedCharacterSet = CharacterSet(
+            charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_?+=~"
+        )
+        
+        guard password.count <= maxLength else {
+            return false
+        }
+        return allowedCharacterSet.isSuperset(of: CharacterSet(charactersIn: password))
     }
 }
