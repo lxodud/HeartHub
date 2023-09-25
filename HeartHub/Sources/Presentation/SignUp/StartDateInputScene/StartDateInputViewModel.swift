@@ -24,6 +24,7 @@ final class StartDateInputViewModel: ViewModelType {
     private let coordinator: SignUpCoordinatable
     private let signUpUseCase: SignUpUseCaseType
 
+    // MARK: - initializer
     init(
         coordinator: SignUpCoordinatable,
         signUpUseCase: SignUpUseCaseType

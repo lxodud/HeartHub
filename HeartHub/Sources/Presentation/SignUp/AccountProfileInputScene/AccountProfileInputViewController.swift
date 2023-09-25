@@ -5,9 +5,14 @@
 //  Created by 이태영 on 2023/09/24.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class AccountProfileInputViewController: UIViewController {
+    private let viewModel: AccountProfileInputViewModel
+    private let disposBag = DisposeBag()
+    
     private let titleLabel = SignUpTitleLabelStackView(
         title: "사랑을 시작해볼까요?",
         description: "계정을 생성하여 HeartHub를 즐겨보아요."
@@ -129,10 +134,47 @@ final class AccountProfileInputViewController: UIViewController {
     
     private let nextButton: UIButton = SignUpBottomButton(title: "다음")
     
+    init(viewModel: AccountProfileInputViewModel = AccountProfileInputViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         configureSuperview()
         configureSubview()
         configureLayout()
+        bind(to: viewModel)
+    }
+    
+    private func bind(to viewModel: AccountProfileInputViewModel) {
+        let date = selectDoneButton.rx.tap.withLatestFrom(birthDatePicker.rx.date)
+        
+        let input = AccountProfileInputViewModel.Input(
+            id: idTextField.rx.text.orEmpty.asDriver(),
+            password: passwordTextField.rx.text.orEmpty.asDriver(),
+            tapMale: maleCheckBox.rx.tap.asDriver(),
+            tapFemale: femaleCheckBox.rx.tap.asDriver(),
+            birth: date
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.isMale
+            .drive(maleCheckBox.rx.isSelected)
+            .disposed(by: disposBag)
+        
+        output.isFemale
+            .drive(femaleCheckBox.rx.isSelected)
+            .disposed(by: disposBag)
+        
+        output.formattedBirth
+            .do { [weak self] _ in self?.view.endEditing(true) }
+            .drive(birthTextField.rx.text)
+            .disposed(by: disposBag)
     }
 }
 

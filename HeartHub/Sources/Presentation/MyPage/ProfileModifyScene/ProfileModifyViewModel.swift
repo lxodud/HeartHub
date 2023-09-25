@@ -45,8 +45,7 @@ extension ProfileModifyViewModel {
             }
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .distinctUntilChanged()
-            .asDriver()
-            
+        
         let fetchUserInformation = input.viewWillAppear
             .flatMapLatest {
                 return self.myInformationUseCase.fetchMyInformation()

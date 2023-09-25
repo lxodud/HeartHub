@@ -10,21 +10,21 @@ import UIKit
 final class LoginBackgroundView: UIView {
     private let backgroundView: UIImageView = {
         var imgView = UIImageView()
-        imgView.contentMode = .scaleAspectFit
+        imgView.contentMode = .scaleAspectFill
         imgView.image = UIImage(named: "BackgroundGradient.png")
         return imgView
     }()
     
     private let mountainBackgroundView: UIImageView = {
         var imgView = UIImageView()
-        imgView.contentMode = .scaleAspectFit
+        imgView.contentMode = .scaleAspectFill
         imgView.image = UIImage(named: "MountainBackground.png")
         return imgView
     }()
     
     private let loginMountainFrontView: UIImageView = {
         var imgView = UIImageView()
-        imgView.contentMode = .scaleAspectFit
+        imgView.contentMode = .scaleAspectFill
         imgView.image = UIImage(named: "LoginMountainFront.png")
         return imgView
     }()

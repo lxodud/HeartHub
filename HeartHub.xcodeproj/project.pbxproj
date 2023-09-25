@@ -57,6 +57,7 @@
 		0C97909E2AC04DFA001BD3BD /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97909D2AC04DFA001BD3BD /* SignUpUseCase.swift */; };
 		0C9790A02AC04FD4001BD3BD /* SignUpDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */; };
 		0C9790A32AC0526E001BD3BD /* AccountProfileInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790A22AC0526E001BD3BD /* AccountProfileInputViewController.swift */; };
+		0C9790A52AC1560D001BD3BD /* AccountProfileInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790A42AC1560D001BD3BD /* AccountProfileInputViewModel.swift */; };
 		0C9F986F2ABB13520084A938 /* NetworkManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */; };
 		0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98712ABB1B180084A938 /* TokenProvidable.swift */; };
 		0C9F98782ABB1C800084A938 /* AuthenticationRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */; };
@@ -191,6 +192,7 @@
 		0C97909D2AC04DFA001BD3BD /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		0C97909F2AC04FD4001BD3BD /* SignUpDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDateFormatter.swift; sourceTree = "<group>"; };
 		0C9790A22AC0526E001BD3BD /* AccountProfileInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileInputViewController.swift; sourceTree = "<group>"; };
+		0C9790A42AC1560D001BD3BD /* AccountProfileInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileInputViewModel.swift; sourceTree = "<group>"; };
 		0C9F986E2ABB13520084A938 /* NetworkManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerType.swift; sourceTree = "<group>"; };
 		0C9F98712ABB1B180084A938 /* TokenProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvidable.swift; sourceTree = "<group>"; };
 		0C9F98772ABB1C800084A938 /* AuthenticationRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRepositoryType.swift; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 			isa = PBXGroup;
 			children = (
 				0C9790A22AC0526E001BD3BD /* AccountProfileInputViewController.swift */,
+				0C9790A42AC1560D001BD3BD /* AccountProfileInputViewModel.swift */,
 			);
 			path = AccountProfileInputScene;
 			sourceTree = "<group>";
@@ -1441,6 +1444,7 @@
 				0C59CF6A2A87EA9E00D847B7 /* KeychainManager.swift in Sources */,
 				0CE2CD712A90817A00129724 /* FetchTokenResponseDTO.swift in Sources */,
 				5690136F2A7FCC7700715D23 /* LoginBackgroundView.swift in Sources */,
+				0C9790A52AC1560D001BD3BD /* AccountProfileInputViewModel.swift in Sources */,
 				0C63FF462A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift in Sources */,
 				5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */,
 				56DEBEDA2A7A9B24000BC687 /* GameMissionTableViewCell.swift in Sources */,

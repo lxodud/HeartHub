@@ -31,7 +31,6 @@ final class StartDateInputViewController: UIViewController {
     
     private let nextButton: UIButton = SignUpBottomButton(title: "다음")
     
-    
     // MARK: - initializer
     init(viewModel: StartDateInputViewModel) {
         self.viewModel = viewModel
