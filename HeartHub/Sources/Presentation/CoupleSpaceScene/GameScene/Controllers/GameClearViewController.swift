@@ -15,7 +15,6 @@ class GameClearViewController: UIViewController {
     private var clearMissionDataManager = GameClearMissionDataManager()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureClearMissionTableView()
         configureClearMissionTableViewLayout()
     }

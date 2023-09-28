@@ -16,7 +16,6 @@ class ConnectCompletePopUpViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureAddTarget()
     }
 }

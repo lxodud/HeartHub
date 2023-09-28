@@ -113,7 +113,6 @@ final class FindIdViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureSubview()
         configureLayout()
         bind(to: findIdViewModel)

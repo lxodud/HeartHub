@@ -53,7 +53,6 @@ final class CoupleSpaceMainViewController: UIViewController {
 // MARK: Life Cycle
 extension CoupleSpaceMainViewController {
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureButtonStack()
         configureSubview()
         configureLayout()

@@ -14,7 +14,6 @@ class GameMissionViewController: UIViewController {
     private var missionDataManager = GameMissionDataManager()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureGameMissionTableView()
         configureGameMissionTableViewLayout()
     }

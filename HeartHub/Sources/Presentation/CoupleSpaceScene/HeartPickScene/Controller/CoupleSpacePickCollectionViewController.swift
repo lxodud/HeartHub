@@ -58,7 +58,6 @@ final class CoupleSpacePickCollectionViewController: UIViewController {
 // MARK: Life Cycle
 extension CoupleSpacePickCollectionViewController {
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureAction()
         configurePickCollectionView()
         configureSubview()

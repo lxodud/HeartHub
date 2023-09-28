@@ -12,7 +12,6 @@ final class ConnectViewController: UIViewController {
     private let connectView = ConnectView()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureAddTarget()
         configureSubviews()
         configureLayout()

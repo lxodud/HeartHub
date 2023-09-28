@@ -118,7 +118,6 @@ final class LoginViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureSubview()
         configureLayout()
         bind(to: loginViewModel)
@@ -134,7 +133,7 @@ final class LoginViewController: UIViewController {
             toFindPasswordTap: toFindPasswordButton.rx.tap.asDriver(),
             toSignUpTap: toSignUpButton.rx.tap.asDriver()
         )
-        
+
         let output = loginViewModel.transform(input)
         
         output.loginEnabled

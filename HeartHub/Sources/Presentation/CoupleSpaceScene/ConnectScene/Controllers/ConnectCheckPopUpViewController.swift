@@ -16,7 +16,6 @@ final class ConnectCheckPopUpViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureAddTarget()
     }
 }

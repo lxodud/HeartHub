@@ -37,7 +37,6 @@ final class CoupleSpaceAlbumViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureInitialSetting()
         configureAlbumCollectionView()
         configureSubview()

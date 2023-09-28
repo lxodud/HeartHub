@@ -75,6 +75,7 @@
 		0C9F98B42ABDB3260084A938 /* Observable+mapKeyboardHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98B32ABDB3260084A938 /* Observable+mapKeyboardHeight.swift */; };
 		0C9F98B62ABDB5650084A938 /* FindPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9F98B52ABDB5650084A938 /* FindPasswordViewModel.swift */; };
 		0CA858B02A6F981D00DFCFD5 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */; };
+		0CACB9D92AC5602A00CE0C56 /* NicknameEmailInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CACB9D82AC5602A00CE0C56 /* NicknameEmailInputViewController.swift */; };
 		0CADFF532AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF522AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift */; };
 		0CADFF582AADE7AE00253DA1 /* NicknameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF572AADE7AE00253DA1 /* NicknameService.swift */; };
 		0CADFF5A2AADEEC500253DA1 /* MyInformationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CADFF592AADEEC500253DA1 /* MyInformationUseCase.swift */; };
@@ -211,6 +212,7 @@
 		0C9F98B32ABDB3260084A938 /* Observable+mapKeyboardHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+mapKeyboardHeight.swift"; sourceTree = "<group>"; };
 		0C9F98B52ABDB5650084A938 /* FindPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewModel.swift; sourceTree = "<group>"; };
 		0CA858AF2A6F981D00DFCFD5 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		0CACB9D82AC5602A00CE0C56 /* NicknameEmailInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameEmailInputViewController.swift; sourceTree = "<group>"; };
 		0CADFF522AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRequestBuilderFactory.swift; sourceTree = "<group>"; };
 		0CADFF572AADE7AE00253DA1 /* NicknameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameService.swift; sourceTree = "<group>"; };
 		0CADFF592AADEEC500253DA1 /* MyInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInformationUseCase.swift; sourceTree = "<group>"; };
@@ -901,6 +903,7 @@
 				0C9790872ABF00F7001BD3BD /* Common */,
 				0C9790842ABEFCEA001BD3BD /* StartDateInputScene */,
 				0C9790A12AC0517E001BD3BD /* AccountProfileInputScene */,
+				0CACB9D72AC55FDE00CE0C56 /* NicknameEmailInputScene */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -912,6 +915,14 @@
 				0C97907E2ABEFB9F001BD3BD /* Interface */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		0CACB9D72AC55FDE00CE0C56 /* NicknameEmailInputScene */ = {
+			isa = PBXGroup;
+			children = (
+				0CACB9D82AC5602A00CE0C56 /* NicknameEmailInputViewController.swift */,
+			);
+			path = NicknameEmailInputScene;
 			sourceTree = "<group>";
 		};
 		0CADFF542AADE46A00253DA1 /* MyPage */ = {
@@ -983,8 +994,6 @@
 			children = (
 				0CAFFF892AB3560000422FC7 /* Interface */,
 				0CAFFF882AB355F800422FC7 /* Implementation */,
-				0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */,
-				0CAFFF862AB355E200422FC7 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -992,6 +1001,8 @@
 		0CAFFF882AB355F800422FC7 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				0CAFFF862AB355E200422FC7 /* AppCoordinator.swift */,
+				0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -1536,6 +1547,7 @@
 				0C9F987C2ABB20C80084A938 /* MyInformationRepositoryType.swift in Sources */,
 				0C4EF9972A7B966F00539320 /* HeartHubImagePickerCell.swift in Sources */,
 				0C4EF99C2A7BF63100539320 /* HeartPickDataSource.swift in Sources */,
+				0CACB9D92AC5602A00CE0C56 /* NicknameEmailInputViewController.swift in Sources */,
 				0C9790912AC010E5001BD3BD /* StartDateInputViewModel.swift in Sources */,
 				0C684F452A77D53200A31865 /* CoupleImageBetweenHeartView.swift in Sources */,
 				0CE2CD8B2A91277000129724 /* BasicResponseDTO.swift in Sources */,

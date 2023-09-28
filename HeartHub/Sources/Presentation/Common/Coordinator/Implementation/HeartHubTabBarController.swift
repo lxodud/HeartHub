@@ -9,7 +9,6 @@ import UIKit
 
 final class HeartHubTabBarController: UITabBarController {
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureTabBarItems()
     }
 

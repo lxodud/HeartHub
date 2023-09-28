@@ -21,7 +21,6 @@ final class GameViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureSubview()
         configureLayout()
         configureNavigationBar()

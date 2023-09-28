@@ -47,7 +47,6 @@ final class MyPageMainViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureTableView()
         configureSubview()
         configureLayout()

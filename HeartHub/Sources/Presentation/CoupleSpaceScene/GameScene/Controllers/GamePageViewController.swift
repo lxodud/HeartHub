@@ -54,7 +54,6 @@ class GamePageViewController: UIViewController {
 // MARK: Life Cycle
 extension GamePageViewController {
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureGameSegmentedControlInitialSetting()
         configureGameSegmentedControlLayout()
         configureGameViewControllerInitialSetting()

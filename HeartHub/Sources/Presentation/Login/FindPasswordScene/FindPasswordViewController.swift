@@ -118,7 +118,6 @@ final class FindPasswordViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         configureSubview()
         configureLayout()
         bind(to: viewModel)
