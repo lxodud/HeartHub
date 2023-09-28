@@ -19,11 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-        appCoordinator = AppCoordinator(window: window ?? UIWindow())
-        appCoordinator?.start()
-
-        self.window?.backgroundColor = .systemBackground
-//        window?.rootViewController = PasswordModifyViewController()
+//        appCoordinator = AppCoordinator(window: window ?? UIWindow())
+//        appCoordinator?.start()
+//
+//        self.window?.backgroundColor = .systemBackground
+        window?.rootViewController = NicknameEmailInputViewController()
         self.window?.makeKeyAndVisible()
     }
 }

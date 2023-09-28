@@ -51,6 +51,8 @@ extension ProfileModifyViewModel {
                 return self.myInformationUseCase.fetchMyInformation()
                     .asDriver(onErrorJustReturn: UserInformation(profileImage: Data(), nickname: "닉네임"))
             }
+        
+        // TODO: modify 구현
 
         return Output(
             profileImage: pickedImage.asDriver(onErrorJustReturn: Data()),
