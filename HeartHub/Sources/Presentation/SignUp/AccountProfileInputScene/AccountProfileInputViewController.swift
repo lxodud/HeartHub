@@ -147,6 +147,7 @@ final class AccountProfileInputViewController: UIViewController {
         configureSuperview()
         configureSubview()
         configureLayout()
+        configureNavigationBar()
         bind(to: viewModel)
         bindUI()
     }
@@ -412,5 +413,13 @@ extension AccountProfileInputViewController {
                 multiplier: 0.85
             )
         ])
+    }
+    
+    private func configureNavigationBar() {
+        let titleImage = UIImage(named: "HeartIcon1:3")
+        let titleImageView = UIImageView()
+        titleImageView.contentMode = .scaleAspectFit
+        titleImageView.image = titleImage
+        navigationItem.titleView = titleImageView
     }
 }
