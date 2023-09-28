@@ -10,7 +10,7 @@ import RxSwift
 import UIKit
 
 final class WithdrawalViewController: UIViewController {
-    private let viewModel = WithdrawalViewModel()
+    private let viewModel: WithdrawalViewModel
     private let disposeBag = DisposeBag()
     
     private let noticeLabel: UILabel = {
@@ -105,6 +105,16 @@ final class WithdrawalViewController: UIViewController {
     }()
     
     private let activityIndicator = UIActivityIndicatorView()
+    
+    // MARK: - initializer
+    init(viewModel: WithdrawalViewModel = WithdrawalViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         configureSuperview()

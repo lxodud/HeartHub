@@ -10,8 +10,9 @@ import RxSwift
 import UIKit
 
 final class PasswordModifyViewController: UIViewController {
-    private let viewModel = PasswordModifyViewModel()
+    private let viewModel: PasswordModifyViewModel
     private let disposeBag = DisposeBag()
+    
     private let currentPasswordTextField = HeartHubUserInfoInputTextField(
         placeholder: "기존 비밀번호를 입력하세요",
         keyboardType: .default,
@@ -74,6 +75,16 @@ final class PasswordModifyViewController: UIViewController {
     }()
     
     private let activityIndicator = UIActivityIndicatorView()
+    
+    // MARK: - initializer
+    init(viewModel: PasswordModifyViewModel = PasswordModifyViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         configureSuperview()

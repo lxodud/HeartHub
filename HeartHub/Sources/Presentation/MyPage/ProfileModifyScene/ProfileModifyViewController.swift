@@ -60,14 +60,10 @@ final class ProfileModifyViewController: UIViewController {
         return button
     }()
     
-    private let activicyIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        return indicator
-    }()
+    private let activityIndicator = UIActivityIndicatorView()
     
-    init(
-        viewModel: ProfileModifyViewModel = ProfileModifyViewModel()
-    ) {
+    // MARK: - initializer
+    init(viewModel: ProfileModifyViewModel = ProfileModifyViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -138,7 +134,7 @@ extension ProfileModifyViewController {
     }
     
     private func configureSubview() {
-        [profileImageView, nicknameTextField, profileModifyButton, activicyIndicator].forEach {
+        [profileImageView, nicknameTextField, profileModifyButton, activityIndicator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -216,10 +212,10 @@ extension ProfileModifyViewController {
             ),
             
             // MARK: - activiryIndicator Constraints
-            activicyIndicator.centerXAnchor.constraint(
+            activityIndicator.centerXAnchor.constraint(
                 equalTo: safeArea.centerXAnchor
             ),
-            activicyIndicator.centerYAnchor.constraint(
+            activityIndicator.centerYAnchor.constraint(
                 equalTo: safeArea.centerYAnchor
             )
         ])
