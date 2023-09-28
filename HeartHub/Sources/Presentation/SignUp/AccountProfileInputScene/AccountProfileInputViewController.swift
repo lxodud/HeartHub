@@ -133,6 +133,7 @@ final class AccountProfileInputViewController: UIViewController {
     }()
     
     private let nextButton: UIButton = SignUpBottomButton(title: "다음")
+    private let activityIndicator = UIActivityIndicatorView()
     
     init(viewModel: AccountProfileInputViewModel) {
         self.viewModel = viewModel
@@ -170,6 +171,10 @@ final class AccountProfileInputViewController: UIViewController {
         
         output.verifiedId
             .drive(idTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.checkingIdDuplication
+            .drive(activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
         
         output.idDescription
@@ -249,7 +254,8 @@ extension AccountProfileInputViewController {
          maleStackView,
          femaleStackView,
          birthTextField,
-         nextButton].forEach {
+         nextButton,
+         activityIndicator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -411,7 +417,15 @@ extension AccountProfileInputViewController {
             nextButton.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
                 multiplier: 0.85
-            )
+            ),
+            
+            // MARK: activityIndicator Constraints
+            activityIndicator.centerXAnchor.constraint(
+                equalTo: safeArea.centerXAnchor
+            ),
+            activityIndicator.centerYAnchor.constraint(
+                equalTo: safeArea.centerYAnchor
+            ),
         ])
     }
     

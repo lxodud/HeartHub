@@ -23,6 +23,7 @@ final class AccountProfileInputViewModel: ViewModelType {
     
     struct Output {
         let verifiedId: Driver<String>
+        let checkingIdDuplication: Driver<Bool>
         let idDescription: Driver<String>
         let idDescriptionColor: Driver<SignUpColor>
         let verifiedPassword: Driver<String>
@@ -63,6 +64,13 @@ extension AccountProfileInputViewModel {
                 return self.accountUseCase.checkDuplicateId(id)
                     .asDriver(onErrorJustReturn: false)
             }
+        
+        let checkingIdDuplication = Driver.from([
+            input.tapCheckIdDuplication.map { _ in true },
+            isDuplicatedId.map { _ in false }
+        ])
+            .merge()
+            .distinctUntilChanged()
         
         let idDescription = Driver.from([
             isDuplicatedId.map { $0 == true ? "사용 가능한 아이디입니다." : "중복된 아이디입니다." },
@@ -144,6 +152,7 @@ extension AccountProfileInputViewModel {
         
         return Output(
             verifiedId: verifiedId,
+            checkingIdDuplication: checkingIdDuplication,
             idDescription: idDescription,
             idDescriptionColor: idDescriptionColor,
             verifiedPassword: verifiedPassword,
