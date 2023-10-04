@@ -23,7 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        appCoordinator?.start()
 //
 //        self.window?.backgroundColor = .systemBackground
-        window?.rootViewController = NicknameEmailInputViewController()
+        window?.rootViewController = NicknameEmailInputViewController(
+            viewModel: NicknameEmailInputViewModel(
+                myInformationUseCase: MyInformationUseCase()
+            )
+        )
         self.window?.makeKeyAndVisible()
     }
 }

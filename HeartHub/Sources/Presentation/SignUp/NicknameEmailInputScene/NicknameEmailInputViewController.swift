@@ -5,9 +5,14 @@
 //  Created by 이태영 on 2023/09/28.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class NicknameEmailInputViewController: UIViewController {
+    private let viewModel: NicknameEmailInputViewModel
+    private let disposeBag = DisposeBag()
+    
     private let titleLabel = SignUpTitleLabelStackView(
         title: "사랑을 시작해볼까요?",
         description: "계정을 생성하여 HeartHub를 즐겨보아요."
@@ -81,10 +86,52 @@ final class NicknameEmailInputViewController: UIViewController {
     
     private let activityIndicator = UIActivityIndicatorView()
     
+    // initializer
+    init(viewModel: NicknameEmailInputViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         configureSuperview()
         configureSubview()
         configureLayout()
+        bind(to: viewModel)
+    }
+    
+    private func bind(to viewModel: NicknameEmailInputViewModel) {
+        let input = NicknameEmailInputViewModel.Input(
+            nickname: nicknameTextField.rx.text.orEmpty.asDriver(),
+            tapCheckNicknameDuplication: nicknameCheckButton.rx.tap.asDriver()
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.verifiedNickname
+            .drive(nicknameTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.checkingDuplicationNickname
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        output.isCheckNicknameDuplicationEnable
+            .drive(nicknameCheckButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.nicknameDescription
+            .drive(nicknameDescriptionLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.nicknameDescriptionColor
+            .drive(onNext: { [weak self] in
+                self?.nicknameDescriptionLabel.textColor = $0.uiColor
+            })
+            .disposed(by: disposeBag)
     }
 }
 

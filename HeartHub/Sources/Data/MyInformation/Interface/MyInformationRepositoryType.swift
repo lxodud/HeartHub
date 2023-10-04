@@ -12,4 +12,5 @@ protocol MyInformationRepositoryType {
     func upsertUserInformation(with userInformation: UserInformation) -> Completable
     func fetchUserInformation() -> Observable<UserInformation>
     func removeMyInformation()
+    func checkDuplicationNickname(_ nickname: String) -> Observable<Bool>
 }

@@ -65,7 +65,7 @@ extension AccountRepository: AccountRepositoryType {
             .map { $0.data }
     }
     
-    func checkDuplicateId(_ id: String) -> Observable<Bool> {
+    func checkDuplicationId(_ id: String) -> Observable<Bool> {
         let builder = UserRelatedRequestBuilderFactory.makeIdCheckRequest(of: id)
         
         return networkManager.request(builder)

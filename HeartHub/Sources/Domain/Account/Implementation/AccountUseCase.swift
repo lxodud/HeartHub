@@ -40,8 +40,8 @@ extension AccountUseCase: AccountUseCaseType {
         return accountRepository.findPassword(id: id, email: email)
     }
     
-    func checkDuplicateId(_ id: String) -> Observable<Bool> {
-        return accountRepository.checkDuplicateId(id)
+    func checkDuplicationId(_ id: String) -> Observable<Bool> {
+        return accountRepository.checkDuplicationId(id)
     }
     
     func verifyId(_ id: String) -> Bool {

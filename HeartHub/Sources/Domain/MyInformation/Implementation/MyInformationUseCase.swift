@@ -29,4 +29,20 @@ extension MyInformationUseCase: MyInformationUseCaseType {
     func fetchMyInformation() -> Observable<UserInformation> {
         return myInformationRepository.fetchUserInformation()
     }
+    
+    func verifyNickname(_ nickname: String) -> Bool {
+        let maxLength = 10
+        let allowedCharacterSet = CharacterSet(
+            charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_?+=~,./[]{}<>"
+        )
+        
+        guard nickname.count <= maxLength else {
+            return false
+        }
+        return allowedCharacterSet.isSuperset(of: CharacterSet(charactersIn: nickname))
+    }
+    
+    func checkDuplicationNickname(_ nickname: String) -> Observable<Bool> {
+        return myInformationRepository.checkDuplicationNickname(nickname)
+    }
 }

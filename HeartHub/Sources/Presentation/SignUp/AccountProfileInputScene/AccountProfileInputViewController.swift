@@ -173,7 +173,7 @@ final class AccountProfileInputViewController: UIViewController {
             .drive(idTextField.rx.text)
             .disposed(by: disposeBag)
         
-        output.checkingIdDuplication
+        output.checkingDuplicationId
             .drive(activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
         
@@ -182,8 +182,8 @@ final class AccountProfileInputViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.idDescriptionColor
-            .drive(onNext: {
-                self.idDescriptionLabel.textColor = $0.uiColor
+            .drive(onNext: { [weak self] in
+                self?.idDescriptionLabel.textColor = $0.uiColor
             })
             .disposed(by: disposeBag)
         

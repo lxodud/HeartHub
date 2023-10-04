@@ -12,6 +12,7 @@
 		0C143BFA2AB6E2A000C0A5A9 /* LoginCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C143BF92AB6E2A000C0A5A9 /* LoginCoordinatable.swift */; };
 		0C143BFD2AB752C500C0A5A9 /* DefaultNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C143BFC2AB752C500C0A5A9 /* DefaultNetworkManager.swift */; };
 		0C143BFF2AB86BB900C0A5A9 /* FIndIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C143BFE2AB86BB900C0A5A9 /* FIndIdViewModel.swift */; };
+		0C3918232ACC5B4F0098ECC6 /* NicknameEmailInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3918222ACC5B4F0098ECC6 /* NicknameEmailInputViewModel.swift */; };
 		0C40FD7D2AAF341600F207DA /* ProfileModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD7C2AAF341600F207DA /* ProfileModifyViewModel.swift */; };
 		0C40FD802AAF351B00F207DA /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD7F2AAF351B00F207DA /* WithdrawalViewController.swift */; };
 		0C40FD822AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD812AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift */; };
@@ -149,6 +150,7 @@
 		0C143BF92AB6E2A000C0A5A9 /* LoginCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatable.swift; sourceTree = "<group>"; };
 		0C143BFC2AB752C500C0A5A9 /* DefaultNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManager.swift; sourceTree = "<group>"; };
 		0C143BFE2AB86BB900C0A5A9 /* FIndIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIndIdViewModel.swift; sourceTree = "<group>"; };
+		0C3918222ACC5B4F0098ECC6 /* NicknameEmailInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameEmailInputViewModel.swift; sourceTree = "<group>"; };
 		0C40FD7C2AAF341600F207DA /* ProfileModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyViewModel.swift; sourceTree = "<group>"; };
 		0C40FD7F2AAF351B00F207DA /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
 		0C40FD812AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalReasonCheckBoxStackView.swift; sourceTree = "<group>"; };
@@ -593,8 +595,8 @@
 				0C59CF672A87EA3E00D847B7 /* Infra */,
 				0C43F6112A659CB000EED860 /* Util */,
 				0CAFFF802AB34DAE00422FC7 /* Presentation */,
-				0C59CF6C2A89222100D847B7 /* Data */,
 				0CF4C8662AADADD9004F805E /* Domain */,
+				0C59CF6C2A89222100D847B7 /* Data */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -921,6 +923,7 @@
 			isa = PBXGroup;
 			children = (
 				0CACB9D82AC5602A00CE0C56 /* NicknameEmailInputViewController.swift */,
+				0C3918222ACC5B4F0098ECC6 /* NicknameEmailInputViewModel.swift */,
 			);
 			path = NicknameEmailInputScene;
 			sourceTree = "<group>";
@@ -1460,6 +1463,7 @@
 				5690136F2A7FCC7700715D23 /* LoginBackgroundView.swift in Sources */,
 				0C9790A52AC1560D001BD3BD /* AccountProfileInputViewModel.swift in Sources */,
 				0C63FF462A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift in Sources */,
+				0C3918232ACC5B4F0098ECC6 /* NicknameEmailInputViewModel.swift in Sources */,
 				5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */,
 				56DEBEDA2A7A9B24000BC687 /* GameMissionTableViewCell.swift in Sources */,
 				561462192A6EE50300C0AC1F /* FindIdViewController.swift in Sources */,

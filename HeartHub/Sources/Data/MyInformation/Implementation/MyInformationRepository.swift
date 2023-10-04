@@ -81,4 +81,11 @@ extension MyInformationRepository {
         informationProvider.removeObject(forKey: "profileImage")
         informationProvider.removeObject(forKey: "nickname")
     }
+    
+    func checkDuplicationNickname(_ nickname: String) -> Observable<Bool> {
+        let builder = UserRelatedRequestBuilderFactory.makeNicknameCheckRequest(of: nickname)
+        
+        return networkManager.request(builder)
+            .map { $0.data }
+    }
 }
