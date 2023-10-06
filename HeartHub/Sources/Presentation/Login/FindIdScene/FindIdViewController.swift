@@ -133,7 +133,7 @@ final class FindIdViewController: UIViewController {
         output.findIdEnabled
             .drive(findIdButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        
+
         output.toLogin
             .drive()
             .disposed(by: disposeBag)

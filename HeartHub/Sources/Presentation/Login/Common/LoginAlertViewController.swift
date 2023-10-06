@@ -113,7 +113,7 @@ extension LoginAlertViewController {
             ),
             closeButton.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
-                multiplier: 0.8
+                multiplier: 0.6
             ),
             closeButton.centerXAnchor.constraint(
                 equalTo: safeArea.centerXAnchor

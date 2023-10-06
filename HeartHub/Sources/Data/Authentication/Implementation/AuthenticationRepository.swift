@@ -11,6 +11,7 @@ import RxSwift
 final class AuthenticationRepository {
     private let networkManager: NetworkManagerType
     private let tokenProvider: TokenProvidable
+    private var verificationCode: String = ""
     
     init(
         networkManager: NetworkManagerType = NetworkManager(),
@@ -37,5 +38,17 @@ extension AuthenticationRepository: AuthenticationRepositoryType {
         return networkManager.request(builder)
             .ignoreElements()
             .asCompletable()
+    }
+    
+    func sendVerificationCode(to email: String) -> Observable<Bool> {
+        let builder = UserRelatedRequestBuilderFactory.makeSendVerificationCodeRequest(of: email)
+        
+        return networkManager.request(builder)
+            .do { self.verificationCode = $0.verificationCode }
+            .map { _ in true }
+    }
+    
+    func checkVerificationCode(with code: String) -> Bool {
+        return verificationCode == code
     }
 }

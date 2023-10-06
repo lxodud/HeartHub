@@ -53,6 +53,7 @@ final class FindIdViewModel: ViewModelType {
                 return self.accountUseCase.findId(with: email)
                     .asDriver(onErrorJustReturn: false)
             }
+            .debug()
             .map { isSuccess in
                 isSuccess == true ? "메일로 아이디가 전송되었습니다." : "사용자 정보를 찾을 수 없습니다."
             }
@@ -64,6 +65,7 @@ final class FindIdViewModel: ViewModelType {
             foundId.map({ _ in false })
         ])
             .merge()
+            .debug()
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: false)
         

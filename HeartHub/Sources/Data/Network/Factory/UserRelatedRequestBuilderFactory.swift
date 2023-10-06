@@ -29,7 +29,7 @@ struct UserRelatedRequestBuilderFactory {
         )
     }
     
-    static func makeVerificateEmailRequest(of email: String) -> RequestBuilder<EmailVerificationResponseDTO> {
+    static func makeSendVerificationCodeRequest(of email: String) -> RequestBuilder<SendVerificationCodeResponseDTO> {
         return RequestBuilder(
             httpMethod: .get,
             path: "/api/email-verification/\(email)"

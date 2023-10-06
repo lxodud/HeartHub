@@ -12,6 +12,7 @@
 		0C143BFA2AB6E2A000C0A5A9 /* LoginCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C143BF92AB6E2A000C0A5A9 /* LoginCoordinatable.swift */; };
 		0C143BFD2AB752C500C0A5A9 /* DefaultNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C143BFC2AB752C500C0A5A9 /* DefaultNetworkManager.swift */; };
 		0C143BFF2AB86BB900C0A5A9 /* FIndIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C143BFE2AB86BB900C0A5A9 /* FIndIdViewModel.swift */; };
+		0C2C79132ACD5F0200AB02A9 /* AuthenticateEmailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C79122ACD5F0200AB02A9 /* AuthenticateEmailResponseDTO.swift */; };
 		0C3918232ACC5B4F0098ECC6 /* NicknameEmailInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3918222ACC5B4F0098ECC6 /* NicknameEmailInputViewModel.swift */; };
 		0C40FD7D2AAF341600F207DA /* ProfileModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD7C2AAF341600F207DA /* ProfileModifyViewModel.swift */; };
 		0C40FD802AAF351B00F207DA /* WithdrawalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD7F2AAF351B00F207DA /* WithdrawalViewController.swift */; };
@@ -117,7 +118,6 @@
 		561462192A6EE50300C0AC1F /* FindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561462182A6EE50300C0AC1F /* FindIdViewController.swift */; };
 		5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B2D02A57EEB300477EBC /* LoginViewController.swift */; };
 		56348A912A6E8286005BB635 /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A902A6E8286005BB635 /* FindPasswordViewController.swift */; };
-		5642627F2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5642627E2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift */; };
 		5651FC7A2A7A7C6A00965300 /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5651FC792A7A7C6A00965300 /* GameBackgroundView.swift */; };
 		5651FC7C2A7A7FB800965300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5651FC7B2A7A7FB800965300 /* GameViewController.swift */; };
 		569013552A7BB32600715D23 /* GameMissionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013542A7BB32600715D23 /* GameMissionDataManager.swift */; };
@@ -150,6 +150,7 @@
 		0C143BF92AB6E2A000C0A5A9 /* LoginCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinatable.swift; sourceTree = "<group>"; };
 		0C143BFC2AB752C500C0A5A9 /* DefaultNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManager.swift; sourceTree = "<group>"; };
 		0C143BFE2AB86BB900C0A5A9 /* FIndIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIndIdViewModel.swift; sourceTree = "<group>"; };
+		0C2C79122ACD5F0200AB02A9 /* AuthenticateEmailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateEmailResponseDTO.swift; sourceTree = "<group>"; };
 		0C3918222ACC5B4F0098ECC6 /* NicknameEmailInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameEmailInputViewModel.swift; sourceTree = "<group>"; };
 		0C40FD7C2AAF341600F207DA /* ProfileModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyViewModel.swift; sourceTree = "<group>"; };
 		0C40FD7F2AAF351B00F207DA /* WithdrawalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewController.swift; sourceTree = "<group>"; };
@@ -258,7 +259,6 @@
 		561462182A6EE50300C0AC1F /* FindIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdViewController.swift; sourceTree = "<group>"; };
 		5626B2D02A57EEB300477EBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		56348A902A6E8286005BB635 /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
-		5642627E2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailVerificationResponseDTO.swift; sourceTree = "<group>"; };
 		5651FC792A7A7C6A00965300 /* GameBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackgroundView.swift; sourceTree = "<group>"; };
 		5651FC7B2A7A7FB800965300 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		569013542A7BB32600715D23 /* GameMissionDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMissionDataManager.swift; sourceTree = "<group>"; };
@@ -333,6 +333,14 @@
 				0C9F98B02ABD8DD60084A938 /* LoginAlertViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		0C2C79112ACD5EF000AB02A9 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				0C2C79122ACD5F0200AB02A9 /* AuthenticateEmailResponseDTO.swift */,
+			);
+			path = DataMapping;
 			sourceTree = "<group>";
 		};
 		0C40FD7E2AAF34E800F207DA /* WithdrawalScene */ = {
@@ -534,7 +542,6 @@
 		0C63FF442A8E6A430020D137 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				5642627E2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift */,
 				0CE2CD702A90817A00129724 /* FetchTokenResponseDTO.swift */,
 				0CE2CDA82A93A95F00129724 /* FetchReissueTokenResponseDTO.swift */,
 				0CE2CD9A2A9347EB00129724 /* GetUserInformationResponseDTO.swift */,
@@ -758,6 +765,7 @@
 		0C9F98732ABB1BBA0084A938 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				0C2C79112ACD5EF000AB02A9 /* DataMapping */,
 				0C9F98742ABB1BC60084A938 /* Implementation */,
 				0C9F98752ABB1BCF0084A938 /* Interface */,
 			);
@@ -1493,7 +1501,6 @@
 				0C9790A02AC04FD4001BD3BD /* SignUpDateFormatter.swift in Sources */,
 				0CE2CD902A933DE200129724 /* MyInformationRepository.swift in Sources */,
 				0C4EF9902A7A430100539320 /* CoupleSpaceMainViewController.swift in Sources */,
-				5642627F2A95C25E007FEE69 /* EmailVerificationResponseDTO.swift in Sources */,
 				0C59CF662A87E64000D847B7 /* FindPasswordRequestDTO.swift in Sources */,
 				0C9F98AD2ABD82380084A938 /* FindIdRequestDTO.swift in Sources */,
 				0C59CF622A87E1FD00D847B7 /* SetMateRequestDTO.swift in Sources */,
@@ -1548,6 +1555,7 @@
 				0C9F98822ABB26710084A938 /* AuthenticationUseCaseType.swift in Sources */,
 				0C59CF732A8A107400D847B7 /* MultipartBodyRequestBuilder.swift in Sources */,
 				0CE2CDA72A93A93400129724 /* NewToken.swift in Sources */,
+				0C2C79132ACD5F0200AB02A9 /* AuthenticateEmailResponseDTO.swift in Sources */,
 				0C9F987C2ABB20C80084A938 /* MyInformationRepositoryType.swift in Sources */,
 				0C4EF9972A7B966F00539320 /* HeartHubImagePickerCell.swift in Sources */,
 				0C4EF99C2A7BF63100539320 /* HeartPickDataSource.swift in Sources */,

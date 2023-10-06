@@ -49,7 +49,7 @@ final class NicknameEmailInputViewController: UIViewController {
         keyboardType: .default,
         isSecureTextEntry: false
     )
-    private let emailAuthenticationButton: UIButton = {
+    private let verificationCodeSendButton: UIButton = {
         let button = UIButton()
         button.setTitle("인증", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -62,13 +62,19 @@ final class NicknameEmailInputViewController: UIViewController {
         button.layer.cornerRadius = 18
         return button
     }()
+    private let emailDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Pretendard-Regular", size: 12)
+        return label
+    }()
     
-    private let authenticationNumberTextField = HeartHubUserInfoInputTextField(
+    private let verificationCodeTextField = HeartHubUserInfoInputTextField(
         placeholder: "인증번호를 입력하세요",
-        keyboardType: .default,
-        isSecureTextEntry: false
+        keyboardType: .numberPad,
+        isSecureTextEntry: false,
+        isHidden: true
     )
-    private let authenticationNumberCheckButton: UIButton = {
+    private let verificationCodeCheckButton: UIButton = {
         let button = UIButton()
         button.setTitle("확인", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -78,8 +84,14 @@ final class NicknameEmailInputViewController: UIViewController {
         button.setBackgroundColor(normalColor, for: .normal)
         button.setBackgroundColor(.systemGray3, for: .disabled)
         button.clipsToBounds = true
+        button.isHidden = true
         button.layer.cornerRadius = 18
         return button
+    }()
+    private let verificationCodeCheckDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Pretendard-Regular", size: 12)
+        return label
     }()
     
     private let nextButton: UIButton = SignUpBottomButton(title: "다음")
@@ -101,12 +113,17 @@ final class NicknameEmailInputViewController: UIViewController {
         configureSubview()
         configureLayout()
         bind(to: viewModel)
+        bindUI()
     }
     
     private func bind(to viewModel: NicknameEmailInputViewModel) {
         let input = NicknameEmailInputViewModel.Input(
             nickname: nicknameTextField.rx.text.orEmpty.asDriver(),
-            tapCheckNicknameDuplication: nicknameCheckButton.rx.tap.asDriver()
+            tapCheckNicknameDuplication: nicknameCheckButton.rx.tap.asDriver(),
+            email: emailTextField.rx.text.orEmpty.asDriver(),
+            tapVerificationCodeSend: verificationCodeSendButton.rx.tap.asDriver(),
+            verificationCode: verificationCodeTextField.rx.text.orEmpty.asDriver(),
+            tapVerificationCodeCheck: verificationCodeCheckButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -132,6 +149,58 @@ final class NicknameEmailInputViewController: UIViewController {
                 self?.nicknameDescriptionLabel.textColor = $0.uiColor
             })
             .disposed(by: disposeBag)
+        
+        output.isVerificationCodeSendEnable
+            .drive(verificationCodeSendButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.emailDescription
+            .drive(emailDescriptionLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.emailDescriptionColor
+            .drive(onNext: { [weak self] in
+                self?.emailDescriptionLabel.textColor = $0.uiColor
+            })
+            .disposed(by: disposeBag)
+        
+        output.isInputVerificationCodeEnable
+            .map { !$0 }
+            .drive(
+                verificationCodeTextField.rx.isHidden,
+                verificationCodeCheckButton.rx.isHidden,
+                verificationCodeCheckDescriptionLabel.rx.isHidden
+            )
+            .disposed(by: disposeBag)
+        
+        output.sendingVerificationCode
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        output.isCheckVerificationCodeEnable
+            .drive(verificationCodeCheckButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.verificationCodeCheckDescription
+            .drive(verificationCodeCheckDescriptionLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.verificationCodeCheckDescriptionColor
+            .drive(onNext: { [weak self] in
+                self?.verificationCodeCheckDescriptionLabel.textColor = $0.uiColor
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI() {
+        let tapBackground = UITapGestureRecognizer()
+        view.addGestureRecognizer(tapBackground)
+        
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -147,9 +216,11 @@ extension NicknameEmailInputViewController {
          nicknameCheckButton,
          nicknameDescriptionLabel,
          emailTextField,
-         emailAuthenticationButton,
-         authenticationNumberTextField,
-         authenticationNumberCheckButton,
+         verificationCodeSendButton,
+         emailDescriptionLabel,
+         verificationCodeTextField,
+         verificationCodeCheckButton,
+         verificationCodeCheckDescriptionLabel,
          nextButton,
          activityIndicator].forEach {
             view.addSubview($0)
@@ -231,48 +302,68 @@ extension NicknameEmailInputViewController {
             ),
             
             // MARK: emailAuthenticationButton Constraints
-            emailAuthenticationButton.topAnchor.constraint(
+            verificationCodeSendButton.topAnchor.constraint(
                 equalTo: emailTextField.topAnchor
             ),
-            emailAuthenticationButton.trailingAnchor.constraint(
+            verificationCodeSendButton.trailingAnchor.constraint(
                 equalTo: emailTextField.trailingAnchor
             ),
-            emailAuthenticationButton.bottomAnchor.constraint(
+            verificationCodeSendButton.bottomAnchor.constraint(
                 equalTo: emailTextField.bottomAnchor
             ),
-            emailAuthenticationButton.widthAnchor.constraint(
+            verificationCodeSendButton.widthAnchor.constraint(
                 equalTo: emailTextField.widthAnchor,
                 multiplier: 0.2
             ),
             
-            // MARK: authenticationNumberTextField Constratints
-            authenticationNumberTextField.topAnchor.constraint(
+            // MARK: - emailDescriptionLabel Constraints
+            emailDescriptionLabel.topAnchor.constraint(
                 equalTo: emailTextField.bottomAnchor,
+                constant: 5
+            ),
+            emailDescriptionLabel.leadingAnchor.constraint(
+                equalTo: emailTextField.leadingAnchor,
+                constant: 15
+            ),
+            
+            // MARK: authenticationNumberTextField Constratints
+            verificationCodeTextField.topAnchor.constraint(
+                equalTo: emailDescriptionLabel.bottomAnchor,
                 constant: 10
             ),
-            authenticationNumberTextField.centerXAnchor.constraint(
+            verificationCodeTextField.centerXAnchor.constraint(
                 equalTo: emailTextField.centerXAnchor
             ),
-            authenticationNumberTextField.widthAnchor.constraint(
+            verificationCodeTextField.widthAnchor.constraint(
                 equalTo: emailTextField.widthAnchor
             ),
-            authenticationNumberTextField.heightAnchor.constraint(
+            verificationCodeTextField.heightAnchor.constraint(
                 equalTo: emailTextField.heightAnchor
             ),
             
             // MARK: authenticationNumberCheckButton Constraints
-            authenticationNumberCheckButton.topAnchor.constraint(
-                equalTo: authenticationNumberTextField.topAnchor
+            verificationCodeCheckButton.topAnchor.constraint(
+                equalTo: verificationCodeTextField.topAnchor
             ),
-            authenticationNumberCheckButton.trailingAnchor.constraint(
-                equalTo: authenticationNumberTextField.trailingAnchor
+            verificationCodeCheckButton.trailingAnchor.constraint(
+                equalTo: verificationCodeTextField.trailingAnchor
             ),
-            authenticationNumberCheckButton.bottomAnchor.constraint(
-                equalTo: authenticationNumberTextField.bottomAnchor
+            verificationCodeCheckButton.bottomAnchor.constraint(
+                equalTo: verificationCodeTextField.bottomAnchor
             ),
-            authenticationNumberCheckButton.widthAnchor.constraint(
-                equalTo: authenticationNumberTextField.widthAnchor,
+            verificationCodeCheckButton.widthAnchor.constraint(
+                equalTo: verificationCodeTextField.widthAnchor,
                 multiplier: 0.2
+            ),
+            
+            // MARK: - verificationCodeDescriptionLabel Constraints
+            verificationCodeCheckDescriptionLabel.topAnchor.constraint(
+                equalTo: verificationCodeTextField.bottomAnchor,
+                constant: 5
+            ),
+            verificationCodeCheckDescriptionLabel.leadingAnchor.constraint(
+                equalTo: verificationCodeTextField.leadingAnchor,
+                constant: 15
             ),
             
             // MARK: - nextButton Constraints

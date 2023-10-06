@@ -10,6 +10,7 @@ import UIKit
 final class SignUpCoordinator {
     private let navigationController: UINavigationController
     private let signUpUseCase = SignUpUseCase()
+    private let alertTransitionDelegate = AlertTransitionDelegate()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -46,6 +47,22 @@ extension SignUpCoordinator: SignUpCoordinatable {
     }
     
     func toNicknameEmailInput() {
-
+        let nicknameEmailInputViewController = NicknameEmailInputViewController(
+            viewModel: NicknameEmailInputViewModel(
+                coordinator: self,
+                myInformationUseCase: MyInformationUseCase(),
+                accountUseCase: AccountUseCase(),
+                authenticationUseCase: AuthenticationUseCase()
+            )
+        )
+        
+        navigationController.pushViewController(nicknameEmailInputViewController, animated: true)
+    }
+    
+    func showAlert(message: String) {
+        let alert = LoginAlertViewController(title: message)
+        alert.transitioningDelegate = alertTransitionDelegate
+        alert.modalPresentationStyle = .custom
+        navigationController.present(alert, animated: true)
     }
 }

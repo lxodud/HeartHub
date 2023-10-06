@@ -131,7 +131,6 @@ extension AccountProfileInputViewModel {
             $0 && !$1.isEmpty && !$2.isEmpty
         }
             .startWith(false)
-            .debug()
         
         let idPasswordGenderBirth = Driver.combineLatest(
             verifiedId,

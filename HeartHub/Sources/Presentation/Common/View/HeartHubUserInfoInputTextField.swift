@@ -10,15 +10,21 @@ import UIKit
 final class HeartHubUserInfoInputTextField: UITextField {
     private let insets: UIEdgeInsets = UIEdgeInsets(top: 6, left: 27, bottom: 6, right: 90)
     
-    init(placeholder: String, keyboardType: UIKeyboardType, isSecureTextEntry: Bool) {
+    init(
+        placeholder: String,
+        keyboardType: UIKeyboardType,
+        isSecureTextEntry: Bool,
+        isHidden: Bool = false
+    ) {
         super.init(frame: .zero)
         
-        self.attributedPlaceholder = NSAttributedString(
+        attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.07, green: 0.07, blue: 0.07, alpha: 0.5)]
         )
         self.keyboardType = keyboardType
         self.isSecureTextEntry = isSecureTextEntry
+        self.isHidden = isHidden
         
         configureUserInfoTextField()
     }

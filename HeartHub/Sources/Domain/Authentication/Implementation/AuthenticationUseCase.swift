@@ -27,4 +27,12 @@ extension AuthenticationUseCase: AuthenticationUseCaseType {
     func logout() -> Completable {
         return authenticationRepository.logout()
     }
+    
+    func sendVerificationCode(to email: String) -> Observable<Bool> {
+        return authenticationRepository.sendVerificationCode(to: email)
+    }
+    
+    func checkVerificationCode(with code: String) -> Bool {
+        authenticationRepository.checkVerificationCode(with: code)
+    }
 }
