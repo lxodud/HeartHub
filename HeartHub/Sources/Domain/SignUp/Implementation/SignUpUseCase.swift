@@ -13,6 +13,8 @@ final class SignUpUseCase {
     private var password: String?
     private var gender: Gender?
     private var birth: Date?
+    private var nickname: String?
+    private var email: String?
 }
 
 // MARK: Public Interface
@@ -33,7 +35,15 @@ extension SignUpUseCase: SignUpUseCaseType {
         self.gender = gender
     }
     
-    func upsertBirth(_ date: Date) {
-        birth = date
+    func upsertBirth(_ birth: Date) {
+        self.birth = birth
+    }
+    
+    func upsertNickname(_ nickname: String) {
+        self.nickname = nickname
+    }
+    
+    func upsertEmail(_ email: String) {
+        self.email = email
     }
 }

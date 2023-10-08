@@ -10,5 +10,6 @@ import Foundation
 protocol SignUpCoordinatable: Coordinatable {
     func toAccountProfileInput()
     func toNicknameEmailInput()
+    func toTermAgree()
     func showAlert(message: String)
 }

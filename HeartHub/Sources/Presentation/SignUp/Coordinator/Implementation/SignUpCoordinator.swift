@@ -52,11 +52,16 @@ extension SignUpCoordinator: SignUpCoordinatable {
                 coordinator: self,
                 myInformationUseCase: MyInformationUseCase(),
                 accountUseCase: AccountUseCase(),
-                authenticationUseCase: AuthenticationUseCase()
+                authenticationUseCase: AuthenticationUseCase(),
+                signUpUseCase: signUpUseCase
             )
         )
         
         navigationController.pushViewController(nicknameEmailInputViewController, animated: true)
+    }
+    
+    func toTermAgree() {
+        print(#function)
     }
     
     func showAlert(message: String) {
@@ -66,3 +71,4 @@ extension SignUpCoordinator: SignUpCoordinatable {
         navigationController.present(alert, animated: true)
     }
 }
+

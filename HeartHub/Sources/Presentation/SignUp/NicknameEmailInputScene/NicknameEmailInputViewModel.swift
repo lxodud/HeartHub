@@ -16,6 +16,7 @@ final class NicknameEmailInputViewModel: ViewModelType {
         let tapVerificationCodeSend: Driver<Void>
         let verificationCode: Driver<String>
         let tapVerificationCodeCheck: Driver<Void>
+        let tapNext: Driver<Void>
     }
     
     struct Output {
@@ -32,23 +33,28 @@ final class NicknameEmailInputViewModel: ViewModelType {
         let isCheckVerificationCodeEnable: Driver<Bool>
         let verificationCodeCheckDescription: Driver<String>
         let verificationCodeCheckDescriptionColor: Driver<SignUpColor>
+        let isNextEnable: Driver<Bool>
+        let toNext: Driver<Void>
     }
     
     private let coordinator: SignUpCoordinatable
     private let myInformationUseCase: MyInformationUseCaseType
     private let accountUseCase: AccountUseCaseType
     private let authenticationUseCase: AuthenticationUseCaseType
+    private let signUpUseCase: SignUpUseCaseType
     
     init(
         coordinator: SignUpCoordinatable,
         myInformationUseCase: MyInformationUseCaseType,
         accountUseCase: AccountUseCaseType,
-        authenticationUseCase: AuthenticationUseCaseType
+        authenticationUseCase: AuthenticationUseCaseType,
+        signUpUseCase: SignUpUseCaseType
     ) {
         self.coordinator = coordinator
         self.myInformationUseCase = myInformationUseCase
         self.accountUseCase = accountUseCase
         self.authenticationUseCase = authenticationUseCase
+        self.signUpUseCase = signUpUseCase
     }
 }
 
@@ -61,7 +67,7 @@ extension NicknameEmailInputViewModel {
                 return self.myInformationUseCase.verifyNickname(new) ? new : previous
             }
         
-        let isDuplicatedNickname = input.tapCheckNicknameDuplication.withLatestFrom(verifiedNickname)
+        let isAvailableNickname = input.tapCheckNicknameDuplication.withLatestFrom(verifiedNickname)
             .flatMap { nickname in
                 return self.myInformationUseCase.checkDuplicationNickname(nickname)
                     .asDriver(onErrorJustReturn: false)
@@ -69,7 +75,7 @@ extension NicknameEmailInputViewModel {
         
         let checkingDuplicationNickname = Driver.from([
             input.tapCheckNicknameDuplication.map { _ in true },
-            isDuplicatedNickname.map { _ in false }
+            isAvailableNickname.map { _ in false }
         ])
             .merge()
             .distinctUntilChanged()
@@ -82,14 +88,14 @@ extension NicknameEmailInputViewModel {
             .distinctUntilChanged()
         
         let nicknameDescription = Driver.from([
-            isDuplicatedNickname.map { $0 == true ? "사용 가능한 닉네임입니다." : "중복된 닉네임입니다." },
+            isAvailableNickname.map { $0 == true ? "사용 가능한 닉네임입니다." : "중복된 닉네임입니다." },
             verifiedNickname.map { _ in "영문/숫자 구성" }
         ])
             .merge()
             .distinctUntilChanged()
         
         let nicknameDescriptionColor = Driver.from([
-            isDuplicatedNickname.map { $0 == true ? SignUpColor.green : SignUpColor.red },
+            isAvailableNickname.map { $0 == true ? SignUpColor.green : SignUpColor.red },
             verifiedNickname.map { _ in SignUpColor.gray }
         ])
             .merge()
@@ -149,8 +155,23 @@ extension NicknameEmailInputViewModel {
             .map { $0 == true ? SignUpColor.green : SignUpColor.red }
             .distinctUntilChanged()
         
+        let isNextEnable = Driver.combineLatest(
+            isAvailableNickname,
+            isVerificationCodeMatched) {
+                $0 && $1
+            }
+            .startWith(false)
         
-        // TODO: 번호 두개 비교해서 맞는지 확인하는 로직 구현 및 description에 띄울지 alert로 띄울지 구현하기, 다음 화면으로 넘어가기 구현
+        let nicknameEmail = Driver.combineLatest(input.nickname, input.email) {
+            (nickname: $0, email: $1)
+        }
+            
+        let toNext = input.tapNext.withLatestFrom(nicknameEmail)
+            .do { self.signUpUseCase.upsertNickname($0.nickname) }
+            .do { self.signUpUseCase.upsertEmail($0.email) }
+            .do { _ in self.coordinator.toTermAgree() }
+            .map { _ in }
+        
         return Output(
             verifiedNickname: verifiedNickname,
             checkingDuplicationNickname: checkingDuplicationNickname,
@@ -164,7 +185,9 @@ extension NicknameEmailInputViewModel {
             sendingVerificationCode: sendingVerificationCode,
             isCheckVerificationCodeEnable: isCheckVerificationCodeEnable,
             verificationCodeCheckDescription: verificationCodeCheckDescription,
-            verificationCodeCheckDescriptionColor: verificationCodeCheckDescriptionColor
+            verificationCodeCheckDescriptionColor: verificationCodeCheckDescriptionColor,
+            isNextEnable: isNextEnable,
+            toNext: toNext
         )
     }
 }

@@ -13,4 +13,6 @@ protocol SignUpUseCaseType {
     func upsertPassword(_ password: String)
     func upsertGender(_ gender: Gender)
     func upsertBirth(_ date: Date)
+    func upsertNickname(_ nickname: String)
+    func upsertEmail(_ email: String)
 }

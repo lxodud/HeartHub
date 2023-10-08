@@ -123,7 +123,8 @@ final class NicknameEmailInputViewController: UIViewController {
             email: emailTextField.rx.text.orEmpty.asDriver(),
             tapVerificationCodeSend: verificationCodeSendButton.rx.tap.asDriver(),
             verificationCode: verificationCodeTextField.rx.text.orEmpty.asDriver(),
-            tapVerificationCodeCheck: verificationCodeCheckButton.rx.tap.asDriver()
+            tapVerificationCodeCheck: verificationCodeCheckButton.rx.tap.asDriver(),
+            tapNext: nextButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -189,6 +190,14 @@ final class NicknameEmailInputViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 self?.verificationCodeCheckDescriptionLabel.textColor = $0.uiColor
             })
+            .disposed(by: disposeBag)
+        
+        output.isNextEnable
+            .drive(nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.toNext
+            .drive()
             .disposed(by: disposeBag)
     }
     
