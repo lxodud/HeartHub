@@ -54,7 +54,6 @@ final class AccountProfileInputViewModel: ViewModelType {
 extension AccountProfileInputViewModel {
     func transform(_ input: Input) -> Output {
         let verifiedId = input.id
-            .distinctUntilChanged()
             .scan("") { (previous, new) in
                 return self.accountUseCase.verifyId(new) ? new : previous
             }
@@ -74,14 +73,14 @@ extension AccountProfileInputViewModel {
         
         let idDescription = Driver.from([
             isDuplicatedId.map { $0 == true ? "사용 가능한 아이디입니다." : "중복된 아이디입니다." },
-            verifiedId.map { _ in "영문/숫자 구성" }
+            verifiedId.distinctUntilChanged().map { _ in "영문/숫자 구성" }
         ])
             .merge()
             .distinctUntilChanged()
         
         let idDescriptionColor = Driver.from([
             isDuplicatedId.map { $0 == true ? SignUpColor.green : SignUpColor.red },
-            verifiedId.map { _ in SignUpColor.gray }
+            verifiedId.distinctUntilChanged().map { _ in SignUpColor.gray }
         ])
             .merge()
             .distinctUntilChanged()
@@ -117,7 +116,7 @@ extension AccountProfileInputViewModel {
             .distinctUntilChanged()
         
         let isIdConfirm = Driver.from([
-            verifiedId.map { _ in false },
+            verifiedId.distinctUntilChanged().map { _ in false },
             isDuplicatedId
         ])
             .merge()

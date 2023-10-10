@@ -62,16 +62,22 @@ final class NicknameEmailInputViewModel: ViewModelType {
 extension NicknameEmailInputViewModel {
     func transform(_ input: Input) -> Output {
         let verifiedNickname = input.nickname
-            .distinctUntilChanged()
             .scan("") { (previous, new) in
                 return self.myInformationUseCase.verifyNickname(new) ? new : previous
             }
         
-        let isAvailableNickname = input.tapCheckNicknameDuplication.withLatestFrom(verifiedNickname)
+        let isDuplicationNickname = input.tapCheckNicknameDuplication.withLatestFrom(verifiedNickname)
             .flatMap { nickname in
                 return self.myInformationUseCase.checkDuplicationNickname(nickname)
                     .asDriver(onErrorJustReturn: false)
             }
+        
+        let isAvailableNickname = Driver.from([
+            isDuplicationNickname,
+            verifiedNickname.distinctUntilChanged().map { _ in false }
+        ])
+            .merge()
+            .distinctUntilChanged()
         
         let checkingDuplicationNickname = Driver.from([
             input.tapCheckNicknameDuplication.map { _ in true },
@@ -81,7 +87,7 @@ extension NicknameEmailInputViewModel {
             .distinctUntilChanged()
         
         let isCheckNicknameDuplicationEnable = Driver.from([
-            verifiedNickname.map { !$0.isEmpty },
+            verifiedNickname.distinctUntilChanged().map { !$0.isEmpty },
             checkingDuplicationNickname.map { _ in false }
         ])
             .merge()
@@ -89,20 +95,22 @@ extension NicknameEmailInputViewModel {
         
         let nicknameDescription = Driver.from([
             isAvailableNickname.map { $0 == true ? "사용 가능한 닉네임입니다." : "중복된 닉네임입니다." },
-            verifiedNickname.map { _ in "영문/숫자 구성" }
+            verifiedNickname.distinctUntilChanged().map { _ in "영문/숫자 구성" }
         ])
             .merge()
             .distinctUntilChanged()
         
         let nicknameDescriptionColor = Driver.from([
             isAvailableNickname.map { $0 == true ? SignUpColor.green : SignUpColor.red },
-            verifiedNickname.map { _ in SignUpColor.gray }
+            verifiedNickname.distinctUntilChanged().map { _ in SignUpColor.gray }
         ])
             .merge()
             .distinctUntilChanged()
         
-        let isVerifiedEmail = input.email
+        let email = input.email
             .distinctUntilChanged()
+        
+        let isVerifiedEmail = email
             .map { self.accountUseCase.verifyEmailFormat($0) }
         
         let emailDescription = isVerifiedEmail
@@ -121,7 +129,7 @@ extension NicknameEmailInputViewModel {
             .merge()
             .distinctUntilChanged()
         
-        let isInputVerificationCodeEnable = input.tapVerificationCodeSend.withLatestFrom(input.email)
+        let isInputVerificationCodeEnable = input.tapVerificationCodeSend.withLatestFrom(email)
             .flatMap { email in
                 return self.authenticationUseCase.sendVerificationCode(to: email)
                     .asDriver(onErrorJustReturn: false)
@@ -138,29 +146,41 @@ extension NicknameEmailInputViewModel {
             .merge()
             .distinctUntilChanged()
         
+        let isVerificationCodeMatched = input.tapVerificationCodeCheck.withLatestFrom(input.verificationCode)
+            .map { self.authenticationUseCase.checkVerificationCode(with: $0) }
+        
         let isCheckVerificationCodeEnable = Driver.from([
-            input.verificationCode.map { !$0.isEmpty }
+            input.verificationCode.distinctUntilChanged().map { !$0.isEmpty },
+            isVerificationCodeMatched.map { !$0 }
         ])
             .merge()
             .distinctUntilChanged()
         
-        let isVerificationCodeMatched = input.tapVerificationCodeCheck.withLatestFrom(input.verificationCode)
-            .map { self.authenticationUseCase.checkVerificationCode(with: $0) }
-        
-        let verificationCodeCheckDescription = isVerificationCodeMatched
-            .map { $0 == true ? "인증 완료" : "번호가 일치하지 않습니다." }
+        let verificationCodeCheckDescription = Driver.from([
+            isVerificationCodeMatched.map { $0 == true ? "인증 완료" : "번호가 일치하지 않습니다." },
+            email.map { _ in "" }
+        ])
+            .merge()
             .distinctUntilChanged()
         
         let verificationCodeCheckDescriptionColor = isVerificationCodeMatched
             .map { $0 == true ? SignUpColor.green : SignUpColor.red }
             .distinctUntilChanged()
         
-        let isNextEnable = Driver.combineLatest(
+        let isAuthenticationCompleted = Driver.combineLatest(
             isAvailableNickname,
-            isVerificationCodeMatched) {
+            isVerificationCodeMatched
+        ) {
                 $0 && $1
             }
             .startWith(false)
+        
+        let isNextEnable = Driver.from([
+            isAuthenticationCompleted,
+            email.map { _ in false }
+        ])
+            .merge()
+            .distinctUntilChanged()
         
         let nicknameEmail = Driver.combineLatest(input.nickname, input.email) {
             (nickname: $0, email: $1)
