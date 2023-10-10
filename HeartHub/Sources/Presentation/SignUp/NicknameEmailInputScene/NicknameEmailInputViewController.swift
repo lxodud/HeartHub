@@ -112,6 +112,7 @@ final class NicknameEmailInputViewController: UIViewController {
         configureSuperview()
         configureSubview()
         configureLayout()
+        configureNavigationBar()
         bind(to: viewModel)
         bindUI()
     }
@@ -396,5 +397,13 @@ extension NicknameEmailInputViewController {
                 equalTo: safeArea.centerYAnchor
             ),
         ])
+    }
+    
+    private func configureNavigationBar() {
+        let titleImage = UIImage(named: "HeartIcon1:3")
+        let titleImageView = UIImageView()
+        titleImageView.contentMode = .scaleAspectFit
+        titleImageView.image = titleImage
+        navigationItem.titleView = titleImageView
     }
 }
