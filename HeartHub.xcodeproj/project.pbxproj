@@ -90,6 +90,7 @@
 		0CAFFF872AB355E200422FC7 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF862AB355E200422FC7 /* AppCoordinator.swift */; };
 		0CAFFF8B2AB35AB100422FC7 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF8A2AB35AB100422FC7 /* Coordinatable.swift */; };
 		0CAFFF8E2AB3619B00422FC7 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAFFF8D2AB3619B00422FC7 /* LoginCoordinator.swift */; };
+		0CBD8BF02ADFFE0E0039D343 /* TermDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD8BEF2ADFFE0E0039D343 /* TermDetailView.swift */; };
 		0CC33AC22A5281C1001EF4E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC33AC12A5281C1001EF4E7 /* AppDelegate.swift */; };
 		0CC33AC42A5281C1001EF4E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC33AC32A5281C1001EF4E7 /* SceneDelegate.swift */; };
 		0CC33ACB2A5281C3001EF4E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CC33ACA2A5281C3001EF4E7 /* Assets.xcassets */; };
@@ -231,6 +232,7 @@
 		0CAFFF862AB355E200422FC7 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0CAFFF8A2AB35AB100422FC7 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		0CAFFF8D2AB3619B00422FC7 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		0CBD8BEF2ADFFE0E0039D343 /* TermDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermDetailView.swift; sourceTree = "<group>"; };
 		0CC33ABE2A5281C1001EF4E7 /* HeartHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CC33AC12A5281C1001EF4E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CC33AC32A5281C1001EF4E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1058,6 +1060,14 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		0CBD8BF12AE0000D0039D343 /* TermDetailScene */ = {
+			isa = PBXGroup;
+			children = (
+				0CBD8BEF2ADFFE0E0039D343 /* TermDetailView.swift */,
+			);
+			path = TermDetailScene;
+			sourceTree = "<group>";
+		};
 		0CC33AB52A5281C1001EF4E7 = {
 			isa = PBXGroup;
 			children = (
@@ -1251,6 +1261,7 @@
 				0CF7CDDC2AD5213800488228 /* TermAgreeViewController.swift */,
 				0CF7CDE02AD5369C00488228 /* TermAgreeCheckBoxStackView.swift */,
 				0CEB6F9C2ADFC12F000E165C /* TermAgreeViewModel.swift */,
+				0CBD8BF12AE0000D0039D343 /* TermDetailScene */,
 			);
 			path = TermAgreeScene;
 			sourceTree = "<group>";
@@ -1551,6 +1562,7 @@
 				0C9F987A2ABB1C880084A938 /* AuthenticationRepository.swift in Sources */,
 				0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */,
 				0CADFF582AADE7AE00253DA1 /* NicknameService.swift in Sources */,
+				0CBD8BF02ADFFE0E0039D343 /* TermDetailView.swift in Sources */,
 				0C40FD802AAF351B00F207DA /* WithdrawalViewController.swift in Sources */,
 				0C9F98A12ABD70810084A938 /* AccountRepositoryType.swift in Sources */,
 				0CF4C84B2AAB3F49004F805E /* ProfileModifyViewController.swift in Sources */,
