@@ -19,10 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-        appCoordinator = AppCoordinator(window: window ?? UIWindow())
-        appCoordinator?.start()
+//        appCoordinator = AppCoordinator(window: window ?? UIWindow())
+//        appCoordinator?.start()
         
-        self.window?.backgroundColor = .systemBackground
-        self.window?.makeKeyAndVisible()
+        let vc = PersonalInformationCollectionAndUsageDetailViewController()
+        window?.rootViewController = vc
+        
+        window?.backgroundColor = .systemBackground
+        window?.makeKeyAndVisible()
     }
 }

@@ -8,16 +8,24 @@
 import UIKit
 
 final class TermDetailView: UIView {
-    private let scrollView = UIScrollView()
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isDirectionalLockEnabled = true
+        return scrollView
+    }()
     private let termLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         return label
     }()
     
-    // MARK: initializer
+    // MARK: - initializer
     init(termText: String) {
         termLabel.text = termText
         super.init(frame: .zero)
+        scrollView.delegate = self
+        configureSubview()
+        configureLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -25,7 +33,16 @@ final class TermDetailView: UIView {
     }
 }
 
-// MARK: Configure UI
+// MARK: - UIScrollViewDelegate Implemenation
+extension TermDetailView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        }
+    }
+}
+
+// MARK: - Configure UI
 extension TermDetailView {
     private func configureSubview() {
         addSubview(scrollView)
@@ -43,14 +60,15 @@ extension TermDetailView {
             scrollView.topAnchor.constraint(
                 equalTo: safeArea.topAnchor
             ),
-            scrollView.leadingAnchor.constraint(
-                equalTo: safeArea.leadingAnchor
-            ),
-            scrollView.trailingAnchor.constraint(
-                equalTo: safeArea.trailingAnchor
-            ),
             scrollView.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor
+            ),
+            scrollView.centerXAnchor.constraint(
+                equalTo: safeArea.centerXAnchor
+            ),
+            scrollView.widthAnchor.constraint(
+                equalTo: safeArea.widthAnchor,
+                multiplier: 0.95
             ),
             
             // MARK: termLabel Constraints

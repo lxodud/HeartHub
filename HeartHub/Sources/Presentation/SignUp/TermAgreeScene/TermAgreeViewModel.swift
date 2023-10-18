@@ -33,6 +33,7 @@ final class TermAgreeViewModel: ViewModelType {
     private let coordinator: SignUpCoordinatable
     private let signUpUseCase: SignUpUseCaseType
     
+    // MARK: - initializer
     init(
         coordinator: SignUpCoordinatable,
         signUpUseCase: SignUpUseCaseType
@@ -42,7 +43,7 @@ final class TermAgreeViewModel: ViewModelType {
     }
 }
 
-// MARK: Public Interface
+// MARK: - Public Interface
 extension TermAgreeViewModel {
     func transform(_ input: Input) -> Output {
         let isAgeTermSelected = Driver.from([
