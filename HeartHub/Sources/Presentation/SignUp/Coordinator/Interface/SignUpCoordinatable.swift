@@ -11,5 +11,6 @@ protocol SignUpCoordinatable: Coordinatable {
     func toAccountProfileInput()
     func toNicknameEmailInput()
     func toTermAgree()
+    func toPersonalInformationCollectionAndUsageDetail()
     func showAlert(message: String)
 }

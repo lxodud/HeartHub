@@ -65,6 +65,7 @@ final class PersonalInformationCollectionAndUsageDetailViewController: UIViewCon
     )
     
     override func viewDidLoad() {
+        configureSuperview()
         configureSubview()
         configureLayout()
     }
@@ -72,6 +73,10 @@ final class PersonalInformationCollectionAndUsageDetailViewController: UIViewCon
 
 // MARK: - Configure UI
 extension PersonalInformationCollectionAndUsageDetailViewController {
+    private func configureSuperview() {
+        view.backgroundColor = .systemBackground
+    }
+    
     private func configureSubview() {
         [termDetailView].forEach {
             view.addSubview($0)

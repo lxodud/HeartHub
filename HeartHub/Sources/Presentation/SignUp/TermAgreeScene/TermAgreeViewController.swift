@@ -135,6 +135,14 @@ final class TermAgreeViewController: UIViewController {
         output.isMarketingConsent
             .drive(marketingConsentCheckBox.checkButton.rx.isSelected)
             .disposed(by: disposeBag)
+        
+        output.toPersonalInformationCollectionAndUsageDetail
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.toTermsOfUseDetail
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 

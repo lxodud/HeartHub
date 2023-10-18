@@ -95,7 +95,7 @@ extension TermAgreeViewModel {
         
         let toPersonalInformationCollectionAndUsageDetail = input.tapPersonalInformationCollectionAndUsageDetail
             .do { _ in
-                // TODO: 디테일로 화면 전환
+                self.coordinator.toPersonalInformationCollectionAndUsageDetail()
             }
         
         let toTermsOfUseDetail = input.tapTermsOfUseDetail

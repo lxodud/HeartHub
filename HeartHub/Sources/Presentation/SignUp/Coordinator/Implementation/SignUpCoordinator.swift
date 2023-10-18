@@ -71,6 +71,11 @@ extension SignUpCoordinator: SignUpCoordinatable {
         navigationController.pushViewController(termAgreeViewController, animated: true)
     }
     
+    func toPersonalInformationCollectionAndUsageDetail() {
+        let viewController = PersonalInformationCollectionAndUsageDetailViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
     func showAlert(message: String) {
         let alert = LoginAlertViewController(title: message)
         alert.transitioningDelegate = alertTransitionDelegate
