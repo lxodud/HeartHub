@@ -107,6 +107,7 @@
 		0CE2CDA92A93A95F00129724 /* FetchReissueTokenResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE2CDA82A93A95F00129724 /* FetchReissueTokenResponseDTO.swift */; };
 		0CE2CDE02A9B716200129724 /* HeartHubFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE2CDDF2A9B716100129724 /* HeartHubFloatingButton.swift */; };
 		0CE2CDE22A9B71B600129724 /* HeartHubSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */; };
+		0CEB6F9D2ADFC12F000E165C /* TermAgreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEB6F9C2ADFC12F000E165C /* TermAgreeViewModel.swift */; };
 		0CEDD8A22AA4B57E00662A03 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */; };
 		0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */; };
 		0CF4C84B2AAB3F49004F805E /* ProfileModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C84A2AAB3F49004F805E /* ProfileModifyViewController.swift */; };
@@ -249,6 +250,7 @@
 		0CE2CDA82A93A95F00129724 /* FetchReissueTokenResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchReissueTokenResponseDTO.swift; sourceTree = "<group>"; };
 		0CE2CDDF2A9B716100129724 /* HeartHubFloatingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartHubFloatingButton.swift; sourceTree = "<group>"; };
 		0CE2CDE12A9B71B600129724 /* HeartHubSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartHubSegmentedControl.swift; sourceTree = "<group>"; };
+		0CEB6F9C2ADFC12F000E165C /* TermAgreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermAgreeViewModel.swift; sourceTree = "<group>"; };
 		0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		0CEDD8A52AA8928F00662A03 /* HeartHubImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHubImagePickerViewController.swift; sourceTree = "<group>"; };
 		0CF4C84A2AAB3F49004F805E /* ProfileModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyViewController.swift; sourceTree = "<group>"; };
@@ -1248,6 +1250,7 @@
 			children = (
 				0CF7CDDC2AD5213800488228 /* TermAgreeViewController.swift */,
 				0CF7CDE02AD5369C00488228 /* TermAgreeCheckBoxStackView.swift */,
+				0CEB6F9C2ADFC12F000E165C /* TermAgreeViewModel.swift */,
 			);
 			path = TermAgreeScene;
 			sourceTree = "<group>";
@@ -1581,6 +1584,7 @@
 				0CE2CD8B2A91277000129724 /* BasicResponseDTO.swift in Sources */,
 				569013652A7E6CFD00715D23 /* GameMissionViewController.swift in Sources */,
 				0C9F986F2ABB13520084A938 /* NetworkManagerType.swift in Sources */,
+				0CEB6F9D2ADFC12F000E165C /* TermAgreeViewModel.swift in Sources */,
 				0C59CF502A84DB0400D847B7 /* RequestBuilderProtocol.swift in Sources */,
 				5690136B2A7E6FA400715D23 /* GameClearMissionDataManager.swift in Sources */,
 				0CAFFF8B2AB35AB100422FC7 /* Coordinatable.swift in Sources */,

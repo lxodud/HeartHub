@@ -5,9 +5,14 @@
 //  Created by 이태영 on 2023/10/10.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class TermAgreeViewController: UIViewController {
+    private let viewModel: TermAgreeViewModel
+    private let disposeBag = DisposeBag()
+    
     private let titleLabel = SignUpTitleLabelStackView(
         title: "사랑을 시작해볼까요?",
         description: "계정을 생성하여 HeartHub를 즐겨보아요."
@@ -67,10 +72,70 @@ final class TermAgreeViewController: UIViewController {
     
     private let activityIndicator = UIActivityIndicatorView()
     
+    // MARK: - initializer
+    init(viewModel: TermAgreeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         configureSuperview()
         configureSubview()
         configureLayout()
+        bind(to: viewModel)
+    }
+    
+    private func bind(to viewModel: TermAgreeViewModel) {
+        let personalInformationCollectionAndUsageDetailTapGesture = UITapGestureRecognizer()
+        let termsOfUseDetailTapGesture = UITapGestureRecognizer()
+        personalInformationCollectionAndUsageCheckBox.addGestureRecognizer(
+            personalInformationCollectionAndUsageDetailTapGesture
+        )
+        termsOfUseCheckBox.addGestureRecognizer(termsOfUseDetailTapGesture)
+        
+        let tapPersonalInformationCollectionAndUsageDetail = personalInformationCollectionAndUsageDetailTapGesture
+            .rx.event.map { _ in }.asDriver(onErrorJustReturn: ())
+        
+        let tapTermsOfUseDetail = termsOfUseDetailTapGesture
+            .rx.event.map { _ in }.asDriver(onErrorJustReturn: ())
+        
+        let input = TermAgreeViewModel.Input(
+            tapAllAgree: allAgreeCheckBox.checkButton.rx.tap.asDriver(),
+            tapAgeTerm: ageTermCheckBox.checkButton.rx.tap.asDriver(),
+            tapPersonalInformationCollectionAndUsage: personalInformationCollectionAndUsageCheckBox
+                .checkButton.rx.tap.asDriver(),
+            tapTermsOfUse: termsOfUseCheckBox.checkButton.rx.tap.asDriver(),
+            tapMarketingConsent: marketingConsentCheckBox.checkButton.rx.tap.asDriver(),
+            tapPersonalInformationCollectionAndUsageDetail: personalInformationCollectionAndUsageDetailTapGesture
+                .rx.event.map { _ in }.asDriver(onErrorJustReturn: ()),
+            tapTermsOfUseDetail: tapTermsOfUseDetail
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.isAllAgreeSelected
+            .drive(allAgreeCheckBox.checkButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        output.isAgeTermSelected
+            .drive(ageTermCheckBox.checkButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        output.isPersonalInformationCollectionAndUsageSelected
+            .drive(personalInformationCollectionAndUsageCheckBox.checkButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        output.isTermsOfUse
+            .drive(termsOfUseCheckBox.checkButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        output.isMarketingConsent
+            .drive(marketingConsentCheckBox.checkButton.rx.isSelected)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -259,7 +324,7 @@ extension TermAgreeViewController {
             ),
             activityIndicator.centerYAnchor.constraint(
                 equalTo: safeArea.centerYAnchor
-            ),
+            )
         ])
     }
 }

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        appCoordinator = AppCoordinator(window: window ?? UIWindow())
 //        appCoordinator?.start()
         
-        let vc = TermAgreeViewController()
+        let vc = TermAgreeViewController(viewModel: TermAgreeViewModel())
         
         self.window?.rootViewController = vc
         self.window?.backgroundColor = .systemBackground
