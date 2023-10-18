@@ -115,6 +115,8 @@
 		0CF4C8612AACAF63004F805E /* GetDatingDataResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8602AACAF63004F805E /* GetDatingDataResponseDTO.swift */; };
 		0CF4C8632AACB0C1004F805E /* CheckMateExistResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8622AACB0C1004F805E /* CheckMateExistResponseDTO.swift */; };
 		0CF4C8652AADA903004F805E /* JSONBodyRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF4C8642AADA903004F805E /* JSONBodyRequestBuilder.swift */; };
+		0CF7CDDD2AD5213800488228 /* TermAgreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7CDDC2AD5213800488228 /* TermAgreeViewController.swift */; };
+		0CF7CDE12AD5369C00488228 /* TermAgreeCheckBoxStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7CDE02AD5369C00488228 /* TermAgreeCheckBoxStackView.swift */; };
 		561462192A6EE50300C0AC1F /* FindIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561462182A6EE50300C0AC1F /* FindIdViewController.swift */; };
 		5626B2D12A57EEB300477EBC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626B2D02A57EEB300477EBC /* LoginViewController.swift */; };
 		56348A912A6E8286005BB635 /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56348A902A6E8286005BB635 /* FindPasswordViewController.swift */; };
@@ -255,6 +257,8 @@
 		0CF4C8602AACAF63004F805E /* GetDatingDataResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDatingDataResponseDTO.swift; sourceTree = "<group>"; };
 		0CF4C8622AACB0C1004F805E /* CheckMateExistResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMateExistResponseDTO.swift; sourceTree = "<group>"; };
 		0CF4C8642AADA903004F805E /* JSONBodyRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONBodyRequestBuilder.swift; sourceTree = "<group>"; };
+		0CF7CDDC2AD5213800488228 /* TermAgreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermAgreeViewController.swift; sourceTree = "<group>"; };
+		0CF7CDE02AD5369C00488228 /* TermAgreeCheckBoxStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermAgreeCheckBoxStackView.swift; sourceTree = "<group>"; };
 		23C115A0B51548BE8211E044 /* Pods-HeartHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartHub.release.xcconfig"; path = "Target Support Files/Pods-HeartHub/Pods-HeartHub.release.xcconfig"; sourceTree = "<group>"; };
 		561462182A6EE50300C0AC1F /* FindIdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdViewController.swift; sourceTree = "<group>"; };
 		5626B2D02A57EEB300477EBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -346,9 +350,9 @@
 		0C40FD7E2AAF34E800F207DA /* WithdrawalScene */ = {
 			isa = PBXGroup;
 			children = (
+				0C40FD812AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift */,
 				0C40FD7F2AAF351B00F207DA /* WithdrawalViewController.swift */,
 				0C40FD8B2AB08B5900F207DA /* WithdrawalViewModel.swift */,
-				0C40FD812AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift */,
 			);
 			path = WithdrawalScene;
 			sourceTree = "<group>";
@@ -914,6 +918,7 @@
 				0C9790842ABEFCEA001BD3BD /* StartDateInputScene */,
 				0C9790A12AC0517E001BD3BD /* AccountProfileInputScene */,
 				0CACB9D72AC55FDE00CE0C56 /* NicknameEmailInputScene */,
+				0CF7CDDB2AD5211E00488228 /* TermAgreeScene */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -1238,6 +1243,15 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		0CF7CDDB2AD5211E00488228 /* TermAgreeScene */ = {
+			isa = PBXGroup;
+			children = (
+				0CF7CDDC2AD5213800488228 /* TermAgreeViewController.swift */,
+				0CF7CDE02AD5369C00488228 /* TermAgreeCheckBoxStackView.swift */,
+			);
+			path = TermAgreeScene;
+			sourceTree = "<group>";
+		};
 		561462142A6EE3DF00C0AC1F /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1501,6 +1515,7 @@
 				0C9790A02AC04FD4001BD3BD /* SignUpDateFormatter.swift in Sources */,
 				0CE2CD902A933DE200129724 /* MyInformationRepository.swift in Sources */,
 				0C4EF9902A7A430100539320 /* CoupleSpaceMainViewController.swift in Sources */,
+				0CF7CDDD2AD5213800488228 /* TermAgreeViewController.swift in Sources */,
 				0C59CF662A87E64000D847B7 /* FindPasswordRequestDTO.swift in Sources */,
 				0C9F98AD2ABD82380084A938 /* FindIdRequestDTO.swift in Sources */,
 				0C59CF622A87E1FD00D847B7 /* SetMateRequestDTO.swift in Sources */,
@@ -1525,6 +1540,7 @@
 				0CEDD8A22AA4B57E00662A03 /* MyPageCell.swift in Sources */,
 				0C97908D2ABF1255001BD3BD /* SignUpDateTextField.swift in Sources */,
 				0CAFFF782AB2153700422FC7 /* AlertTransitionDelegate.swift in Sources */,
+				0CF7CDE12AD5369C00488228 /* TermAgreeCheckBoxStackView.swift in Sources */,
 				569013672A7E6D0700715D23 /* GameClearViewController.swift in Sources */,
 				0CC33AC42A5281C1001EF4E7 /* SceneDelegate.swift in Sources */,
 				0C4EF99F2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift in Sources */,
