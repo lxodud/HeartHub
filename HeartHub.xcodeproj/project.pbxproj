@@ -41,6 +41,7 @@
 		0C59CF6E2A89223500D847B7 /* TokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59CF6D2A89223500D847B7 /* TokenProvider.swift */; };
 		0C59CF702A89236A00D847B7 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59CF6F2A89236A00D847B7 /* Token.swift */; };
 		0C59CF732A8A107400D847B7 /* MultipartBodyRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59CF722A8A107400D847B7 /* MultipartBodyRequestBuilder.swift */; };
+		0C60BDEC2AE0204A00920851 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C60BDEB2AE0204A00920851 /* TermsOfUseViewController.swift */; };
 		0C63FF352A8E0FD70020D137 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C63FF342A8E0FD70020D137 /* NetworkError.swift */; };
 		0C63FF462A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C63FF452A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift */; };
 		0C684F452A77D53200A31865 /* CoupleImageBetweenHeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C684F442A77D53200A31865 /* CoupleImageBetweenHeartView.swift */; };
@@ -184,6 +185,7 @@
 		0C59CF6D2A89223500D847B7 /* TokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenProvider.swift; sourceTree = "<group>"; };
 		0C59CF6F2A89236A00D847B7 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0C59CF722A8A107400D847B7 /* MultipartBodyRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartBodyRequestBuilder.swift; sourceTree = "<group>"; };
+		0C60BDEB2AE0204A00920851 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		0C63FF342A8E0FD70020D137 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		0C63FF452A8E6A700020D137 /* CheckAvailabilityResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAvailabilityResponseDTO.swift; sourceTree = "<group>"; };
 		0C684F442A77D53200A31865 /* CoupleImageBetweenHeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleImageBetweenHeartView.swift; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 			children = (
 				0CBD8BEF2ADFFE0E0039D343 /* TermDetailView.swift */,
 				0C80B93C2AE012B700B45EAB /* PersonalInformationCollectionAndUsageDetailViewController.swift */,
+				0C60BDEB2AE0204A00920851 /* TermsOfUseViewController.swift */,
 			);
 			path = TermDetailScene;
 			sourceTree = "<group>";
@@ -1570,6 +1573,7 @@
 				0C9F98A12ABD70810084A938 /* AccountRepositoryType.swift in Sources */,
 				0CF4C84B2AAB3F49004F805E /* ProfileModifyViewController.swift in Sources */,
 				0C9790A32AC0526E001BD3BD /* AccountProfileInputViewController.swift in Sources */,
+				0C60BDEC2AE0204A00920851 /* TermsOfUseViewController.swift in Sources */,
 				56C048912A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift in Sources */,
 				0CCF04D92A9CBF1E00D66F37 /* MyPageMainViewController.swift in Sources */,
 				0CE2CD9B2A9347EB00129724 /* GetUserInformationResponseDTO.swift in Sources */,
