@@ -110,8 +110,7 @@ final class TermAgreeViewController: UIViewController {
                 .checkButton.rx.tap.asDriver(),
             tapTermsOfUse: termsOfUseCheckBox.checkButton.rx.tap.asDriver(),
             tapMarketingConsent: marketingConsentCheckBox.checkButton.rx.tap.asDriver(),
-            tapPersonalInformationCollectionAndUsageDetail: personalInformationCollectionAndUsageDetailTapGesture
-                .rx.event.map { _ in }.asDriver(onErrorJustReturn: ()),
+            tapPersonalInformationCollectionAndUsageDetail: tapPersonalInformationCollectionAndUsageDetail,
             tapTermsOfUseDetail: tapTermsOfUseDetail
         )
         

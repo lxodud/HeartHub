@@ -29,6 +29,17 @@ final class TermAgreeViewModel: ViewModelType {
         let toPersonalInformationCollectionAndUsageDetail: Driver<Void>
         let toTermsOfUseDetail: Driver<Void>
     }
+    
+    private let coordinator: SignUpCoordinatable
+    private let signUpUseCase: SignUpUseCaseType
+    
+    init(
+        coordinator: SignUpCoordinatable,
+        signUpUseCase: SignUpUseCaseType
+    ) {
+        self.coordinator = coordinator
+        self.signUpUseCase = signUpUseCase
+    }
 }
 
 // MARK: Public Interface

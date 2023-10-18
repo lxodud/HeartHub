@@ -19,12 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-//        appCoordinator = AppCoordinator(window: window ?? UIWindow())
-//        appCoordinator?.start()
+        appCoordinator = AppCoordinator(window: window ?? UIWindow())
+        appCoordinator?.start()
         
-        let vc = TermAgreeViewController(viewModel: TermAgreeViewModel())
-        
-        self.window?.rootViewController = vc
         self.window?.backgroundColor = .systemBackground
         self.window?.makeKeyAndVisible()
     }

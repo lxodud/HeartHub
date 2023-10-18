@@ -61,7 +61,14 @@ extension SignUpCoordinator: SignUpCoordinatable {
     }
     
     func toTermAgree() {
-        print(#function)
+        let termAgreeViewController = TermAgreeViewController(
+            viewModel: TermAgreeViewModel(
+                coordinator: self,
+                signUpUseCase: signUpUseCase
+            )
+        )
+        
+        navigationController.pushViewController(termAgreeViewController, animated: true)
     }
     
     func showAlert(message: String) {
