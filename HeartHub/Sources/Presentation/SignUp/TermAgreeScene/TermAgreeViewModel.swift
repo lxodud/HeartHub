@@ -28,6 +28,7 @@ final class TermAgreeViewModel: ViewModelType {
         let isMarketingConsent: Driver<Bool>
         let toPersonalInformationCollectionAndUsageDetail: Driver<Void>
         let toTermsOfUseDetail: Driver<Void>
+        let isCreateAccountEnable: Driver<Bool>
     }
     
     private let coordinator: SignUpCoordinatable
@@ -102,6 +103,15 @@ extension TermAgreeViewModel {
             .do { _ in
                 self.coordinator.toTermOfUse()
             }
+        
+        let isCreateAccountEnable = Driver.combineLatest(
+            isAgeTermSelected,
+            isPersonalInformationCollectionAndUsageSelected,
+            isTermOfUse) {
+                $0 && $1 && $2
+            }
+            .distinctUntilChanged()
+            .startWith(false)
             
         return Output(
             isAllAgreeSelected: isAllAgreeSelected,
@@ -110,7 +120,8 @@ extension TermAgreeViewModel {
             isTermsOfUse: isTermOfUse,
             isMarketingConsent: isMarketingConsent,
             toPersonalInformationCollectionAndUsageDetail: toPersonalInformationCollectionAndUsageDetail,
-            toTermsOfUseDetail: toTermsOfUseDetail
+            toTermsOfUseDetail: toTermsOfUseDetail,
+            isCreateAccountEnable: isCreateAccountEnable
         )
     }
 }

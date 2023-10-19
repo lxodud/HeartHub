@@ -143,6 +143,10 @@ final class TermAgreeViewController: UIViewController {
         output.toTermsOfUseDetail
             .drive()
             .disposed(by: disposeBag)
+        
+        output.isCreateAccountEnable
+            .drive(createAccountButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 }
 
