@@ -100,7 +100,7 @@ extension TermAgreeViewModel {
         
         let toTermsOfUseDetail = input.tapTermsOfUseDetail
             .do { _ in
-                // TODO: 디테일로 화면 전환
+                self.coordinator.toTermOfUse()
             }
             
         return Output(

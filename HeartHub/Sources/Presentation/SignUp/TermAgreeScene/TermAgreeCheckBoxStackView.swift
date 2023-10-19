@@ -52,4 +52,3 @@ extension TermAgreeCheckBoxStackView {
         checkButton.setContentHuggingPriority(.required, for: .horizontal)
     }
 }
-
