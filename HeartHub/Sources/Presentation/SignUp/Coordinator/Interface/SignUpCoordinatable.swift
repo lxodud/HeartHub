@@ -13,5 +13,6 @@ protocol SignUpCoordinatable: Coordinatable {
     func toTermAgree()
     func toPersonalInformationCollectionAndUsageDetail()
     func toTermOfUse()
-    func showAlert(message: String)
+    func showAlert(message: String, action: (() -> Void)?)
+    func toLogin()
 }

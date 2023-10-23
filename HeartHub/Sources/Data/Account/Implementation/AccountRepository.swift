@@ -71,4 +71,50 @@ extension AccountRepository: AccountRepositoryType {
         return networkManager.request(builder)
             .map { $0.data }
     }
+    
+    func createAccount(_ signUpInformation: SignUpInformation) -> Observable<Bool> {
+        let body = JoinRequestDTO(
+            username: signUpInformation.id,
+            password: signUpInformation.password,
+            gender: signUpInformation.gender.signInformationForm,
+            email: signUpInformation.email,
+            nickname: signUpInformation.nickname,
+            marketingStatus: signUpInformation.isMarketingConsent.signInformationForm,
+            mate: "",
+            datingDate: signUpInformation.startDate.signInformationForm,
+            birth: signUpInformation.birth.signInformationForm
+        )
+        let builder = UserRelatedRequestBuilderFactory.makeJoinRequest(of: body)
+        
+        return networkManager.request(builder)
+            .map { $0.isSuccess }
+    }
+}
+
+private extension Bool {
+    var signInformationForm: String {
+        switch self {
+        case true:
+            return "T"
+        case false:
+            return "F"
+        }
+    }
+}
+
+private extension Gender {
+    var signInformationForm: String {
+        switch self {
+        case .female:
+            return "F"
+        case .male:
+            return "M"
+        }
+    }
+}
+
+private extension Date {
+    var signInformationForm: String {
+        return SignUpDateFormatter.shared.stringForRequest(from: self)
+    }
 }

@@ -9,11 +9,16 @@ import UIKit
 
 final class SignUpCoordinator {
     private let navigationController: UINavigationController
+    private let finishDelegate: SignUpFinishDelegate
     private let signUpUseCase = SignUpUseCase()
     private let alertTransitionDelegate = AlertTransitionDelegate()
     
-    init(navigationController: UINavigationController) {
+    init(
+        navigationController: UINavigationController,
+        finishDelegate: SignUpFinishDelegate
+    ) {
         self.navigationController = navigationController
+        self.finishDelegate = finishDelegate
     }
 }
 
@@ -64,6 +69,7 @@ extension SignUpCoordinator: SignUpCoordinatable {
         let termAgreeViewController = TermAgreeViewController(
             viewModel: TermAgreeViewModel(
                 coordinator: self,
+                accountUseCase: AccountUseCase(),
                 signUpUseCase: signUpUseCase
             )
         )
@@ -81,11 +87,14 @@ extension SignUpCoordinator: SignUpCoordinatable {
         navigationController.pushViewController(viewContriller, animated: true)
     }
     
-    func showAlert(message: String) {
-        let alert = LoginAlertViewController(title: message)
+    func showAlert(message: String, action: (() -> Void)?) {
+        let alert = LoginAlertViewController(title: message, action: action)
         alert.transitioningDelegate = alertTransitionDelegate
         alert.modalPresentationStyle = .custom
         navigationController.present(alert, animated: true)
     }
+    
+    func toLogin() {
+        finishDelegate.finish()
+    }
 }
-

@@ -68,7 +68,7 @@ final class TermAgreeViewController: UIViewController {
         return label
     }()
     
-    private let createAccountButton: UIButton = SignUpBottomButton(title: "계정 생성하기")
+    private let signUpButton: UIButton = SignUpBottomButton(title: "계정 생성하기")
     
     private let activityIndicator = UIActivityIndicatorView()
     
@@ -111,7 +111,8 @@ final class TermAgreeViewController: UIViewController {
             tapTermsOfUse: termsOfUseCheckBox.checkButton.rx.tap.asDriver(),
             tapMarketingConsent: marketingConsentCheckBox.checkButton.rx.tap.asDriver(),
             tapPersonalInformationCollectionAndUsageDetail: tapPersonalInformationCollectionAndUsageDetail,
-            tapTermsOfUseDetail: tapTermsOfUseDetail
+            tapTermsOfUseDetail: tapTermsOfUseDetail,
+            tapSignUp: signUpButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -144,8 +145,16 @@ final class TermAgreeViewController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        output.isCreateAccountEnable
-            .drive(createAccountButton.rx.isEnabled)
+        output.isSignUpEnable
+            .drive(signUpButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.signingUp
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        output.signedUp
+            .drive()
             .disposed(by: disposeBag)
     }
 }
@@ -168,9 +177,8 @@ extension TermAgreeViewController {
          termsOfUseDisclosureIndicator,
          marketingConsentCheckBox,
          marketingConsentDescriptionLabel,
-         createAccountButton,
-         activityIndicator
-        ].forEach {
+         signUpButton,
+         activityIndicator].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -317,14 +325,14 @@ extension TermAgreeViewController {
             ),
             
             // MARK: - createAccountButton Constraints
-            createAccountButton.bottomAnchor.constraint(
+            signUpButton.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor,
                 constant: -30
             ),
-            createAccountButton.centerXAnchor.constraint(
+            signUpButton.centerXAnchor.constraint(
                 equalTo: safeArea.centerXAnchor
             ),
-            createAccountButton.widthAnchor.constraint(
+            signUpButton.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
                 multiplier: 0.85
             ),

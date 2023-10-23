@@ -41,14 +41,14 @@ final class NicknameEmailInputViewModel: ViewModelType {
     private let myInformationUseCase: MyInformationUseCaseType
     private let accountUseCase: AccountUseCaseType
     private let authenticationUseCase: AuthenticationUseCaseType
-    private let signUpUseCase: SignUpUseCaseType
+    private let signUpUseCase: SignUpUseCase
     
     init(
         coordinator: SignUpCoordinatable,
         myInformationUseCase: MyInformationUseCaseType,
         accountUseCase: AccountUseCaseType,
         authenticationUseCase: AuthenticationUseCaseType,
-        signUpUseCase: SignUpUseCaseType
+        signUpUseCase: SignUpUseCase
     ) {
         self.coordinator = coordinator
         self.myInformationUseCase = myInformationUseCase
@@ -136,7 +136,7 @@ extension NicknameEmailInputViewModel {
             }
             .do { isSuccess in
                 let message = isSuccess == true ? "메일로 인증번호가 전송되었습니다." : "실패했습니다."
-                self.coordinator.showAlert(message: message)
+                self.coordinator.showAlert(message: message, action: nil)
             }
         
         let sendingVerificationCode = Driver.from([
@@ -187,8 +187,8 @@ extension NicknameEmailInputViewModel {
         }
             
         let toNext = input.tapNext.withLatestFrom(nicknameEmail)
-            .do { self.signUpUseCase.upsertNickname($0.nickname) }
-            .do { self.signUpUseCase.upsertEmail($0.email) }
+            .do { self.signUpUseCase.nickname = $0.nickname }
+            .do { self.signUpUseCase.email = $0.email }
             .do { _ in self.coordinator.toTermAgree() }
             .map { _ in }
         

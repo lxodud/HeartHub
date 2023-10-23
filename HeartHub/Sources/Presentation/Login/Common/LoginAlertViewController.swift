@@ -26,9 +26,10 @@ final class LoginAlertViewController: UIViewController {
         return button
     }()
     
-    
+    private let buttonAction: (() -> Void)?
     // MARK: - initializer
-    init(title: String) {
+    init(title: String, action: (() -> Void)? = nil) {
+        self.buttonAction = action
         super.init(nibName: nil, bundle: nil)
         titleLabel.text = title
     }
@@ -57,6 +58,7 @@ extension LoginAlertViewController {
     
     @objc
     private func tapCloseButton() {
+        buttonAction?()
         dismiss(animated: true)
     }
 }

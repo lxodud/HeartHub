@@ -37,12 +37,12 @@ final class AccountProfileInputViewModel: ViewModelType {
     
     private let coordinator: SignUpCoordinatable
     private let accountUseCase: AccountUseCaseType
-    private let signUpUseCase: SignUpUseCaseType
+    private let signUpUseCase: SignUpUseCase
     
     init(
         coordinator: SignUpCoordinatable,
         accountUseCase: AccountUseCaseType,
-        signUpUseCase: SignUpUseCaseType
+        signUpUseCase: SignUpUseCase
     ) {
         self.coordinator = coordinator
         self.accountUseCase = accountUseCase
@@ -96,7 +96,7 @@ extension AccountProfileInputViewModel {
             }
 
         let formattedBirth = input.birth
-            .map { SignUpDateFormatter.shared.string(from: $0) }
+            .map { SignUpDateFormatter.shared.stringForPresentation(from: $0) }
             .asDriver(onErrorJustReturn: "")
         
         let isMale = Driver.from([
@@ -141,10 +141,10 @@ extension AccountProfileInputViewModel {
         }
         
         let toNext = input.tapNext.withLatestFrom(idPasswordGenderBirth)
-            .do { self.signUpUseCase.upsertId($0.id) }
-            .do { self.signUpUseCase.upsertPassword($0.password) }
-            .do { self.signUpUseCase.upsertGender($0.gender == true ? .female : .male) }
-            .do { self.signUpUseCase.upsertBirth($0.birth) }
+            .do { self.signUpUseCase.id = $0.id }
+            .do { self.signUpUseCase.password = $0.password }
+            .do { self.signUpUseCase.gender = $0.gender == true ? .female : .male }
+            .do { self.signUpUseCase.birth = $0.birth }
             .do { _ in self.coordinator.toNicknameEmailInput() }
             .map { _ in }
         

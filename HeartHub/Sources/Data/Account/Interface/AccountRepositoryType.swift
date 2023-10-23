@@ -14,4 +14,5 @@ protocol AccountRepositoryType {
     func findId(with email: String) -> Observable<Bool>
     func findPassword(id: String, email: String) -> Observable<Bool>
     func checkDuplicationId(_ id: String) -> Observable<Bool>
+    func createAccount(_ signUpInformation: SignUpInformation) -> Observable<Bool>
 }

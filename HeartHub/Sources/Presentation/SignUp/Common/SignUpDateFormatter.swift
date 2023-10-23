@@ -14,11 +14,17 @@ final class SignUpDateFormatter {
     
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        
         return dateFormatter
     }()
     
-    func string(from: Date) -> String {
+    func stringForPresentation(from: Date) -> String {
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+        return dateFormatter.string(from: from)
+    }
+    
+    func stringForRequest(from: Date) -> String {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: from)
     }
 }

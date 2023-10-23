@@ -12,7 +12,9 @@ final class LoginCoordinator {
     private let navigationController = UINavigationController()
     private let alertTransitionDelegate = AlertTransitionDelegate()
 
-    init(window: UIWindow) {
+    init(
+        window: UIWindow
+    ) {
         self.window = window
     }
 }
@@ -74,7 +76,10 @@ extension LoginCoordinator: LoginCoordinatable {
     }
     
     func toSignUp() {
-        let signUpCoordinator = SignUpCoordinator(navigationController: navigationController)
+        let signUpCoordinator = SignUpCoordinator(
+            navigationController: navigationController,
+            finishDelegate: self
+        )
         signUpCoordinator.start()
     }
     
@@ -83,5 +88,12 @@ extension LoginCoordinator: LoginCoordinatable {
         alert.transitioningDelegate = alertTransitionDelegate
         alert.modalPresentationStyle = .custom
         window.rootViewController?.present(alert, animated: true)
+    }
+}
+
+// MARK: SignUpFinishDelegate Implementation
+extension LoginCoordinator: SignUpFinishDelegate {
+    func finish() {
+        toLogin()
     }
 }

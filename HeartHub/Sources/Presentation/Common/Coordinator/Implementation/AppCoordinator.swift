@@ -38,3 +38,15 @@ extension AppCoordinator {
         
     }
 }
+
+// MARK: - CoordinatorFinishDelegate Implementation
+extension AppCoordinator: CoordinatorFinishDelegate {
+    func finish(coordinator: Coordinatable?) {
+        switch coordinator {
+        case is LoginCoordinatable:
+            showTabBar()
+        default:
+            break
+        }
+    }
+}

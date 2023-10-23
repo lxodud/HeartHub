@@ -18,6 +18,7 @@ final class TermAgreeViewModel: ViewModelType {
         let tapMarketingConsent: Driver<Void>
         let tapPersonalInformationCollectionAndUsageDetail: Driver<Void>
         let tapTermsOfUseDetail: Driver<Void>
+        let tapSignUp: Driver<Void>
     }
     
     struct Output {
@@ -28,18 +29,23 @@ final class TermAgreeViewModel: ViewModelType {
         let isMarketingConsent: Driver<Bool>
         let toPersonalInformationCollectionAndUsageDetail: Driver<Void>
         let toTermsOfUseDetail: Driver<Void>
-        let isCreateAccountEnable: Driver<Bool>
+        let isSignUpEnable: Driver<Bool>
+        let signingUp: Driver<Bool>
+        let signedUp: Driver<Void>
     }
     
     private let coordinator: SignUpCoordinatable
-    private let signUpUseCase: SignUpUseCaseType
+    private let accountUseCase: AccountUseCaseType
+    private let signUpUseCase: SignUpUseCase
     
     // MARK: - initializer
     init(
         coordinator: SignUpCoordinatable,
-        signUpUseCase: SignUpUseCaseType
+        accountUseCase: AccountUseCaseType,
+        signUpUseCase: SignUpUseCase
     ) {
         self.coordinator = coordinator
+        self.accountUseCase = accountUseCase
         self.signUpUseCase = signUpUseCase
     }
 }
@@ -104,7 +110,7 @@ extension TermAgreeViewModel {
                 self.coordinator.toTermOfUse()
             }
         
-        let isCreateAccountEnable = Driver.combineLatest(
+        let isSignUpEnable = Driver.combineLatest(
             isAgeTermSelected,
             isPersonalInformationCollectionAndUsageSelected,
             isTermOfUse) {
@@ -112,7 +118,38 @@ extension TermAgreeViewModel {
             }
             .distinctUntilChanged()
             .startWith(false)
-            
+        
+        let signedUp = input.tapSignUp.withLatestFrom(isMarketingConsent)
+            .do { self.signUpUseCase.isMarketingConsent = $0 }
+            .map { _ in self.signUpUseCase.signUpInformation }
+            .do {
+                if $0 == nil {
+                    self.coordinator.showAlert(message: "정보를 모두 입력해주세요.", action: nil)
+                }
+            }
+            .filter { $0 != nil }
+            .compactMap { $0 }
+            .flatMap {
+                return self.accountUseCase.createAccount($0)
+                    .asDriver(onErrorJustReturn: false)
+            }
+            .do { isSuccess in
+                let message = isSuccess == true ? "회원가입 성공했습니다." : "회원가입 실패했습니다."
+                self.coordinator.showAlert(message: message) {
+                    if isSuccess {
+                        self.coordinator.toLogin()
+                    }
+                }
+            }
+            .map { _ in }
+        
+        let signingUp = Driver.from([
+            input.tapSignUp.map { _ in true },
+            signedUp.map { _ in false }
+        ])
+            .merge()
+            .distinctUntilChanged()
+        
         return Output(
             isAllAgreeSelected: isAllAgreeSelected,
             isAgeTermSelected: isAgeTermSelected,
@@ -121,7 +158,9 @@ extension TermAgreeViewModel {
             isMarketingConsent: isMarketingConsent,
             toPersonalInformationCollectionAndUsageDetail: toPersonalInformationCollectionAndUsageDetail,
             toTermsOfUseDetail: toTermsOfUseDetail,
-            isCreateAccountEnable: isCreateAccountEnable
+            isSignUpEnable: isSignUpEnable,
+            signingUp: signingUp,
+            signedUp: signedUp
         )
     }
 }

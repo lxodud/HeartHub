@@ -17,4 +17,5 @@ protocol AccountUseCaseType {
     func verifyPassword(_ password: String) -> Bool
     func checkDuplicationId(_ id: String) -> Observable<Bool>
     func verifyEmailFormat(_ email: String) -> Bool
+    func createAccount(_ signUpInformation: SignUpInformation) -> Observable<Bool>
 }

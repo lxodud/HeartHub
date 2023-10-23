@@ -22,12 +22,12 @@ final class StartDateInputViewModel: ViewModelType {
     }
     
     private let coordinator: SignUpCoordinatable
-    private let signUpUseCase: SignUpUseCaseType
+    private let signUpUseCase: SignUpUseCase
 
     // MARK: - initializer
     init(
         coordinator: SignUpCoordinatable,
-        signUpUseCase: SignUpUseCaseType
+        signUpUseCase: SignUpUseCase
     ) {
         self.coordinator = coordinator
         self.signUpUseCase = signUpUseCase
@@ -38,8 +38,8 @@ final class StartDateInputViewModel: ViewModelType {
 extension StartDateInputViewModel {
     func transform(_ input: Input) -> Output {
         let formattedDate = input.date
-            .do { self.signUpUseCase.upsertStartDate($0) }
-            .map { SignUpDateFormatter.shared.string(from: $0) }
+            .do { self.signUpUseCase.startDate = $0 }
+            .map { SignUpDateFormatter.shared.stringForPresentation(from: $0) }
             .asDriver(onErrorJustReturn: "")
         
         let isNextEnable = input.date
