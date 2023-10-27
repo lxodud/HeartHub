@@ -135,7 +135,6 @@ final class PasswordModifyViewController: UIViewController {
         output.modifyed
             .drive()
             .disposed(by: disposeBag)
-        // TODO: 실패했을 때 에러처리
     }
     
     private func bindUI() {

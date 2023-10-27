@@ -9,6 +9,7 @@ import UIKit
 
 final class AppCoordinator {
     private let window: UIWindow
+    private var childCoordinators: [Coordinatable] = []
     
     init(window: UIWindow) {
         self.window = window
@@ -22,7 +23,7 @@ extension AppCoordinator: Coordinatable {
         if TokenProvider().fetchAccessToken() == nil {
             showLogin()
         } else {
-            showTabBar()
+            showMain()
         }
     }
 }
@@ -30,21 +31,30 @@ extension AppCoordinator: Coordinatable {
 // MARK: - Private Method
 extension AppCoordinator {
     private func showLogin() {
-        let loginCoordinator = LoginCoordinator(window: window)
+        let loginCoordinator = LoginCoordinator(
+            window: window,
+            finishDelegate: self
+        )
+        childCoordinators.append(loginCoordinator)
         loginCoordinator.start()
     }
     
-    private func showTabBar() {
-        
+    private func showMain() {
+        let tapBarCoordinator = TabBarCoordinator(window: window)
+        childCoordinators.append(tapBarCoordinator)
+        tapBarCoordinator.start()
     }
 }
 
 // MARK: - CoordinatorFinishDelegate Implementation
 extension AppCoordinator: CoordinatorFinishDelegate {
     func finish(coordinator: Coordinatable?) {
+        childCoordinators = childCoordinators.filter { $0 !== coordinator }
         switch coordinator {
         case is LoginCoordinatable:
-            showTabBar()
+            showMain()
+        case is TabBarCoordinator:
+            showLogin()
         default:
             break
         }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol CoordinatorFinishDelegate {
+protocol CoordinatorFinishDelegate: AnyObject {
     func finish(coordinator: Coordinatable?)
 }

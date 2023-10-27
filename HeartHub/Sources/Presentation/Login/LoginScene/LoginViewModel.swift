@@ -66,7 +66,7 @@ final class LoginViewModel: ViewModelType {
         
         let loginSuccess = logedIn.filter { $0 == true }
             .do { _ in
-                // TODO: 탭바로 이동
+                self.coordinator.toMain()
             }
             .map { _ in }
         

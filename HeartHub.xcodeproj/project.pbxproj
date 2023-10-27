@@ -20,6 +20,7 @@
 		0C40FD852AB03DF200F207DA /* UIButton+backgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD842AB03DF200F207DA /* UIButton+backgroundColor.swift */; };
 		0C40FD8A2AB0554000F207DA /* PasswordModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD892AB0554000F207DA /* PasswordModifyViewController.swift */; };
 		0C40FD8C2AB08B5900F207DA /* WithdrawalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C40FD8B2AB08B5900F207DA /* WithdrawalViewModel.swift */; };
+		0C4894A22AE69AA8000A4034 /* TabBarCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4894A12AE69AA8000A4034 /* TabBarCoordinatable.swift */; };
 		0C4EF98E2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */; };
 		0C4EF9902A7A430100539320 /* CoupleSpaceMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */; };
 		0C4EF9942A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */; };
@@ -27,7 +28,7 @@
 		0C4EF99C2A7BF63100539320 /* HeartPickDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF99B2A7BF63100539320 /* HeartPickDataSource.swift */; };
 		0C4EF99F2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF99E2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift */; };
 		0C4EF9A12A7BFB3700539320 /* MypickDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9A02A7BFB3700539320 /* MypickDataSource.swift */; };
-		0C4EF9A42A7CE2EC00539320 /* HeartHubTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */; };
+		0C4EF9A42A7CE2EC00539320 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9A32A7CE2EC00539320 /* TabBarCoordinator.swift */; };
 		0C4EF9A82A8233A100539320 /* CoupleSpaceAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9A72A8233A100539320 /* CoupleSpaceAlbumCell.swift */; };
 		0C4EF9AB2A829E0B00539320 /* CoupleSpaceAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9AA2A829E0B00539320 /* CoupleSpaceAlbumViewController.swift */; };
 		0C59CF502A84DB0400D847B7 /* RequestBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C59CF4F2A84DB0400D847B7 /* RequestBuilderProtocol.swift */; };
@@ -164,6 +165,7 @@
 		0C40FD842AB03DF200F207DA /* UIButton+backgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+backgroundColor.swift"; sourceTree = "<group>"; };
 		0C40FD892AB0554000F207DA /* PasswordModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModifyViewController.swift; sourceTree = "<group>"; };
 		0C40FD8B2AB08B5900F207DA /* WithdrawalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalViewModel.swift; sourceTree = "<group>"; };
+		0C4894A12AE69AA8000A4034 /* TabBarCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinatable.swift; sourceTree = "<group>"; };
 		0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMainButtonView.swift; sourceTree = "<group>"; };
 		0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMainViewController.swift; sourceTree = "<group>"; };
 		0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpacePickCollectionViewController.swift; sourceTree = "<group>"; };
@@ -171,7 +173,7 @@
 		0C4EF99B2A7BF63100539320 /* HeartPickDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartPickDataSource.swift; sourceTree = "<group>"; };
 		0C4EF99E2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpacePickDataSourceable.swift; sourceTree = "<group>"; };
 		0C4EF9A02A7BFB3700539320 /* MypickDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypickDataSource.swift; sourceTree = "<group>"; };
-		0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHubTabBarController.swift; sourceTree = "<group>"; };
+		0C4EF9A32A7CE2EC00539320 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		0C4EF9A72A8233A100539320 /* CoupleSpaceAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceAlbumCell.swift; sourceTree = "<group>"; };
 		0C4EF9AA2A829E0B00539320 /* CoupleSpaceAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceAlbumViewController.swift; sourceTree = "<group>"; };
 		0C59CF4F2A84DB0400D847B7 /* RequestBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderProtocol.swift; sourceTree = "<group>"; };
@@ -985,7 +987,7 @@
 			isa = PBXGroup;
 			children = (
 				0CAFFF862AB355E200422FC7 /* AppCoordinator.swift */,
-				0C4EF9A32A7CE2EC00539320 /* HeartHubTabBarController.swift */,
+				0C4EF9A32A7CE2EC00539320 /* TabBarCoordinator.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -994,6 +996,7 @@
 			isa = PBXGroup;
 			children = (
 				0CAFFF8A2AB35AB100422FC7 /* Coordinatable.swift */,
+				0C4894A12AE69AA8000A4034 /* TabBarCoordinatable.swift */,
 				0CEFE64F2AE64C7700AC8965 /* CoordinatorFinishDelegate.swift */,
 			);
 			path = Interface;
@@ -1489,7 +1492,7 @@
 				56C048892A8A91BE001BAAB5 /* ConnectViewController.swift in Sources */,
 				0CF4C8552AAC9A6B004F805E /* JSONDeserializer.swift in Sources */,
 				0C684F4C2A78FA4D00A31865 /* CoupleSpaceMainHeaderView.swift in Sources */,
-				0C4EF9A42A7CE2EC00539320 /* HeartHubTabBarController.swift in Sources */,
+				0C4EF9A42A7CE2EC00539320 /* TabBarCoordinator.swift in Sources */,
 				0C4EF9A82A8233A100539320 /* CoupleSpaceAlbumCell.swift in Sources */,
 				0C97909E2AC04DFA001BD3BD /* SignUpUseCase.swift in Sources */,
 				5651FC7A2A7A7C6A00965300 /* GameBackgroundView.swift in Sources */,
@@ -1537,6 +1540,7 @@
 				0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */,
 				0CBD8BF02ADFFE0E0039D343 /* TermDetailView.swift in Sources */,
 				0CFF6AFB2AE1146400BD4356 /* SignUpUseCaseError.swift in Sources */,
+				0C4894A22AE69AA8000A4034 /* TabBarCoordinatable.swift in Sources */,
 				0C40FD802AAF351B00F207DA /* WithdrawalViewController.swift in Sources */,
 				0C9F98A12ABD70810084A938 /* AccountRepositoryType.swift in Sources */,
 				0CF4C84B2AAB3F49004F805E /* ProfileModifyViewController.swift in Sources */,
