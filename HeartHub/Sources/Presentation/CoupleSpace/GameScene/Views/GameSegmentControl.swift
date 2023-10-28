@@ -1,5 +1,5 @@
 //
-//  GameSegmentControll.swift
+//  GameSegmentControl.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/10/27.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GameSegmentControll: UISegmentedControl {
+final class GameSegmentControl: UISegmentedControl {
     private let underLine = UIView()
     private let normalColor: UIColor
     private let selectedColor: UIColor
@@ -47,7 +47,7 @@ final class GameSegmentControll: UISegmentedControl {
 }
 
 // MARK: - Configure SegmentedControl
-extension GameSegmentControll {
+extension GameSegmentControl {
     private func setupTitleAttributes() {
         setTitleTextAttributes([.foregroundColor: normalColor, .font: font], for: .normal)
         setTitleTextAttributes([.foregroundColor: selectedColor, .font: font], for: .selected)

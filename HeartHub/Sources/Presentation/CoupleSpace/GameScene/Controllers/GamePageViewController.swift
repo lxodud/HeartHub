@@ -14,8 +14,8 @@ class GamePageViewController: UIViewController {
         navigationOrientation: .horizontal
     )
     
-    private let gameSegmentedControl: GameSegmentControll = {
-        let segmentedControl = GameSegmentControll(
+    private let gameSegmentedControl: GameSegmentControl = {
+        let segmentedControl = GameSegmentControl(
             items: ["미션", "클리어!"],
             normalColor: UIColor(red: 0.463, green: 0.463, blue: 0.463, alpha: 1),
             selectedColor: UIColor(red: 0, green: 0, blue: 0, alpha: 1)

@@ -126,7 +126,7 @@
 		569013552A7BB32600715D23 /* GameMissionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013542A7BB32600715D23 /* GameMissionDataManager.swift */; };
 		5690135D2A7BD75C00715D23 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5690135C2A7BD75C00715D23 /* DungGeunMo.otf */; };
 		5690135F2A7E62A200715D23 /* GamePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5690135E2A7E62A200715D23 /* GamePageViewController.swift */; };
-		569013612A7E635200715D23 /* GameSegmentControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013602A7E635200715D23 /* GameSegmentControll.swift */; };
+		569013612A7E635200715D23 /* GameSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013602A7E635200715D23 /* GameSegmentControl.swift */; };
 		569013652A7E6CFD00715D23 /* GameMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013642A7E6CFD00715D23 /* GameMissionViewController.swift */; };
 		569013672A7E6D0700715D23 /* GameClearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569013662A7E6D0700715D23 /* GameClearViewController.swift */; };
 		5690136B2A7E6FA400715D23 /* GameClearMissionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5690136A2A7E6FA400715D23 /* GameClearMissionDataManager.swift */; };
@@ -270,7 +270,7 @@
 		569013542A7BB32600715D23 /* GameMissionDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMissionDataManager.swift; sourceTree = "<group>"; };
 		5690135C2A7BD75C00715D23 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
 		5690135E2A7E62A200715D23 /* GamePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePageViewController.swift; sourceTree = "<group>"; };
-		569013602A7E635200715D23 /* GameSegmentControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSegmentControll.swift; sourceTree = "<group>"; };
+		569013602A7E635200715D23 /* GameSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSegmentControl.swift; sourceTree = "<group>"; };
 		569013642A7E6CFD00715D23 /* GameMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMissionViewController.swift; sourceTree = "<group>"; };
 		569013662A7E6D0700715D23 /* GameClearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClearViewController.swift; sourceTree = "<group>"; };
 		5690136A2A7E6FA400715D23 /* GameClearMissionDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClearMissionDataManager.swift; sourceTree = "<group>"; };
@@ -1240,7 +1240,7 @@
 				5651FC792A7A7C6A00965300 /* GameBackgroundView.swift */,
 				56DEBED92A7A9B24000BC687 /* GameMissionTableViewCell.swift */,
 				5690136C2A7FA60800715D23 /* GameClearTableViewCell.swift */,
-				569013602A7E635200715D23 /* GameSegmentControll.swift */,
+				569013602A7E635200715D23 /* GameSegmentControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1497,7 +1497,7 @@
 				56348A912A6E8286005BB635 /* FindPasswordViewController.swift in Sources */,
 				0CF4C8532AAC9A27004F805E /* NetworkDeserializable.swift in Sources */,
 				0CF4C8632AACB0C1004F805E /* CheckMateExistResponseDTO.swift in Sources */,
-				569013612A7E635200715D23 /* GameSegmentControll.swift in Sources */,
+				569013612A7E635200715D23 /* GameSegmentControl.swift in Sources */,
 				0C59CF602A87DB1200D847B7 /* LoginRequestDTO.swift in Sources */,
 				0C40FD8A2AB0554000F207DA /* PasswordModifyViewController.swift in Sources */,
 				0CEDD8A62AA8928F00662A03 /* HeartHubImagePickerViewController.swift in Sources */,
