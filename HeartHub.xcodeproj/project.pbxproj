@@ -23,11 +23,7 @@
 		0C4894A22AE69AA8000A4034 /* TabBarCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4894A12AE69AA8000A4034 /* TabBarCoordinatable.swift */; };
 		0C4EF98E2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */; };
 		0C4EF9902A7A430100539320 /* CoupleSpaceMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */; };
-		0C4EF9942A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */; };
 		0C4EF9972A7B966F00539320 /* HeartHubImagePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9962A7B966F00539320 /* HeartHubImagePickerCell.swift */; };
-		0C4EF99C2A7BF63100539320 /* HeartPickDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF99B2A7BF63100539320 /* HeartPickDataSource.swift */; };
-		0C4EF99F2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF99E2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift */; };
-		0C4EF9A12A7BFB3700539320 /* MypickDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9A02A7BFB3700539320 /* MypickDataSource.swift */; };
 		0C4EF9A42A7CE2EC00539320 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9A32A7CE2EC00539320 /* TabBarCoordinator.swift */; };
 		0C4EF9A82A8233A100539320 /* CoupleSpaceAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9A72A8233A100539320 /* CoupleSpaceAlbumCell.swift */; };
 		0C4EF9AB2A829E0B00539320 /* CoupleSpaceAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4EF9AA2A829E0B00539320 /* CoupleSpaceAlbumViewController.swift */; };
@@ -168,11 +164,7 @@
 		0C4894A12AE69AA8000A4034 /* TabBarCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinatable.swift; sourceTree = "<group>"; };
 		0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMainButtonView.swift; sourceTree = "<group>"; };
 		0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceMainViewController.swift; sourceTree = "<group>"; };
-		0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpacePickCollectionViewController.swift; sourceTree = "<group>"; };
 		0C4EF9962A7B966F00539320 /* HeartHubImagePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartHubImagePickerCell.swift; sourceTree = "<group>"; };
-		0C4EF99B2A7BF63100539320 /* HeartPickDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartPickDataSource.swift; sourceTree = "<group>"; };
-		0C4EF99E2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpacePickDataSourceable.swift; sourceTree = "<group>"; };
-		0C4EF9A02A7BFB3700539320 /* MypickDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypickDataSource.swift; sourceTree = "<group>"; };
 		0C4EF9A32A7CE2EC00539320 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		0C4EF9A72A8233A100539320 /* CoupleSpaceAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceAlbumCell.swift; sourceTree = "<group>"; };
 		0C4EF9AA2A829E0B00539320 /* CoupleSpaceAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceAlbumViewController.swift; sourceTree = "<group>"; };
@@ -387,49 +379,6 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		0C4EF9912A7B7D1300539320 /* HeartPickScene */ = {
-			isa = PBXGroup;
-			children = (
-				0C4EF99D2A7BF8F600539320 /* Protocol */,
-				0C4EF99A2A7BA7C000539320 /* Model */,
-				0C4EF9922A7B7D4000539320 /* View */,
-				0C4EF9952A7B7F4C00539320 /* Controller */,
-			);
-			path = HeartPickScene;
-			sourceTree = "<group>";
-		};
-		0C4EF9922A7B7D4000539320 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0C4EF9952A7B7F4C00539320 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0C4EF9932A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		0C4EF99A2A7BA7C000539320 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0C4EF99B2A7BF63100539320 /* HeartPickDataSource.swift */,
-				0C4EF9A02A7BFB3700539320 /* MypickDataSource.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0C4EF99D2A7BF8F600539320 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				0C4EF99E2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		0C4EF9A52A8223DE00539320 /* AlbumScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,17 +590,16 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		0C6F45592A77AE9F0044EAC8 /* CoupleSpaceScene */ = {
+		0C6F45592A77AE9F0044EAC8 /* CoupleSpace */ = {
 			isa = PBXGroup;
 			children = (
 				0CCF04D62A9CBEDE00D66F37 /* Common */,
 				0C684F492A78FA1A00A31865 /* MainScene */,
 				0C4EF9A52A8223DE00539320 /* AlbumScene */,
-				0C4EF9912A7B7D1300539320 /* HeartPickScene */,
 				5651FC762A7A7BFB00965300 /* GameScene */,
 				56C048852A8A9166001BAAB5 /* ConnectScene */,
 			);
-			path = CoupleSpaceScene;
+			path = CoupleSpace;
 			sourceTree = "<group>";
 		};
 		0C97907E2ABEFB9F001BD3BD /* Interface */ = {
@@ -957,7 +905,7 @@
 				0CEDD8A42AA8926F00662A03 /* Common */,
 				561462142A6EE3DF00C0AC1F /* Login */,
 				0C9F98B72ABDE60C0084A938 /* SignUp */,
-				0C6F45592A77AE9F0044EAC8 /* CoupleSpaceScene */,
+				0C6F45592A77AE9F0044EAC8 /* CoupleSpace */,
 				0CCF04D52A9CBDEE00D66F37 /* MyPage */,
 			);
 			path = Presentation;
@@ -1485,10 +1433,8 @@
 				0C143BFF2AB86BB900C0A5A9 /* FIndIdViewModel.swift in Sources */,
 				0C9790892ABF0116001BD3BD /* SignUpTitleLabelStack.swift in Sources */,
 				5651FC7C2A7A7FB800965300 /* GameViewController.swift in Sources */,
-				0C4EF9A12A7BFB3700539320 /* MypickDataSource.swift in Sources */,
 				0C59CF6E2A89223500D847B7 /* TokenProvider.swift in Sources */,
 				0C59CF572A87C79500D847B7 /* RequestBuilder.swift in Sources */,
-				0C4EF9942A7B7F3B00539320 /* CoupleSpacePickCollectionViewController.swift in Sources */,
 				56C048892A8A91BE001BAAB5 /* ConnectViewController.swift in Sources */,
 				0CF4C8552AAC9A6B004F805E /* JSONDeserializer.swift in Sources */,
 				0C684F4C2A78FA4D00A31865 /* CoupleSpaceMainHeaderView.swift in Sources */,
@@ -1534,7 +1480,6 @@
 				0CF7CDE12AD5369C00488228 /* TermAgreeCheckBoxStackView.swift in Sources */,
 				569013672A7E6D0700715D23 /* GameClearViewController.swift in Sources */,
 				0CC33AC42A5281C1001EF4E7 /* SceneDelegate.swift in Sources */,
-				0C4EF99F2A7BF91500539320 /* CoupleSpacePickDataSourceable.swift in Sources */,
 				0C143BF62AB6DD1A00C0A5A9 /* ViewModelType.swift in Sources */,
 				0C9F987A2ABB1C880084A938 /* AuthenticationRepository.swift in Sources */,
 				0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */,
@@ -1568,7 +1513,6 @@
 				0C2C79132ACD5F0200AB02A9 /* AuthenticateEmailResponseDTO.swift in Sources */,
 				0C9F987C2ABB20C80084A938 /* MyInformationRepositoryType.swift in Sources */,
 				0C4EF9972A7B966F00539320 /* HeartHubImagePickerCell.swift in Sources */,
-				0C4EF99C2A7BF63100539320 /* HeartPickDataSource.swift in Sources */,
 				0CEFE6502AE64C7700AC8965 /* CoordinatorFinishDelegate.swift in Sources */,
 				0CACB9D92AC5602A00CE0C56 /* NicknameEmailInputViewController.swift in Sources */,
 				0C9790912AC010E5001BD3BD /* StartDateInputViewModel.swift in Sources */,

@@ -34,11 +34,6 @@ final class CoupleSpaceMainViewController: UIViewController {
         title: "Album"
     )
     
-    private let pickButton = CoupleSpaceMainButtonView(
-        image: UIImage(named: "PickButtonImage"),
-        title: "Pick"
-    )
-    
     private let missionButton = CoupleSpaceMainButtonView(
         image: UIImage(named: "MissionButtonImage"),
         title: "Mission"
@@ -64,7 +59,6 @@ extension CoupleSpaceMainViewController {
 extension CoupleSpaceMainViewController {
     private func configureButtonAction() {
         albumButton.addAction(self, #selector(tapAlbumButton))
-        pickButton.addAction(self, #selector(tapPickButton))
         missionButton.addAction(self, #selector(tapMissionButton))
         connectButton.addAction(self, #selector(tapConnectButton))
     }
@@ -73,12 +67,6 @@ extension CoupleSpaceMainViewController {
     private func tapAlbumButton() {
         let coupleSpaceAlbumViewController = CoupleSpaceAlbumViewController()
         navigationController?.pushViewController(coupleSpaceAlbumViewController, animated: true)
-    }
-    
-    @objc
-    private func tapPickButton() {
-        let coupleSpacePickCollectionViewController = CoupleSpacePickCollectionViewController()
-        navigationController?.pushViewController(coupleSpacePickCollectionViewController, animated: true)
     }
     
     @objc
@@ -100,7 +88,7 @@ extension CoupleSpaceMainViewController {
         let firstLineHorizontalStackView = UIStackView()
         let secondLineHorizontalStackView = UIStackView()
         
-        [albumButton, pickButton].forEach {
+        [albumButton].forEach {
             firstLineHorizontalStackView.addArrangedSubview($0)
         }
         
