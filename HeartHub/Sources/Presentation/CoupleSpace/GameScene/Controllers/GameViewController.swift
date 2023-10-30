@@ -45,7 +45,7 @@ extension GameViewController {
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            // MARK: gameButtonStackView Constraints
+            // MARK: - gameButtonStackView Constraints
             gamePageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             gamePageView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 76),
             gamePageView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -101),
