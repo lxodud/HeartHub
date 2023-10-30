@@ -11,7 +11,7 @@ final class TabBarCoordinator: TabBarCoordinatable {
     private let window: UIWindow
     private let tabBarController = UITabBarController()
     private let coupleSpaceViewController = UINavigationController(
-        rootViewController: CoupleSpaceMainViewController()
+        rootViewController: CoupleSpaceMainViewController(viewModel: CoupleSpaceMainViewModel())
     )
     private let myPageViewController = UINavigationController(
         rootViewController: MyPageMainViewController()

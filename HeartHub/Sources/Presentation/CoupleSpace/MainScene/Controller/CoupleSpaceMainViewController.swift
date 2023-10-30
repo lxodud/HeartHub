@@ -5,9 +5,14 @@
 //  Created by 이태영 on 2023/08/02.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class CoupleSpaceMainViewController: UIViewController {
+    private let viewModel: CoupleSpaceMainViewModel
+    private let disposeBag = DisposeBag()
+    
     private let headerView = CoupleSpaceMainHeaderView()
     private let headerBackgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -43,15 +48,41 @@ final class CoupleSpaceMainViewController: UIViewController {
         image: UIImage(named: "ConnectButtonImage"),
         title: "Connect"
     )
-}
-
-// MARK: Life Cycle
-extension CoupleSpaceMainViewController {
+    
+    // MARK: - initializer
+    init(viewModel: CoupleSpaceMainViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         configureButtonStack()
         configureSubview()
         configureLayout()
         configureButtonAction()
+        bind(to: viewModel)
+    }
+    
+    private func bind(to: CoupleSpaceMainViewModel) {
+        let viewDidLoad = rx.sentMessage(#selector(UIViewController.viewWillAppear))
+            .map { _ in }
+            .asDriver(onErrorJustReturn: ())
+        
+        let input = CoupleSpaceMainViewModel.Input(
+            viewDidLoad: viewDidLoad
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.isMateExist
+            .map { !$0 }
+            .drive(headerView.coupleImageBetweenHeartView.rx.isHidden)
+            .disposed(by: disposeBag)
     }
 }
 

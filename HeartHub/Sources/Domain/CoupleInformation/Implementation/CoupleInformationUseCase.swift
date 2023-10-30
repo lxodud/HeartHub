@@ -10,7 +10,7 @@ import RxSwift
 final class CoupleInformationUseCase {
     private let coupleInformationRepository: CoupleInformationRepositoryType
     
-    init(coupleInformationRepository: CoupleInformationRepositoryType) {
+    init(coupleInformationRepository: CoupleInformationRepositoryType = CoupleInformationRepository()) {
         self.coupleInformationRepository = coupleInformationRepository
     }
 }

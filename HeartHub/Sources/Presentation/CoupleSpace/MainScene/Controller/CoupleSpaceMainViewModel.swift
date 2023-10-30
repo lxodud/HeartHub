@@ -22,8 +22,8 @@ final class CoupleSpaceMainViewModel: ViewModelType {
     private let coupleInformationUseCase: CoupleInformationUseCaseType
     
     init(
-        myInformationUseCase: MyInformationUseCaseType,
-        coupleInformationUseCase: CoupleInformationUseCaseType
+        myInformationUseCase: MyInformationUseCaseType = MyInformationUseCase(),
+        coupleInformationUseCase: CoupleInformationUseCaseType = CoupleInformationUseCase()
     ) {
         self.myInformationUseCase = myInformationUseCase
         self.coupleInformationUseCase = coupleInformationUseCase
@@ -33,15 +33,16 @@ final class CoupleSpaceMainViewModel: ViewModelType {
 // MARK: - Public Interface
 extension CoupleSpaceMainViewModel {
     func transform(_ input: Input) -> Output {
-        let myProfileImage = input.viewDidLoad.flatMap {
-            return  self.myInformationUseCase
-                .fetchMyInformation()
-                .map { $0.profileImage }
-                .asDriver(onErrorJustReturn: Data())
-        }
+//        let myProfileImage = input.viewDidLoad.flatMap {
+//            return  self.myInformationUseCase
+//                .fetchMyInformation()
+//                .map { $0.profileImage }
+//                .asDriver(onErrorJustReturn: Data())
+//        }
         
         let isMateExist = input.viewDidLoad.flatMap {
             return self.coupleInformationUseCase.checkMateExist()
+                .debug()
                 .asDriver(onErrorJustReturn: false)
         }
         

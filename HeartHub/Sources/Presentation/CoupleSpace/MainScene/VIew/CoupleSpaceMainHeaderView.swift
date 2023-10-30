@@ -8,16 +8,17 @@
 import UIKit
 
 final class CoupleSpaceMainHeaderView: UIView {
-    private let coupleImageBetweenHeartView = CoupleImageBetweenHeartView()
+    let coupleImageBetweenHeartView = CoupleImageBetweenHeartView()
         
-    private let dayLabel: UILabel = {
+    let dayLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Pretendard-SemiBold", size: 28)
         label.textColor = .black
+        label.text = "D + 0"
         return label
     }()
     
-    private let separateView: UIView = {
+    let separateView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         return view
@@ -41,9 +42,6 @@ extension CoupleSpaceMainHeaderView {
         backgroundColor = UIColor(red: 0.984, green: 0.937, blue: 0.988, alpha: 0.8)
         layer.cornerRadius = 20
         clipsToBounds = true
-        
-        let dDayCalculator = DDayCalculator()
-        dDayCalculator.calculateAndDisplayDDay(dayLabel: dayLabel)
     }
     
     private func configureSubview() {
