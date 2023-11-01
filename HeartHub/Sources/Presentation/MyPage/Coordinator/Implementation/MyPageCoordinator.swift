@@ -33,17 +33,29 @@ extension MyPageCoordinator: MyPageCoordinatable {
     }
     
     func toEditProfile() {
-        let profileModifyViewController = ProfileModifyViewController()
+        let profileModifyViewController = ProfileModifyViewController(
+            viewModel: ProfileModifyViewModel(
+                myInformationUseCase: MyInformationUseCase()
+            )
+        )
         navigationController.pushViewController(profileModifyViewController, animated: true)
     }
     
     func toWithdrawal() {
-        let withdrawalViewController = WithdrawalViewController()
+        let withdrawalViewController = WithdrawalViewController(
+            viewModel: WithdrawalViewModel(
+                accountUseCase: AccountUseCase()
+            )
+        )
         navigationController.pushViewController(withdrawalViewController, animated: true)
     }
     
     func toChangePassword() {
-        let passwordModifyViewController = PasswordModifyViewController()
+        let passwordModifyViewController = PasswordModifyViewController(
+            viewModel: PasswordModifyViewModel(
+                accountUseCase: AccountUseCase()
+            )
+        )
         navigationController.pushViewController(passwordModifyViewController, animated: true)
     }
     

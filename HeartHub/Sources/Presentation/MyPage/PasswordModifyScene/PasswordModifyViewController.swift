@@ -77,7 +77,7 @@ final class PasswordModifyViewController: UIViewController {
     private let activityIndicator = UIActivityIndicatorView()
     
     // MARK: - initializer
-    init(viewModel: PasswordModifyViewModel = PasswordModifyViewModel()) {
+    init(viewModel: PasswordModifyViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

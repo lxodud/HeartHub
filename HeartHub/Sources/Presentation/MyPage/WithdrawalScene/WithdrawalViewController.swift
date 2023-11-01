@@ -107,7 +107,7 @@ final class WithdrawalViewController: UIViewController {
     private let activityIndicator = UIActivityIndicatorView()
     
     // MARK: - initializer
-    init(viewModel: WithdrawalViewModel = WithdrawalViewModel()) {
+    init(viewModel: WithdrawalViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

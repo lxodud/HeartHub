@@ -28,7 +28,7 @@ final class PasswordModifyViewModel: ViewModelType {
     
     private let accountUseCase: AccountUseCaseType
     
-    init(accountUseCase: AccountUseCaseType = AccountUseCase()) {
+    init(accountUseCase: AccountUseCaseType) {
         self.accountUseCase = accountUseCase
     }
 }

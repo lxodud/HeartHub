@@ -63,7 +63,7 @@ final class ProfileModifyViewController: UIViewController {
     private let activityIndicator = UIActivityIndicatorView()
     
     // MARK: - initializer
-    init(viewModel: ProfileModifyViewModel = ProfileModifyViewModel()) {
+    init(viewModel: ProfileModifyViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

@@ -26,7 +26,7 @@ final class ProfileModifyViewModel: ViewModelType {
     private let nickname = PublishRelay<String>()
     
     init(
-        myInformationUseCase: MyInformationUseCaseType = MyInformationUseCase()
+        myInformationUseCase: MyInformationUseCaseType
     ) {
         self.myInformationUseCase = myInformationUseCase
     }
