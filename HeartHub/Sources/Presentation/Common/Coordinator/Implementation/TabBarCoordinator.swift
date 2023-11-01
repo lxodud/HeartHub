@@ -10,32 +10,36 @@ import UIKit
 final class TabBarCoordinator: TabBarCoordinatable {
     private let window: UIWindow
     private let tabBarController = UITabBarController()
-    private let coupleSpaceViewController = UINavigationController(
-        rootViewController: CoupleSpaceMainViewController(viewModel: CoupleSpaceMainViewModel())
-    )
-    private let myPageViewController = UINavigationController(
-        rootViewController: MyPageMainViewController()
-    )
+    private let coupleSpaceNavigationViewController = UINavigationController()
+    private let myPageNavigationViewController = UINavigationController()
     
     // MARK: - initializer
     init(window: UIWindow) {
         self.window = window
         configureTabBarItems()
         configureTabBarViewControllers()
+        configureChildCoordinator()
     }
 
     private func configureTabBarItems() {
-        coupleSpaceViewController.tabBarItem.title = "커플공간"
-        coupleSpaceViewController.tabBarItem.image = UIImage(named: "EmptyCoupleSpaceTabImage")
-        coupleSpaceViewController.tabBarItem.selectedImage = UIImage(named: "SelectedCoupleSpaceTabImage")
+        coupleSpaceNavigationViewController.tabBarItem.title = "커플공간"
+        coupleSpaceNavigationViewController.tabBarItem.image = UIImage(named: "EmptyCoupleSpaceTabImage")
+        coupleSpaceNavigationViewController.tabBarItem.selectedImage = UIImage(named: "SelectedCoupleSpaceTabImage")
         
-        myPageViewController.tabBarItem.title = "마이페이지"
-        myPageViewController.tabBarItem.image = UIImage(named: "EmptyMypageTabImage")
-        myPageViewController.tabBarItem.selectedImage = UIImage(named: "SelectedMypageTabImage")
+        myPageNavigationViewController.tabBarItem.title = "마이페이지"
+        myPageNavigationViewController.tabBarItem.image = UIImage(named: "EmptyMypageTabImage")
+        myPageNavigationViewController.tabBarItem.selectedImage = UIImage(named: "SelectedMypageTabImage")
     }
     
     private func configureTabBarViewControllers() {
-        tabBarController.viewControllers = [coupleSpaceViewController, myPageViewController]
+        tabBarController.viewControllers = [coupleSpaceNavigationViewController, myPageNavigationViewController]
+    }
+    
+    private func configureChildCoordinator() {
+        let coupleSpaceCoordinator = CoupleSpaceCoordinator(
+            navigationController: coupleSpaceNavigationViewController
+        )
+        coupleSpaceCoordinator.start()
     }
 }
 

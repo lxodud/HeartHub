@@ -18,13 +18,16 @@ final class CoupleSpaceMainViewModel: ViewModelType {
         let isMateExist: Driver<Bool>
     }
     
+    private let coordinator: CoupleSpaceCoordinatable
     private let myInformationUseCase: MyInformationUseCaseType
     private let coupleInformationUseCase: CoupleInformationUseCaseType
     
     init(
+        coordinator: CoupleSpaceCoordinatable,
         myInformationUseCase: MyInformationUseCaseType = MyInformationUseCase(),
         coupleInformationUseCase: CoupleInformationUseCaseType = CoupleInformationUseCase()
     ) {
+        self.coordinator = coordinator
         self.myInformationUseCase = myInformationUseCase
         self.coupleInformationUseCase = coupleInformationUseCase
     }
@@ -33,13 +36,6 @@ final class CoupleSpaceMainViewModel: ViewModelType {
 // MARK: - Public Interface
 extension CoupleSpaceMainViewModel {
     func transform(_ input: Input) -> Output {
-//        let myProfileImage = input.viewDidLoad.flatMap {
-//            return  self.myInformationUseCase
-//                .fetchMyInformation()
-//                .map { $0.profileImage }
-//                .asDriver(onErrorJustReturn: Data())
-//        }
-        
         let isMateExist = input.viewDidLoad.flatMap {
             return self.coupleInformationUseCase.checkMateExist()
                 .debug()

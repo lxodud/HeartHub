@@ -21,9 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 //        appCoordinator = AppCoordinator(window: window ?? UIWindow())
 //        appCoordinator?.start()
-        
-        let vc = UINavigationController(rootViewController: CoupleSpaceMainViewController())
-        window?.rootViewController = vc
+        window?.rootViewController = MyPageMainViewController(viewModel: MyPageMainViewModel())
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
     }

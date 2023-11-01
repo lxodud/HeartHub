@@ -52,6 +52,9 @@
 		0C83AD942AEF52FB0081C315 /* CoupleInformationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83AD932AEF52FB0081C315 /* CoupleInformationRepository.swift */; };
 		0C83AD992AEF5AED0081C315 /* CoupleInformationUseCaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83AD982AEF5AED0081C315 /* CoupleInformationUseCaseType.swift */; };
 		0C83AD9B2AEF5B0F0081C315 /* CoupleInformationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83AD9A2AEF5B0F0081C315 /* CoupleInformationUseCase.swift */; };
+		0C83ADA02AEF9BD70081C315 /* CoupleSpaceCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83AD9F2AEF9BD70081C315 /* CoupleSpaceCoordinatable.swift */; };
+		0C83ADA22AEF9C210081C315 /* CoupleSpaceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADA12AEF9C210081C315 /* CoupleSpaceCoordinator.swift */; };
+		0C83ADBB2AF22CFF0081C315 /* MyPageMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADBA2AF22CFF0081C315 /* MyPageMainViewModel.swift */; };
 		0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */; };
 		0C9790832ABEFC0F001BD3BD /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */; };
 		0C9790892ABF0116001BD3BD /* SignUpTitleLabelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */; };
@@ -198,6 +201,9 @@
 		0C83AD932AEF52FB0081C315 /* CoupleInformationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleInformationRepository.swift; sourceTree = "<group>"; };
 		0C83AD982AEF5AED0081C315 /* CoupleInformationUseCaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleInformationUseCaseType.swift; sourceTree = "<group>"; };
 		0C83AD9A2AEF5B0F0081C315 /* CoupleInformationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleInformationUseCase.swift; sourceTree = "<group>"; };
+		0C83AD9F2AEF9BD70081C315 /* CoupleSpaceCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceCoordinatable.swift; sourceTree = "<group>"; };
+		0C83ADA12AEF9C210081C315 /* CoupleSpaceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoupleSpaceCoordinator.swift; sourceTree = "<group>"; };
+		0C83ADBA2AF22CFF0081C315 /* MyPageMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMainViewModel.swift; sourceTree = "<group>"; };
 		0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinatable.swift; sourceTree = "<group>"; };
 		0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
 		0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTitleLabelStack.swift; sourceTree = "<group>"; };
@@ -604,6 +610,7 @@
 		0C6F45592A77AE9F0044EAC8 /* CoupleSpace */ = {
 			isa = PBXGroup;
 			children = (
+				0C83AD9C2AEF98510081C315 /* Coordinator */,
 				0CCF04D62A9CBEDE00D66F37 /* Common */,
 				0C684F492A78FA1A00A31865 /* MainScene */,
 				0C4EF9A52A8223DE00539320 /* AlbumScene */,
@@ -659,6 +666,31 @@
 			isa = PBXGroup;
 			children = (
 				0C83AD9A2AEF5B0F0081C315 /* CoupleInformationUseCase.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		0C83AD9C2AEF98510081C315 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				0C83AD9E2AEF9BCC0081C315 /* Implementation */,
+				0C83AD9D2AEF9BC60081C315 /* Interface */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		0C83AD9D2AEF9BC60081C315 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				0C83AD9F2AEF9BD70081C315 /* CoupleSpaceCoordinatable.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		0C83AD9E2AEF9BCC0081C315 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				0C83ADA12AEF9C210081C315 /* CoupleSpaceCoordinator.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -1053,11 +1085,11 @@
 		0CCF04D52A9CBDEE00D66F37 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				0CCF04D72A9CBF0C00D66F37 /* MyPageMainScene */,
 				0CF4C86B2AADB230004F805E /* ProfileModifyScene */,
 				0CAFFF7B2AB2F28900422FC7 /* LogoutScene */,
 				0C40FD882AB0552800F207DA /* PasswordModifyScene */,
 				0C40FD7E2AAF34E800F207DA /* WithdrawalScene */,
-				0CCF04D72A9CBF0C00D66F37 /* MyPageMainScene */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1075,6 +1107,7 @@
 			children = (
 				0CCF04D82A9CBF1E00D66F37 /* MyPageMainViewController.swift */,
 				0CEDD8A12AA4B57E00662A03 /* MyPageCell.swift */,
+				0C83ADBA2AF22CFF0081C315 /* MyPageMainViewModel.swift */,
 			);
 			path = MyPageMainScene;
 			sourceTree = "<group>";
@@ -1504,9 +1537,12 @@
 				0CAFFF752AB1A18A00422FC7 /* PasswordModifyViewModel.swift in Sources */,
 				0C9F98892ABB50B50084A938 /* MyInformationUseCaseType.swift in Sources */,
 				0C97908F2ABF1DC1001BD3BD /* SignUpBottomButton.swift in Sources */,
+				0C83ADA22AEF9C210081C315 /* CoupleSpaceCoordinator.swift in Sources */,
 				0C6F454F2A701D520044EAC8 /* HeartHubProfileImageView.swift in Sources */,
 				0CC33AC22A5281C1001EF4E7 /* AppDelegate.swift in Sources */,
 				0C9F98722ABB1B180084A938 /* TokenProvidable.swift in Sources */,
+				0C83ADBB2AF22CFF0081C315 /* MyPageMainViewModel.swift in Sources */,
+				0C83ADA02AEF9BD70081C315 /* CoupleSpaceCoordinatable.swift in Sources */,
 				0CE2CDE02A9B716200129724 /* HeartHubFloatingButton.swift in Sources */,
 				0CF4C8652AADA903004F805E /* JSONBodyRequestBuilder.swift in Sources */,
 				0C97908B2ABF02AD001BD3BD /* StartDateInputViewController.swift in Sources */,
