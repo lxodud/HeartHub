@@ -137,7 +137,6 @@ final class WithdrawalViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.canWithdraw
-            .debug("isEnable")
             .drive(withdrawButton.rx.isEnabled)
             .disposed(by: disposeBag)
         

@@ -16,17 +16,21 @@ final class MyPageMainViewModel: ViewModelType {
     
     struct Output {
         let menu: Driver<[MyPageRow]>
+        let toNext: Driver<Void>
     }
-    
 }
 
 // MARK: - Public Interface
 extension MyPageMainViewModel {
     func transform(_ input: Input) -> Output {
         let menu = Driver.of(MyPageRow.allCases)
+        let toNext = input.cellSelected
+            .do { self.presentation(to: $0) }
+            .map { _ in }
         
         return Output(
-            menu: menu
+            menu: menu,
+            toNext: toNext
         )
     }
 }
@@ -34,11 +38,11 @@ extension MyPageMainViewModel {
 // MARK: Private Method
 extension MyPageMainViewModel {
     private func presentation(to indexPath: IndexPath) {
-        guard let row = MyPageRow(rawValue: indexPath.row) else {
+        guard let page = MyPageRow(rawValue: indexPath.row) else {
             return
         }
         
-        switch row {
+        switch page {
         case .editProfile:
             break
         case .inquiry:

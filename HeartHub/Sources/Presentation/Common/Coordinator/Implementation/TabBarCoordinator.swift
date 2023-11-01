@@ -40,6 +40,11 @@ final class TabBarCoordinator: TabBarCoordinatable {
             navigationController: coupleSpaceNavigationViewController
         )
         coupleSpaceCoordinator.start()
+        
+        let myPageCoordinator = MyPageCoordinator(
+            navigationController: myPageNavigationViewController
+        )
+        myPageCoordinator.start()
     }
 }
 

@@ -38,7 +38,6 @@ extension CoupleSpaceMainViewModel {
     func transform(_ input: Input) -> Output {
         let isMateExist = input.viewDidLoad.flatMap {
             return self.coupleInformationUseCase.checkMateExist()
-                .debug()
                 .asDriver(onErrorJustReturn: false)
         }
         

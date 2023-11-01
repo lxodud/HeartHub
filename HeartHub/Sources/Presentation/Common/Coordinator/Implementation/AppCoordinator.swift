@@ -19,12 +19,12 @@ final class AppCoordinator {
 // MARK: - Public Interface
 extension AppCoordinator: Coordinatable {
     func start() {
-        TokenProvider().deleteToken()
-        if TokenProvider().fetchAccessToken() == nil {
-            showLogin()
-        } else {
+//        TokenProvider().deleteToken()
+//        if TokenProvider().fetchAccessToken() == nil {
+//            showLogin()
+//        } else {
             showMain()
-        }
+//        }
     }
 }
 

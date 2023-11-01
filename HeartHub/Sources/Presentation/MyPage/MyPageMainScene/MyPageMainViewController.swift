@@ -60,6 +60,10 @@ final class MyPageMainViewController: UIViewController {
                     cell.titleLabel.text = element.title
                 }
                 .disposed(by: disposeBag)
+        
+        output.toNext
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 
