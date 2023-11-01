@@ -40,7 +40,10 @@ extension AppCoordinator {
     }
     
     private func showMain() {
-        let tapBarCoordinator = TabBarCoordinator(window: window)
+        let tapBarCoordinator = TabBarCoordinator(
+            window: window,
+            finishDelegate: self
+        )
         childCoordinators.append(tapBarCoordinator)
         tapBarCoordinator.start()
     }

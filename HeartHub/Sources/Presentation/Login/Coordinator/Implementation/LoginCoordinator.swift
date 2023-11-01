@@ -9,13 +9,13 @@ import UIKit
 
 final class LoginCoordinator {
     private let window: UIWindow
-    private weak var finishDelegate: CoordinatorFinishDelegate?
+    private var finishDelegate: CoordinatorFinishDelegate
     private let navigationController = UINavigationController()
     private let alertTransitionDelegate = AlertTransitionDelegate()
 
     init(
         window: UIWindow,
-        finishDelegate: CoordinatorFinishDelegate?
+        finishDelegate: CoordinatorFinishDelegate
     ) {
         self.window = window
         self.finishDelegate = finishDelegate
@@ -87,14 +87,14 @@ extension LoginCoordinator: LoginCoordinatable {
     }
     
     func showAlert(message: String) {
-        let alert = LoginAlertViewController(title: message)
+        let alert = CancelOnlyAlertViewController(title: message)
         alert.transitioningDelegate = alertTransitionDelegate
         alert.modalPresentationStyle = .custom
         window.rootViewController?.present(alert, animated: true)
     }
     
     func toMain() {
-        finishDelegate?.finish(coordinator: self)
+        finishDelegate.finish(coordinator: self)
     }
 }
 

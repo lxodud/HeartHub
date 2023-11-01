@@ -1,24 +1,24 @@
 //
-//  FindIdAlertViewController.swift
+//  LogoutAlertViewController.swift
 //  HeartHub
 //
-//  Created by 이태영 on 2023/09/22.
+//  Created by 이태영 on 2023/09/14.
 //
 
 import UIKit
 
-final class LoginAlertViewController: UIViewController {
+// TODO: View Model 분리, 코디네이터 구현
+final class ConfirmAndCancelAlertViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Pretendard-SemiBold", size: 24)
-        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
     
-    private let closeButton: UIButton = {
+    private let cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("닫기", for: .normal)
+        button.setTitle("취소", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1).cgColor
@@ -26,10 +26,21 @@ final class LoginAlertViewController: UIViewController {
         return button
     }()
     
-    private let buttonAction: (() -> Void)?
+    private let confirmButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("확인", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1).cgColor
+        button.layer.cornerRadius = 15
+        return button
+    }()
+    
+    private let confirmButtonAction: (() -> Void)?
+    
     // MARK: - initializer
     init(title: String, action: (() -> Void)? = nil) {
-        self.buttonAction = action
+        self.confirmButtonAction = action
         super.init(nibName: nil, bundle: nil)
         titleLabel.text = title
     }
@@ -39,32 +50,42 @@ final class LoginAlertViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        configureAction()
         configureSuperview()
         configureSubview()
         configureLayout()
+        configureAction()
     }
 }
 
 // MARK: - Configure Action
-extension LoginAlertViewController {
+extension ConfirmAndCancelAlertViewController {
     private func configureAction() {
-        closeButton.addTarget(
+        cancelButton.addTarget(
             self,
-            action: #selector(tapCloseButton),
+            action: #selector(tapCancelButton),
+            for: .touchUpInside
+        )
+        confirmButton.addTarget(
+            self,
+            action: #selector(tapConfirmButton),
             for: .touchUpInside
         )
     }
     
     @objc
-    private func tapCloseButton() {
-        buttonAction?()
+    private func tapCancelButton() {
+        dismiss(animated: true)
+    }
+    
+    @objc
+    private func tapConfirmButton() {
+        confirmButtonAction?()
         dismiss(animated: true)
     }
 }
 
 // MARK: - Configure UI
-extension LoginAlertViewController {
+extension ConfirmAndCancelAlertViewController {
     private func configureSuperview() {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
@@ -84,7 +105,7 @@ extension LoginAlertViewController {
     }
     
     private func configureSubview() {
-        [titleLabel, closeButton].forEach {
+        [titleLabel, cancelButton, confirmButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -95,10 +116,6 @@ extension LoginAlertViewController {
         
         NSLayoutConstraint.activate([
             // MARK: - titleLabel Constraints
-            titleLabel.widthAnchor.constraint(
-                equalTo: safeArea.widthAnchor,
-                multiplier: 0.7
-            ),
             titleLabel.centerXAnchor.constraint(
                 equalTo: safeArea.centerXAnchor
             ),
@@ -108,23 +125,40 @@ extension LoginAlertViewController {
                 constant: -30
             ),
             
-            // MARK: - closeButton Constraints
-            closeButton.heightAnchor.constraint(
+            // MARK: - cancelButton Constraints
+            cancelButton.heightAnchor.constraint(
                 equalTo: safeArea.heightAnchor,
                 multiplier: 0.13
             ),
-            closeButton.widthAnchor.constraint(
+            cancelButton.widthAnchor.constraint(
                 equalTo: safeArea.widthAnchor,
-                multiplier: 0.6
+                multiplier: 0.2
             ),
-            closeButton.centerXAnchor.constraint(
-                equalTo: safeArea.centerXAnchor
+            cancelButton.centerXAnchor.constraint(
+                equalTo: safeArea.centerXAnchor,
+                constant: -50
             ),
-            closeButton.centerYAnchor.constraint(
+            cancelButton.centerYAnchor.constraint(
                 equalTo: safeArea.centerYAnchor,
                 constant: 70
             ),
+            
+            // MARK: - confirmButton Constraints
+            confirmButton.heightAnchor.constraint(
+                equalTo: titleLabel.heightAnchor
+            ),
+            confirmButton.widthAnchor.constraint(
+                equalTo: safeArea.widthAnchor,
+                multiplier: 0.2
+            ),
+            confirmButton.centerXAnchor.constraint(
+                equalTo: safeArea.centerXAnchor,
+                constant: 50
+            ),
+            confirmButton.centerYAnchor.constraint(
+                equalTo: safeArea.centerYAnchor,
+                constant: 70
+            )
         ])
     }
 }
-

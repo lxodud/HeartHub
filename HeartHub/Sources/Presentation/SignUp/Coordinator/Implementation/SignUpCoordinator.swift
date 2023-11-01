@@ -88,7 +88,7 @@ extension SignUpCoordinator: SignUpCoordinatable {
     }
     
     func showAlert(message: String, action: (() -> Void)?) {
-        let alert = LoginAlertViewController(title: message, action: action)
+        let alert = CancelOnlyAlertViewController(title: message, action: action)
         alert.transitioningDelegate = alertTransitionDelegate
         alert.modalPresentationStyle = .custom
         navigationController.present(alert, animated: true)

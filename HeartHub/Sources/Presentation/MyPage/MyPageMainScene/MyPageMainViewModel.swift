@@ -18,6 +18,12 @@ final class MyPageMainViewModel: ViewModelType {
         let menu: Driver<[MyPageRow]>
         let toNext: Driver<Void>
     }
+    
+    private let coordinator: MyPageCoordinatable
+    
+    init(coordinator: MyPageCoordinatable) {
+        self.coordinator = coordinator
+    }
 }
 
 // MARK: - Public Interface
@@ -44,22 +50,21 @@ extension MyPageMainViewModel {
         
         switch page {
         case .editProfile:
-            break
-        case .inquiry:
-            break
+            coordinator.toEditProfile()
         case .withdrawal:
-            break
+            coordinator.toWithdrawal()
         case .changePassword:
-            break
+            coordinator.toChangePassword()
         case .logout:
-            break
+            coordinator.showAlert(message: "로그아웃 하시겠습니까?") {
+                self.coordinator.toLogin()
+            }
         }
     }
 }
 
 enum MyPageRow: Int, CaseIterable {
     case editProfile = 0
-    case inquiry
     case withdrawal
     case changePassword
     case logout
@@ -68,8 +73,6 @@ enum MyPageRow: Int, CaseIterable {
         switch self {
         case .editProfile:
             return "프로필 수정"
-        case .inquiry:
-            return "1:1 문의"
         case .withdrawal:
             return "회원탈퇴"
         case .changePassword:

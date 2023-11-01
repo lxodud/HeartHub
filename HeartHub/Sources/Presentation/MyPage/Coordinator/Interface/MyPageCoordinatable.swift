@@ -8,5 +8,9 @@
 import Foundation
 
 protocol MyPageCoordinatable: Coordinatable {
-    
+    func toEditProfile()
+    func toWithdrawal()
+    func toChangePassword()
+    func toLogin()
+    func showAlert(message: String, action: (() -> Void)?)
 }

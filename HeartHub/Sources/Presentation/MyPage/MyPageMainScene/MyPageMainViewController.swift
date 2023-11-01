@@ -13,7 +13,6 @@ final class MyPageMainViewController: UIViewController {
     private let viewModel: MyPageMainViewModel
     private let disposeBag = DisposeBag()
     
-    private let transitionDelegate = AlertTransitionDelegate()
     private let menuTableView = UITableView()
     private let profileImageView: UIImageView = {
         let imageView = HeartHubProfileImageView()
@@ -46,7 +45,12 @@ final class MyPageMainViewController: UIViewController {
     }
     
     private func bind(to viewModel: MyPageMainViewModel) {
-        let cellSelected = menuTableView.rx.itemSelected.asDriver()
+        let cellSelected = menuTableView.rx.itemSelected
+            .asDriver()
+            .do { [weak self] in
+                self?.menuTableView.deselectRow(at: $0, animated: true)
+            }
+        
         let input = MyPageMainViewModel.Input(
             cellSelected: cellSelected
         )

@@ -9,13 +9,18 @@ import UIKit
 
 final class TabBarCoordinator: TabBarCoordinatable {
     private let window: UIWindow
+    private let finishDelegate: CoordinatorFinishDelegate
     private let tabBarController = UITabBarController()
     private let coupleSpaceNavigationViewController = UINavigationController()
     private let myPageNavigationViewController = UINavigationController()
     
     // MARK: - initializer
-    init(window: UIWindow) {
+    init(
+        window: UIWindow,
+        finishDelegate: CoordinatorFinishDelegate
+    ) {
         self.window = window
+        self.finishDelegate = finishDelegate
         configureTabBarItems()
         configureTabBarViewControllers()
         configureChildCoordinator()
@@ -42,7 +47,8 @@ final class TabBarCoordinator: TabBarCoordinatable {
         coupleSpaceCoordinator.start()
         
         let myPageCoordinator = MyPageCoordinator(
-            navigationController: myPageNavigationViewController
+            navigationController: myPageNavigationViewController,
+            finishDelegate: self
         )
         myPageCoordinator.start()
     }
@@ -60,5 +66,12 @@ extension TabBarCoordinator {
             animations: nil,
             completion: nil
         )
+    }
+}
+
+// MARK: MyPageFinishDelegate Implementation
+extension TabBarCoordinator: MyPageFinishDelegate {
+    func finish() {
+        finishDelegate.finish(coordinator: self)
     }
 }
