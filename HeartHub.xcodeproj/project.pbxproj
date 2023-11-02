@@ -1700,7 +1700,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = KHQ37J8NU9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HeartHub/Resources/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "HeartHub가 사용자의 사진에 접근하려 합니다.";
@@ -1714,7 +1714,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xoxoxo.HeartHub111;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xoxo.HeartHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1744,7 +1744,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xoxoxo.HeartHub111;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xoxo.HeartHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
