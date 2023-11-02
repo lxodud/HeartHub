@@ -39,11 +39,6 @@ final class CoupleSpaceMainViewController: UIViewController {
         title: "Album"
     )
     
-    private let missionButton = CoupleSpaceMainButtonView(
-        image: UIImage(named: "MissionButtonImage"),
-        title: "Mission"
-    )
-    
     private let connectButton = CoupleSpaceMainButtonView(
         image: UIImage(named: "ConnectButtonImage"),
         title: "Connect"
@@ -61,7 +56,6 @@ final class CoupleSpaceMainViewController: UIViewController {
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
-        configureButtonStack()
         configureSubview()
         configureLayout()
         bind(to: viewModel)
@@ -74,15 +68,13 @@ final class CoupleSpaceMainViewController: UIViewController {
         
         let albumButtonTapGesture = UITapGestureRecognizer()
         albumButton.addGestureRecognizer(albumButtonTapGesture)
-        let missionButtonTapGesture = UITapGestureRecognizer()
-        missionButton.addGestureRecognizer(missionButtonTapGesture)
+
         let connectButtonTapGesture = UITapGestureRecognizer()
         connectButton.addGestureRecognizer(connectButtonTapGesture)
         
         let input = CoupleSpaceMainViewModel.Input(
             viewWillAppear: viewWillAppear,
             albumButtonTap: albumButtonTapGesture.rx.event.map { _ in }.asDriver(onErrorJustReturn: ()),
-            missionButtonTap: missionButtonTapGesture.rx.event.map { _ in }.asDriver(onErrorJustReturn: ()),
             connectButtonTap: connectButtonTapGesture.rx.event.map { _ in }.asDriver(onErrorJustReturn: ())
         )
         
@@ -96,11 +88,7 @@ final class CoupleSpaceMainViewController: UIViewController {
         output.toAlbum
             .drive()
             .disposed(by: disposeBag)
-        
-        output.toMission
-            .drive()
-            .disposed(by: disposeBag)
-        
+
         output.toConnect
             .drive()
             .disposed(by: disposeBag)
@@ -109,31 +97,14 @@ final class CoupleSpaceMainViewController: UIViewController {
 
 // MARK: Configure UI
 extension CoupleSpaceMainViewController {
-    private func configureButtonStack() {
-        let firstLineHorizontalStackView = UIStackView()
-        let secondLineHorizontalStackView = UIStackView()
-        
-        [albumButton].forEach {
-            firstLineHorizontalStackView.addArrangedSubview($0)
-        }
-        
-        [missionButton, connectButton].forEach {
-            secondLineHorizontalStackView.addArrangedSubview($0)
-        }
-        
-        [firstLineHorizontalStackView, secondLineHorizontalStackView].forEach {
-            $0.axis = .horizontal
-            $0.alignment = .fill
-            $0.distribution = .fillEqually
-            $0.spacing = 32
-            buttonStackView.addArrangedSubview($0)
-        }
-    }
-    
     private func configureSubview() {
         [headerBackgroundImageView, buttonBackgroundView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        [albumButton, connectButton].forEach {
+            buttonStackView.addArrangedSubview($0)
         }
         
         buttonBackgroundView.addSubview(buttonStackView)

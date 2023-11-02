@@ -13,14 +13,12 @@ final class CoupleSpaceMainViewModel: ViewModelType {
     struct Input {
         let viewWillAppear: Driver<Void>
         let albumButtonTap: Driver<Void>
-        let missionButtonTap: Driver<Void>
         let connectButtonTap: Driver<Void>
     }
      
     struct Output {
         let isMateExist: Driver<Bool>
         let toAlbum: Driver<Void>
-        let toMission: Driver<Void>
         let toConnect: Driver<Void>
     }
     
@@ -50,16 +48,12 @@ extension CoupleSpaceMainViewModel {
         let toAlbum = input.albumButtonTap
             .do { _ in self.coordinator.toAlbum() }
         
-        let toMission = input.missionButtonTap
-            .do { _ in self.coordinator.toMission() }
-        
         let toConnect = input.connectButtonTap
             .do { _ in self.coordinator.toConnect() }
         
         return Output(
             isMateExist: isMateExist,
             toAlbum: toAlbum,
-            toMission: toMission,
             toConnect: toConnect
         )
     }

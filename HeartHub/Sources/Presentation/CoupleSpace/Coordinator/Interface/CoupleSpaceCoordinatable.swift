@@ -7,6 +7,5 @@
 
 protocol CoupleSpaceCoordinatable: Coordinatable {
     func toAlbum()
-    func toMission()
     func toConnect()
 }

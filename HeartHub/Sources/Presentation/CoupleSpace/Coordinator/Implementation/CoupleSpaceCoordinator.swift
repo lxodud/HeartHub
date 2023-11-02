@@ -33,11 +33,6 @@ extension CoupleSpaceCoordinator: CoupleSpaceCoordinatable {
         navigationController.pushViewController(coupleSpaceAlbumViewController, animated: true)
     }
     
-    func toMission() {
-        let coupleSpaceAlbumViewController = CoupleSpaceAlbumViewController()
-        navigationController.pushViewController(coupleSpaceAlbumViewController, animated: true)
-    }
-    
     func toConnect() {
         let coupleSpaceAlbumViewController = CoupleSpaceAlbumViewController()
         navigationController.pushViewController(coupleSpaceAlbumViewController, animated: true)
