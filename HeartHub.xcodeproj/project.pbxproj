@@ -543,40 +543,16 @@
 			path = UserRelated;
 			sourceTree = "<group>";
 		};
-		0C684F3A2A77C9E000A31865 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */,
-				0C83AD8C2AEE95D60081C315 /* CoupleSpaceMainViewModel.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		0C684F3B2A77D0BD00A31865 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0C684F4B2A78FA4D00A31865 /* CoupleSpaceMainHeaderView.swift */,
-				0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		0C684F492A78FA1A00A31865 /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
 				56C048762A8A02D7001BAAB5 /* DDayCalculator.swift */,
-				0C684F3B2A77D0BD00A31865 /* View */,
-				0C684F3A2A77C9E000A31865 /* Controller */,
+				0C4EF98D2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift */,
+				0C684F4B2A78FA4D00A31865 /* CoupleSpaceMainHeaderView.swift */,
+				0C4EF98F2A7A430000539320 /* CoupleSpaceMainViewController.swift */,
+				0C83AD8C2AEE95D60081C315 /* CoupleSpaceMainViewModel.swift */,
 			);
 			path = MainScene;
-			sourceTree = "<group>";
-		};
-		0C684F4A2A78FA3600A31865 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0C684F442A77D53200A31865 /* CoupleImageBetweenHeartView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		0C6F45562A77AC610044EAC8 /* Sources */ = {
@@ -619,7 +595,7 @@
 				0CCF04D62A9CBEDE00D66F37 /* Common */,
 				0C684F492A78FA1A00A31865 /* MainScene */,
 				0C4EF9A52A8223DE00539320 /* AlbumScene */,
-				5651FC762A7A7BFB00965300 /* GameScene */,
+				5651FC762A7A7BFB00965300 /* MissionScene */,
 				56C048852A8A9166001BAAB5 /* ConnectScene */,
 			);
 			path = CoupleSpace;
@@ -994,13 +970,6 @@
 			path = AlertPresentation;
 			sourceTree = "<group>";
 		};
-		0CAFFF7B2AB2F28900422FC7 /* LogoutScene */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LogoutScene;
-			sourceTree = "<group>";
-		};
 		0CAFFF802AB34DAE00422FC7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,7 +1089,6 @@
 				0C83ADBD2AF239910081C315 /* Coordinator */,
 				0CCF04D72A9CBF0C00D66F37 /* MyPageMainScene */,
 				0CF4C86B2AADB230004F805E /* ProfileModifyScene */,
-				0CAFFF7B2AB2F28900422FC7 /* LogoutScene */,
 				0C40FD882AB0552800F207DA /* PasswordModifyScene */,
 				0C40FD7E2AAF34E800F207DA /* WithdrawalScene */,
 			);
@@ -1130,7 +1098,7 @@
 		0CCF04D62A9CBEDE00D66F37 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0C684F4A2A78FA3600A31865 /* View */,
+				0C684F442A77D53200A31865 /* CoupleImageBetweenHeartView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1318,14 +1286,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		5651FC762A7A7BFB00965300 /* GameScene */ = {
+		5651FC762A7A7BFB00965300 /* MissionScene */ = {
 			isa = PBXGroup;
 			children = (
 				569013512A7BB2E500715D23 /* Models */,
 				5651FC782A7A7C4800965300 /* Views */,
 				5651FC772A7A7C4100965300 /* Controllers */,
 			);
-			path = GameScene;
+			path = MissionScene;
 			sourceTree = "<group>";
 		};
 		5651FC772A7A7C4100965300 /* Controllers */ = {

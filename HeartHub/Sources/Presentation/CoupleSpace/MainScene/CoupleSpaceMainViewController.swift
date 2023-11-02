@@ -64,17 +64,26 @@ final class CoupleSpaceMainViewController: UIViewController {
         configureButtonStack()
         configureSubview()
         configureLayout()
-        configureButtonAction()
         bind(to: viewModel)
     }
     
     private func bind(to: CoupleSpaceMainViewModel) {
-        let viewDidLoad = rx.sentMessage(#selector(UIViewController.viewWillAppear))
+        let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear))
             .map { _ in }
             .asDriver(onErrorJustReturn: ())
         
+        let albumButtonTapGesture = UITapGestureRecognizer()
+        albumButton.addGestureRecognizer(albumButtonTapGesture)
+        let missionButtonTapGesture = UITapGestureRecognizer()
+        missionButton.addGestureRecognizer(missionButtonTapGesture)
+        let connectButtonTapGesture = UITapGestureRecognizer()
+        connectButton.addGestureRecognizer(connectButtonTapGesture)
+        
         let input = CoupleSpaceMainViewModel.Input(
-            viewDidLoad: viewDidLoad
+            viewWillAppear: viewWillAppear,
+            albumButtonTap: albumButtonTapGesture.rx.event.map { _ in }.asDriver(onErrorJustReturn: ()),
+            missionButtonTap: missionButtonTapGesture.rx.event.map { _ in }.asDriver(onErrorJustReturn: ()),
+            connectButtonTap: connectButtonTapGesture.rx.event.map { _ in }.asDriver(onErrorJustReturn: ())
         )
         
         let output = viewModel.transform(input)
@@ -83,33 +92,18 @@ final class CoupleSpaceMainViewController: UIViewController {
             .map { !$0 }
             .drive(headerView.coupleImageBetweenHeartView.rx.isHidden)
             .disposed(by: disposeBag)
-    }
-}
-
-// MARK: Configure Action
-extension CoupleSpaceMainViewController {
-    private func configureButtonAction() {
-        albumButton.addAction(self, #selector(tapAlbumButton))
-        missionButton.addAction(self, #selector(tapMissionButton))
-        connectButton.addAction(self, #selector(tapConnectButton))
-    }
-    
-    @objc
-    private func tapAlbumButton() {
-        let coupleSpaceAlbumViewController = CoupleSpaceAlbumViewController()
-        navigationController?.pushViewController(coupleSpaceAlbumViewController, animated: true)
-    }
-    
-    @objc
-    private func tapMissionButton() {
-        let gameViewController = GameViewController()
-        navigationController?.pushViewController(gameViewController, animated: true)
-    }
-    
-    @objc
-    private func tapConnectButton() {
-        let connectViewController = ConnectViewController()
-        navigationController?.pushViewController(connectViewController, animated: true)
+        
+        output.toAlbum
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.toMission
+            .drive()
+            .disposed(by: disposeBag)
+        
+        output.toConnect
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 

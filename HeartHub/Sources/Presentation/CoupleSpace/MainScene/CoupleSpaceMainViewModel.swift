@@ -11,11 +11,17 @@ import RxSwift
 
 final class CoupleSpaceMainViewModel: ViewModelType {
     struct Input {
-        let viewDidLoad: Driver<Void>
+        let viewWillAppear: Driver<Void>
+        let albumButtonTap: Driver<Void>
+        let missionButtonTap: Driver<Void>
+        let connectButtonTap: Driver<Void>
     }
      
     struct Output {
         let isMateExist: Driver<Bool>
+        let toAlbum: Driver<Void>
+        let toMission: Driver<Void>
+        let toConnect: Driver<Void>
     }
     
     private let coordinator: CoupleSpaceCoordinatable
@@ -36,13 +42,25 @@ final class CoupleSpaceMainViewModel: ViewModelType {
 // MARK: - Public Interface
 extension CoupleSpaceMainViewModel {
     func transform(_ input: Input) -> Output {
-        let isMateExist = input.viewDidLoad.flatMap {
+        let isMateExist = input.viewWillAppear.flatMap {
             return self.coupleInformationUseCase.checkMateExist()
                 .asDriver(onErrorJustReturn: false)
         }
         
+        let toAlbum = input.albumButtonTap
+            .do { _ in self.coordinator.toAlbum() }
+        
+        let toMission = input.missionButtonTap
+            .do { _ in self.coordinator.toMission() }
+        
+        let toConnect = input.connectButtonTap
+            .do { _ in self.coordinator.toConnect() }
+        
         return Output(
-            isMateExist: isMateExist
+            isMateExist: isMateExist,
+            toAlbum: toAlbum,
+            toMission: toMission,
+            toConnect: toConnect
         )
     }
 }

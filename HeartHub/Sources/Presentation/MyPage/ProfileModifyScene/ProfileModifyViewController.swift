@@ -73,6 +73,7 @@ final class ProfileModifyViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        configureSuperview()
         configureSubview()
         configureLayout()
         configureNavigationBar()

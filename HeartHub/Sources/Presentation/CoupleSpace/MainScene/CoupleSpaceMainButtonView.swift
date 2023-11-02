@@ -43,14 +43,6 @@ final class CoupleSpaceMainButtonView: UIView {
     }
 }
 
-// MARK: Public Interface
-extension CoupleSpaceMainButtonView {
-    func addAction(_ target: Any,_ action: Selector) {
-        let tapGesture = UITapGestureRecognizer(target: target, action: action)
-        addGestureRecognizer(tapGesture)
-    }
-}
-
 // MARK: Configure UI
 extension CoupleSpaceMainButtonView {
     private func configureInitialSetting() {
