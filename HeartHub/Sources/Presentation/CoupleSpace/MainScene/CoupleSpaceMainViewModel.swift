@@ -18,7 +18,6 @@ final class CoupleSpaceMainViewModel: ViewModelType {
      
     struct Output {
         let isMateExist: Driver<Bool>
-//        let dday: Driver<String>
         let toAlbum: Driver<Void>
         let toConnect: Driver<Void>
     }

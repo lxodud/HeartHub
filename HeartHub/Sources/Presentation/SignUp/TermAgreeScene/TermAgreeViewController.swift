@@ -86,6 +86,7 @@ final class TermAgreeViewController: UIViewController {
         configureSuperview()
         configureSubview()
         configureLayout()
+        configureNavigationBar()
         bind(to: viewModel)
     }
     
@@ -345,5 +346,13 @@ extension TermAgreeViewController {
                 equalTo: safeArea.centerYAnchor
             )
         ])
+    }
+    
+    private func configureNavigationBar() {
+        let titleImage = UIImage(named: "HeartIcon3:3")
+        let titleImageView = UIImageView()
+        titleImageView.contentMode = .scaleAspectFit
+        titleImageView.image = titleImage
+        navigationItem.titleView = titleImageView
     }
 }

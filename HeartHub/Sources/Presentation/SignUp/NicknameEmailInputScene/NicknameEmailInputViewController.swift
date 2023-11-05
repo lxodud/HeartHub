@@ -400,7 +400,7 @@ extension NicknameEmailInputViewController {
     }
     
     private func configureNavigationBar() {
-        let titleImage = UIImage(named: "HeartIcon1:3")
+        let titleImage = UIImage(named: "HeartIcon2:3")
         let titleImageView = UIImageView()
         titleImageView.contentMode = .scaleAspectFit
         titleImageView.image = titleImage

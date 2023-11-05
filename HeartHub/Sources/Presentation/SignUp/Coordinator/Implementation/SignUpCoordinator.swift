@@ -13,12 +13,24 @@ final class SignUpCoordinator {
     private let signUpUseCase = SignUpUseCase()
     private let alertTransitionDelegate = AlertTransitionDelegate()
     
+    private lazy var backButton = UIBarButtonItem(
+        image: UIImage(systemName: "chevron.left"),
+        style: .plain,
+        target: self,
+        action: #selector(didTapBackButton)
+    )
+    
     init(
         navigationController: UINavigationController,
         finishDelegate: SignUpFinishDelegate
     ) {
         self.navigationController = navigationController
         self.finishDelegate = finishDelegate
+        backButton.tintColor = .black
+    }
+    
+    @objc private func didTapBackButton() {
+        navigationController.popViewController(animated: true)
     }
 }
 
@@ -27,7 +39,7 @@ extension SignUpCoordinator: SignUpCoordinatable {
     func start() {
         toStartDateInput()
     }
-    
+
     private func toStartDateInput() {
         let startDateInputViewController = StartDateInputViewController(
             viewModel: StartDateInputViewModel(
@@ -35,6 +47,8 @@ extension SignUpCoordinator: SignUpCoordinatable {
                 signUpUseCase: signUpUseCase
             )
         )
+        
+        startDateInputViewController.navigationItem.leftBarButtonItem = backButton
         
         navigationController.pushViewController(startDateInputViewController, animated: true)
     }
@@ -47,6 +61,8 @@ extension SignUpCoordinator: SignUpCoordinatable {
                 signUpUseCase: signUpUseCase
             )
         )
+        
+        accountProfileInputViewController.navigationItem.leftBarButtonItem = backButton
         
         navigationController.pushViewController(accountProfileInputViewController, animated: true)
     }
@@ -62,6 +78,8 @@ extension SignUpCoordinator: SignUpCoordinatable {
             )
         )
         
+        nicknameEmailInputViewController.navigationItem.leftBarButtonItem = backButton
+        
         navigationController.pushViewController(nicknameEmailInputViewController, animated: true)
     }
     
@@ -73,6 +91,8 @@ extension SignUpCoordinator: SignUpCoordinatable {
                 signUpUseCase: signUpUseCase
             )
         )
+        
+        termAgreeViewController.navigationItem.leftBarButtonItem = backButton
         
         navigationController.pushViewController(termAgreeViewController, animated: true)
     }

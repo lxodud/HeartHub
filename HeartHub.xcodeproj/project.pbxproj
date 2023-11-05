@@ -58,6 +58,7 @@
 		0C83ADC12AF239AA0081C315 /* MyPageCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADC02AF239AA0081C315 /* MyPageCoordinatable.swift */; };
 		0C83ADC32AF239C20081C315 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADC22AF239C20081C315 /* MyPageCoordinator.swift */; };
 		0C83ADC52AF241B20081C315 /* MyPageFinishDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADC42AF241B20081C315 /* MyPageFinishDelegate.swift */; };
+		0C83ADC92AF393080081C315 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C83ADC82AF393080081C315 /* GoogleService-Info.plist */; };
 		0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */; };
 		0C9790832ABEFC0F001BD3BD /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */; };
 		0C9790892ABF0116001BD3BD /* SignUpTitleLabelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */; };
@@ -200,6 +201,7 @@
 		0C83ADC02AF239AA0081C315 /* MyPageCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinatable.swift; sourceTree = "<group>"; };
 		0C83ADC22AF239C20081C315 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
 		0C83ADC42AF241B20081C315 /* MyPageFinishDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFinishDelegate.swift; sourceTree = "<group>"; };
+		0C83ADC82AF393080081C315 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinatable.swift; sourceTree = "<group>"; };
 		0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
 		0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTitleLabelStack.swift; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 				0CC33ACA2A5281C3001EF4E7 /* Assets.xcassets */,
 				0CC33ACC2A5281C3001EF4E7 /* LaunchScreen.storyboard */,
 				0CC33ACF2A5281C3001EF4E7 /* Info.plist */,
+				0C83ADC82AF393080081C315 /* GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1376,6 +1379,7 @@
 				569E4EFE2A5FC58200B51898 /* Pretendard-Regular.otf in Resources */,
 				0CC33ACB2A5281C3001EF4E7 /* Assets.xcassets in Resources */,
 				569E4EFF2A5FC58200B51898 /* Pretendard-SemiBold.otf in Resources */,
+				0C83ADC92AF393080081C315 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

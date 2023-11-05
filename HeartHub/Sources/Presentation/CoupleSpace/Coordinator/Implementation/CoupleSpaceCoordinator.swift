@@ -10,9 +10,21 @@ import UIKit
 final class CoupleSpaceCoordinator {
     private let navigationController: UINavigationController
     
+    private lazy var backButton = UIBarButtonItem(
+        image: UIImage(systemName: "chevron.left"),
+        style: .plain,
+        target: self,
+        action: #selector(didTapBackButton)
+    )
+    
     // MARK: - initializer
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        backButton.tintColor = .black
+    }
+    
+    @objc private func didTapBackButton() {
+        navigationController.popViewController(animated: true)
     }
 }
 
@@ -30,11 +42,15 @@ extension CoupleSpaceCoordinator: CoupleSpaceCoordinatable {
     
     func toAlbum() {
         let coupleSpaceAlbumViewController = CoupleSpaceAlbumViewController()
+        coupleSpaceAlbumViewController.navigationItem.leftBarButtonItem = backButton
+        
         navigationController.pushViewController(coupleSpaceAlbumViewController, animated: true)
     }
     
     func toConnect() {
-        let coupleSpaceAlbumViewController = CoupleSpaceAlbumViewController()
-        navigationController.pushViewController(coupleSpaceAlbumViewController, animated: true)
+        let connectViewController = ConnectViewController()
+        connectViewController.navigationItem.leftBarButtonItem = backButton
+        
+        navigationController.pushViewController(connectViewController, animated: true)
     }
 }

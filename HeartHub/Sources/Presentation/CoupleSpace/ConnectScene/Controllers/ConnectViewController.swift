@@ -8,18 +8,17 @@
 import UIKit
 
 final class ConnectViewController: UIViewController {
-
     private let connectView = ConnectView()
     
     override func viewDidLoad() {
+        configureSuperview()
+        configureSubview()
         configureAddTarget()
-        configureSubviews()
         configureLayout()
-        configureNavigationBar()
     }
 }
 
-// MARK: Configure addTarget
+// MARK: - Configure Action
 extension ConnectViewController {
     func configureAddTarget() {
         connectView.connectAccountButton.addTarget(self, action: #selector(didTapConnectAccountButton), for: .touchUpInside)
@@ -33,8 +32,13 @@ extension ConnectViewController {
     }
 }
 
+// MARK: - Configure UI
 extension ConnectViewController {
-    private func configureSubviews() {
+    private func configureSuperview() {
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func configureSubview() {
         view.addSubview(connectView)
         connectView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -47,16 +51,5 @@ extension ConnectViewController {
             connectView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             connectView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor)
         ])
-    }
-    
-    private func configureNavigationBar() {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(didTapBackButton))
-        backButton.tintColor = .black
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.title = "계정 연동"
-    }
-    
-    @objc private func didTapBackButton() {
-        navigationController?.popViewController(animated: true)
     }
 }
