@@ -141,7 +141,6 @@
 		569E4EFF2A5FC58200B51898 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 569E4EFD2A5FC58200B51898 /* Pretendard-SemiBold.otf */; };
 		56C048772A8A02D7001BAAB5 /* DDayCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C048762A8A02D7001BAAB5 /* DDayCalculator.swift */; };
 		56C048892A8A91BE001BAAB5 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C048882A8A91BE001BAAB5 /* ConnectViewController.swift */; };
-		56C0488B2A8A91DE001BAAB5 /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0488A2A8A91DE001BAAB5 /* ConnectView.swift */; };
 		56C0488D2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0488C2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift */; };
 		56C0488F2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0488E2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift */; };
 		56C048912A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C048902A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift */; };
@@ -287,7 +286,6 @@
 		569E4EFD2A5FC58200B51898 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		56C048762A8A02D7001BAAB5 /* DDayCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDayCalculator.swift; sourceTree = "<group>"; };
 		56C048882A8A91BE001BAAB5 /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
-		56C0488A2A8A91DE001BAAB5 /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
 		56C0488C2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCheckPopUpView.swift; sourceTree = "<group>"; };
 		56C0488E2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCheckPopUpViewController.swift; sourceTree = "<group>"; };
 		56C048902A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCompletePopUpView.swift; sourceTree = "<group>"; };
@@ -1271,30 +1269,13 @@
 		56C048852A8A9166001BAAB5 /* ConnectScene */ = {
 			isa = PBXGroup;
 			children = (
-				56C048862A8A9196001BAAB5 /* Views */,
-				56C048872A8A919E001BAAB5 /* Controllers */,
-			);
-			path = ConnectScene;
-			sourceTree = "<group>";
-		};
-		56C048862A8A9196001BAAB5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				56C0488A2A8A91DE001BAAB5 /* ConnectView.swift */,
-				56C0488C2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift */,
-				56C048902A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		56C048872A8A919E001BAAB5 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
 				56C048882A8A91BE001BAAB5 /* ConnectViewController.swift */,
 				56C0488E2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift */,
 				56C048922A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift */,
+				56C0488C2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift */,
+				56C048902A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift */,
 			);
-			path = Controllers;
+			path = ConnectScene;
 			sourceTree = "<group>";
 		};
 		5EC70D3BC202B4E5C6333A12 /* Frameworks */ = {
@@ -1460,7 +1441,6 @@
 				56C048932A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift in Sources */,
 				0CF4C8612AACAF63004F805E /* GetDatingDataResponseDTO.swift in Sources */,
 				0CADFF5A2AADEEC500253DA1 /* MyInformationUseCase.swift in Sources */,
-				56C0488B2A8A91DE001BAAB5 /* ConnectView.swift in Sources */,
 				0C9790A02AC04FD4001BD3BD /* SignUpDateFormatter.swift in Sources */,
 				0CE2CD902A933DE200129724 /* MyInformationRepository.swift in Sources */,
 				0C6425BF2AE6550200B11B85 /* SignUpFinishDelegate.swift in Sources */,
