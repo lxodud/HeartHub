@@ -8,11 +8,6 @@
 import Foundation
 import RxSwift
 
-struct UserInformation {
-    let profileImage: Data
-    let nickname: String
-}
-
 final class MyInformationRepository: MyInformationRepositoryType {
     private let informationProvider: UserDefaults
     private let networkManager: NetworkManagerType

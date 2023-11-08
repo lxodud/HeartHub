@@ -59,6 +59,11 @@
 		0C83ADC32AF239C20081C315 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADC22AF239C20081C315 /* MyPageCoordinator.swift */; };
 		0C83ADC52AF241B20081C315 /* MyPageFinishDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADC42AF241B20081C315 /* MyPageFinishDelegate.swift */; };
 		0C83ADC92AF393080081C315 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C83ADC82AF393080081C315 /* GoogleService-Info.plist */; };
+		0C83ADCB2AF7B7670081C315 /* ConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADCA2AF7B7670081C315 /* ConnectViewModel.swift */; };
+		0C83ADCF2AF7BFCF0081C315 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADCE2AF7BFCF0081C315 /* UserInformation.swift */; };
+		0C83ADD52AF7CB5F0081C315 /* ConnectCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADD42AF7CB5F0081C315 /* ConnectCoordinatable.swift */; };
+		0C83ADD72AF7CCD90081C315 /* ConnectCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADD62AF7CCD90081C315 /* ConnectCoordinator.swift */; };
+		0C83ADD92AF7E5B80081C315 /* ConnectCheckAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C83ADD82AF7E5B80081C315 /* ConnectCheckAlertViewModel.swift */; };
 		0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */; };
 		0C9790832ABEFC0F001BD3BD /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */; };
 		0C9790892ABF0116001BD3BD /* SignUpTitleLabelStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */; };
@@ -141,10 +146,7 @@
 		569E4EFF2A5FC58200B51898 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 569E4EFD2A5FC58200B51898 /* Pretendard-SemiBold.otf */; };
 		56C048772A8A02D7001BAAB5 /* DDayCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C048762A8A02D7001BAAB5 /* DDayCalculator.swift */; };
 		56C048892A8A91BE001BAAB5 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C048882A8A91BE001BAAB5 /* ConnectViewController.swift */; };
-		56C0488D2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0488C2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift */; };
-		56C0488F2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0488E2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift */; };
-		56C048912A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C048902A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift */; };
-		56C048932A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C048922A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift */; };
+		56C0488F2A8AA03A001BAAB5 /* ConnectCheckAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0488E2A8AA03A001BAAB5 /* ConnectCheckAlertViewController.swift */; };
 		D1070D4C0C1725CAF3B61D0A /* Pods_HeartHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F919B1F8DC83C6A78A367C82 /* Pods_HeartHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -201,6 +203,11 @@
 		0C83ADC22AF239C20081C315 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
 		0C83ADC42AF241B20081C315 /* MyPageFinishDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFinishDelegate.swift; sourceTree = "<group>"; };
 		0C83ADC82AF393080081C315 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0C83ADCA2AF7B7670081C315 /* ConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewModel.swift; sourceTree = "<group>"; };
+		0C83ADCE2AF7BFCF0081C315 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
+		0C83ADD42AF7CB5F0081C315 /* ConnectCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCoordinatable.swift; sourceTree = "<group>"; };
+		0C83ADD62AF7CCD90081C315 /* ConnectCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCoordinator.swift; sourceTree = "<group>"; };
+		0C83ADD82AF7E5B80081C315 /* ConnectCheckAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCheckAlertViewModel.swift; sourceTree = "<group>"; };
 		0C9790802ABEFBBF001BD3BD /* SignUpCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinatable.swift; sourceTree = "<group>"; };
 		0C9790822ABEFC0F001BD3BD /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
 		0C9790882ABF0116001BD3BD /* SignUpTitleLabelStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTitleLabelStack.swift; sourceTree = "<group>"; };
@@ -286,10 +293,7 @@
 		569E4EFD2A5FC58200B51898 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		56C048762A8A02D7001BAAB5 /* DDayCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDayCalculator.swift; sourceTree = "<group>"; };
 		56C048882A8A91BE001BAAB5 /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
-		56C0488C2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCheckPopUpView.swift; sourceTree = "<group>"; };
-		56C0488E2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCheckPopUpViewController.swift; sourceTree = "<group>"; };
-		56C048902A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCompletePopUpView.swift; sourceTree = "<group>"; };
-		56C048922A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCompletePopUpViewController.swift; sourceTree = "<group>"; };
+		56C0488E2A8AA03A001BAAB5 /* ConnectCheckAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCheckAlertViewController.swift; sourceTree = "<group>"; };
 		E6FD5ACAF90264E49048EFF1 /* Pods-HeartHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartHub.debug.xcconfig"; path = "Target Support Files/Pods-HeartHub/Pods-HeartHub.debug.xcconfig"; sourceTree = "<group>"; };
 		F919B1F8DC83C6A78A367C82 /* Pods_HeartHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeartHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -678,6 +682,39 @@
 			children = (
 				0C83ADC02AF239AA0081C315 /* MyPageCoordinatable.swift */,
 				0C83ADC42AF241B20081C315 /* MyPageFinishDelegate.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		0C83ADCD2AF7BFC70081C315 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C83ADCE2AF7BFCF0081C315 /* UserInformation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0C83ADD12AF7CB440081C315 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				0C83ADD22AF7CB4E0081C315 /* Implementation */,
+				0C83ADD32AF7CB520081C315 /* Interface */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		0C83ADD22AF7CB4E0081C315 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				0C83ADD62AF7CCD90081C315 /* ConnectCoordinator.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		0C83ADD32AF7CB520081C315 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				0C83ADD42AF7CB5F0081C315 /* ConnectCoordinatable.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -1188,6 +1225,7 @@
 		0CF4C8662AADADD9004F805E /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				0C83ADCD2AF7BFC70081C315 /* Model */,
 				0CFF6AF92AE1144000BD4356 /* SignUp */,
 				0C9F98942ABD6FAF0084A938 /* Account */,
 				0C9F98842ABB273C0084A938 /* MyInformation */,
@@ -1269,11 +1307,11 @@
 		56C048852A8A9166001BAAB5 /* ConnectScene */ = {
 			isa = PBXGroup;
 			children = (
+				0C83ADD12AF7CB440081C315 /* Coordinator */,
 				56C048882A8A91BE001BAAB5 /* ConnectViewController.swift */,
-				56C0488E2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift */,
-				56C048922A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift */,
-				56C0488C2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift */,
-				56C048902A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift */,
+				0C83ADCA2AF7B7670081C315 /* ConnectViewModel.swift */,
+				56C0488E2A8AA03A001BAAB5 /* ConnectCheckAlertViewController.swift */,
+				0C83ADD82AF7E5B80081C315 /* ConnectCheckAlertViewModel.swift */,
 			);
 			path = ConnectScene;
 			sourceTree = "<group>";
@@ -1438,7 +1476,6 @@
 				0C97909E2AC04DFA001BD3BD /* SignUpUseCase.swift in Sources */,
 				0CE2CDE22A9B71B600129724 /* HeartHubSegmentedControl.swift in Sources */,
 				0C40FD852AB03DF200F207DA /* UIButton+backgroundColor.swift in Sources */,
-				56C048932A8ABC88001BAAB5 /* ConnectCompletePopUpViewController.swift in Sources */,
 				0CF4C8612AACAF63004F805E /* GetDatingDataResponseDTO.swift in Sources */,
 				0CADFF5A2AADEEC500253DA1 /* MyInformationUseCase.swift in Sources */,
 				0C9790A02AC04FD4001BD3BD /* SignUpDateFormatter.swift in Sources */,
@@ -1452,7 +1489,7 @@
 				0C59CF622A87E1FD00D847B7 /* SetMateRequestDTO.swift in Sources */,
 				0C59CF552A87C1AE00D847B7 /* UserRelatedRequestBuilderFactory.swift in Sources */,
 				0CE2CD952A9342E600129724 /* ImageProvider.swift in Sources */,
-				56C0488D2A8A9C5B001BAAB5 /* ConnectCheckPopUpView.swift in Sources */,
+				0C83ADCF2AF7BFCF0081C315 /* UserInformation.swift in Sources */,
 				0CAFFF8E2AB3619B00422FC7 /* LoginCoordinator.swift in Sources */,
 				0CAFFF752AB1A18A00422FC7 /* PasswordModifyViewModel.swift in Sources */,
 				0C9F98892ABB50B50084A938 /* MyInformationUseCaseType.swift in Sources */,
@@ -1476,6 +1513,7 @@
 				0C83AD942AEF52FB0081C315 /* CoupleInformationRepository.swift in Sources */,
 				0CF7CDE12AD5369C00488228 /* TermAgreeCheckBoxStackView.swift in Sources */,
 				0CC33AC42A5281C1001EF4E7 /* SceneDelegate.swift in Sources */,
+				0C83ADD52AF7CB5F0081C315 /* ConnectCoordinatable.swift in Sources */,
 				0C143BF62AB6DD1A00C0A5A9 /* ViewModelType.swift in Sources */,
 				0C9F987A2ABB1C880084A938 /* AuthenticationRepository.swift in Sources */,
 				0C9790812ABEFBBF001BD3BD /* SignUpCoordinatable.swift in Sources */,
@@ -1488,7 +1526,6 @@
 				0C83AD922AEF528F0081C315 /* CoupleInformationRepositoryType.swift in Sources */,
 				0C9790A32AC0526E001BD3BD /* AccountProfileInputViewController.swift in Sources */,
 				0C60BDEC2AE0204A00920851 /* TermsOfUseViewController.swift in Sources */,
-				56C048912A8ABB99001BAAB5 /* ConnectCompletePopUpView.swift in Sources */,
 				0CCF04D92A9CBF1E00D66F37 /* MyPageMainViewController.swift in Sources */,
 				0CE2CD9B2A9347EB00129724 /* GetUserInformationResponseDTO.swift in Sources */,
 				56348A912A6E8286005BB635 /* FindPasswordViewController.swift in Sources */,
@@ -1500,11 +1537,13 @@
 				0CAFFF7D2AB2F2A300422FC7 /* ConfirmAndCancelAlertViewController.swift in Sources */,
 				0CE2CDA92A93A95F00129724 /* FetchReissueTokenResponseDTO.swift in Sources */,
 				0C40FD7D2AAF341600F207DA /* ProfileModifyViewModel.swift in Sources */,
+				0C83ADD72AF7CCD90081C315 /* ConnectCoordinator.swift in Sources */,
 				0C63FF352A8E0FD70020D137 /* NetworkError.swift in Sources */,
 				56C048772A8A02D7001BAAB5 /* DDayCalculator.swift in Sources */,
 				0CADFF532AADE21F00253DA1 /* MyPageRequestBuilderFactory.swift in Sources */,
 				0C9F98822ABB26710084A938 /* AuthenticationUseCaseType.swift in Sources */,
 				0C59CF732A8A107400D847B7 /* MultipartBodyRequestBuilder.swift in Sources */,
+				0C83ADD92AF7E5B80081C315 /* ConnectCheckAlertViewModel.swift in Sources */,
 				0CE2CDA72A93A93400129724 /* NewToken.swift in Sources */,
 				0C2C79132ACD5F0200AB02A9 /* AuthenticateEmailResponseDTO.swift in Sources */,
 				0C9F987C2ABB20C80084A938 /* MyInformationRepositoryType.swift in Sources */,
@@ -1523,6 +1562,7 @@
 				0C59CF5E2A87D86D00D847B7 /* JoinRequestDTO.swift in Sources */,
 				0C80B93D2AE012B700B45EAB /* PersonalInformationCollectionAndUsageDetailViewController.swift in Sources */,
 				0C143BFA2AB6E2A000C0A5A9 /* LoginCoordinatable.swift in Sources */,
+				0C83ADCB2AF7B7670081C315 /* ConnectViewModel.swift in Sources */,
 				0C40FD8C2AB08B5900F207DA /* WithdrawalViewModel.swift in Sources */,
 				0C143BFD2AB752C500C0A5A9 /* NetworkManager.swift in Sources */,
 				0C4EF98E2A7A2BF500539320 /* CoupleSpaceMainButtonView.swift in Sources */,
@@ -1532,7 +1572,7 @@
 				0C143BF82AB6E17000C0A5A9 /* LoginViewModel.swift in Sources */,
 				0C40FD822AAF40AE00F207DA /* WithdrawalReasonCheckBoxStackView.swift in Sources */,
 				0C9F98A32ABD70A40084A938 /* AccountRepository.swift in Sources */,
-				56C0488F2A8AA03A001BAAB5 /* ConnectCheckPopUpViewController.swift in Sources */,
+				56C0488F2A8AA03A001BAAB5 /* ConnectCheckAlertViewController.swift in Sources */,
 				0CE2CD972A9343B000129724 /* ImageProviderError.swift in Sources */,
 				0CAFFF732AB19C2700422FC7 /* ChangePasswordRequestDTO.swift in Sources */,
 				0C6F45532A7384B10044EAC8 /* UIWindow+.swift in Sources */,

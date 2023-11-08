@@ -5,9 +5,14 @@
 //  Created by 이태영 on 2023/11/05.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
 final class ConnectViewController: UIViewController {
+    private let viewModel: ConnectViewModel
+    private let disposeBag = DisposeBag()
+    
     private let mateInputTextField = HeartHubUserInfoInputTextField(
         placeholder: "내 애인의 아이디를 입력하세요",
         keyboardType: .default,
@@ -36,10 +41,38 @@ final class ConnectViewController: UIViewController {
         return button
     }()
     
+    // MARK: - initializer
+    init(viewModel: ConnectViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         configureSuperview()
         configureSubview()
         configureLayout()
+        bind(to: viewModel)
+    }
+    
+    private func bind(to viewModel: ConnectViewModel) {
+        let input = ConnectViewModel.Input(
+            id: mateInputTextField.rx.text.orEmpty.asDriver(),
+            tapFindMate: connectButton.rx.tap.asDriver()
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.isFindMateEnable
+            .drive(connectButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.toMateInformation
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 
@@ -91,3 +124,5 @@ extension ConnectViewController {
         ])
     }
 }
+
+let mateProfileImage = UIImage(named: "mateProfile")!.pngData()!

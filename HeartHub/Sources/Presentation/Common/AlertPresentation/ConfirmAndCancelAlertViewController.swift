@@ -20,6 +20,7 @@ final class ConfirmAndCancelAlertViewController: UIViewController {
         let button = UIButton()
         button.setTitle("취소", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Pretendard-Reqular", size: 12)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1).cgColor
         button.layer.cornerRadius = 15
@@ -30,6 +31,7 @@ final class ConfirmAndCancelAlertViewController: UIViewController {
         let button = UIButton()
         button.setTitle("확인", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Pretendard-Reqular", size: 12)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1).cgColor
         button.layer.cornerRadius = 15

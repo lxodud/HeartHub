@@ -48,9 +48,7 @@ extension CoupleSpaceCoordinator: CoupleSpaceCoordinatable {
     }
     
     func toConnect() {
-        let connectViewController = ConnectViewController()
-        connectViewController.navigationItem.leftBarButtonItem = backButton
-        
-        navigationController.pushViewController(connectViewController, animated: true)
+        let coordinator = ConnectCoordinator(navigationController: navigationController)
+        coordinator.start()
     }
 }

@@ -10,5 +10,6 @@ import RxSwift
 
 protocol CoupleInformationRepositoryType {
     func checkMateExist() -> Observable<Bool>
+    func fetchMateInformation() -> Observable<UserInformation>
 }
 

@@ -9,4 +9,5 @@ import RxSwift
 
 protocol CoupleInformationUseCaseType {
     func checkMateExist() -> Observable<Bool>
+    func fetchMateInformation() -> Observable<UserInformation>
 }

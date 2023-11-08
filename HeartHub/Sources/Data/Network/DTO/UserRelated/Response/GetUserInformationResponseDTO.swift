@@ -16,6 +16,6 @@ struct GetUserInformationResponseDTO: Decodable {
     struct UserInformation: Decodable {
         let username: String
         let nickname: String
-        let userImageUrl: String?
+        let userImageUrl: String
     }
 }

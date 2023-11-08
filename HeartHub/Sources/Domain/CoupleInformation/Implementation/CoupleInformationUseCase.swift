@@ -16,6 +16,10 @@ final class CoupleInformationUseCase {
 }
 
 extension CoupleInformationUseCase: CoupleInformationUseCaseType {
+    func fetchMateInformation() -> Observable<UserInformation> {
+        return coupleInformationRepository.fetchMateInformation()
+    }
+    
     func checkMateExist() -> Observable<Bool> {
         return coupleInformationRepository.checkMateExist()
     }
