@@ -21,9 +21,9 @@ extension AppCoordinator: Coordinatable {
     func start() {
 //        TokenProvider().deleteToken()
 //        if TokenProvider().fetchAccessToken() == nil {
-//            showLogin()
+            showLogin()
 //        } else {
-            showMain()
+//            showMain()
 //        }
     }
 }

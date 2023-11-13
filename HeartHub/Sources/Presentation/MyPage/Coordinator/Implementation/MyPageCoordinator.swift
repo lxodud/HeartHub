@@ -12,12 +12,24 @@ final class MyPageCoordinator {
     private let finishDelegate: MyPageFinishDelegate
     private let alertTransitionDelegate = AlertTransitionDelegate()
     
+    private lazy var backButton = UIBarButtonItem(
+        image: UIImage(systemName: "chevron.left"),
+        style: .plain,
+        target: self,
+        action: #selector(didTapBackButton)
+    )
+    
     init(
         navigationController: UINavigationController,
         finishDelegate: MyPageFinishDelegate
     ) {
         self.navigationController = navigationController
         self.finishDelegate = finishDelegate
+        self.backButton.tintColor = .black
+    }
+    
+    @objc private func didTapBackButton() {
+        navigationController.popViewController(animated: true)
     }
 }
 
@@ -38,6 +50,8 @@ extension MyPageCoordinator: MyPageCoordinatable {
                 myInformationUseCase: MyInformationUseCase()
             )
         )
+        
+        profileModifyViewController.navigationItem.leftBarButtonItem = backButton
         navigationController.pushViewController(profileModifyViewController, animated: true)
     }
     
@@ -47,6 +61,8 @@ extension MyPageCoordinator: MyPageCoordinatable {
                 accountUseCase: AccountUseCase()
             )
         )
+        
+        withdrawalViewController.navigationItem.leftBarButtonItem = backButton
         navigationController.pushViewController(withdrawalViewController, animated: true)
     }
     
@@ -56,6 +72,8 @@ extension MyPageCoordinator: MyPageCoordinatable {
                 accountUseCase: AccountUseCase()
             )
         )
+        
+        passwordModifyViewController.navigationItem.leftBarButtonItem = backButton
         navigationController.pushViewController(passwordModifyViewController, animated: true)
     }
     

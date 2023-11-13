@@ -20,12 +20,6 @@ final class HeartHubFloatingButton: UIView {
         return button
     }()
     
-    let calendarButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "CalendarButton"), for: .normal)
-        return button
-    }()
-    
     private let floatButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -75,7 +69,7 @@ extension HeartHubFloatingButton {
 // MARK: Configure UI
 extension HeartHubFloatingButton {
     private func configureSubview() {
-        [calendarButton, writeArticleButton].forEach {
+        [writeArticleButton].forEach {
             floatButtonStackView.addArrangedSubview($0)
             $0.isHidden = true
         }

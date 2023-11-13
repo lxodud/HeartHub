@@ -39,7 +39,7 @@ extension StartDateInputViewModel {
     func transform(_ input: Input) -> Output {
         let formattedDate = input.date
             .do { self.signUpUseCase.startDate = $0 }
-            .map { SignUpDateFormatter.shared.stringForPresentation(from: $0) }
+            .map { HeartHubDateFormatter.shared.stringForPresentation(from: $0) }
             .asDriver(onErrorJustReturn: "")
         
         let isNextEnable = input.date

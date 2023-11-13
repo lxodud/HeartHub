@@ -14,7 +14,7 @@ final class CoupleSpaceMainHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont(name: "Pretendard-SemiBold", size: 28)
         label.textColor = .black
-        label.text = "D + 0"
+        label.text = "D + 265"
         return label
     }()
     

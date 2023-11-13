@@ -80,10 +80,10 @@ final class CoupleSpaceMainViewController: UIViewController {
         
         let output = viewModel.transform(input)
         
-        output.isMateExist
-            .map { !$0 }
-            .drive(headerView.coupleImageBetweenHeartView.rx.isHidden)
-            .disposed(by: disposeBag)
+//        output.isMateExist
+//            .map { !$0 }
+//            .drive(headerView.coupleImageBetweenHeartView.rx.isHidden)
+//            .disposed(by: disposeBag)
         
         output.toAlbum
             .drive()

@@ -1,15 +1,24 @@
 //
-//  CoupleSpaceAlbumViewController.swift
+//  AlbumViewController.swift.swift
 //  HeartHub
 //
 //  Created by 이태영 on 2023/08/09.
 //
 
+import RxCocoa
+import RxSwift
 import UIKit
 
-final class CoupleSpaceAlbumViewController: UIViewController {
+final class AlbumViewController: UIViewController {
+    private let viewModel: AlbumViewModel
+    private let disposeBag = DisposeBag()
+    
     private let titleCoupleImageView = CoupleImageBetweenHeartView()
-    private let editFloatingButton = HeartHubFloatingButton()
+    private let postAlbumButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "WriteArticleButton"), for: .normal)
+        return button
+    }()
     
     private let albumCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -24,7 +33,7 @@ final class CoupleSpaceAlbumViewController: UIViewController {
     
     private let ddayLabel: UILabel = {
         let label = UILabel()
-        label.text = "D + 0"
+        label.text = "D + 265"
         label.textColor = .black
         label.font = UIFont(name: "Pretendard-SemiBold", size: 24)
         return label
@@ -36,40 +45,53 @@ final class CoupleSpaceAlbumViewController: UIViewController {
         return view
     }()
     
+    // MARK: - initializer
+    init(viewModel: AlbumViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
-        configureInitialSetting()
         configureAlbumCollectionView()
+        configureSuperview()
         configureSubview()
         configureLayout()
         configureNavigationBar()
-    }
-}
-
-extension CoupleSpaceAlbumViewController: UICollectionViewDataSource {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-    ) -> Int {
-        return 3
+        bind(to: viewModel)
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CoupleSpaceAlbumCell.reuseIdentifier,
-            for: indexPath
-        ) as? CoupleSpaceAlbumCell else {
-            return UICollectionViewCell()
-        }
-
-        return cell
+    private func bind(to viewModel: AlbumViewModel) {
+        let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear))
+            .map { _ in }
+            .asDriver(onErrorJustReturn: ())
+        
+        let input = AlbumViewModel.Input(
+            viewWillAppear: viewWillAppear,
+            tapPost: postAlbumButton.rx.tap.asDriver()
+        )
+        
+        let output = viewModel.transform(input)
+        
+        output.album
+            .drive(albumCollectionView.rx.items(
+                cellIdentifier: AlbumCell.reuseIdentifier,
+                cellType: AlbumCell.self)) {_, element, cell in
+                    cell.configureCell(with: element)
+                }
+                .disposed(by: disposeBag)
+        
+        output.toPost
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 
 // MARK: UICollectionView Delegate FlowLayout Implementation
-extension CoupleSpaceAlbumViewController: UICollectionViewDelegateFlowLayout {
+extension AlbumViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -82,32 +104,26 @@ extension CoupleSpaceAlbumViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CoupleSpaceAlbumViewController {
-    private func configureInitialSetting() {
-        let dDayCalculator = DDayCalculator()
-        dDayCalculator.calculateAndDisplayDDay(dayLabel: ddayLabel)
-    }
-}
-
 // MARK: Configure UI
-extension CoupleSpaceAlbumViewController {
+extension AlbumViewController {
     private func configureAlbumCollectionView() {
         albumCollectionView.delegate = self
-        albumCollectionView.dataSource = self
         
         albumCollectionView.register(
-            CoupleSpaceAlbumCell.self,
-            forCellWithReuseIdentifier: CoupleSpaceAlbumCell.reuseIdentifier
+            AlbumCell.self,
+            forCellWithReuseIdentifier: AlbumCell.reuseIdentifier
         )
     }
     
+    private func configureSuperview() {
+        view.backgroundColor = .systemBackground
+    }
+    
     private func configureSubview() {
-        [ddayLabel, separateView, albumCollectionView, editFloatingButton].forEach {
+        [ddayLabel, separateView, albumCollectionView, postAlbumButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        view.backgroundColor = .systemBackground
     }
     
     private func configureLayout() {
@@ -157,11 +173,11 @@ extension CoupleSpaceAlbumViewController {
             ),
             
             // MARK: editFloatingButton Constraints
-            editFloatingButton.trailingAnchor.constraint(
+            postAlbumButton.trailingAnchor.constraint(
                 equalTo: safeArea.trailingAnchor,
                 constant: -15
             ),
-            editFloatingButton.bottomAnchor.constraint(
+            postAlbumButton.bottomAnchor.constraint(
                 equalTo: safeArea.bottomAnchor,
                 constant: -15
             ),
@@ -184,3 +200,9 @@ extension CoupleSpaceAlbumViewController {
         navigationController?.popViewController(animated: true)
     }
 }
+
+let album1 = UIImage(named: "Album1")!.pngData()!
+let album2 = UIImage(named: "Album2")!.pngData()!
+let album3 = UIImage(named: "Album3")!.pngData()!
+let album4 = UIImage(named: "Album4")!.pngData()!
+let album5 = UIImage(named: "Album5")!.pngData()!

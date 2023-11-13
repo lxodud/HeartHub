@@ -41,10 +41,8 @@ extension CoupleSpaceCoordinator: CoupleSpaceCoordinatable {
     }
     
     func toAlbum() {
-        let coupleSpaceAlbumViewController = CoupleSpaceAlbumViewController()
-        coupleSpaceAlbumViewController.navigationItem.leftBarButtonItem = backButton
-        
-        navigationController.pushViewController(coupleSpaceAlbumViewController, animated: true)
+        let albumCoordinator = AlbumCoordinor(navigationController: navigationController)
+        albumCoordinator.start()
     }
     
     func toConnect() {

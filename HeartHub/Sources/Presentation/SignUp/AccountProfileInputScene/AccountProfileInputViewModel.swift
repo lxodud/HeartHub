@@ -23,6 +23,7 @@ final class AccountProfileInputViewModel: ViewModelType {
     
     struct Output {
         let verifiedId: Driver<String>
+        let isIdCheckEnable: Driver<Bool>
         let checkingDuplicationId: Driver<Bool>
         let idDescription: Driver<String>
         let idDescriptionColor: Driver<SignUpColor>
@@ -71,6 +72,13 @@ extension AccountProfileInputViewModel {
             .merge()
             .distinctUntilChanged()
         
+        let isIdCheckEnable = Driver.from([
+            verifiedId.distinctUntilChanged().map { !$0.isEmpty },
+            checkingDuplicationId.map { _ in false }
+        ])
+            .merge()
+            .distinctUntilChanged()
+        
         let idDescription = Driver.from([
             isDuplicatedId.map { $0 == true ? "사용 가능한 아이디입니다." : "중복된 아이디입니다." },
             verifiedId.distinctUntilChanged().map { _ in "영문/숫자 구성" }
@@ -96,7 +104,7 @@ extension AccountProfileInputViewModel {
             }
 
         let formattedBirth = input.birth
-            .map { SignUpDateFormatter.shared.stringForPresentation(from: $0) }
+            .map { HeartHubDateFormatter.shared.stringForPresentation(from: $0) }
             .asDriver(onErrorJustReturn: "")
         
         let isMale = Driver.from([
@@ -150,6 +158,7 @@ extension AccountProfileInputViewModel {
         
         return Output(
             verifiedId: verifiedId,
+            isIdCheckEnable: isIdCheckEnable,
             checkingDuplicationId: checkingDuplicationId,
             idDescription: idDescription,
             idDescriptionColor: idDescriptionColor,

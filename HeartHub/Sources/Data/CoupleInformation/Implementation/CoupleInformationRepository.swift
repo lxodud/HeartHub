@@ -17,7 +17,7 @@ final class CoupleInformationRepository {
 
 // MARK: - Public Interface
 extension CoupleInformationRepository: CoupleInformationRepositoryType {
-    func fetchMateInformation() -> RxSwift.Observable<UserInformation> {
+    func fetchMateInformation() -> Observable<UserInformation> {
         let builder = UserRelatedRequestBuilderFactory.makeGetUserInformation(of: 10)
         var username: String = ""
         

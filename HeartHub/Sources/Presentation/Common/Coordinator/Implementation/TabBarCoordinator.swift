@@ -24,6 +24,9 @@ final class TabBarCoordinator: TabBarCoordinatable {
         configureTabBarItems()
         configureTabBarViewControllers()
         configureChildCoordinator()
+
+        tabBarController.tabBar.backgroundColor = .systemBackground
+        tabBarController.tabBar.tintColor = .black
     }
 
     private func configureTabBarItems() {

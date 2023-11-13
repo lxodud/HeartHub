@@ -21,6 +21,7 @@ final class ConnectCoordinator: ConnectCoordinatable {
     // MARK: - initializer
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        backButton.tintColor = .black
     }
     
     @objc private func didTapBackButton() {
@@ -64,5 +65,9 @@ extension ConnectCoordinator {
         navigationController.dismiss(animated: true) {
             self.navigationController.present(alert, animated: true)
         }
+    }
+    
+    func cancel() {
+        navigationController.dismiss(animated: true)
     }
 }

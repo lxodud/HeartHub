@@ -20,6 +20,7 @@ final class ConnectCheckViewModel: ViewModelType {
         let profileImage: Driver<Data>
         let nickname: Driver<String>
         let connectSuccess: Driver<Void>
+        let cancel: Driver<Void>
     }
     
     private let id: String
@@ -54,10 +55,14 @@ extension ConnectCheckViewModel {
         let connectSuccess = input.tapMatching
             .do { _ in self.coordinator.toSuccessAlert() }
         
+        let cancel = input.tapCancel
+            .do { _ in self.coordinator.cancel() }
+        
         return Output(
             profileImage: profileImage,
             nickname: nickname,
-            connectSuccess: connectSuccess
+            connectSuccess: connectSuccess,
+            cancel: cancel
         )
     }
 }

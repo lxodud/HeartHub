@@ -115,6 +115,6 @@ private extension Gender {
 
 private extension Date {
     var signInformationForm: String {
-        return SignUpDateFormatter.shared.stringForRequest(from: self)
+        return HeartHubDateFormatter.shared.stringForRequest(from: self)
     }
 }

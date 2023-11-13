@@ -8,4 +8,5 @@
 protocol ConnectCoordinatable: Coordinatable {
     func toMateInformation(_ id: String)
     func toSuccessAlert()
+    func cancel()
 }

@@ -101,6 +101,10 @@ final class ConnectCheckAlertViewController: UIViewController {
         output.connectSuccess
             .drive()
             .disposed(by: disposeBag)
+        
+        output.cancel
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 

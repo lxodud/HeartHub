@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CoupleSpaceAlbumCell: UICollectionViewCell {
+final class AlbumCell: UICollectionViewCell {
     private let firstDecorationView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.951, green: 0.77, blue: 0.896, alpha: 0.2)
@@ -24,21 +24,21 @@ final class CoupleSpaceAlbumCell: UICollectionViewCell {
     
     private let albumImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "TestImage")
+        imageView.contentMode = .scaleToFill
         imageView.backgroundColor = .black
+        imageView.clipsToBounds = false
         return imageView
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Pretendard-SemiBold", size: 20)
-        label.text = "안녕 히히"
         return label
     }()
     
     private let optionButton: UIButton = {
         let button = UIButton()
+        button.setImage(UIImage(named: "option"), for: .normal)
         return button
     }()
     
@@ -81,6 +81,7 @@ final class CoupleSpaceAlbumCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configureDecorateView()
+        configureSuperview()
         configureSubview()
         configureLayout()
     }
@@ -88,10 +89,25 @@ final class CoupleSpaceAlbumCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configureCell(with contents: AlbumItemViewModel) {
+        albumImageView.image = UIImage(data: contents.image)
+        titleLabel.text = contents.title
+        bodyLabel.text = contents.body
+        creationDateLabel.text = contents.createdDate
+        ddayLabel.text = contents.dday
+    }
 }
 
 // MARK: Configure UI
-extension CoupleSpaceAlbumCell {
+extension AlbumCell {
+    private func configureSuperview() {
+        contentView.layer.borderColor = UIColor.lightGray.cgColor
+        contentView.layer.borderWidth = 0.2
+        contentView.layer.cornerRadius = 20
+        contentView.clipsToBounds = true
+    }
+    
     private func configureSubview() {
         [titleLabel, optionButton].forEach {
             titleOptionStackView.addArrangedSubview($0)
@@ -106,9 +122,7 @@ extension CoupleSpaceAlbumCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        clipsToBounds = false
-        contentView.layer.cornerRadius = 20
-        contentView.clipsToBounds = true
+        
     }
     
     private func configureLayout() {
@@ -132,7 +146,8 @@ extension CoupleSpaceAlbumCell {
             
             // MARK: titleOptionStackView Constraints
             titleOptionStackView.topAnchor.constraint(
-                equalTo: albumImageView.bottomAnchor
+                equalTo: albumImageView.bottomAnchor,
+                constant: 10
             ),
             titleOptionStackView.leadingAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.leadingAnchor,
@@ -145,16 +160,14 @@ extension CoupleSpaceAlbumCell {
             
             // MARK: bodyLabel Constraints
             bodyLabel.topAnchor.constraint(
-                equalTo: titleOptionStackView.bottomAnchor
+                equalTo: titleOptionStackView.bottomAnchor,
+                constant: 5
             ),
             bodyLabel.leadingAnchor.constraint(
                 equalTo: titleOptionStackView.leadingAnchor
             ),
             bodyLabel.trailingAnchor.constraint(
                 equalTo: titleOptionStackView.trailingAnchor
-            ),
-            bodyLabel.bottomAnchor.constraint(
-                greaterThanOrEqualTo: creationDateDdayStackView.topAnchor
             ),
             
             // MARK: creationDateDdayStackView Constratins

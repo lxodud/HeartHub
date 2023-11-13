@@ -43,9 +43,6 @@ extension ConnectViewModel {
             }
             .map { _ in }
 
-            
-            
-            
         return Output(
             isFindMateEnable: isFindMateEnable,
             toMateInformation: toMateInformation

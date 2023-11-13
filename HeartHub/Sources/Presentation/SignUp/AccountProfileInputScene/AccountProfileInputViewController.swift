@@ -26,9 +26,12 @@ final class AccountProfileInputViewController: UIViewController {
     private let idCheckButton: UIButton = {
         let button = UIButton()
         button.setTitle("중복 확인", for: .normal)
-        button.setTitleColor(UIColor(red: 0.46, green: 0.46, blue: 0.46, alpha: 1), for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor(red: 0.46, green: 0.46, blue: 0.46, alpha: 1), for: .disabled)
         button.titleLabel?.font = UIFont(name: "Pretendard-Regular", size: 14)
-        button.backgroundColor = .systemGray3
+        let normalColor = UIColor(red: 0.98, green: 0.184, blue: 0.741, alpha: 1)
+        button.setBackgroundColor(normalColor, for: .normal)
+        button.setBackgroundColor(.systemGray3, for: .disabled)
         button.clipsToBounds = true
         button.layer.cornerRadius = 18
         return button
@@ -175,6 +178,10 @@ final class AccountProfileInputViewController: UIViewController {
         
         output.checkingDuplicationId
             .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        output.isIdCheckEnable
+            .drive(idCheckButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         output.idDescription

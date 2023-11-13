@@ -22,8 +22,8 @@ final class CoupleImageBetweenHeartView: UIView {
         super.init(frame: .zero)
         configureSubview()
         configureLayout()
-        myProfileImageView.image = UIImage(named: "MountainBackground")
-        partnerProfileImageView.image = UIImage(named: "MountainBackground")
+        myProfileImageView.image = UIImage(named: "myProfile")
+        partnerProfileImageView.image = UIImage(named: "mateProfile")
     }
     
     required init(coder: NSCoder) {
