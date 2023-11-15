@@ -49,16 +49,17 @@
 
 ### Architecture
 #### MVVM-C + Clean Architecture
-![Untitled (4).jpg](https://hackmd.io/_uploads/S1yO5SZ76.jpg)
+<img width="788" alt="스크린샷 2023-11-14 오후 11 24 58" src="https://github.com/lxodud/HeartHub/assets/85005933/696c5d42-0507-4061-9a79-f92bb684c55d">
+
 
 ### Network Layer
 #### Request Builder
-![Untitled (3).jpg](https://hackmd.io/_uploads/BkjhwSZmp.jpg)
+<img width="621" alt="스크린샷 2023-11-14 오후 11 25 06" src="https://github.com/lxodud/HeartHub/assets/85005933/ae44cb2c-aac5-4e55-9ef1-eae979375eba">
 
 Request에서 공통되는 부분들을 추상화하고 contents type별로 구체 타입을 구현해서 사용하였습니다.
 
 ## 🤔 고민한 점
 
-#### RxSwift의 도입
+#### [RxSwift의 도입](https://github.com/lxodud/HeartHub/wiki/RxSwift%EB%A5%BC-%EB%8F%84%EC%9E%85%ED%95%9C-%EC%9D%B4%EC%9C%A0)
 
-#### MVVM 이상의 관심사 분리가 필요했던 이유
+#### [MVVM 이상의 관심사 분리가 필요했던 이유](https://github.com/lxodud/HeartHub/wiki/MVVM-%EC%9D%B4%EC%83%81%EC%9D%98-%EA%B4%80%EC%8B%AC%EC%82%AC-%EB%B6%84%EB%A6%AC%EA%B0%80-%ED%95%84%EC%9A%94%ED%96%88%EB%8D%98-%EC%9D%B4%EC%9C%A0)
